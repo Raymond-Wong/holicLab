@@ -3,10 +3,12 @@ from django.db import models
 
 # 用户类
 # 微信openid，昵称，电话号码，总预约次数，总预约天数，总预约时长
+USER_ROLES = ((1, u'admin'), (2, 'member'))
 class User(models.Model):
   wx_openid = models.TextField(blank=False)
   nickname = models.CharField(max_length=100, blank=False)
   phone = models.CharField(max_length=20, default='')
+  role = models.CharField(max_length=2, choices=USER_ROLES, default=2)
   total_order_times = models.PositiveIntegerField(default=0)
   total_order_days = models.PositiveIntegerField(default=0)
   total_order_duration = models.PositiveIntegerField(default=0)

@@ -10,14 +10,14 @@ def handler(view):
     try:
       return view(request, *args, **kwargs)
     except Exception, e:
-      return HttpResponse(Response(c=-1, m=e, s='failed').toJson(), content_type='application/json')
+      return HttpResponse(Response(c=-1, m=e).toJson(), content_type='application/json')
   return unKnownErr
 
 def login_required(view):
   def verified(request, *args, **kwargs):
     try:
-      request.session['uid']
-      return view(request, *args, **kwargs)
+      if request.session['logined']:
+        return view(request, *args, **kwargs)
     except:
-      return redirect('/login')
+      return redirect('/admin/login')
   return verified
