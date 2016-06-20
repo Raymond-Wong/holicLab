@@ -8,6 +8,7 @@ import json
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 from holicLab.utils import *
 
@@ -17,6 +18,8 @@ ADMIN_NAME = 'holic'
 ADMIN_PWD = 'holic'
 
 # 登陆处理类
+if settings.DEBUG:
+  @csrf_exempt
 @handler
 def loginHandler(request):
   if request.method == 'GET':
