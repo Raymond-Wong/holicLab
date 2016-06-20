@@ -1,5 +1,4 @@
 import sae
-sae.add_vendor_dir('packages')
 
 from holicLab import wsgi
 
