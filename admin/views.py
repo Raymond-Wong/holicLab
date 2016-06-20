@@ -17,6 +17,12 @@ from holicLab.decorators import *
 def loginHandler(request):
   pass
 
+# 登出处理类
+@handler
+@login_required
+def logoutHandler(request):
+  pass
+
 # 商店的处理类
 @handler
 @login_required
@@ -44,5 +50,11 @@ def memberHandler(request):
 # 优惠券处理类
 @handler
 @login_required
-def CouponHandler(request):
+def couponHandler(request):
+  pass
+
+# 订单处理类
+@handler
+@login_required
+def orderHandler(request):
   pass

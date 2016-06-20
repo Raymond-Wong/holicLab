@@ -6,9 +6,11 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
   url(r'^login$', views.login),
+  url(r'^logout$', views.logout),
   url(r'^shop$', views.shopHandler),
   url(r'^course$', views.courseHandler),
   url(r'^password$', views.passwordHandler),
   url(r'^member$', views.memberHandler),
   url(r'^coupon$', views.couponHandler),
+  url(r'^order$', views.orderHandler),
 )
