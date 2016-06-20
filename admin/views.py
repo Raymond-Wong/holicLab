@@ -14,8 +14,8 @@ from holicLab.utils import *
 
 from holicLab.decorator import *
 
-ADMIN_NAME = 'holic'
-ADMIN_PWD = 'holic'
+ADMIN_NAME = md5('holic')
+ADMIN_PWD = md5('holic')
 
 # 登陆处理类
 @csrf_exempt
@@ -37,8 +37,6 @@ def loginHandler(request):
 @handler
 @login_required
 def logoutHandler(request):
-  if not request.session['logined']:
-    return HttpResponse(Response(c=1, m='无账号登陆').toJson(), content_type='application/json')
   return HttpResponse(Response().toJson(), content_type='application/json')
 
 # 商店的处理类
