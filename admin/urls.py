@@ -5,13 +5,10 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'holicLab.views.home', name='home'),
-    # url(r'^holicLab/', include('holicLab.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+  url(r'^login$', views.login),
+  url(r'^shop$', views.shopHandler),
+  url(r'^course$', views.courseHandler),
+  url(r'^password$', views.passwordHandler),
+  url(r'^member$', views.memberHandler),
+  url(r'^coupon$', views.couponHandler),
 )
