@@ -17,7 +17,6 @@ ADMIN_NAME = 'holic'
 ADMIN_PWD = 'holic'
 
 # 登陆处理类
-@csrf_exempt
 @handler
 def loginHandler(request):
   if request.method == 'GET':
