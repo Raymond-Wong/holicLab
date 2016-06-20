@@ -4,7 +4,6 @@ sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
-import markdown
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import render_to_response, redirect
