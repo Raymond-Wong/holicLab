@@ -11,8 +11,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
 from holicLab.utils import *
-
 from holicLab.decorator import *
+
+import handlers.shop
 
 ADMIN_NAME = md5('holic')
 ADMIN_PWD = md5('holic')
@@ -37,13 +38,24 @@ def loginHandler(request):
 @handler
 @login_required
 def logoutHandler(request):
+  request.session.pop('logined')
   return HttpResponse(Response().toJson(), content_type='application/json')
 
 # 商店的处理类
 @handler
 @login_required
 def shopHandler(request):
-  pass
+  action = request.GET.get('action', None)
+  if action == 'list':
+    return handlers.shop.list(request)
+  elif action == 'add':
+    return handlers.shop.add(request)
+  elif action == 'delete':
+    return handlers.shop.delete(request)
+  elif action == 'update':
+    return handlers.shop.update(request)
+  else:
+    return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 课程的处理类
 @handler
