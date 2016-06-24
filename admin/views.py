@@ -13,7 +13,7 @@ from django.conf import settings
 from holicLab.utils import *
 from holicLab.decorator import *
 
-import handlers.shop
+import handlers.shop, handlers.course, handlers.password, handelrs.member, handlers.order
 
 ADMIN_NAME = md5('holic')
 ADMIN_PWD = md5('holic')
@@ -54,35 +54,58 @@ def shopHandler(request):
     return handlers.shop.delete(request)
   elif action == 'update':
     return handlers.shop.update(request)
-  else:
-    return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
+  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 课程的处理类
 @handler
 @login_required
 def courseHandler(request):
-  pass
+  action = request.GET.get('action', None)
+  if action == 'list':
+    return handlers.course.list(request)
+  elif action == 'add':
+    return handlers.course.add(request)
+  elif action == 'delete':
+    return handlers.course.delete(request)
+  elif action == 'update':
+    return handlers.course.update(request)
+  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 密码处理类
 @handler
 @login_required
 def passwordHandler(request):
-  pass
+  action = request.GET.get('action', None)
+  if action == 'list':
+    return handlers.password.list(request)
+  # elif action == 'add':
+  #   return handlers.password.add(request)
+  # elif action == 'delete':
+  #   return handlers.password.delete(request)
+  # elif action == 'assign':
+  #   return handlers.password.assign(request)
+  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 会员处理类
 @handler
 @login_required
 def memberHandler(request):
-  pass
-
-# 优惠券处理类
-@handler
-@login_required
-def couponHandler(request):
-  pass
+  action = request.GET.get('action', None)
+  if action == 'list':
+    return handlers.member.list(request)
+  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 订单处理类
 @handler
 @login_required
 def orderHandler(request):
+  action = request.GET.get('action', None)
+  if action == 'list':
+    return handlers.order.list(request)
+  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
+
+# 优惠券处理类
+@handler
+@login_required
+def couponHandler(request):
   pass

@@ -12,6 +12,8 @@ class User(models.Model):
   total_order_times = models.PositiveIntegerField(default=0)
   total_order_days = models.PositiveIntegerField(default=0)
   total_order_duration = models.PositiveIntegerField(default=0)
+  invite_code = models.CharField(max_length=4)
+  balance = models.PositiveIntegerField(default=0)
 
   def __unicode__(self):
     return self.nickname
@@ -45,26 +47,27 @@ class Shop(models.Model):
   location = models.CharField(max_length=200)
   price = models.PositiveIntegerField(default=0)
   capacity = models.PositiveIntegerField(default=0)
-
-# 时间段类，记录每个时间段已预约的人数
-class Time_Bucket(models.Model):
-  date = models.DateField()
-  occupation = models.TextField()
+  invalide_times = models.TextField()
 
 # 课程状态枚举
-COURSE_STATE = ((1, u'unstarted'), (2, u'started'), (3, u'full'), (4, u'time_out'), (5, u'finished'))
+COURSE_STATE = ((1, u'started'), (2, u'full'), (3, u'time_out'), (4, u'finished'))
 # 课程类
 class Course(models.Model):
   name = models.CharField(max_length=50)
   description = models.TextField()
-  start_time = models.DateTimeField()
-  end_time = models.DateTimeField()
   tags = models.TextField()
   price = models.PositiveIntegerField()
   state = models.CharField(max_length=20, choices=COURSE_STATE, default='started')
   capacity = models.PositiveIntegerField(default=0)
   sign_up_ddl = models.DateTimeField()
   shop = models.ForeignKey(Shop)
+
+# 时间段类，记录每个时间段已预约的人数
+class Time_Bucket(models.Model):
+  date = models.DateField()
+  occupation = models.TextField()
+  shop = models.ForeignKey(Shop)
+  course = models.ForeignKey(Course)
 
 # 服务类
 class Service(models.Model):
@@ -89,7 +92,7 @@ class Order(models.Model):
   create_time = models.DateTimeField(auto_now_add=True)
   pay_time = models.DateTimeField()
   finish_time = models.DateTimeField()
-  user = models.OneToOneField(User)
+  user = models.ForeignKey(User)
   price = models.PositiveIntegerField()
   course = models.ForeignKey(Course)
   order_type = models.CharField(max_length=10, choices=ORDER_TYPE)
