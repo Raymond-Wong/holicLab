@@ -13,6 +13,7 @@ class User(models.Model):
   total_order_days = models.PositiveIntegerField(default=0)
   total_order_duration = models.PositiveIntegerField(default=0)
   invite_code = models.CharField(max_length=4)
+  use_invite_code = models.BooleanField(default=False)
   balance = models.PositiveIntegerField(default=0)
 
   def __unicode__(self):
@@ -80,8 +81,8 @@ class Service(models.Model):
 class Password(models.Model):
   start_time = models.DateTimeField()
   end_time = models.DateTimeField()
+  content = models.CharField(max_length=4, unique=True)
   used_times = models.PositiveIntegerField(default=0)
-  content = models.CharField(max_length=4)
 
 # 订单类型枚举
 ORDER_TYPE = ((1, u'site'), (2, u'course'))

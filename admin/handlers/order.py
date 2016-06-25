@@ -15,6 +15,10 @@ from django.core import serializers
 from holicLab.utils import *
 from holicLab.models import Order, Shop
 
+def deleteOrders(orders):
+  for order in orders:
+    order.delete()
+
 def list(request):
   orders = Order.objects.all()
   # 商店

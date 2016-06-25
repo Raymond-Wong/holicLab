@@ -4,6 +4,9 @@ sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
+import csv
+import datetime
+import time
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import render_to_response, redirect
@@ -13,33 +16,33 @@ from django.conf import settings
 from holicLab.utils import *
 from holicLab.decorator import *
 
-import handlers.shop, handlers.course, handlers.password, handelrs.member, handlers.order
+import handlers.shop, handlers.course, handlers.password, handlers.member, handlers.order
 
 ADMIN_NAME = md5('holic')
-ADMIN_PWD = md5('holic')
+ADMIN_PWD = md5('holic8888Lab')
 
 # 登陆处理类
 @csrf_exempt
 @handler
 def loginHandler(request):
   if request.method == 'GET':
-    return render_to_response('/admin/login.html')
+    return render_to_response('admin/login.html')
   else:
-    username = request.POST.get('username', None)
+    username = request.POST.get('account', None)
     password = request.POST.get('password', None)
     if username != ADMIN_NAME:
       return HttpResponse(Response(m='账号错误', c=1).toJson(), content_type='application/json')
     elif password != ADMIN_PWD:
       return HttpResponse(Response(m='密码错误', c=2).toJson(), content_type='application/json')
     request.session['logined'] = True
-    return HttpResponse(Response().toJson(), content_type='application/json')
+    return HttpResponse(Response(m='/admin/shop?action=list').toJson(), content_type='application/json')
 
 # 登出处理类
 @handler
 @login_required
 def logoutHandler(request):
   request.session.pop('logined')
-  return HttpResponse(Response().toJson(), content_type='application/json')
+  return redirect('/admin/login')
 
 # 商店的处理类
 @handler
@@ -82,8 +85,6 @@ def passwordHandler(request):
   #   return handlers.password.add(request)
   # elif action == 'delete':
   #   return handlers.password.delete(request)
-  # elif action == 'assign':
-  #   return handlers.password.assign(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 会员处理类
@@ -109,3 +110,23 @@ def orderHandler(request):
 @login_required
 def couponHandler(request):
   pass
+
+# 到处表格处理类
+@handler
+@login_required
+def exportHandler(request):
+  # 检查数据合法性
+  th = request.POST.get('th', None)
+  trs = request.POST.get('trs', None)
+  for tr in trs:
+    if len(tr) != len(th):
+      return HttpResponse(Response(c=1, m='表格格式错误').toJson(), content_type='application/json')
+  # 生成csv
+  response = HttpResponse(mimetype='text/csv')
+  response['Content‐Disposition'] = 'attachment; filename=%s.csv' % str(int(time.time()))
+  # 往csv中填充内容
+  writer = csv.writer(response)
+  writer.writerow(th)
+  for tr in trs:
+    writer.writerow(tr)
+  return reponse
