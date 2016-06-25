@@ -21,8 +21,11 @@ import handlers.shop, handlers.course, handlers.password, handlers.member, handl
 ADMIN_NAME = md5('holic')
 ADMIN_PWD = md5('holic8888Lab')
 
+@handler
+def indexHandler(request):
+  return redirect('/admin/shop?action=list')
+
 # 登陆处理类
-@csrf_exempt
 @handler
 def loginHandler(request):
   if request.method == 'GET':
@@ -48,6 +51,8 @@ def logoutHandler(request):
 @handler
 @login_required
 def shopHandler(request):
+  if request.method == 'GET':
+    return render_to_response('admin/widgets/base.html')
   action = request.GET.get('action', None)
   if action == 'list':
     return handlers.shop.list(request)

@@ -1,0 +1,30 @@
+.navWrapper {
+  border-right: 1px solid #ddd;
+}
+
+.nav {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  list-style: none;
+}
+
+.nav li {
+  width: 100%;
+}
+
+.nav .lh {
+  padding: 1em 0;
+  color: #aaa;
+  font-size: 16px;
+}
+
+.nav .lr a {
+  color: black;
+}
+
+.nav .lr.active a, .nav .lr.active a:hover {
+  background-color: #3b475c;
+  color: #eee;
+}

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  // 监听回车
+  listenReturn();
   $('#submitBtn').click(function() {
   	var url="/admin/login";
   	var account = $('input[name="account"]').val();
@@ -6,21 +8,22 @@ $(document).ready(function() {
   	  topAlert("账号不能为空", 'error')
   	  return;
   	}
-  	console.log("account: " + account);
   	var password = $('input[name="password"]').val();
   	if (password == '') {
   	  topAlert("密码不能为空", 'error')
   	  return;
   	}
-  	console.log("password: " + password);
   	var params = {'account' : $.md5(account), 'password' : $.md5(password)};
-  	$.post(url, params, function(res) {
-  	  console.log(res);
-  	  if (res['code'] == '0') {
-  	  	window.location.href=res['msg'];
-  	  } else {
-  	  	topAlert(res['msg'], 'error');
-  	  }
-  	});
+    post(url, params, function(msg) {
+      window.location.href=msg;
+    })
   });
 });
+
+var listenReturn = function() {
+  $(window).keydown(function(e) {
+    if (e.keyCode == 13) {
+      $('#submitBtn').trigger('click');
+    }
+  });
+}

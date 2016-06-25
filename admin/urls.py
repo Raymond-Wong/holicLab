@@ -6,6 +6,7 @@ import views
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+  url(r'^/$', views.indexHandler),
   url(r'^/login$', views.loginHandler),
   url(r'^/logout$', views.logoutHandler),
   url(r'^/shop$', views.shopHandler),

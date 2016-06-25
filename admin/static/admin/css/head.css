@@ -1,0 +1,18 @@
+.pageHeadWrapper {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+.pageHead {
+  width: 1024px;
+  height: 100%;
+  margin: auto;
+  font-size: 16px;
+}
+
+.pageHead .right {
+  font-size: 12px;
+}
