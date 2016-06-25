@@ -16,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: inherit;
+  min-width: 1100px;
 }
 
 .vertical_outer {
@@ -59,8 +60,8 @@ body {
 
 /*滚动条样式*/
 *::-webkit-scrollbar {
-  width: 8px;
-  /*height: 8px;*/
+  width: 10px;
+  height: 10px;
 }
 
 *::-webkit-scrollbar-button    {
@@ -68,7 +69,8 @@ body {
 }
 
 *::-webkit-scrollbar-track     {
-  display: none;
+  /*display: none;*/
+  background-color: #d9d9d9;
 }
 
 *::-webkit-scrollbar-track-piece {
@@ -92,9 +94,6 @@ body {
 .pageContainer {
   width: 100%;
   padding: 40px 0;
-  position: fixed;
-  top: 50px;
-  bottom: 0;
   overflow: auto;
 }
 
