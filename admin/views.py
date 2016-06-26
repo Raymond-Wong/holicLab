@@ -51,8 +51,6 @@ def logoutHandler(request):
 @handler
 @login_required
 def shopHandler(request):
-  if request.method == 'GET':
-    return render_to_response('admin/widgets/base.html')
   action = request.GET.get('action', None)
   if action == 'list':
     return handlers.shop.list(request)

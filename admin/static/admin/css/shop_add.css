@@ -1,0 +1,116 @@
+.shopAddWrapper {
+  width: 100%;
+}
+
+.stepBox {
+  margin-top: 25px;
+  padding: 14px 20px;
+  border-top: 1px solid #edefed;
+}
+
+.stepHead {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.stepLine {
+  margin-bottom: 16px;
+}
+
+.imgOrVideoBtns font {
+  margin-right: 20px;
+}
+
+.imgOrVideoBtns input {
+  position: relative;
+  top: 1px;
+  margin-right: 5px;
+  outline: none;
+}
+
+.imgBox {
+  width: 842px;
+  height: 155px;
+}
+
+.imgBox .thumbImg {
+  width: 200px;
+  height: 100%;
+  margin-left: 14px;
+}
+
+.imgBox .thumbImg:first-child {
+  margin-left: 0;
+}
+
+.videoBox {
+  display: none;
+}
+
+.videoBox input {
+  width: 482px;
+  height: 35px;
+  line-height: 35px;
+  padding: 0;
+  outline: none;
+  background-color: #edefed;
+  border: 1px solid #ddd;
+  padding: 0 5px;
+}
+
+.stepBox .inputName {
+  width: 7em;
+  display: inline-block;
+  vertical-align: top;
+  height: 35px;
+  line-height: 35px;
+}
+
+.stepBox .inputValue {
+  width: 480px;
+  height: 35px;
+  line-height: 35px;
+  outline: none;
+  background-color: #edefed;
+  border: 1px solid #ddd;
+  padding: 0 5px;
+}
+
+.stepBox textarea[name="description"], .stepBox textarea[name="notice"] {
+  resize: none;
+  height: 100px;
+  padding: 0 5px;
+}
+
+.timeContainer {
+  display: none;
+}
+
+.timeBox {
+  display: inline-block;
+}
+
+.timeBox .inputValue {
+  width: 308px;
+}
+
+.timeBox .deleteBtn {
+  margin-left: 14px;
+}
+
+.addTimeBtn {
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 14px;
+  margin: 0;
+  border: 1px solid #edefed;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.addTimeBtn:hover {
+  border: 1px solid #6faaee;
+}

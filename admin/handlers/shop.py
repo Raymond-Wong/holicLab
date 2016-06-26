@@ -17,10 +17,14 @@ from order import deleteOrders
 
 # 列出所有店铺
 def list(request):
-  return HttpResponse(Response(m=serializers.serialize("json", Shop.objects.all())).toJson(), content_type='application/json')
+  shops = Shop.objects.all()
+  hasShop = True if len(shops) > 0 else False
+  return render_to_response('admin/shop_list.html', {'shops' : shops, 'hasShop' : hasShop})
 
 # 添加一个店铺
 def add(request):
+  if request.method == 'GET':
+    return render_to_response('admin/shop_add.html')
   # 获取数据
   name = request.POST.get('name', None)
   location = request.POST.get('location', None)

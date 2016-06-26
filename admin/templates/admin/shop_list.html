@@ -1,0 +1,71 @@
+{% extends "admin/widgets/base.html" %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/admin/css/shop_list.css">
+{% endblock %}
+
+{% block page %}
+<div class="shopWrapper">
+  <div class="line">
+    {% if hasShop %}
+    <div class="switchListBtns left">
+      <a class="switchListBtn btn" href="/admin/course?action=list">团体课</a>
+      <a class="switchListBtn btn active" href="javascript:void(0)">场地</a>
+    </div>
+    {% endif %}
+    <a id="addShopBtn" class="addShopBtn btn left" href="/admin/shop?action=add">添加新场地</a>
+    <div class="clear"></div>
+  </div>
+  <div class="line">
+    <ul class="shopContainer releasedShop">
+      <li class="lh">已发布</li>
+      <li class="lr">
+        <a class="shopBox" title="点击进入商店设置" href="#">
+          <div class="thumbImg left"></div>
+          <div class="textBox right">
+            <div class="deleteBtn">删除</div>
+            <div class="shopName ellipsis">全能工作室南山中心好叻店</div>
+            <div class="location ellipsis">深圳市南山区前海</div>
+            <div class="lastModifiedTime ellipsis">最后更新时间:<font>2016-6-22 15:30:00</font></div>
+            <div class="calendarBtn btn">修改日历</div>
+          </div>
+          <div class="clear"></div>
+        </a>
+      </li>
+      <li class="lr">
+        <a class="shopBox" title="点击进入商店设置" href="#">
+          <div class="thumbImg left"></div>
+          <div class="textBox right">
+            <div class="deleteBtn">删除</div>
+            <div class="shopName ellipsis">全能工作室南山中心好叻店</div>
+            <div class="location ellipsis">深圳市南山区前海</div>
+            <div class="lastModifiedTime ellipsis">最后更新时间:<font>2016-6-22 15:30:00</font></div>
+            <div class="calendarBtn btn">修改日历</div>
+          </div>
+          <div class="clear"></div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="line">
+    <ul class="shopContainer unreleasedShop">
+      <li class="lh">已发布</li>
+      <li class="lr">
+        <a class="shopBox" title="点击进入商店设置" href="#">
+          <div class="thumbImg left"></div>
+          <div class="textBox right">
+            <div class="deleteBtn">删除</div>
+            <div class="shopName ellipsis">全能工作室南山中心好叻店</div>
+            <div class="location ellipsis">深圳市南山区前海</div>
+            <div class="lastModifiedTime ellipsis">最后更新时间:<font>2016-6-22 15:30:00</font></div>
+            <div class="releaseBtn btn">发布</div>
+          </div>
+          <div class="clear"></div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}{% endblock %}

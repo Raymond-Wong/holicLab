@@ -10,14 +10,15 @@
   <link type="text/css" rel="stylesheet" href="/static/admin/css/alert.css">
   <link type="text/css" rel="stylesheet" href="/static/admin/css/head.css">
   <link type="text/css" rel="stylesheet" href="/static/admin/css/nav.css">
+  {% block style %}{% endblock %}
 </head>
 <body>
   {% include "admin/widgets/topAlert.html" %}
   {% include "admin/widgets/head.html" %}
   <div class="pageContainer">
     <div class="pageWrapper">
-      <div class="navWrapper left">{% include "admin/widgets/nav.html" %}</div>
-      <div class="mainWrapper right"></div>
+      <div class="navWrapper">{% include "admin/widgets/nav.html" %}</div>
+      <div class="mainWrapper">{% block page %}{% endblock %}</div>
     </div>
   </div>
 </body>
@@ -25,6 +26,8 @@
 <script type="text/javascript" src="/static/common/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/common/js/django.csrf.js"></script>
 <script type="text/javascript" src="/static/common/js/utils.js"></script>
-<script type="text/javascript" src="/static/admin/js/topAlert.js"></script>
 <script type="text/javascript" src="/static/common/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/static/admin/js/topAlert.js"></script>
+<script type="text/javascript" src="/static/admin/js/radio.js"></script>
+{% block script %}{% endblock %}
 </html>
