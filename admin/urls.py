@@ -16,4 +16,5 @@ urlpatterns = patterns('',
   url(r'^/coupon$', views.couponHandler),
   url(r'^/order$', views.orderHandler),
   url(r'^/export$', views.exportHandler),
+  url(r'^/upload$', views.uploadHandler),
 )

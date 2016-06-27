@@ -39,6 +39,20 @@
   width: 200px;
   height: 100%;
   margin-left: 14px;
+  position: relative;
+}
+
+.imgBox .thumbImg .deleteBtn {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #6faaee;
+}
+
+.imgBox .thumbImg .deleteBtn:hover {
+  text-decoration: underline;
 }
 
 .imgBox .thumbImg:first-child {
@@ -98,6 +112,7 @@
 
 .timeBox .deleteBtn {
   margin-left: 14px;
+  cursor: pointer;
 }
 
 .addTimeBtn {
@@ -113,4 +128,31 @@
 
 .addTimeBtn:hover {
   border: 1px solid #6faaee;
+}
+
+.newStepLine .inputName {
+  margin-right: 4px;
+}
+
+.newStepLine input {
+  margin-right: 3px;
+}
+
+.submitBtn, .cancelBtn {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 10px;
+  padding: 0;
+}
+
+.cancelBtn {
+  background-color: white;
+  color: #6faaee;
+  border: 1px solid #6faaee;
+  margin-left: 20px;
+}
+
+.cancelBtn:hover {
+  color: #6faaee;
 }

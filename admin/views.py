@@ -15,6 +15,7 @@ from django.conf import settings
 
 from holicLab.utils import *
 from holicLab.decorator import *
+from holicLab.models import Image
 
 import handlers.shop, handlers.course, handlers.password, handlers.member, handlers.order
 
@@ -60,6 +61,10 @@ def shopHandler(request):
     return handlers.shop.delete(request)
   elif action == 'update':
     return handlers.shop.update(request)
+  elif action == 'release':
+    return handlers.shop.release(request)
+  elif action == 'get':
+    return handlers.shop.get(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 课程的处理类
@@ -133,3 +138,14 @@ def exportHandler(request):
   for tr in trs:
     writer.writerow(tr)
   return reponse
+
+# 上传图片
+@handler
+@login_required
+def uploadHandler(request):
+  image = request.FILES['image']
+  image._name = '%s_%s' % (str(int(time.time())), image._name)
+  image = Image(url=image)
+  image.save()
+  url = '/media/' + image.__dict__.get('url')
+  return HttpResponse(Response(m=url).toJson(), content_type='application/json')

@@ -11,15 +11,21 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
 from holicLab.utils import *
-from holicLab.models import Shop, Time_Bucket
+from holicLab.models import Shop, Time_Bucket, Course, Service
 
 from order import deleteOrders
 
 # 列出所有店铺
 def list(request):
-  shops = Shop.objects.all()
-  hasShop = True if len(shops) > 0 else False
-  return render_to_response('admin/shop_list.html', {'shops' : shops, 'hasShop' : hasShop})
+  unreleasedShop = Shop.objects.filter(state=1)
+  releasedShop = Shop.objects.filter(state=2)
+  hasShop = True if len(unreleasedShop) + len(releasedShop) > 0 else False
+  # 将图片列表从字符串处理成数组
+  for shop in unreleasedShop:
+    shop.cover = json.loads(shop.cover)
+  for shop in releasedShop:
+    shop.cover = json.loads(shop.cover)
+  return render_to_response('admin/shop_list.html', {'unreleasedShops' : unreleasedShop, 'releasedShops' : releasedShop, 'hasShop' : hasShop})
 
 # 添加一个店铺
 def add(request):
@@ -27,12 +33,16 @@ def add(request):
     return render_to_response('admin/shop_add.html')
   # 获取数据
   name = request.POST.get('name', None)
+  cover_type = request.POST.get('cover_type', None);
+  cover = request.POST.get('cover', None);
+  description = request.POST.get('description', None);
   location = request.POST.get('location', None)
   price = request.POST.get('price', None)
   capacity = request.POST.get('capacity', None)
-  invalide_times = request.POST.get('invalide_times', None)
+  notice = request.POST.get('notice', None);
+  invalide_times = request.POST.get('invalide_times', [])
   # 判断数据有效性
-  if name is None or location is None or price is None or capacity is None or invalide_times is None:
+  if name is None or location is None or price is None or capacity is None or invalide_times is None or cover_type is None or cover is None or description is None:
     return HttpResponse(Response(c=-9, m="未提供指定参数").toJson(), content_type='application/json')
   if len(name) > 50:
     return HttpResponse(Response(c=1, m="门店名称不得超过50字").toJson(), content_type='application/json')
@@ -48,7 +58,7 @@ def add(request):
   if capacity < 0:
     return HttpResponse(Response(c=5, m="门店容量必须为正整数(人)").toJson(), content_type='application/json')
   # 创建新门店
-  newShop = Shop(name=name, location=location, price=price, capacity=capacity, invalide_times=invalide_times)
+  newShop = Shop(name=name, location=location, price=price, capacity=capacity, invalide_times=invalide_times, description=description, cover=cover, cover_type=cover_type, notice=notice)
   newShop.save()
   return HttpResponse(Response(m=newShop.id).toJson(), content_type='application/json')
 
@@ -72,25 +82,33 @@ def deleteShop(shop):
 def delete(request):
   # 获取数据
   sid = request.POST.get('sid', None)
+  shop = None
   # 判断数据有效性
   if sid is None:
     return HttpResponse(Response(c=-9, m='未提供sid').toJson(), content_type='application/json')
   try:
     sid = int(sid)
-    deleteShop(Shop.objects.get(id=sid))
-  except:
+    shop = Shop.objects.get(id=sid)
+  except Exception, e:
     return HttpResponse(Response(c=-3, m='指定删除门店不存在').toJson(), content_type='application/json')
+  deleteShop(shop)
   return HttpResponse(Response().toJson(), content_type='application/json')
 
 # 更新指定门店信息
 def update(request):
+  if request.method == 'GET':
+    sid = request.GET.get('sid', None)
+    return render_to_response('admin/shop_update.html', {"shop" : Shop.objects.get(id=sid)})
   # 获取数据
   name = request.POST.get('name', None)
   location = request.POST.get('location', None)
   price = request.POST.get('price', None)
   capacity = request.POST.get('capacity', None)
   sid = request.POST.get('sid', None)
-  invalide_times = request.POST.get('invalide_times', None)
+  invalide_times = request.POST.get('invalide_times', [])
+  cover = request.POST.get('cover', None)
+  cover_type = request.POST.get('cover_type', None)
+  notice = request.POST.get('notice', None)
   shop = None
   # 判断数据正确性
   if sid is None:
@@ -123,5 +141,38 @@ def update(request):
   shop.price = price if price is not None else shop.price
   shop.capacity = capacity if capacity is not None else shop.capacity
   shop.invalide_times = invalide_times if invalide_times is not None else shop.invalide_times
+  shop.cover = cover if cover is not None else shop.cover
+  shop.cover_type = cover_type if cover_type is not None else shop.cover_type
+  shop.notice = notice if notice is not None else shop.notice
   shop.save()
   return HttpResponse(Response().toJson(), content_type='application/json')
+
+def release(request):
+  # 获取数据
+  sid = request.POST.get('sid', None)
+  shop = None
+  # 判断数据有效性
+  if sid is None:
+    return HttpResponse(Response(c=-9, m='未提供sid').toJson(), content_type='application/json')
+  try:
+    sid = int(sid)
+    shop = Shop.objects.get(id=sid)
+  except Exception, e:
+    return HttpResponse(Response(c=-3, m='指定删除门店不存在').toJson(), content_type='application/json')
+  shop.state = 2
+  shop.save()
+  return HttpResponse(Response(m='发布成功').toJson(), content_type='application/json')
+
+def get(request):
+  # 获取数据
+  sid = request.POST.get('sid', None)
+  shop = None
+  # 判断数据有效性
+  if sid is None:
+    return HttpResponse(Response(c=-9, m='未提供sid').toJson(), content_type='application/json')
+  try:
+    sid = int(sid)
+    shop = Shop.objects.get(id=sid)
+  except Exception, e:
+    return HttpResponse(Response(c=-3, m='指定删除门店不存在').toJson(), content_type='application/json')
+  return HttpResponse(Response(m=shop.toJSON()).toJson(), content_type='application/json')

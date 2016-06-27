@@ -3,12 +3,10 @@ from django.db import models
 
 # 用户类
 # 微信openid，昵称，电话号码，总预约次数，总预约天数，总预约时长
-USER_ROLES = ((1, u'admin'), (2, 'member'))
 class User(models.Model):
   wx_openid = models.TextField(blank=False)
   nickname = models.CharField(max_length=100, blank=False)
   phone = models.CharField(max_length=20, default='')
-  role = models.CharField(max_length=2, choices=USER_ROLES, default=2)
   total_order_times = models.PositiveIntegerField(default=0)
   total_order_days = models.PositiveIntegerField(default=0)
   total_order_duration = models.PositiveIntegerField(default=0)
@@ -36,19 +34,26 @@ class Time_Limit_Coupon(Coupon):
 class Tries_Limit_Coupon(Coupon):
   reuse_times = models.IntegerField(default=-1)
 
-# 服务类
-class Service(models.Model):
-  name = models.CharField(max_length=20)
-  price = models.PositiveIntegerField(blank=False)
-  description = models.CharField(max_length=100)
-
+# 封面类型
+COVER_TYPE = ((1, u'image'), (2, u'video'))
+SHOP_STATE = ((1, u'unreleased'), (2, u'released'))
 # 门店类
 class Shop(models.Model):
   name = models.CharField(max_length=50)
+  description = models.TextField()
+  notice = models.TextField()
+  cover_type = models.CharField(max_length=5, choices=COVER_TYPE, default=1)
+  cover = models.TextField()
   location = models.CharField(max_length=200)
   price = models.PositiveIntegerField(default=0)
   capacity = models.PositiveIntegerField(default=0)
   invalide_times = models.TextField()
+  last_modified_time = models.DateTimeField(auto_now=True)
+  state = models.CharField(max_length=10, choices=SHOP_STATE, default=1)
+  def toJSON(self):
+    import json
+    import utils
+    return json.dumps(dict([(attr, getattr(self, attr)) for attr in [f.name for f in self._meta.fields]]), ensure_ascii=False, cls=utils.MyJsonEncoder)
 
 # 课程状态枚举
 COURSE_STATE = ((1, u'started'), (2, u'full'), (3, u'time_out'), (4, u'finished'))
@@ -107,3 +112,6 @@ class Order(models.Model):
   shop = models.ForeignKey(Shop)
   def __unicode__(self):
     return '%s->%s' % (self.user.id, self.create_time)
+
+class Image(models.Model):
+  url = models.ImageField(upload_to = 'images/')

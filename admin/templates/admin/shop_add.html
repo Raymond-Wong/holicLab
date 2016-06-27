@@ -32,12 +32,15 @@
     </div>
     <div class="videoBox stepLine">
       <div class="inputName">视频链接地址</div>
-      <input type="text" class="inputValue" placeholder="视频地址" name="videoUrl" />
+      <input type="text" class="inputValue" placeholder="视频地址(注意，必须带上http://或https://)" name="videoUrl" />
     </div>
   </div>
   <div class="stepBox">
     <div class="stepHead">第二步: 填写细节</div>
     <div class="stepLine">
+      <div class="inputName">场地名称</div>
+      <input name="name" type="text" placeholder="场地名称, 不得超过50字" class="inputValue" />
+    </div><div class="stepLine">
       <div class="inputName">场地介绍</div>
       <textarea name="description" class="inputValue" placeholder="场地介绍"></textarea>
     </div>
@@ -47,7 +50,11 @@
     </div>
     <div class="stepLine">
       <div class="inputName">价格</div>
-      <input name="location" type="number" min="0" placeholder="预定场地半小时的价格，单位为（角）" class="inputValue" />
+      <input name="price" type="number" min="0" placeholder="预定场地半小时的价格，单位为（角）" class="inputValue" />
+    </div>
+    <div class="stepLine">
+      <div class="inputName">容量</div>
+      <input name="capacity" type="number" min="0" placeholder="同一时间段内场地可容纳的人数" class="inputValue" />
     </div>
     <div class="stepLine">
       <div class="inputName">注意事项</div>
@@ -73,11 +80,21 @@
       </div>
     </div>
   </div>
+  <div class="stepBox">
+    <div class="stepLine">
+      <a class="btn submitBtn" id="submitBtn">确定</a>
+      <a class="btn cancelBtn">取消</a>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
 {% block script %}
-<script src="/static/plugin/datetimepicker/build/jquery.datetimepicker.full.js"></script>
-<script type="text/javascript" src="/static/admin/js/shop_add.js"></script>
+<script type="text/javascript" src="/static/plugin/fileUpload/js/vendor/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="/static/plugin/fileUpload/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="/static/plugin/fileUpload/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="/static/plugin/datetimepicker/build/jquery.datetimepicker.full.js"></script>
+<script type="text/javascript" src="/static/admin/js/templates.js"></script>
 <script type="text/javascript" src="/static/admin/js/datetimepicker.js"></script>
+<script type="text/javascript" src="/static/admin/js/shop_add.js"></script>
 {% endblock %}

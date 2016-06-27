@@ -5,13 +5,23 @@ $(document).ready(function() {
 
 var datetimeInit = function() {
   $.datetimepicker.setLocale('ch');//设置中文
-  $('.datetimepicker.endTime').datetimepicker({
+  initEndTime($('.datetimepicker.endTime'));
+  initStartTime($('.datetimepicker.startTime'));
+}
+
+var initEndTime = function(doms, defaultTime) {
+  doms.datetimepicker({
     step: 30,
     format: "Y-m-d H:i:00",
+    value: defaultTime,
   });
-  $('.datetimepicker.startTime').datetimepicker({
+}
+
+var initStartTime = function(doms, defaultTime) {
+  doms.datetimepicker({
     step: 30,
     format: "Y-m-d H:i:00",
+    value: defaultTime,
     onChangeDateTime: endLargerThanStart,
   });
 }
