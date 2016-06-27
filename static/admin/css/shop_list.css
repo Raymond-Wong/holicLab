@@ -1,0 +1,153 @@
+.line {
+  margin-bottom: 20px;
+}
+
+.shopWrapper {
+  width: 100%;
+}
+
+.switchListBtns {
+  border: 1px solid #576477;
+  font-size: 0;
+  margin-right: 32px;
+}
+
+.switchListBtn {
+  width: 70px;
+  height: 38px;
+  line-height: 40px;
+  border: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 0px;
+  background-color: white;
+}
+
+.switchListBtn.active {
+  background-color: #576477;
+  color: white;
+}
+
+.switchListBtn:hover, .switchListBtn:active, .switchListBtn:visited, .switchListBtn:link {
+  text-decoration: none;
+  color: #5b5b5b;
+}
+
+.switchListBtn.active:hover, .switchListBtn.active:active,
+.switchListBtn.active:visited, .switchListBtn.active:link {
+  color: white;
+}
+
+
+.switchListBtn:first-child {
+  border-right: 1px solid #576477;
+}
+
+.addShopBtn {
+  height: 40px;
+  line-height: 40px;
+  padding: 0;
+  background-color: white;
+  color: #6faaee;
+  width: 120px;
+  border-radius: 10px;
+  border: 1px solid #6faaee;
+}
+
+.addShopBtn:hover {
+  color: #6faaee;
+}
+
+.shopContainer {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 800px;
+  border: 1px solid #edefed;
+}
+
+.shopContainer li {
+  width: 100%;
+}
+
+.shopContainer .lh {
+  height: 50px;
+  line-height: 50px;
+  color: #3b495b;
+  background-color: #edefed;
+  padding: 0 15px;
+  border-bottom: 1px solid white;
+}
+
+.shopContainer .lr {
+  padding: 28px 21px;
+  border-bottom: 1px solid #edefed;
+}
+
+.shopContainer .lr:last-child {
+  border-bottom: 0;
+}
+
+.shopContainer .shopBox {
+  display: block;
+}
+
+.shopContainer .lr:hover {
+  /*background-color: #eee;*/
+}
+
+.shopContainer .lr .thumbImg {
+  width: 230px;
+  height: 160px;
+}
+
+.shopContainer .lr .textBox {
+  width: 510px;
+  height: 160px;
+  position: relative;
+}
+
+.shopContainer .lr .textBox div {
+  margin-bottom: 10px;
+}
+
+.shopContainer .lr .textBox .shopName {
+  font-size: 18px;
+}
+
+.shopContainer .lr .textBox .lastModifiedTime {
+  color: #b6b6b6;
+}
+
+.shopContainer .lr .textBox .lastModifiedTime font {
+  margin-left: 10px;
+  color: #b6b6b6;
+}
+
+.shopContainer .lr .textBox .btn {
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0;
+  border-radius: 10px;
+  background-color: #6faaee;
+}
+
+.shopContainer .lr .textBox .deleteBtn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: #6faaee;
+}
+
+.shopContainer .lr .textBox .deleteBtn:hover {
+  text-decoration: underline;
+}
+
+.nodata {
+  height: 50px;
+  line-height: 50px;
+  color: #3b495b;
+  padding: 0 15px;
+}

@@ -1,0 +1,155 @@
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #d9d9d9;
+}
+
+html * {
+  font-family: "微软雅黑", "黑体";
+  color: #5b5b5b;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
+  min-width: 1100px;
+}
+
+.vertical_outer {
+  display: table;
+  table-layout: fixed;
+}
+
+.vertical_inner {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.btn {
+  background-color: #4a90e2;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn:hover {
+  font-weight: bold;
+  color: white;
+}
+
+.btn.wait:hover {
+  color: #5b5b5b;
+}
+
+.thumbImg {
+  background-color: #d8d8d8;
+  text-align: center;
+  font-size: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.uploadImgBtn {
+  cursor: pointer;
+}
+
+.uploadImgBtn:hover {
+  text-decoration: underline;
+}
+
+.radio {
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 14px;
+  margin: 0;
+  border: 1px solid #edefed;
+  cursor: pointer;
+}
+
+.radio:hover {
+  border: 1px solid #6faaee;
+}
+
+.radio.checked {
+  border: 1px solid #6faaee;
+}
+
+/*滚动条样式*/
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-button    {
+  display: none;
+}
+
+*::-webkit-scrollbar-track     {
+  /*display: none;*/
+  background-color: #d9d9d9;
+}
+
+*::-webkit-scrollbar-track-piece {
+  display: none;
+}
+
+*::-webkit-scrollbar-thumb{
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-corner {
+  display: none;
+}
+
+*::-webkit-scrollbar-resizer  {
+  display: none;
+}
+
+.pageContainer {
+  width: 100%;
+  padding: 40px 0;
+  overflow: auto;
+}
+
+.pageWrapper {
+  width: 1312px;
+  margin: auto;
+  min-height: 804px;
+  background-color: white;
+  position: relative;
+}
+
+.navWrapper {
+  width: 212px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.mainWrapper {
+  width: 1100px;
+  margin-left: 212px;
+  padding: 20px 40px;
+}
