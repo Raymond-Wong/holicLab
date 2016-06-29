@@ -52,7 +52,9 @@ var endLargerThanStart = function(db, startDom) {
       format: "Y-m-d H:i:00",
       value: startTime,
       beforeShowDay: function(date) {
-        if (date < startTime) {
+        if ((date.getYear() < startTime.getYear()) ||
+            (date.getYear() == startTime.getYear() && date.getMonth() < startTime.getMonth()) ||
+            (date.getYear() == startTime.getYear() && date.getMonth() == startTime.getMonth() && date.getDate() < startTime.getDate())) {
           return [false, ""]
         }
         return [true, ""];

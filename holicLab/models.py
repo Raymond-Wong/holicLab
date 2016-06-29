@@ -3,16 +3,20 @@ from django.db import models
 
 # 用户类
 # 微信openid，昵称，电话号码，总预约次数，总预约天数，总预约时长
+USER_TYPE = ((1, u'new'), (2, u'old'))
 class User(models.Model):
-  wx_openid = models.TextField(blank=False)
+  wx_openid = models.TextField(blank=True)
   nickname = models.CharField(max_length=100, blank=False)
   phone = models.CharField(max_length=20, default='')
+  bind_date = models.DateField(null=True)
   total_order_times = models.PositiveIntegerField(default=0)
   total_order_days = models.PositiveIntegerField(default=0)
   total_order_duration = models.PositiveIntegerField(default=0)
   invite_code = models.CharField(max_length=4)
   use_invite_code = models.BooleanField(default=False)
   balance = models.PositiveIntegerField(default=0)
+  consumption = models.PositiveIntegerField(default=0)
+  user_type = models.CharField(max_length=3, choices=USER_TYPE, default=1)
 
   def __unicode__(self):
     return self.nickname
@@ -115,18 +119,18 @@ ORDER_STATE = ((1, u'to_pay'), (2, u'cancel'), (3, u'time_out'), (4, u'success')
 # 订单类
 class Order(models.Model):
   create_time = models.DateTimeField(auto_now_add=True)
-  pay_time = models.DateTimeField()
-  finish_time = models.DateTimeField()
+  pay_time = models.DateTimeField(null=True)
+  finish_time = models.DateTimeField(null=True)
   user = models.ForeignKey(User)
   price = models.PositiveIntegerField()
-  course = models.ForeignKey(Course)
+  course = models.ForeignKey(Course, null=True)
   order_type = models.CharField(max_length=10, choices=ORDER_TYPE)
-  coupons = models.ForeignKey(Coupon)
+  coupons = models.ForeignKey(Coupon, null=True)
   password = models.OneToOneField(Password)
   start_time = models.DateTimeField()
   end_time = models.DateTimeField()
   people_amount = models.PositiveIntegerField(default=1)
-  services = models.ManyToManyField(Service)
+  services = models.ManyToManyField(Service, null=True)
   state = models.CharField(max_length=20, choices=ORDER_STATE)
   shop = models.ForeignKey(Shop)
   def __unicode__(self):

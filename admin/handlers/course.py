@@ -30,7 +30,7 @@ def list(request):
         shop.cover = json.loads(shop.cover)
       for shop in releasedShop:
         shop.cover = json.loads(shop.cover)
-      return render_to_response('admin/course_shop_list.html', {'unreleasedShops' : unreleasedShop, 'releasedShops' : releasedShop, 'hasShop' : hasShop})
+      return render_to_response('admin/course_shop_list.html', {'activePaeg' : 'content', 'unreleasedShops' : unreleasedShop, 'releasedShops' : releasedShop, 'hasShop' : hasShop})
     else:
       shop = None
       try:
@@ -44,7 +44,7 @@ def list(request):
         course.cover = json.loads(course.cover)
       for course in releasedCourses:
         course.cover = json.loads(course.cover)
-      return render_to_response('admin/course_list.html', {'sid' : sid, 'releasedCourses' : releasedCourses, 'unreleasedCourses' : unreleasedCourses})
+      return render_to_response('admin/course_list.html', {'activePage' : 'content', 'sid' : sid, 'releasedCourses' : releasedCourses, 'unreleasedCourses' : unreleasedCourses})
   # 检查数据合法性
   validate = isValidate(request, {'sid' : False}, False)
   if not validate[0]:
@@ -67,7 +67,7 @@ def add(request):
       shop = Shop.objects.get(id=int(sid))
     except:
       return HttpResponse(Response(c=-3, m="场地不存在").toJson, content_type="application/json")
-    return render_to_response('admin/course_add.html', {'sid' : sid})
+    return render_to_response('admin/course_add.html', {'activePage' : 'content', 'sid' : sid})
   # 检查数据合法性
   validate = isValidate(request, {'sid' : False}, True)
   if not validate[0]:
@@ -116,7 +116,7 @@ def delete(request):
 def update(request):
   if request.method == 'GET':
     cid = request.GET.get('cid', None)
-    return render_to_response('admin/course_update.html', {'course' : Course.objects.get(id=int(cid))})
+    return render_to_response('admin/course_update.html', {'activePage' : 'content', 'course' : Course.objects.get(id=int(cid))})
   # 检查数据合法性
   validate = isValidate(request, {'sid' : False}, True)
   if not validate[0]:

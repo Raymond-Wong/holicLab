@@ -25,12 +25,12 @@ def list(request):
     shop.cover = json.loads(shop.cover)
   for shop in releasedShop:
     shop.cover = json.loads(shop.cover)
-  return render_to_response('admin/shop_list.html', {'unreleasedShops' : unreleasedShop, 'releasedShops' : releasedShop, 'hasShop' : hasShop})
+  return render_to_response('admin/shop_list.html', {'activePage' : 'content', 'unreleasedShops' : unreleasedShop, 'releasedShops' : releasedShop, 'hasShop' : hasShop})
 
 # 添加一个店铺
 def add(request):
   if request.method == 'GET':
-    return render_to_response('admin/shop_add.html')
+    return render_to_response('admin/shop_add.html', {'activePage' : 'content'})
   # 获取数据
   name = request.POST.get('name', None)
   cover_type = request.POST.get('cover_type', None);
@@ -98,7 +98,7 @@ def delete(request):
 def update(request):
   if request.method == 'GET':
     sid = request.GET.get('sid', None)
-    return render_to_response('admin/shop_update.html', {"shop" : Shop.objects.get(id=sid)})
+    return render_to_response('admin/shop_update.html', {'activePage' : 'content', "shop" : Shop.objects.get(id=sid)})
   # 获取数据
   name = request.POST.get('name', None)
   location = request.POST.get('location', None)

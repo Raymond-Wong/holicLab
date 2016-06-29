@@ -1,0 +1,77 @@
+.memberPage {
+  height: 200px;
+}
+
+.mainOptionsBox {
+  font-size: 0;
+}
+
+.mainOptionBtn {
+  display: inline-block;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #3b495b;
+  font-size: 14px;
+  border-radius: 0;
+  padding: 0;
+  color: #5b5b5b;
+  background-color: white;
+}
+
+.mainOptionBtn:hover {
+  color: #5b5b5b;
+  background-color: white;
+}
+
+.mainOptionBtn:first-child {
+  border-right: 0;
+}
+
+.mainOptionBtn.active, .mainOptionBtn.active:hover {
+  background-color: #3b495b;
+  color: white;
+}
+
+.filterWrapper {
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #edefed;
+  font-size: 0;
+  padding: 10px 0;
+}
+
+.filterBox {
+  margin: 0 7px;
+  display: inline-block;
+  border: 1px solid #d9d9d9;
+  height: 30px;
+}
+
+.filterName {
+  display: inline-block;
+  background-color: white;
+  height: 28px;
+  line-height: 28px;
+  font-size: 14px;
+  vertical-align: top;
+  padding: 0 7px;
+}
+
+.filterValue {
+  font-size: 14px;
+  height: 28px;
+  line-height: 28px;
+  vertical-align: top;
+}
+
+input[name="startDate"], input[name="endDate"] {
+  width: 6em;
+}
+
+#memberTable_filter {
+  display: none;
+}

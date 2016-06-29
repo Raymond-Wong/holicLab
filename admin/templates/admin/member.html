@@ -1,0 +1,27 @@
+{% extends "admin/widgets/table.html" %}
+
+{% block mainOptions %}
+<a href="/admin/member?action=list&state=new" class="btn mainOptionBtn" state="new">新用户</a>
+<a href="/admin/member?action=list" class="btn mainOptionBtn active" state="old">老用户</a>
+{% endblock %}
+
+{% block table %}
+<thead>
+  <tr>
+    <td>绑定日期</td>
+    <td>昵称</td>
+    <td>手机号码</td>
+    <td>消费总金额</td>
+  </tr>
+</thead>
+<tbody>
+  {% for member in members %}
+  <tr>
+    <td>{{ member.bind_date | date:"Y-m-d" }}</td>
+    <td>{{ member.nickname }}</td>
+    <td>{{ member.phone }}</td>
+    <td>{{ member.consumption }}</td>
+  </tr>
+  {% endfor %}
+</tbody>
+{% endblock %}

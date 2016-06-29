@@ -20,6 +20,13 @@ def deleteOrders(orders):
     order.delete()
 
 def list(request):
+  if request.method == 'GET':
+    state = request.GET.get('state', 'unfinished')
+    if state == 'finished':
+      orders = Order.objects.filter(state__in=[2,3,4])
+    else:
+      orders = Order.objects.filter(state=1)
+    return render_to_response('admin/order.html', {'orders' : orders, 'activePage' : 'order'})
   orders = Order.objects.all()
   # 商店
   sid = request.POST.get('sid', None)
