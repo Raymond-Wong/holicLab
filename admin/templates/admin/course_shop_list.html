@@ -1,0 +1,77 @@
+{% extends "admin/widgets/base.html" %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/admin/css/shop_list.css">
+{% endblock %}
+
+{% block page %}
+<div class="shopWrapper">
+  <div class="line">
+    {% if hasShop %}
+    <div class="switchListBtns left">
+      <a class="switchListBtn btn active" href="javascript:void(0)">团体课</a>
+      <a class="switchListBtn btn" href="/admin/shop?action=list">场地</a>
+    </div>
+    {% endif %}
+    <a id="addShopBtn" class="addShopBtn btn left" href="/admin/shop?action=add">添加新场地</a>
+    <div class="clear"></div>
+  </div>
+  <div class="line">
+    <ul class="shopContainer releasedShop">
+      <li class="lh">已发布</li>
+      {% if not releasedShops %}
+      <li class="nodata">暂无数据...</li>
+      {% endif %}
+      {% for shop in releasedShops %}
+      <li class="lr">
+        <div class="shopBox" sid="{{ shop.id }}" title="点击进入商店设置" href="/admin/shop?action=update&sid={{ shop.id }}">
+          {% ifequal shop.cover_type "image" %}
+          <div class="thumbImg left" style="background-image: {{ shop.cover.0 }}"></div>
+          {% else %}
+          <embed class="left" width="230" height="160" src="{{ shop.cover }}"></embed>
+          {% endifequal %}
+          <div class="textBox right">
+            <div class="shopName ellipsis">{{ shop.name }}</div>
+            <div class="location ellipsis">{{ shop.location }}</div>
+            <div class="lastModifiedTime ellipsis">最后更新时间:<font>{{ shop.last_modified_time | date:"Y-m-d H:i:s" }}</font></div>
+            <a class="btn" href="/admin/course?action=add&sid={{ shop.id }}">添加团体课</a>
+            <a class="btn" href="/admin/course?action=list&sid={{ shop.id }}">团体课列表</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="line">
+    <ul class="shopContainer unreleasedShop">
+      <li class="lh">未发布</li>
+      {% if not unreleasedShops %}
+      <li class="nodata">暂无数据...</li>
+      {% endif %}
+      {% for shop in unreleasedShops %}
+      <li class="lr">
+        <div class="shopBox" sid="{{ shop.id }}" title="点击进入商店设置">
+          {% ifequal shop.cover_type "image" %}
+          <div class="thumbImg left" style="background-image: {{ shop.cover.0 }}"></div>
+          {% else %}
+          <embed class="left" width="230" height="160" src="{{ shop.cover }}"></embed>
+          {% endifequal %}
+          <div class="textBox right">
+            <div class="shopName ellipsis">{{ shop.name }}</div>
+            <div class="location ellipsis">{{ shop.location }}</div>
+            <div class="lastModifiedTime ellipsis">最后更新时间:<font>{{ shop.last_modified_time | date:"Y-m-d H:i:s"}}</font></div>
+            <a class="btn" href="/admin/course?action=add&sid={{ shop.id }}">添加团体课</a>
+            <a class="btn" href="/admin/course?action=list&sid={{ shop.id }}">团体课列表</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

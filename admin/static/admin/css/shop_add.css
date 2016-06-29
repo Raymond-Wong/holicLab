@@ -35,14 +35,14 @@
   height: 155px;
 }
 
-.imgBox .thumbImg {
+.thumbImg {
   width: 200px;
   height: 100%;
   margin-left: 14px;
   position: relative;
 }
 
-.imgBox .thumbImg .deleteBtn {
+.thumbImg .deleteBtn {
   position: absolute;
   right: 7px;
   top: 7px;
@@ -51,11 +51,11 @@
   color: #6faaee;
 }
 
-.imgBox .thumbImg .deleteBtn:hover {
+.thumbImg .deleteBtn:hover {
   text-decoration: underline;
 }
 
-.imgBox .thumbImg:first-child {
+.thumbImg:first-child {
   margin-left: 0;
 }
 
@@ -92,7 +92,8 @@
   padding: 0 5px;
 }
 
-.stepBox textarea[name="description"], .stepBox textarea[name="notice"] {
+.stepBox textarea[name="description"], .stepBox textarea[name="notice"],
+.stepBox textarea[name="coach_description"] {
   resize: none;
   height: 100px;
   padding: 0 5px;
@@ -155,4 +156,12 @@
 
 .cancelBtn:hover {
   color: #6faaee;
+}
+
+.coachImg {
+  margin-left: 1em;
+  height: 100px;
+  width: 100px;
+  float:right;
+  margin-right: 276px;
 }

@@ -80,6 +80,10 @@ def courseHandler(request):
     return handlers.course.delete(request)
   elif action == 'update':
     return handlers.course.update(request)
+  elif action == 'release':
+    return handlers.course.release(request)
+  elif action == 'get':
+    return handlers.course.get(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 密码处理类

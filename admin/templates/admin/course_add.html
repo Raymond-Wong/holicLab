@@ -1,0 +1,102 @@
+{% extends "admin/widgets/base.html" %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/plugin/datetimepicker/jquery.datetimepicker.css"/>
+<link type="text/css" rel="stylesheet" href="/static/admin/css/shop_add.css">
+{% endblock %}
+
+{% block page %}
+<div class="shopAddWrapper" sid="{{ sid }}">
+  <h1 class="stepHead">添加课程</h1>
+  <div class="stepBox">
+    <div class="stepHead">第一步: 请上传封面图或视频链接(二选一)</div>
+    <div class="imgOrVideoBtns stepLine">
+      请选择封面素材类型: &nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="radio checked" name="imgOrVideo" value="image">图片</div>
+      <div class="radio" name="imgOrVideo" value="video">视频</div>
+    </div>
+    <div class="imgBox stepLine">
+      <div class="thumbImg left vertical_outer uploadImgBtn">
+        <font class="vertical_inner glyphicon glyphicon-plus"></font>
+      </div>
+      <div class="thumbImg left vertical_outer uploadImgBtn">
+        <font class="vertical_inner glyphicon glyphicon-plus"></font>
+      </div>
+      <div class="thumbImg left vertical_outer uploadImgBtn">
+        <font class="vertical_inner glyphicon glyphicon-plus"></font>
+      </div>
+      <div class="thumbImg left vertical_outer uploadImgBtn">
+        <font class="vertical_inner glyphicon glyphicon-plus"></font>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="videoBox stepLine">
+      <div class="inputName">视频链接地址</div>
+      <input type="text" class="inputValue" placeholder="视频地址(注意，必须带上http://或https://)" name="videoUrl" />
+    </div>
+  </div>
+  <div class="stepBox">
+    <div class="stepHead">第二步: 填写细节</div>
+    <div class="stepLine">
+      <div class="inputName">课程名称</div>
+      <input name="name" type="text" placeholder="课程名称, 不得超过50字" class="inputValue" />
+    </div><div class="stepLine">
+      <div class="inputName">课程介绍</div>
+      <textarea name="description" class="inputValue" placeholder="课程介绍"></textarea>
+    </div>
+    <div class="stepLine">
+      <div class="inputName">教练介绍</div>
+      <textarea name="coach_description" class="inputValue" placeholder="教练介绍"></textarea>
+      <div class="coachImg vertical_outer thumbImg uploadImgBtn" id="coachCover">
+        <font class="glyphicon vertical_inner glyphicon-plus"></font>
+      </div>
+    </div>
+    <div class="stepLine">
+      <div class="inputName">价格</div>
+      <input name="price" type="number" min="0" placeholder="预定场地半小时的价格，单位为（角）" class="inputValue" />
+    </div>
+    <div class="stepLine">
+      <div class="inputName">容量</div>
+      <input name="capacity" type="number" min="0" placeholder="同一时间段内场地可容纳的人数" class="inputValue" />
+    </div>
+    <div class="stepLine">
+      <div class="inputName">注意事项</div>
+      <textarea name="notice" class="inputValue" placeholder="注意事项"></textarea>
+    </div>
+  </div>
+  <div class="stepBox">
+    <div class="stepHead">第三步: 设置可预约时间</div>
+    <div class="stepLine">
+      <div class="inputName">预约时间</div>
+      <div class="radio" name="bookType" value="specialTime">特殊时间不可预约</div>
+      <div class="addTimeBtn" id="addTimeBtn"><span class="glyphicon glyphicon-plus"></span></div>
+    </div>
+    <div class="timeContainer" id="timeContainer">
+      <div class="stepLine">
+        <div class="inputName"></div>
+        <div class="timeBox">
+          <input type="text" class="inputValue datetimepicker startTime" placeholder="开始时间" />
+          <input type="text" class="inputValue datetimepicker endTime" placeholder="结束时间" />
+          <span class="glyphicon glyphicon-remove deleteBtn"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="stepBox">
+    <div class="stepLine">
+      <a class="btn submitBtn" id="submitBtn">确定</a>
+      <a class="btn cancelBtn">取消</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/static/plugin/fileUpload/js/vendor/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="/static/plugin/fileUpload/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="/static/plugin/fileUpload/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="/static/plugin/datetimepicker/build/jquery.datetimepicker.full.js"></script>
+<script type="text/javascript" src="/static/admin/js/templates.js"></script>
+<script type="text/javascript" src="/static/admin/js/datetimepicker.js"></script>
+<script type="text/javascript" src="/static/admin/js/course_add.js"></script>
+{% endblock %}

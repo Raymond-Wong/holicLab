@@ -61,19 +61,38 @@ COURSE_STATE = ((1, u'started'), (2, u'full'), (3, u'time_out'), (4, u'finished'
 class Course(models.Model):
   name = models.CharField(max_length=50)
   description = models.TextField()
-  tags = models.TextField()
+  coach_description = models.TextField()
+  coach_cover = models.TextField()
+  cover_type = models.CharField(max_length=5, choices=COVER_TYPE, default=1)
+  cover = models.TextField()
   price = models.PositiveIntegerField()
   state = models.CharField(max_length=20, choices=COURSE_STATE, default='started')
   capacity = models.PositiveIntegerField(default=0)
-  sign_up_ddl = models.DateTimeField()
   shop = models.ForeignKey(Shop)
+  last_modified_time = models.DateTimeField(auto_now=True)
+  state = models.CharField(max_length=10, choices=SHOP_STATE, default=1)
+  notice = models.TextField()
+  def toJSON(self):
+    import json
+    import utils
+    return json.dumps(dict([(attr, getattr(self, attr)) for attr in [f.name for f in self._meta.fields]]), ensure_ascii=False, cls=utils.MyJsonEncoder)
 
 # 时间段类，记录每个时间段已预约的人数
 class Time_Bucket(models.Model):
   date = models.DateField()
   occupation = models.TextField()
   shop = models.ForeignKey(Shop)
+
+# 课程的可预约时间
+class Bookable_Time(models.Model):
   course = models.ForeignKey(Course)
+  start_time = models.DateTimeField()
+  end_time = models.DateTimeField()
+  occupation = models.PositiveIntegerField(default=0)
+  def toJSON(self):
+    import json
+    import utils
+    return json.dumps(dict([(attr, getattr(self, attr)) for attr in [f.name for f in self._meta.fields]]), ensure_ascii=False, cls=utils.MyJsonEncoder)
 
 # 服务类
 class Service(models.Model):

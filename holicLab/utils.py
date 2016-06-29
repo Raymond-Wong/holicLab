@@ -5,6 +5,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
 from datetime import datetime, date
+from django.db import models
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 
@@ -30,5 +31,7 @@ class MyJsonEncoder(json.JSONEncoder):
       return obj.strftime('%Y-%m-%d %H:%M:%S')
     elif isinstance(obj, date):
       return obj.strftime('%Y-%m-%d')
+    elif isinstance(obj, models.Model):
+      return None
     else:
       return json.JSONEncoder.default(self, obj)
