@@ -1,8 +1,7 @@
 {% extends "admin/widgets/table.html" %}
 
 {% block mainOptions %}
-<a href="/admin/member?action=list&state=new" class="btn mainOptionBtn" state="new">新用户</a>
-<a href="/admin/member?action=list" class="btn mainOptionBtn active" state="old">老用户</a>
+<a href="/admin/coupon?action=list" class="btn mainOptionBtn active">邀请码</a>
 {% endblock %}
 
 {% block selections %}
@@ -32,7 +31,7 @@
     <td>性别</td>
     <td>角色</td>
     <td>手机号码</td>
-    <td>消费总金额</td>
+    <td>优惠总金额</td>
   </tr>
 </thead>
 <tbody>
@@ -43,7 +42,7 @@
     <td>{% ifequal member.gender "f" %}女性{% else %}男性{% endifequal %}</td>
     <td>{% ifequal member.role "1" %}学生{% else %}在职{% endifequal %}</td>
     <td>{{ member.phone }}</td>
-    <td>{{ member.consumption }}</td>
+    <td>{{ member.balance }}</td>
   </tr>
   {% endfor %}
 </tbody>

@@ -30,7 +30,7 @@ def list(request):
         shop.cover = json.loads(shop.cover)
       for shop in releasedShop:
         shop.cover = json.loads(shop.cover)
-      return render_to_response('admin/course_shop_list.html', {'activePaeg' : 'content', 'unreleasedShops' : unreleasedShop, 'releasedShops' : releasedShop, 'hasShop' : hasShop})
+      return render_to_response('admin/course_shop_list.html', {'activePage' : 'content', 'unreleasedShops' : unreleasedShop, 'releasedShops' : releasedShop, 'hasShop' : hasShop})
     else:
       shop = None
       try:

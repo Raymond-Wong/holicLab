@@ -66,6 +66,8 @@
   height: 28px;
   line-height: 28px;
   vertical-align: top;
+  border: 0;
+  border-left: 1px solid #d9d9d9;
 }
 
 input[name="startDate"], input[name="endDate"] {
@@ -73,5 +75,32 @@ input[name="startDate"], input[name="endDate"] {
 }
 
 #memberTable_filter {
+  display: none;
+}
+
+select {
+  width: 5em;
+  background-color: white;
+  outline: none;
+}
+
+div.DTTT_container {
+  font-size: 14px;
+  height: 30px;
+  margin-bottom: 0;
+}
+
+a.DTTT_button {
+  height: 30px;
+  line-height: 30px;
+  padding: 0 8px;
+  vertical-align: top;
+  font-size: 14px;
+  border: 1px solid #d9d9d9;
+  box-shadow: 0 0 0 0;
+  background: white;
+}
+
+a.DTTT_button.DTTT_button_xls, a.DTTT_button.DTTT_button_pdf {
   display: none;
 }

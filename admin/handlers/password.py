@@ -17,6 +17,8 @@ from holicLab.models import Password
 
 # 列出所有密码
 def list(request):
+  if request.method == 'GET':
+    return render_to_response('admin/password.html', {'activePage' : 'password', 'passwords' : Password.objects.all()})
   start_time = request.POST.get('start_time', None)
   end_time = request.POST.get('end_time', None)
   sid = request.POST.get('sid', None)

@@ -5,6 +5,17 @@
 <a href="/admin/order?action=list" state="unfinished" class="btn mainOptionBtn active">未完成</a>
 {% endblock %}
 
+{% block selections %}
+<div class="filterBox" filter-name="type">
+  <font class="filterName">Type</font>
+  <select class="filterValue">
+    <option value="all">All</option>
+    <option value="site">Site</option>
+    <option value="course">Course</option>
+  </select>
+</div>
+{% endblock %}
+
 {% block table %}
 <thead>
   <tr>

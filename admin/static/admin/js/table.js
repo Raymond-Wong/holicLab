@@ -1,6 +1,27 @@
 var TABLE = null;
 
 $(document).ready(function() {
+  initFilter();
+  initMainOption();
+  initTable();
+  initDatetimepicker();
+});
+
+var initFilter = function() {
+  initTimeFilter();
+  if ($('.filterBox[filter-name="gender"]').length > 0) {
+    initGenderFilter();
+  }
+  if ($('.filterBox[filter-name="role"]').length > 0) {
+    initRoleFilter();
+  }
+  if ($('.filterBox[filter-name="type"]').length > 0) {
+    initTypeFilter();
+  }
+
+}
+
+var initTimeFilter = function() {
   $.fn.dataTable.ext.search.push(
     function( settings, data, dataIndex ) {
       var startTime = $('.filterValue[name="startDate"]').val();
@@ -13,10 +34,55 @@ $(document).ready(function() {
       return false;
     }
   );
-  initMainOption();
-  initTable();
-  initDatetimepicker();
-});
+}
+
+var initGenderFilter = function() {
+  $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+      var a = $('.filterBox[filter-name="gender"]').children('.filterValue').val();
+      var b = (data[2] == '男性' ? 'male' : 'female');
+      if (a == "all" || a == b) {
+        return true;
+      }
+      return false;
+    }
+  );
+  $('.filterBox[filter-name="gender"]').children('.filterValue').click(function() {
+    TABLE.draw();
+  })
+}
+
+var initRoleFilter = function() {
+  $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+      var a = $('.filterBox[filter-name="role"]').children('.filterValue').val();
+      var b = (data[3] == '学生' ? 'student' : 'staff');
+      if (a == "all" || a == b) {
+        return true;
+      }
+      return false;
+    }
+  );
+  $('.filterBox[filter-name="role"]').children('.filterValue').click(function() {
+    TABLE.draw();
+  })
+}
+
+var initTypeFilter = function() {
+  $.fn.dataTable.ext.search.push(
+    function( settings, data, dataIndex ) {
+      var a = $('.filterBox[filter-name="type"]').children('.filterValue').val();
+      var b = (data[1] == '场地' ? 'site' : 'course');
+      if (a == "all" || a == b) {
+        return true;
+      }
+      return false;
+    }
+  );
+  $('.filterBox[filter-name="type"]').children('.filterValue').click(function() {
+    TABLE.draw();
+  })
+}
 
 var initMainOption = function() {
   var type = getUrlParam('state');
@@ -48,6 +114,15 @@ var initTable = function() {
     lengthChange: false,
     pageLength: 15,
   });
+  var tableTools = new $.fn.dataTable.TableTools( TABLE, {
+    "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
+    "buttons": [
+      "copy",
+      "csv",
+      { "type": "print", "buttonText": "Print me!" }
+      ]
+  });
+  $('.filterWrapper').append($( tableTools.fnContainer() ));
 }
 
 var initDatetimepicker = function() {

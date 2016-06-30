@@ -17,7 +17,7 @@ from holicLab.utils import *
 from holicLab.decorator import *
 from holicLab.models import Image
 
-import handlers.shop, handlers.course, handlers.password, handlers.member, handlers.order
+import handlers.shop, handlers.course, handlers.password, handlers.member, handlers.order, handlers.coupon
 
 ADMIN_NAME = md5('holic')
 ADMIN_PWD = md5('holic8888Lab')
@@ -121,9 +121,12 @@ def orderHandler(request):
 @handler
 @login_required
 def couponHandler(request):
-  pass
+  action = request.GET.get('action', None)
+  if action == 'list':
+    return handlers.coupon.list(request)
+  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
-# 到处表格处理类
+# 导出表格处理类
 @handler
 @login_required
 def exportHandler(request):

@@ -4,11 +4,15 @@ from django.db import models
 # 用户类
 # 微信openid，昵称，电话号码，总预约次数，总预约天数，总预约时长
 USER_TYPE = ((1, u'new'), (2, u'old'))
+GENDER = ((u'f', u'female'), (u'm', u'male'))
+USER_ROLE = ((1, u'student'), (2, u'staff'))
 class User(models.Model):
   wx_openid = models.TextField(blank=True)
   nickname = models.CharField(max_length=100, blank=False)
   phone = models.CharField(max_length=20, default='')
   bind_date = models.DateField(null=True)
+  gender = models.CharField(max_length=6, choices=GENDER, default='m')
+  role = models.CharField(max_length=7, choices=USER_ROLE, default=1)
   total_order_times = models.PositiveIntegerField(default=0)
   total_order_days = models.PositiveIntegerField(default=0)
   total_order_duration = models.PositiveIntegerField(default=0)
