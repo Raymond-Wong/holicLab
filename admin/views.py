@@ -9,7 +9,7 @@ import datetime
 import time
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render_to_response, redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
@@ -30,7 +30,7 @@ def indexHandler(request):
 @handler
 def loginHandler(request):
   if request.method == 'GET':
-    return render_to_response('admin/login.html')
+    return render('admin/login.html')
   else:
     username = request.POST.get('account', None)
     password = request.POST.get('password', None)
