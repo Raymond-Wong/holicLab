@@ -147,6 +147,7 @@ def exportHandler(request):
   return reponse
 
 # 上传图片
+@csrf_exempt
 @handler
 @login_required
 def uploadHandler(request):
