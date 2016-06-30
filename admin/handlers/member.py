@@ -8,7 +8,7 @@ import time
 import datetime
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
@@ -19,7 +19,7 @@ def list(request):
   if request.method == 'GET':
     user_type = request.GET.get('state', 'old')
     members = User.objects.filter(user_type=(1 if user_type == 'new' else 2))
-    return render_to_response('admin/member.html', {'members' : members, 'activePage' : 'member'})
+    return render(request, 'admin/member.html', {'members' : members, 'activePage' : 'member'})
   # 检查数据合法性
   times_lb = request.POST.get('times_lb', 0)
   times_ub = request.POST.get('times_ub', str(sys.maxint))

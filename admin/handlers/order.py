@@ -8,7 +8,7 @@ import time
 import datetime
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
@@ -26,7 +26,7 @@ def list(request):
       orders = Order.objects.filter(state__in=[2,3,4])
     else:
       orders = Order.objects.filter(state=1)
-    return render_to_response('admin/order.html', {'orders' : orders, 'activePage' : 'order'})
+    return render(request, 'admin/order.html', {'orders' : orders, 'activePage' : 'order'})
   orders = Order.objects.all()
   # 商店
   sid = request.POST.get('sid', None)

@@ -8,7 +8,7 @@ import time
 import datetime
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
@@ -18,7 +18,7 @@ from holicLab.models import Password
 # 列出所有密码
 def list(request):
   if request.method == 'GET':
-    return render_to_response('admin/password.html', {'activePage' : 'password', 'passwords' : Password.objects.all()})
+    return render(request, 'admin/password.html', {'activePage' : 'password', 'passwords' : Password.objects.all()})
   start_time = request.POST.get('start_time', None)
   end_time = request.POST.get('end_time', None)
   sid = request.POST.get('sid', None)

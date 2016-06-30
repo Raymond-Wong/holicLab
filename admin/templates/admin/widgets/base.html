@@ -24,11 +24,15 @@
 </body>
 <script type="text/javascript" src="/static/common/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/static/common/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/static/common/js/django.csrf.js"></script>
 <script type="text/javascript" src="/static/common/js/utils.js"></script>
 <script type="text/javascript" src="/static/common/js/jquery.md5.js"></script>
 <script type="text/javascript" src="/static/admin/js/topAlert.js"></script>
 <script type="text/javascript" src="/static/admin/js/nav.js"></script>
 <script type="text/javascript" src="/static/admin/js/radio.js"></script>
+<script>
+$.ajaxSetup({
+  data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+</script>
 {% block script %}{% endblock %}
 </html>
