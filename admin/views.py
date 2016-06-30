@@ -155,5 +155,5 @@ def uploadHandler(request):
   image._name = '%s_%s' % (str(int(time.time())), image._name)
   image = Image(url=image)
   image.save()
-  url = '/media/' + image.__dict__.get('url')
+  url = appendImageUrl(image.__dict__.get('url'))
   return HttpResponse(Response(m=url).toJson(), content_type='application/json')
