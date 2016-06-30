@@ -30,7 +30,7 @@ def indexHandler(request):
 @handler
 def loginHandler(request):
   if request.method == 'GET':
-    return render('admin/login.html')
+    return render(request,'admin/login.html')
   else:
     username = request.POST.get('account', None)
     password = request.POST.get('password', None)

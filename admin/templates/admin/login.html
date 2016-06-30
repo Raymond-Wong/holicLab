@@ -29,5 +29,10 @@
 <script type="text/javascript" src="/static/common/js/utils.js"></script>
 <script type="text/javascript" src="/static/admin/js/topAlert.js"></script>
 <script type="text/javascript" src="/static/common/js/jquery.md5.js"></script>
+<script>
+$.ajaxSetup({
+  data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+});
+</script>
 <script type="text/javascript" src="/static/admin/js/login.js"></script>
 </html>
