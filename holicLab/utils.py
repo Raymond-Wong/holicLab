@@ -35,20 +35,3 @@ class MyJsonEncoder(json.JSONEncoder):
       return None
     else:
       return json.JSONEncoder.default(self, obj)
-
-# 获得图片的完整链接
-def appendImageUrl(x):
-  print 'appendImageUrl'
-  from os import environ
-  remote = not environ.get("APP_NAME", "")
-  remote_media_path = "http://holicLab-images.stor.sinaapp.com/"
-  IMAGE_BASE_URL = remote_media_path if remote else "/media/"
-  print remote
-  print IMAGE_BASE_URL
-  if type(x) == dict:
-    x["image"] = IMAGE_BASE_URL + x.get("image", "")
-  elif type(x) == str or type(x) == unicode:
-    x = IMAGE_BASE_URL + x
-  else:
-    x = "/static/pc/icon/logo.png"
-  return x
