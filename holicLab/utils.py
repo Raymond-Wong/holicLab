@@ -38,9 +38,12 @@ class MyJsonEncoder(json.JSONEncoder):
 
 # 获得图片的完整链接
 def appendImageUrl(x):
+  print 'appendImageUrl'
   from django.conf import settings
   remote_media_path = "http://holicLab-images.stor.sinaapp.com/"
   IMAGE_BASE_URL = remote_media_path if settings.REMOTE else "/media/"
+  print settings.REMOTE
+  print IMAGE_BASE_URL
   if type(x) == dict:
     x["image"] = IMAGE_BASE_URL + x.get("image", "")
   elif type(x) == str or type(x) == unicode:
