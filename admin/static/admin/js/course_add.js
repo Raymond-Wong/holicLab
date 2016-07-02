@@ -167,7 +167,7 @@ var getBookableTime = function(params) {
     if (endTime < startTime) {
       error = false;
     }
-    params['bookable_time'].push({'startTime' : startTime, 'endTime' : endTime});
+    params['bookable_time'].push({'startTime' : tzAware(startTime), 'endTime' : tzAware(endTime)});
   });
   if (!error)
     return error

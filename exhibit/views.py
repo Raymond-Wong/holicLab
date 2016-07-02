@@ -7,38 +7,25 @@ import json
 import markdown
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
-from django.shortcuts import render_to_response, redirect
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from holicLab.decorators import *
+import handlers.shop
 
 # 商店的处理类
 @handler
 @login_required
 def shopHandler(request):
-  pass
+  action = request.GET.get('action')
+  if action == 'list':
+    return handlers.shop.list(request)
+  elif action == 'detail':
+    return handlers.shop.detail(request)
+  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 课程的处理类
 @handler
 @login_required
 def courseHandler(request):
   pass
-
-# 密码处理类
-@handler
-@login_required
-def passwordHandler(request):
-  pass
-
-# 会员处理类
-@handler
-@login_required
-def memberHandler(request):
-  pass
-
-# 优惠券处理类
-@handler
-@login_required
-def CouponHandler(request):
-  pass
-

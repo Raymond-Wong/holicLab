@@ -91,7 +91,9 @@ def add(request):
   for time_bucket in time_buckets:
     start_time = time_bucket['startTime']
     end_time = time_bucket['endTime']
-    ntb = Bookable_Time(start_time=start_time, end_time=end_time, course=newCourse)
+    ntb = Bookable_Time(course=newCourse)
+    ntb.start_time = start_time
+    ntb.end_time = end_time
     ntb.save()
   return HttpResponse(Response(m=newCourse.id).toJson(), content_type='application/json')
 
@@ -137,6 +139,7 @@ def update(request):
   course.coach_description = request.POST.get('coach_description')
   course.coach_cover = request.POST.get('coach_cover')
   bookable_time = json.loads(request.POST.get('bookable_time'))
+  remain_bookable_time = []
   for time in bookable_time:
     timeRecord = None
     if time.has_key('tid'):
@@ -146,6 +149,11 @@ def update(request):
     else:
       timeRecord = Bookable_Time.objects.create(course=course, start_time=time['startTime'], end_time=time['endTime'])
     timeRecord.save()
+    remain_bookable_time.append(timeRecord.id)
+  # 删除无用时间段
+  for time in course.bookable_time_set.all():
+    if time.id not in remain_bookable_time:
+      time.delete()
   course.save()
   return HttpResponse(Response().toJson(), content_type='application/json')
 

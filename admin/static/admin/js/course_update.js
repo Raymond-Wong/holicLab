@@ -166,11 +166,11 @@ var getBookableTime = function(params) {
   $('.timeBox').each(function() {
     var startTime = $(this).children('.startTime').datetimepicker('getValue');
     var endTime = $(this).children('.endTime').datetimepicker('getValue');
-    var tid = $(this).children('.endTime').attr('tid');
+    var tid = $(this).attr('tid');
     if (endTime < startTime) {
       error = false;
     }
-    params['bookable_time'].push({'startTime' : startTime, 'endTime' : endTime, 'tid' : tid});
+    params['bookable_time'].push({'startTime' : tzAware(startTime), 'endTime' : tzAware(endTime), 'tid' : tid});
   });
   if (!error)
     return error

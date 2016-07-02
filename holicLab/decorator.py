@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -9,8 +11,10 @@ def handler(view):
   def unKnownErr(request, *args, **kwargs):
     try:
       return view(request, *args, **kwargs)
-    except Exception, e:
-      return HttpResponse(Response(c=-1, m=e.message).toJson(), content_type='application/json')
+    except:
+      info = sys.exc_info()
+      info = str(info[1]).decode("unicode-escape")
+      return HttpResponse(Response(c=-1, m=info).toJson(), content_type='application/json')
   return unKnownErr
 
 def login_required(view):
