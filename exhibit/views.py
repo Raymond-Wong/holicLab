@@ -22,12 +22,12 @@ def loginHandler(request, view):
 @handler
 @wx_logined
 def homeHandler(request):
-  shops = Shop.objects.all()[:2]
+  shops = Shop.objects.filter(state=2)[:2]
   for shop in shops:
     shop.cover = json.loads(shop.cover)
-  shop.courses = shop.course_set.all()
-  for i, course in enumerate(shop.courses):
-    shop.courses[i].cover = json.loads(course.cover)
+    shop.courses = shop.course_set.all()
+    for i, course in enumerate(shop.courses):
+      shop.courses[i].cover = json.loads(course.cover)
   return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops)})
 
 # 商店的处理类

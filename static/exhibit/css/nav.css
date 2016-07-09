@@ -24,5 +24,9 @@
 }
 
 .navItem.active a {
-  color: #f5a623;
+  color: #f5a623 !important;
+}
+
+.navItem a {
+  color: #5a5959 !important;
 }

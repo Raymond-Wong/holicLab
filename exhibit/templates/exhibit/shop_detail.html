@@ -1,0 +1,72 @@
+{% extends 'exhibit/widgets/base.html' %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/exhibit/css/shop_detail.css">
+{% endblock %}
+
+{% block page %}
+<div class="shopDetailPage">
+<button class="bookBtn">立即预约</button>
+<div id="coverCarousel" class="carousel slide">
+  <!-- 轮播（Carousel）指标 -->
+  <ol class="carousel-indicators">
+    {% for cover in shop.cover %}
+    <li data-target="#coverCarousel" data-slide-to="{{ forloop.counter0 }}"{% ifequal forloop.counter 1 %} class="active"{% endifequal %}></li>
+    {% endfor %}
+  </ol>   
+  <!-- 轮播（Carousel）项目 -->
+  <div class="carousel-inner">
+    {% for cover in shop.cover %}
+    <div class="item thumbImg{% ifequal forloop.counter 1 %} active{% endifequal %}" style="background-image: {{ cover }}"></div>
+    {% endfor %}
+   </div>
+</div>
+<div class="block descBlock">
+  <h1>场地介绍</h1>
+  <p>{{ shop.description }}</p>
+</div>
+<div class="line infoLine">
+  <span class="left glyphicon glyphicon-time logo"></span>
+  <font class="left">全日24小时</font>
+  <a class="right glyphicon glyphicon-map-marker btn location"></a>
+  <a class="right glyphicon glyphicon-earphone btn phone" href="tel:13800138000"></a>
+  <div class="clear"></div>
+</div>
+<div class="line">
+  <span class="left glyphicon glyphicon-map-marker logo"></span>
+  <div class="left locationBox">{{ shop.location }}</div>
+  <div class="clear"></div>
+</div>
+<div class="block featureBlock">
+  <table class="featureTable">
+    <tr>
+      <td><img src="/static/exhibit/icon/wifi-icon.png" class="featureIcon">免费Wi-Fi</td>
+      <td><img src="/static/exhibit/icon/flag-icon.png" class="featureIcon">停车位有限</td>
+    </tr>
+    <tr>
+      <td><img src="/static/exhibit/icon/water-icon.png" class="featureIcon">饮用水</td>
+      <td><img src="/static/exhibit/icon/cabinet-icon.png" class="featureIcon">储物柜有限</td>
+    </tr>
+  </table>
+</div>
+<div class="block noticeBlock">
+  <h1>注意事项</h1>
+  <p>{{ shop.notice }}</p>
+</div>
+<div class="block courseBlock">
+  <h1>团体课</h1>
+  <div class="courseWrapper">
+    <div class="courseBox">
+      <div class="courseCover thumbImg"></div>
+      <div class="courseDesc">
+        <div class="courseName">小团体循环课程</div>
+        <div class="courseTags">小团私教，塑性</div>
+        <div class="courseBookableTime">2016-07-10 10:00 ~ 11:00</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block script %}{% endblock %}

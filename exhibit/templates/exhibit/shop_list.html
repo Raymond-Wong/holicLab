@@ -1,0 +1,26 @@
+{% extends 'exhibit/widgets/base.html' %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/exhibit/css/shop_list.css">
+{% endblock %}
+
+{% block page %}
+<ul class="shopListWrapper">
+  {% for shop in shops %}
+  <li class="shopListItem" style="background-image: {{ shop.cover.0 }}">
+    <a class="shopListLink" href="/shop?action=detail&sid={{ shop.id }}">
+      <div class="shopName">{{ shop.name }}</div>
+      <div class="shopLoc">{{ shop.location }}</div>
+    </a>
+  </li>
+  <li class="shopListItem" style="background-image: url(/static/exhibit/res/3.jpg)">
+    <a class="shopListLink" href="javascript:void(0);">
+      <div class="shopName">Coming soon</div>
+      <!-- <div class="shopLoc">{{ shop.location }}</div> -->
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block script %}{% endblock %}

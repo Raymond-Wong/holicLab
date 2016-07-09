@@ -32,5 +32,6 @@ def detail(request):
     shop = Shop.objects.get(id=int(sid))
   except Exception, e:
     return HttpResponse(Response(c=-3, m="待查询商店不存在").toJson(), content_type="application/json")
+  shop.cover = json.loads(shop.cover)
   # 返回商店详情
   return render(request, 'exhibit/shop_detail.html', {'shop' : shop})

@@ -8,17 +8,19 @@
 <div class="homePageWrapper">
   {% for shop in shops %}
   <div class="shopWrapper">
-    <div class="coverWrapper vertical_outer thumbImg" style="background-image: {{ shop.cover.0 }}">
+    <div class="coverWrapper vertical_outer thumbImg myLink" href="/shop?action=detail&sid={{ shop.id }}" style="background-image: {{ shop.cover.0 }}">
       <div class="coverBox vertical_inner">
         <h1 class="shopName">热门场地 {{ shop.name }}</h1>
-        <a class="btn btn-default showAllshopBtn" href="/shop?action=list&sid={{ shop.id }}">查看所有</a>
+        {% ifequal forloop.counter 1 %}
+        <a class="btn btn-default showAllshopBtn" href="/shop?action=list">查看所有</a>
+        {% endifequal %}
       </div>
       <div class="triangle"></div>
     </div>
     <div class="courseWrapper">
       <div class="courseContainer">
         {% for course in shop.courses %}
-        <a class="courseBox">
+        <a class="courseBox" href="/course?action=detail&cid={{ course.id }}">
           <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
           <div class="courseName">{{ course.name }}</div>
           <div class="courseTag">{{ course.tags }}</div>
@@ -28,7 +30,7 @@
     </div>
   </div>
   {% endfor %}
-  {% ifequal shopSize "2" %}
+  {% ifequal shopSize 2 %}
   {% else %}
   <div class="shopWrapper">
     <div class="coverWrapper vertical_outer thumbImg">
@@ -41,4 +43,5 @@
 </div>
 {% endblock %}
 
-{% block script %}{% endblock %}
+{% block script %}
+{% endblock %}

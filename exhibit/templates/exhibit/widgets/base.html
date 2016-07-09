@@ -6,6 +6,7 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <link type="text/css" rel="stylesheet" href="/static/common/css/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="/static/common/css/jquery.mobile-1.4.5.min.css">
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/base.css">
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/nav.css">
   {% block style %}{% endblock %}
@@ -17,8 +18,13 @@
   </div>
 </body>
 <script type="text/javascript" src="/static/common/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/static/common/js/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript" src="/static/common/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/common/js/utils.js"></script>
+<!-- <script type="text/javascript" src="/static/common/js/jweixin-1.0.0.js"></script> -->
+<!-- <script type="text/javascript" src="/static/common/js/wxConfig.js"></script> -->
+<script type="text/javascript" src="/static/exhibit/js/myLink.js"></script>
+<script type="text/javascript" src="/static/exhibit/js/carousel.js"></script>
 <script>
 $.ajaxSetup({
   data: {csrfmiddlewaretoken: '{{ csrf_token }}' },

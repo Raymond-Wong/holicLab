@@ -1,0 +1,172 @@
+.shopDetailPage {
+  width: 100%;
+  background-color: white;
+}
+
+.navWrapper {
+  display: none;
+}
+
+.carousel .item {
+  width: 100vw;
+  height: 78vw;
+}
+
+.carousel-indicators {
+  left: 85%;
+}
+
+.carousel-indicators li {
+  height: 8px;
+  width: 8px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 0px;
+}
+
+.carousel-indicators .active {
+  position: relative;
+  top: 1px;
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 14px;
+  width: 14px;
+}
+
+.block {
+  margin: 20px;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.line {
+  margin: 20px;
+}
+
+.infoLine {
+  font-size: 24px;
+  height: 40px;
+  line-height: 40px;
+}
+
+.line .logo {
+  margin-right: 14px;
+  color: #b2b2b2;
+  top: 3px;
+  font-size: 30px;
+}
+
+.line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #f5a623;
+  border-radius: 20px;
+  padding: 0;
+  top: 0;
+  color: #f5a623 !important;
+  font-size: 20px;
+}
+
+.line .phone {
+  margin-right: 10px;
+}
+
+.descBlock, .noticeBlock {
+  min-height: 150px;
+}
+
+.descBlock h1, .noticeBlock h1 {
+  font-size: 20px;
+}
+
+.locationBox {
+  width: 80%;
+}
+
+.featureBlock {
+  padding: 0 10px 20px 10px;
+}
+
+.featureTable {
+  width: 100%;
+  border: 1px solid #e4e4e4;
+  border-collapse: collapse;
+  border-radius: 10px;
+}
+
+.featureTable td {
+  width: 50%;
+  padding: 1.5em 1em;
+}
+
+.featureTable tr:first-child td:first-child {
+  border-right: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.featureTable tr:first-child td:last-child {
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.featureTable tr:last-child td:first-child {
+  border-right: 1px solid #e4e4e4;
+}
+
+.courseBlock h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+
+.courseBox {
+  position: relative;
+}
+
+.courseWrapper {
+  margin-top: 24px;
+}
+
+.courseCover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: url('/static/exhibit/res/1.jpg');
+  width: 30vw;
+  height: 30vw;
+}
+
+.courseDesc {
+  font-size: 14px;
+  margin-left: 30vw;
+  padding: 14px 28px;
+}
+
+.courseTags {
+  color: #dbdbdb;
+}
+
+.courseBookableTime {
+  color: #f5a623;
+}
+
+.bookBtn {
+  position: fixed;
+  bottom: 10px;
+  width: 90% !important;
+  margin: 0 5%;
+  color: white !important;
+  background-color: #f5a623 !important;
+  border: 1px solid #f5a623 !important;
+  border-radius: 21px !important;
+  text-shadow: none;
+  font-weight: 200;
+  outline: none;
+  z-index: 100;
+}
+
+.featureIcon {
+  height: 55%;
+  width: auto;
+  position: relative;
+  top: -2px;
+}

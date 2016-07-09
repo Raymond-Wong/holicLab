@@ -9,6 +9,7 @@ html {
 html * {
   font-family: "微软雅黑", "黑体", monospace;
   color: #5b5b5b;
+  text-shadow: none;
 }
 
 body {
