@@ -120,6 +120,8 @@
 
 .courseBox {
   position: relative;
+  margin-bottom: 14px;
+  height: 30vw;
 }
 
 .courseWrapper {

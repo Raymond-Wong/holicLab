@@ -33,5 +33,9 @@ def detail(request):
   except Exception, e:
     return HttpResponse(Response(c=-3, m="待查询商店不存在").toJson(), content_type="application/json")
   shop.cover = json.loads(shop.cover)
+  shop.courses = shop.course_set.all()
+  for i, course in enumerate(shop.courses):
+    shop.courses[i].cover = json.loads(shop.courses[i].cover)
+    shop.courses[i].bookable_time = shop.courses[i].bookable_time_set.order_by('-start_time')[0]
   # 返回商店详情
   return render(request, 'exhibit/shop_detail.html', {'shop' : shop})
