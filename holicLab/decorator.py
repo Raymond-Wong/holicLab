@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import sys
+sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from utils import Response
+
+import exhibit.views
 
 def handler(view):
   def unKnownErr(request, *args, **kwargs):
@@ -22,4 +25,15 @@ def login_required(view):
     if request.session.has_key('logined') and request.session['logined']:
       return view(request, *args, **kwargs)
     return redirect('/admin/login')
+  return verified
+
+# def wx_logined(view):
+#   def verified(request, *args, **kwargs):
+#     if request.session.has_key('user'):
+#       return view(request, *args, **kwargs)
+#     return exhibit.views.loginHandler(request, view, *args, **kwargs)
+#   return verified
+def wx_logined(view):
+  def verified(request, *args, **kwargs):
+    return view(request, *args, **kwargs)
   return verified

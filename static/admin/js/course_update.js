@@ -132,6 +132,8 @@ var submitAction = function() {
     params['price'] = $('input[name="price"]').val();
     // 获取容量
     params['capacity'] = $('input[name="capacity"]').val();
+    // 获取标签
+    params['tags'] = $('input[name="tags"]').val();
     // 获取注意事项
     params['notice'] = $('textarea[name="notice"]').val();
     if (params['notice'].length <= 0) {
@@ -248,6 +250,8 @@ var initCourseUpdate = function() {
     $('input[name="price"]').val(parseInt(params['price']));
     // 初始化容量
     $('input[name="capacity"]').val(parseInt(params['capacity']));
+    // 初始化标签
+    $('input[name="tags"]').val(params['tags']);
     // 初始化注意事项
     $('textarea[name="notice"]').val(params['notice']);
     // 初始化可预约时间

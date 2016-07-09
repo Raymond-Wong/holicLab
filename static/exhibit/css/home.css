@@ -1,0 +1,101 @@
+.homePageWrapper {
+  width: 100%;
+}
+
+.shopWrapper {
+  width: 100%;
+}
+
+.coverWrapper {
+  width: 100vw;
+  height: 78vw;
+  background-image: url('/static/exhibit/res/3.jpg');
+  position: relative;
+}
+
+.coverBox {
+  width: 100%;
+  text-align: center;
+}
+
+.coverBox.disabled {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+.shopName {
+  color: white;
+  font-size: 26px;
+  margin: 0;
+}
+
+.showAllshopBtn, .showAllshopBtn:hover, .showAllshopBtn:active, .showAllshopBtn:focus, .showAllshopBtn:visited {
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+  margin-top: 24px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
+  color: white;
+}
+
+.courseWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-bottom: 1px solid #d8d8d8;
+  position: relative;
+  padding: 14px 0;
+  white-space: nowrap;
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+.courseBox:first-child {
+  margin-left: 14px;
+}
+
+.courseBox:last-child {
+  margin-right: 14px;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 14px solid white;
+  position: absolute;
+  left: 14px;
+  bottom: 0px;
+}
+
+.courseBox, .courseBox:hover, .courseBox:active, .courseBox:focus, .courseBox:visited {
+  display: inline-block;
+  font-size: 0;
+  margin: 0 7px;
+  text-decoration: none;
+}
+
+.courseBox * {
+  font-size: 14px;
+  text-align: center;
+}
+
+.courseCover {
+  width: 30vw;
+  height: 30vw;
+  background-image: url(/static/exhibit/res/2.jpg);
+}
+
+.courseName {
+  margin-top: 14px;
+  color: #262626;
+}
+
+.courseTag {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #898989;
+}

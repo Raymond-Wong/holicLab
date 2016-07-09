@@ -15,14 +15,6 @@ from holicLab.models import Shop, Time_Bucket, Course, Service
 
 # 列出所有店铺
 def list(request):
-  shops = Shop.objects.filter(state=2)
-  # 将图片列表从字符串处理成数组
-  for shop in shops:
-    shop.cover = json.loads(shop.cover)
-  return render(request, 'exhibit/shop_list.html', {'shops' : shops})
-
-# 显示商店详情
-def detail(request):
   sid = request.GET.get('sid', None)
   shop = None
   # 判断sid合法性
@@ -32,5 +24,22 @@ def detail(request):
     shop = Shop.objects.get(id=int(sid))
   except Exception, e:
     return HttpResponse(Response(c=-3, m="待查询商店不存在").toJson(), content_type="application/json")
+  courses = shop.course_set.all()
+  # 将图片列表从字符串处理成数组
+  for course in courses:
+    course.cover = json.loads(course.cover)
+  return render(request, 'exhibit/course_list.html', {'courses' : courses})
+
+# 显示商店详情
+def detail(request):
+  cid = request.GET.get('cid', None)
+  course = None
+  # 判断sid合法性
+  if cid is None:
+    return HttpResponse(Response(c=-9, m="未提供cid").toJson(), content_type="application/json")
+  try:
+    course = Course.objects.get(id=int(cid))
+  except Exception, e:
+    return HttpResponse(Response(c=-4, m="待查询课程不存在").toJson(), content_type="application/json")
   # 返回商店详情
-  return render(request, 'exhibit/shop_detail.html', {'shop' : shop})
+  return render(request, 'exhibit/course_detail.html', {'course' : course})

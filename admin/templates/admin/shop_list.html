@@ -55,7 +55,7 @@
           {% ifequal shop.cover_type "image" %}
           <div class="thumbImg left" style="background-image: {{ shop.cover.0 }}"></div>
           {% else %}
-          <embed class="left" width="230" height="160" src="{{ shop.cover }}"></embed>
+          <embed class="left" src="{{ shop.cover }}" width="230" height="160"></embed>
           {% endifequal %}
           <div class="textBox right">
             <div class="deleteBtn">删除</div>

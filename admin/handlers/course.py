@@ -81,9 +81,10 @@ def add(request):
   coach_cover = request.POST.get('coach_cover', None)
   price = request.POST.get('price', None)
   capacity = request.POST.get('capacity', None)
-  notice = request.POST.get('notice', None);
+  notice = request.POST.get('notice', None)
+  tags = request.POST.get('tags', '')
   time_buckets = json.loads(request.POST.get('bookable_time', '[]'))
-  newCourse = Course(name=name, description=description, notice=notice, cover_type=cover_type, cover=cover, coach_description=coach_description, coach_cover=coach_cover, price=price, capacity=capacity)
+  newCourse = Course(name=name, tags=tags, description=description, notice=notice, cover_type=cover_type, cover=cover, coach_description=coach_description, coach_cover=coach_cover, price=price, capacity=capacity)
   newCourse.shop = Shop.objects.get(id=sid)
   newCourse.save()
   # 根据time_buckets创建该课程可预约时间
@@ -120,7 +121,7 @@ def update(request):
     cid = request.GET.get('cid', None)
     return render(request, 'admin/course_update.html', {'activePage' : 'content', 'course' : Course.objects.get(id=int(cid))})
   # 检查数据合法性
-  validate = isValidate(request, {'sid' : False}, True)
+  validate = isValidate(request, {'sid' : False, 'tags' : False}, True)
   if not validate[0]:
     return HttpResponse(validate[1], content_type='application/json')
   cid = int(request.POST.get('cid', None))
@@ -128,6 +129,7 @@ def update(request):
   name = request.POST.get('name', None)
   course.name = name
   description = request.POST.get('description', None)
+  tags = request.POST.get('tags', '')
   course.description = description
   price = int(request.POST.get('price', None))
   course.price = price
@@ -138,6 +140,7 @@ def update(request):
   course.notice = request.POST.get('notice')
   course.coach_description = request.POST.get('coach_description')
   course.coach_cover = request.POST.get('coach_cover')
+  course.tags = tags
   bookable_time = json.loads(request.POST.get('bookable_time'))
   remain_bookable_time = []
   for time in bookable_time:

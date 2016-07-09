@@ -4,6 +4,9 @@ sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
+import httplib
+import urllib
+import random
 from datetime import datetime, date
 from django.db import models
 
@@ -49,3 +52,55 @@ def appendImageUrl(x):
   else:
     x = "/static/pc/icon/logo.png"
   return x
+
+
+# 发送请求
+# 如果发送请求时服务器返回的是access_token过期的话，就跑出一个PastDueException
+def send_request(host, path, method, port=443, params={}, toLoad=True):
+  client = httplib.HTTPSConnection(host, port)
+  # client.request(method, path, json.dumps(params, ensure_ascii=False).encode('utf8'))
+  client.request(method, path, urllib.urlencode(params))
+  res = client.getresponse()
+  if not res.status == 200:
+    return False, res.status
+  resStr = res.read()
+  if toLoad:
+    resDict = json.loads(resStr, encoding="utf-8")
+    if 'errcode' in resDict.keys() and resDict['errcode'] == 40001:
+      raise PastDueException('access token past due')
+    if 'errcode' in resDict.keys() and resDict['errcode'] != 0:
+      return False, resDict
+    return True, resDict
+  else:
+    return True, resStr
+
+CODE_RANGE = [str(i) for i in xrange(0, 10)] + [chr(i) for i in xrange(97, 123)] + [chr(i) for i in xrange(65, 91)]
+# 随机生成一个x位的码
+def random_x_bit_code(x):
+  ret = ''
+  for i in xrange(x):
+    ret += random.choice(CODE_RANGE)
+  return ret
+
+def sendSMS(mobile, code):
+  #服务地址
+  sms_host = "api.dingdongcloud.com"
+  #端口号
+  port = 443
+  #发送验证码
+  send_yzm_uri = "/v1/sms/sendyzm"
+  #修改为您的apikey. apikey可在官网（https://www.dingdongcloud.com)登录后获取
+  apikey = "149befbfbe656696c2d904057afa8fd6"; 
+  # 修改为您要发送的短信内容
+  content="【好叻健身试炼仓】尊敬的用户，你的验证码是：%s，请在10分钟内输入。请勿告诉其他人。" % code
+  """
+  发送验证码
+  """
+  params = urllib.urlencode({'apikey': apikey, 'content': content, 'mobile':mobile})
+  headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
+  conn = httplib.HTTPSConnection(sms_host, port=port, timeout=30)
+  conn.request("POST", send_yzm_uri, params, headers)
+  response = conn.getresponse()
+  response_str = response.read()
+  conn.close()
+  return response_str
