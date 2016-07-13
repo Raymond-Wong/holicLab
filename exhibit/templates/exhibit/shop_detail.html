@@ -7,15 +7,13 @@
 {% block page %}
 <div class="shopDetailPage">
 <button class="bookBtn" id="bookBtn">立即预约</button>
-<input type="datetime-local" step="600" id="timepicker" name="datetime" style="position: fixed; left: 50%; top: 0; z-index: -1" />
+<input type="datetime-local" step="30" id="timepicker">
 <div id="coverCarousel" class="carousel slide">
-  <!-- 轮播（Carousel）指标 -->
   <ol class="carousel-indicators">
     {% for cover in shop.cover %}
     <li data-target="#coverCarousel" data-slide-to="{{ forloop.counter0 }}"{% ifequal forloop.counter 1 %} class="active"{% endifequal %}></li>
     {% endfor %}
   </ol>   
-  <!-- 轮播（Carousel）项目 -->
   <div class="carousel-inner">
     {% for cover in shop.cover %}
     <div class="item thumbImg{% ifequal forloop.counter 1 %} active{% endifequal %}" style="background-image: {{ cover }}"></div>
