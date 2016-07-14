@@ -7,30 +7,6 @@
   display: none;
 }
 
-.carousel .item {
-  width: 100vw;
-  height: 78vw;
-}
-
-.carousel-indicators {
-  left: 85%;
-}
-
-.carousel-indicators li {
-  height: 8px;
-  width: 8px;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 0px;
-}
-
-.carousel-indicators .active {
-  position: relative;
-  top: 1px;
-  background-color: rgba(255, 255, 255, 0.7);
-  height: 14px;
-  width: 14px;
-}
-
 .block {
   margin: 20px;
   margin-bottom: 0;
@@ -171,4 +147,102 @@
   width: auto;
   position: relative;
   top: -2px;
+}
+
+#viewport {
+  position: relative;
+  width: 100vw;
+  height: 78vw;
+  overflow: hidden;
+}
+
+#wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#scroller {
+  position: absolute;
+  z-index: 1;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  width: 300vw;
+  height: 100%;
+  white-space: nowrap;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+.slide {
+  width: 100vw;
+  height: 100%;
+  float: left;
+}
+
+.painting {
+  width: 100%;
+  height: 100%;
+}
+
+#carouselBox {
+  position: relative;
+}
+
+#indicatorBox {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  z-index: 2;
+}
+
+#indicator {
+  position: relative;
+  width: 56px;
+  height: 14px;
+  margin: 7px auto;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUBAMAAABohZD3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUGCDYztyDUJgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAGFBMVEUAAADNzc3Nzc3Nzc3Nzc3Nzc3Nzc3///8aWwwLAAAABnRSTlMAX5Ks3/nRD0HIAAAAAWJLR0QHFmGI6wAAAFtJREFUGFdjYGBgEHYNMWRAAJE0IHCEc5nSwEABxleD8JOgXMY0KBCA8FlgfAcIXwzGT4TwzWD8ZAjfDcZPgfDDYPxU7Hx09ejmoduH7h5096L7B8O/6OGBGl4APYg8TQ0XAScAAAAASUVORK5CYII=);
+  background-size: auto 14px;
+}
+
+#dotty {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  background-color: #777;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.videoBox {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.playVideoBtn {
+  position: absolute;
+  left: 40vw;
+  top: 29vw;
+  font-size: 20vw;
+  color: rgba(255, 255, 255, 0.8);
+  z-index: 2;
 }

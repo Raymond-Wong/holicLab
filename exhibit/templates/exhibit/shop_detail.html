@@ -1,25 +1,38 @@
 {% extends 'exhibit/widgets/base.html' %}
 
 {% block style %}
+<link type="text/css" rel="stylesheet" href="/static/common/css/mobiSelect.css">
 <link type="text/css" rel="stylesheet" href="/static/exhibit/css/shop_detail.css">
 {% endblock %}
 
 {% block page %}
 <div class="shopDetailPage">
 <button class="bookBtn" id="bookBtn">立即预约</button>
-<input type="datetime-local" step="30" id="timepicker">
-<div id="coverCarousel" class="carousel slide">
-  <ol class="carousel-indicators">
-    {% for cover in shop.cover %}
-    <li data-target="#coverCarousel" data-slide-to="{{ forloop.counter0 }}"{% ifequal forloop.counter 1 %} class="active"{% endifequal %}></li>
-    {% endfor %}
-  </ol>   
-  <div class="carousel-inner">
-    {% for cover in shop.cover %}
-    <div class="item thumbImg{% ifequal forloop.counter 1 %} active{% endifequal %}" style="background-image: {{ cover }}"></div>
-    {% endfor %}
-   </div>
+
+<div id="viewport">
+  {% ifequal shop.cover_type "image" %}
+  <div id="wrapper">
+    <div id="scroller">
+      {% for cover in shop.cover %}
+      <div class="slide">
+        <div class="painting thumbImg" style="background-image: {{ cover }}"></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div id="indicatorBox">
+    <div id="indicator">
+      <div id="dotty"></div>
+    </div>
+  </div>
+  {% else %}
+  <div class="videoBox thumbImg" style="background-image: {{ shop.cover.1 }}">
+    <span class="playVideoBtn glyphicon glyphicon-play-circle"></span>
+    <video class="video" src="http://7xwchd.com1.z0.glb.clouddn.com/WccJfWHz_s4.mp4" preload="auto" controls></video>
+  </div>
+  {% endifequal %}
 </div>
+
 <div class="block descBlock">
   <h1>场地介绍</h1>
   <p>{{ shop.description }}</p>
@@ -71,5 +84,7 @@
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript" src="/static/plugin/iscroll/iscroll.js"></script>
+<script type="text/javascript" src="/static/common/js/mobiSelect.js"></script>
 <script type="text/javascript" src="/static/exhibit/js/shop_detail.js"></script>
 {% endblock %}
