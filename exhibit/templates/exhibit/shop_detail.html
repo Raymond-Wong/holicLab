@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page %}
-<div class="shopDetailPage">
+<div class="shopDetailPage" invalideTimes="{{ shop.invalide_times }}">
 <button class="bookBtn" id="bookBtn">立即预约</button>
 
 <div id="viewport">
@@ -84,7 +84,7 @@
 {% endblock %}
 
 {% block script %}
-<script type="text/javascript" src="/static/plugin/iscroll/iscroll.js"></script>
+<script type="text/javascript" src="/static/plugin/iscroll/iscroll-probe.js"></script>
 <script type="text/javascript" src="/static/common/js/mobiSelect.js"></script>
 <script type="text/javascript" src="/static/exhibit/js/shop_detail.js"></script>
 {% endblock %}
