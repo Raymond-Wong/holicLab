@@ -74,6 +74,11 @@
   padding: 0 5px;
 }
 
+.videoBox .videoCover {
+  margin-left: 5px;
+  height: 155px;
+}
+
 .stepBox .inputName {
   width: 7em;
   display: inline-block;
@@ -85,7 +90,7 @@
 .stepBox .inputValue {
   width: 480px;
   height: 35px;
-  line-height: 35px;
+  /*line-height: 35px;*/
   outline: none;
   background-color: #edefed;
   border: 1px solid #ddd;

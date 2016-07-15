@@ -42,6 +42,10 @@
   background-color: inherit;
 }
 
+.selectWrapper.invisible {
+  display: none;
+}
+
 .selectScroller {
   position: absolute;
   width: 90%;

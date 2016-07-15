@@ -62,6 +62,8 @@ class Shop(models.Model):
   invalide_times = models.TextField()
   last_modified_time = models.DateTimeField(auto_now=True)
   state = models.CharField(max_length=10, choices=SHOP_STATE, default=1)
+  password = models.CharField(max_length=6, blank=True)
+  phone = models.CharField(max_length=11, default='')
   def toJSON(self):
     import json
     import utils
@@ -114,13 +116,6 @@ class Service(models.Model):
   price = models.PositiveIntegerField(default=0)
   shop = models.ForeignKey(Shop)
 
-# 密码类
-class Password(models.Model):
-  start_time = models.DateTimeField()
-  end_time = models.DateTimeField()
-  content = models.CharField(max_length=4, unique=True)
-  used_times = models.PositiveIntegerField(default=0)
-
 # 订单类型枚举
 ORDER_TYPE = ((1, u'site'), (2, u'course'))
 # 订单状态枚举
@@ -136,7 +131,6 @@ class Order(models.Model):
   course = models.ForeignKey(Course, null=True)
   order_type = models.CharField(max_length=10, choices=ORDER_TYPE)
   coupons = models.ForeignKey(Coupon, null=True)
-  password = models.OneToOneField(Password)
   start_time = models.DateTimeField()
   end_time = models.DateTimeField()
   people_amount = models.PositiveIntegerField(default=1)

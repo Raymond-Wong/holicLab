@@ -181,8 +181,8 @@ var getCoverMedia = function(params) {
   // 获取封面类型
   params['cover_type'] = $('.radio.checked').attr('value');
   // 获取封面内容
+  params['cover'] = []
   if (params['cover_type'] == 'image') {
-    params['cover'] = []
     $('.imgBox .thumbImg').each(function() {
       var imgUrl = $(this).css('background-image');
       imgUrl = imgUrl.replace('url(', '');
@@ -198,10 +198,16 @@ var getCoverMedia = function(params) {
       return false;
     }
   } else if (params['cover_type'] == 'video') {
-    params['cover'] = $('input[name="videoUrl"]').val();
+    var videoLink = $('input[name="videoUrl"]').val();
+    var videoCover = $('.videoCover').css('background-image');
+    params['cover'].push(videoCover);
+    params['cover'].push(videoLink);
     // 检查是否输入了视频地址
-    if (params['cover'].length <= 0) {
+    if (params['cover'][1].length <= 0) {
       topAlert('请输入封面视频地址', 'error');
+      return false;
+    } else if (params['cover'][0].length <= 0) {
+      topAlert('请选择封面图片', 'error');
       return false;
     }
   }

@@ -28,7 +28,11 @@ var initShopUpdate = function() {
       }
     } else {
       $('.radio[name="imgOrVideo"][value="video"]').trigger('click');
-      $('input[name="videoUrl"]').val(params['cover']);
+      $('input[name="videoUrl"]').val(params['cover'][1]);
+      var thumbImg = $('.videoCover');
+      thumbImg.css('background-image', params['cover'][0]);
+      thumbImg.html('<div class="deleteBtn">删除</div>');
+      thumbImg.removeClass('uploadImgBtn');
     }
     // 初始化场地名称
     $('input[name="name"]').val(params['name']);
@@ -36,6 +40,10 @@ var initShopUpdate = function() {
     $('textarea[name="description"]').val(params['description']);
     // 初始化场地地址
     $('input[name="location"]').val(params['location']);
+    // 初始化联系方式
+    $('input[name="phone"]').val(params['phone']);
+    // 初始化密码
+    $('input[name="password"]').val(params['password']);
     // 初始化价格
     $('input[name="price"]').val(parseInt(params['price']));
     // 初始化容量
@@ -138,7 +146,7 @@ var autoUpload = function(dom, btn) {
 }
 
 var deleteImage = function() {
-  $(document).delegate('.imgBox .thumbImg .deleteBtn', 'click', function() {
+  $(document).delegate('.thumbImg .deleteBtn', 'click', function() {
     var thumbImg = $(this).parent();
     thumbImg.css('background-image', 'url()');
     thumbImg.html('<font class="vertical_inner glyphicon glyphicon-plus"></font>');
@@ -175,6 +183,18 @@ var submitAction = function() {
       return false;
     } else if (params['location'].length > 200) {
       topAlert('场地地址不得超过200字', 'error');
+      return false;
+    }
+    // 获取联系方式
+    params['phone'] = $('input[name="phone"]').val();
+    if (params['phone'].length <= 0 || params['phone'].length > 12) {
+      topAlert('请输入正确的联系电话', 'error');
+      return false;
+    }
+    // 获取场地密码
+    params['password'] = $('input[name="password"]').val();
+    if (params['password'].length != 6) {
+      topAlert('请输入有效的6位场地密码', 'error');
       return false;
     }
     // 获取价格
@@ -226,8 +246,8 @@ var getCoverMedia = function(params) {
   // 获取封面类型
   params['cover_type'] = $('.radio.checked').attr('value');
   // 获取封面内容
+  params['cover'] = []
   if (params['cover_type'] == 'image') {
-    params['cover'] = []
     $('.imgBox .thumbImg').each(function() {
       var imgUrl = $(this).css('background-image');
       imgUrl = imgUrl.replace('url(', '');
@@ -243,10 +263,16 @@ var getCoverMedia = function(params) {
       return false;
     }
   } else if (params['cover_type'] == 'video') {
-    params['cover'] = $('input[name="videoUrl"]').val();
+    var videoLink = $('input[name="videoUrl"]').val();
+    var videoCover = $('.videoCover').css('background-image');
+    params['cover'].push(videoCover);
+    params['cover'].push(videoLink);
     // 检查是否输入了视频地址
-    if (params['cover'].length <= 0) {
+    if (params['cover'][1].length <= 0) {
       topAlert('请输入封面视频地址', 'error');
+      return false;
+    } else if (params['cover'][0].length <= 0) {
+      topAlert('请选择封面图片', 'error');
       return false;
     }
   }

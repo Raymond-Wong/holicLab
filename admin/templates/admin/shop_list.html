@@ -25,11 +25,7 @@
       {% for shop in releasedShops %}
       <li class="lr">
         <a class="shopBox" sid="{{ shop.id }}" title="点击进入商店设置" href="/admin/shop?action=update&sid={{ shop.id }}">
-          {% ifequal shop.cover_type "image" %}
           <div class="thumbImg left" style="background-image: {{ shop.cover.0 }}"></div>
-          {% else %}
-          <embed class="left" width="230" height="160" src="{{ shop.cover }}"></embed>
-          {% endifequal %}
           <div class="textBox right">
             <div class="deleteBtn">删除</div>
             <div class="shopName ellipsis">{{ shop.name }}</div>
@@ -52,11 +48,7 @@
       {% for shop in unreleasedShops %}
       <li class="lr">
         <a class="shopBox" sid="{{ shop.id }}" title="点击进入商店设置" href="/admin/shop?action=update&sid={{ shop.id }}">
-          {% ifequal shop.cover_type "image" %}
           <div class="thumbImg left" style="background-image: {{ shop.cover.0 }}"></div>
-          {% else %}
-          <embed class="left" src="{{ shop.cover }}" width="230" height="160"></embed>
-          {% endifequal %}
           <div class="textBox right">
             <div class="deleteBtn">删除</div>
             <div class="shopName ellipsis">{{ shop.name }}</div>

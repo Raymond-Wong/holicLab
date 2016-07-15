@@ -18,11 +18,7 @@
       {% for course in releasedCourses %}
       <li class="lr">
         <a class="shopBox" cid="{{ course.id }}" title="点击进入课程设置" href="/admin/course?action=update&cid={{ course.id }}">
-          {% ifequal course.cover_type "image" %}
           <div class="thumbImg left" style="background-image: {{ course.cover.0 }}"></div>
-          {% else %}
-          <embed class="left" width="230" height="160" src="{{ course.cover }}"></embed>
-          {% endifequal %}
           <div class="textBox right">
             <div class="deleteBtn">删除</div>
             <div class="shopName ellipsis">{{ course.name }}</div>
@@ -44,11 +40,7 @@
       {% for course in unreleasedCourses %}
       <li class="lr">
         <a class="shopBox" cid="{{ course.id }}" title="点击进入课程设置" href="/admin/course?action=update&cid={{ course.id }}">
-          {% ifequal course.cover_type "image" %}
           <div class="thumbImg left" style="background-image: {{ course.cover.0 }}"></div>
-          {% else %}
-          <embed class="left" width="230" height="160" src="{{ course.cover }}"></embed>
-          {% endifequal %}
           <div class="textBox right">
             <div class="deleteBtn">删除</div>
             <div class="shopName ellipsis">{{ course.name }}</div>

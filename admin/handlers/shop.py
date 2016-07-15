@@ -41,6 +41,8 @@ def add(request):
   capacity = request.POST.get('capacity', None)
   notice = request.POST.get('notice', None);
   invalide_times = request.POST.get('invalide_times', [])
+  phone = request.POST.get('phone', None)
+  password = request.POST.get('password', None)
   # 判断数据有效性
   if name is None or location is None or price is None or capacity is None or invalide_times is None or cover_type is None or cover is None or description is None:
     return HttpResponse(Response(c=-9, m="未提供指定参数").toJson(), content_type='application/json')
@@ -48,6 +50,10 @@ def add(request):
     return HttpResponse(Response(c=1, m="门店名称不得超过50字").toJson(), content_type='application/json')
   if len(location) > 200:
     return HttpResponse(Response(c=2, m="地址长度不得超过200字").toJson(), content_type='application/json')
+  if len(phone) > 12:
+    return HttpResponse(Response(c=3, m="电话长度不得超过12字").toJson(), content_type='application/json')
+  if len(password) != 6:
+    return HttpResponse(Response(c=4, m="场地密码长度必须为6位").toJson(), content_type='application/json')
   try:
     price = int(price)
     capacity = int(capacity)
@@ -58,7 +64,7 @@ def add(request):
   if capacity < 0:
     return HttpResponse(Response(c=5, m="门店容量必须为正整数(人)").toJson(), content_type='application/json')
   # 创建新门店
-  newShop = Shop(name=name, location=location, price=price, capacity=capacity, invalide_times=invalide_times, description=description, cover=cover, cover_type=cover_type, notice=notice)
+  newShop = Shop(password=password, phone=phone, name=name, location=location, price=price, capacity=capacity, invalide_times=invalide_times, description=description, cover=cover, cover_type=cover_type, notice=notice)
   newShop.save()
   return HttpResponse(Response(m=newShop.id).toJson(), content_type='application/json')
 

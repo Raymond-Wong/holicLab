@@ -26,9 +26,9 @@
     </div>
   </div>
   {% else %}
-  <div class="videoBox thumbImg" style="background-image: {{ shop.cover.1 }}">
+  <div class="videoBox thumbImg" style="background-image: {{ shop.cover.0 }}">
     <span class="playVideoBtn glyphicon glyphicon-play-circle"></span>
-    <video class="video" src="http://7xwchd.com1.z0.glb.clouddn.com/WccJfWHz_s4.mp4" preload="auto" controls></video>
+    <video class="video" src="{{ shop.cover.1 }}" preload="auto" controls></video>
   </div>
   {% endifequal %}
 </div>
@@ -41,7 +41,7 @@
   <span class="left glyphicon glyphicon-time logo"></span>
   <font class="left">全日24小时</font>
   <a class="right glyphicon glyphicon-map-marker btn location"></a>
-  <a class="right glyphicon glyphicon-earphone btn phone" href="tel:13800138000"></a>
+  <a class="right glyphicon glyphicon-earphone btn phone" href="tel:{{ shop.phone }}"></a>
   <div class="clear"></div>
 </div>
 <div class="line">

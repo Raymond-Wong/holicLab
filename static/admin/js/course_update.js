@@ -234,7 +234,11 @@ var initCourseUpdate = function() {
       }
     } else {
       $('.radio[name="imgOrVideo"][value="video"]').trigger('click');
-      $('input[name="videoUrl"]').val(params['cover']);
+      $('input[name="videoUrl"]').val(params['cover'][1]);
+      var thumbImg = $('.videoCover');
+      thumbImg.css('background-image', params['cover'][0]);
+      thumbImg.html('<div class="deleteBtn">删除</div>');
+      thumbImg.removeClass('uploadImgBtn');
     }
     // 初始化课程名称
     $('input[name="name"]').val(params['name']);

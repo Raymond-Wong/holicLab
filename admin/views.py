@@ -17,7 +17,7 @@ from holicLab.utils import *
 from holicLab.decorator import *
 from holicLab.models import Image
 
-import handlers.shop, handlers.course, handlers.password, handlers.member, handlers.order, handlers.coupon
+import handlers.shop, handlers.course, handlers.member, handlers.order, handlers.coupon
 
 ADMIN_NAME = md5('holic')
 ADMIN_PWD = md5('holic8888Lab')
@@ -84,19 +84,6 @@ def courseHandler(request):
     return handlers.course.release(request)
   elif action == 'get':
     return handlers.course.get(request)
-  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
-
-# 密码处理类
-@handler
-@login_required
-def passwordHandler(request):
-  action = request.GET.get('action', None)
-  if action == 'list':
-    return handlers.password.list(request)
-  # elif action == 'add':
-  #   return handlers.password.add(request)
-  # elif action == 'delete':
-  #   return handlers.password.delete(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 会员处理类
