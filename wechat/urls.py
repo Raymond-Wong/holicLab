@@ -7,5 +7,5 @@ import views
 
 urlpatterns = patterns('',
   url(r'^$', views.entrance),
-  url(r'^config$', views.config),
+  url(r'^/config$', views.config),
 )

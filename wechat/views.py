@@ -21,6 +21,7 @@ from django.shortcuts import render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from holicLab.utils import *
+from models import Ticket
 
 # 服务号
 APPID = 'wx466a0c7c6871bc8e'
@@ -72,6 +73,7 @@ def update_token():
   method = 'GET'
  
   res = send_request(host, path, method, params=params)
+  print res
   if not res[0]:
     return False
   if res[1].get('errcode'):
