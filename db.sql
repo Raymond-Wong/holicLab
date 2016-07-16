@@ -66,7 +66,7 @@ CREATE TABLE `auth_permission` (
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
   KEY `auth_permission_37ef4eb4` (`content_type_id`),
   CONSTRAINT `content_type_id_refs_id_d043b34a` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -440,6 +440,23 @@ CREATE TABLE `holicLab_user` (
   CONSTRAINT `invited_by_id_refs_id_fc2ddbdf` FOREIGN KEY (`invited_by_id`) REFERENCES `holicLab_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `wechat_ticket`
+--
+
+DROP TABLE IF EXISTS `wechat_ticket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wechat_ticket` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ticket_type` varchar(6) NOT NULL,
+  `content` varchar(600) NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -450,4 +467,4 @@ CREATE TABLE `holicLab_user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-16  8:31:09
+-- Dump completed on 2016-07-16  8:48:10

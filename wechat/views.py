@@ -20,6 +20,8 @@ from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http
 from django.shortcuts import render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
 
+from holicLab.utils import *
+
 # 服务号
 APPID = 'wx466a0c7c6871bc8e'
 APPSECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
@@ -54,7 +56,7 @@ def update_token():
   path = '/cgi-bin/token'
   method = 'GET'
  
-  res = holicLab.utils.send_request(host, path, method, params=params)
+  res = send_request(host, path, method, params=params)
   if not res[0]:
     return False
   if res[1].get('errcode'):
