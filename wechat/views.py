@@ -22,8 +22,8 @@ from django.views.decorators.csrf import csrf_exempt
 from holicLab.utils import *
 from models import Ticket
 
-APP_ID = 'wx466a0c7c6871bc8e'
-APP_SECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
+APPID = 'wx466a0c7c6871bc8e'
+APPSECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
 TOKEN = 'holicLab'
 
 @csrf_exempt

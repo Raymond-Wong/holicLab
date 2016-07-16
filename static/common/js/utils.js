@@ -1,6 +1,4 @@
 var post = function(url, data, callback) {
-  alert(url);
-  alert(data);
   $.post(url, data, function(res) {
     if (res['code'] == '0') {
       callback(res['msg']);
