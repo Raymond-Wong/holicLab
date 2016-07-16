@@ -71,7 +71,7 @@ var getAddressLocation = function(address, callback) {
   geocoder.getLocation(address);
   //设置服务请求成功的回调函数
   geocoder.setComplete(function(result) {
-    callback(result.detail.location)
+    callback(result.detail)
   });
   //若服务请求失败，则运行以下函数
   geocoder.setError(function() {
