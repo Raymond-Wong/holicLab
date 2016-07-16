@@ -11,6 +11,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
 from holicLab.utils import *
+from os import environ
+
+APP_ID = environ.get("APP_ID", "")
+APP_SECRET = environ.get('APP_SECRET', "")
+TOKEN = environ.get('TOKEN', "")
 
 def login(request, view):
   # 如果session中已经保存了用户信息，则不用重复获取用户信息

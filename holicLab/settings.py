@@ -3,6 +3,10 @@
 import os
 from os import environ
 
+APPID = 'wx466a0c7c6871bc8e'
+APPSECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
+TOKEN = 'holicLab'
+
 REMOTE = not environ.get("APP_NAME", "")
 if REMOTE:
     # LOCAL 本地调试用，便于导出数据库,根据本地MYSQL数据库填写下面参数<----------------如果文件中出现中文，一定要在开始添加 #coding:utf-8
