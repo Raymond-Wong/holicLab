@@ -31,15 +31,6 @@ CREATE TABLE `auth_group` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_group`
---
-
--- LOCK TABLES `auth_group` WRITE;
-/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
 -- Table structure for table `auth_group_permissions`
 --
 
@@ -60,15 +51,6 @@ CREATE TABLE `auth_group_permissions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_group_permissions`
---
-
--- LOCK TABLES `auth_group_permissions` WRITE;
-/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
 -- Table structure for table `auth_permission`
 --
 
@@ -84,18 +66,8 @@ CREATE TABLE `auth_permission` (
   UNIQUE KEY `content_type_id` (`content_type_id`,`codename`),
   KEY `auth_permission_37ef4eb4` (`content_type_id`),
   CONSTRAINT `content_type_id_refs_id_d043b34a` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `auth_permission`
---
-
--- LOCK TABLES `auth_permission` WRITE;
-/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
-INSERT INTO `auth_permission` VALUES (1,'Can add permission',1,'add_permission'),(2,'Can change permission',1,'change_permission'),(3,'Can delete permission',1,'delete_permission'),(4,'Can add group',2,'add_group'),(5,'Can change group',2,'change_group'),(6,'Can delete group',2,'delete_group'),(7,'Can add user',3,'add_user'),(8,'Can change user',3,'change_user'),(9,'Can delete user',3,'delete_user'),(10,'Can add content type',4,'add_contenttype'),(11,'Can change content type',4,'change_contenttype'),(12,'Can delete content type',4,'delete_contenttype'),(13,'Can add session',5,'add_session'),(14,'Can change session',5,'change_session'),(15,'Can delete session',5,'delete_session'),(16,'Can add site',6,'add_site'),(17,'Can change site',6,'change_site'),(18,'Can delete site',6,'delete_site'),(19,'Can add user',7,'add_user'),(20,'Can change user',7,'change_user'),(21,'Can delete user',7,'delete_user'),(22,'Can add coupon',8,'add_coupon'),(23,'Can change coupon',8,'change_coupon'),(24,'Can delete coupon',8,'delete_coupon'),(25,'Can add time_ limit_ coupon',9,'add_time_limit_coupon'),(26,'Can change time_ limit_ coupon',9,'change_time_limit_coupon'),(27,'Can delete time_ limit_ coupon',9,'delete_time_limit_coupon'),(28,'Can add tries_ limit_ coupon',10,'add_tries_limit_coupon'),(29,'Can change tries_ limit_ coupon',10,'change_tries_limit_coupon'),(30,'Can delete tries_ limit_ coupon',10,'delete_tries_limit_coupon'),(31,'Can add shop',11,'add_shop'),(32,'Can change shop',11,'change_shop'),(33,'Can delete shop',11,'delete_shop'),(34,'Can add course',12,'add_course'),(35,'Can change course',12,'change_course'),(36,'Can delete course',12,'delete_course'),(37,'Can add time_ bucket',13,'add_time_bucket'),(38,'Can change time_ bucket',13,'change_time_bucket'),(39,'Can delete time_ bucket',13,'delete_time_bucket'),(40,'Can add bookable_ time',14,'add_bookable_time'),(41,'Can change bookable_ time',14,'change_bookable_time'),(42,'Can delete bookable_ time',14,'delete_bookable_time'),(43,'Can add service',15,'add_service'),(44,'Can change service',15,'change_service'),(45,'Can delete service',15,'delete_service'),(46,'Can add password',16,'add_password'),(47,'Can change password',16,'change_password'),(48,'Can delete password',16,'delete_password'),(49,'Can add order',17,'add_order'),(50,'Can change order',17,'change_order'),(51,'Can delete order',17,'delete_order'),(52,'Can add image',18,'add_image'),(53,'Can change image',18,'change_image'),(54,'Can delete image',18,'delete_image');
-/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `auth_user`
@@ -122,16 +94,6 @@ CREATE TABLE `auth_user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_user`
---
-
--- LOCK TABLES `auth_user` WRITE;
-/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$10000$MqJntDX1Bks0$V7le8RVTeFxdW57uLacpwzQ4qBfwa5Zz/SsHHJBf/LU=','2016-07-09 01:25:06',1,'admin','','','',1,1,'2016-07-09 01:25:06');
-/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
 -- Table structure for table `auth_user_groups`
 --
 
@@ -150,15 +112,6 @@ CREATE TABLE `auth_user_groups` (
   CONSTRAINT `user_id_refs_id_40c41112` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `auth_user_groups`
---
-
--- LOCK TABLES `auth_user_groups` WRITE;
-/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `auth_user_user_permissions`
@@ -181,15 +134,6 @@ CREATE TABLE `auth_user_user_permissions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_user_user_permissions`
---
-
--- LOCK TABLES `auth_user_user_permissions` WRITE;
-/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
 -- Table structure for table `django_content_type`
 --
 
@@ -203,18 +147,8 @@ CREATE TABLE `django_content_type` (
   `model` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `app_label` (`app_label`,`model`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `django_content_type`
---
-
--- LOCK TABLES `django_content_type` WRITE;
-/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
-INSERT INTO `django_content_type` VALUES (1,'permission','auth','permission'),(2,'group','auth','group'),(3,'user','auth','user'),(4,'content type','contenttypes','contenttype'),(5,'session','sessions','session'),(6,'site','sites','site'),(7,'user','holicLab','user'),(8,'coupon','holicLab','coupon'),(9,'time_ limit_ coupon','holicLab','time_limit_coupon'),(10,'tries_ limit_ coupon','holicLab','tries_limit_coupon'),(11,'shop','holicLab','shop'),(12,'course','holicLab','course'),(13,'time_ bucket','holicLab','time_bucket'),(14,'bookable_ time','holicLab','bookable_time'),(15,'service','holicLab','service'),(16,'password','holicLab','password'),(17,'order','holicLab','order'),(18,'image','holicLab','image');
-/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `django_session`
@@ -233,16 +167,6 @@ CREATE TABLE `django_session` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `django_session`
---
-
--- LOCK TABLES `django_session` WRITE;
-/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('koj855ayu0qmyr0zcc2j4fdsxzxa5102','MWNiYmYwYzNlY2I3MjdkZWJhMTZjNTI1NDg0Y2QyMjgwMDMxNjYyNzqAAn1xAVUHbG9naW5lZHECiHMu','2016-07-23 01:25:21');
-/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
 -- Table structure for table `django_site`
 --
 
@@ -256,16 +180,6 @@ CREATE TABLE `django_site` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `django_site`
---
-
--- LOCK TABLES `django_site` WRITE;
-/*!40000 ALTER TABLE `django_site` DISABLE KEYS */;
-INSERT INTO `django_site` VALUES (1,'example.com','example.com');
-/*!40000 ALTER TABLE `django_site` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_bookable_time`
@@ -283,18 +197,8 @@ CREATE TABLE `holicLab_bookable_time` (
   PRIMARY KEY (`id`),
   KEY `holicLab_bookable_time_6234103b` (`course_id`),
   CONSTRAINT `course_id_refs_id_bbafad3d` FOREIGN KEY (`course_id`) REFERENCES `holicLab_course` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_bookable_time`
---
-
--- LOCK TABLES `holicLab_bookable_time` WRITE;
-/*!40000 ALTER TABLE `holicLab_bookable_time` DISABLE KEYS */;
-INSERT INTO `holicLab_bookable_time` VALUES (2,1,'2016-07-09 10:00:00','2016-07-09 10:30:00',0),(4,2,'2016-07-16 09:30:00','2016-07-16 10:00:00',0),(6,4,'2016-07-23 10:30:00','2016-07-23 11:00:00',0),(7,3,'2016-09-09 10:30:00','2016-09-09 11:00:00',0);
-/*!40000 ALTER TABLE `holicLab_bookable_time` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_coupon`
@@ -314,15 +218,6 @@ CREATE TABLE `holicLab_coupon` (
   CONSTRAINT `user_id_refs_id_71986aca` FOREIGN KEY (`user_id`) REFERENCES `holicLab_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_coupon`
---
-
--- LOCK TABLES `holicLab_coupon` WRITE;
-/*!40000 ALTER TABLE `holicLab_coupon` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_coupon` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_course`
@@ -349,18 +244,8 @@ CREATE TABLE `holicLab_course` (
   PRIMARY KEY (`id`),
   KEY `holicLab_course_74d4252d` (`shop_id`),
   CONSTRAINT `shop_id_refs_id_a02511f0` FOREIGN KEY (`shop_id`) REFERENCES `holicLab_shop` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_course`
---
-
--- LOCK TABLES `holicLab_course` WRITE;
-/*!40000 ALTER TABLE `holicLab_course` DISABLE KEYS */;
-INSERT INTO `holicLab_course` VALUES (1,'团体课1','团体课介绍1','教练介绍1','url(\"http://localhost:8000/media/images/1468027610_girl-in-the-gym-1391369_640.jpg\")','image','[\"url(\\\"http://localhost:8000/media/images/1468027589_mobility-603558_640.jpg\\\")\"]',1000,'塑性，女性',10,1,'2016-07-09 01:32:36','1','团体课注意事项1'),(2,'课程2','课程介绍2','教练介绍2','url(\"http://localhost:8000/media/images/1468027998_fitness-863081_640.jpg\")','image','[\"url(\\\"http://localhost:8000/media/images/1468027981_1.jpg\\\")\"]',1000,'增肌，男性',10,1,'2016-07-09 01:36:28','2','注意事项2'),(3,'课程3','课程介绍3','教练介绍3','url(\"http://localhost:8000/media/images/1468028270_training-828726_640.jpg\")','image','[\"url(\\\"http://localhost:8000/media/images/1468028244_crossfit-534615_640.jpg\\\")\"]',1000,'增肌，女性',10,1,'2016-07-09 01:54:08','1','注意事项3'),(4,'课程4','课程介绍4','教练介绍4','url(\"http://localhost:8000/media/images/1468028397_girl-in-the-gym-1391369_640.jpg\")','image','[\"url(\\\"http://localhost:8000/media/images/1468028381_gym-998838_640.jpg\\\")\"]',1000,'有氧运动',10,1,'2016-07-09 01:40:16','1','注意事项4');
-/*!40000 ALTER TABLE `holicLab_course` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_image`
@@ -373,18 +258,8 @@ CREATE TABLE `holicLab_image` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_image`
---
-
--- LOCK TABLES `holicLab_image` WRITE;
-/*!40000 ALTER TABLE `holicLab_image` DISABLE KEYS */;
-INSERT INTO `holicLab_image` VALUES (1,'images/1468027555_sport-966991_640.jpg'),(2,'images/1468027589_mobility-603558_640.jpg'),(3,'images/1468027610_girl-in-the-gym-1391369_640.jpg'),(4,'images/1468027981_1.jpg'),(5,'images/1468027998_fitness-863081_640.jpg'),(6,'images/1468028244_crossfit-534615_640.jpg'),(7,'images/1468028270_training-828726_640.jpg'),(8,'images/1468028381_gym-998838_640.jpg'),(9,'images/1468028397_girl-in-the-gym-1391369_640.jpg'),(10,'images/1468028915_gym-1040992_640.jpg');
-/*!40000 ALTER TABLE `holicLab_image` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_order`
@@ -404,7 +279,6 @@ CREATE TABLE `holicLab_order` (
   `course_id` int(11) DEFAULT NULL,
   `order_type` varchar(10) NOT NULL,
   `coupons_id` int(11) DEFAULT NULL,
-  `password_id` int(11) NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   `people_amount` int(10) unsigned NOT NULL,
@@ -412,27 +286,16 @@ CREATE TABLE `holicLab_order` (
   `shop_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `oid` (`oid`),
-  UNIQUE KEY `password_id` (`password_id`),
   KEY `holicLab_order_6340c63c` (`user_id`),
   KEY `holicLab_order_6234103b` (`course_id`),
   KEY `holicLab_order_410a1f60` (`coupons_id`),
   KEY `holicLab_order_74d4252d` (`shop_id`),
   CONSTRAINT `coupons_id_refs_id_0762a3ae` FOREIGN KEY (`coupons_id`) REFERENCES `holicLab_coupon` (`id`),
   CONSTRAINT `course_id_refs_id_41d39897` FOREIGN KEY (`course_id`) REFERENCES `holicLab_course` (`id`),
-  CONSTRAINT `password_id_refs_id_0ab131d4` FOREIGN KEY (`password_id`) REFERENCES `holicLab_password` (`id`),
   CONSTRAINT `shop_id_refs_id_3b412bf1` FOREIGN KEY (`shop_id`) REFERENCES `holicLab_shop` (`id`),
   CONSTRAINT `user_id_refs_id_f0a03d14` FOREIGN KEY (`user_id`) REFERENCES `holicLab_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_order`
---
-
--- LOCK TABLES `holicLab_order` WRITE;
-/*!40000 ALTER TABLE `holicLab_order` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_order` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_order_services`
@@ -455,42 +318,6 @@ CREATE TABLE `holicLab_order_services` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `holicLab_order_services`
---
-
--- LOCK TABLES `holicLab_order_services` WRITE;
-/*!40000 ALTER TABLE `holicLab_order_services` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_order_services` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
--- Table structure for table `holicLab_password`
---
-
-DROP TABLE IF EXISTS `holicLab_password`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `holicLab_password` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
-  `content` varchar(4) NOT NULL,
-  `used_times` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `content` (`content`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_password`
---
-
--- LOCK TABLES `holicLab_password` WRITE;
-/*!40000 ALTER TABLE `holicLab_password` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_password` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
 -- Table structure for table `holicLab_service`
 --
 
@@ -508,15 +335,6 @@ CREATE TABLE `holicLab_service` (
   CONSTRAINT `shop_id_refs_id_f2f374ea` FOREIGN KEY (`shop_id`) REFERENCES `holicLab_shop` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_service`
---
-
--- LOCK TABLES `holicLab_service` WRITE;
-/*!40000 ALTER TABLE `holicLab_service` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_service` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_shop`
@@ -538,19 +356,11 @@ CREATE TABLE `holicLab_shop` (
   `invalide_times` longtext NOT NULL,
   `last_modified_time` datetime NOT NULL,
   `state` varchar(10) NOT NULL,
+  `password` varchar(6) NOT NULL,
+  `phone` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_shop`
---
-
--- LOCK TABLES `holicLab_shop` WRITE;
-/*!40000 ALTER TABLE `holicLab_shop` DISABLE KEYS */;
-INSERT INTO `holicLab_shop` VALUES (1,'场地1','场地介绍1','注意事项1','image','[\"url(\\\"http://localhost:8000/media/images/1468028915_gym-1040992_640.jpg\\\")\"]','场地地址1',1000,10,'[]','2016-07-09 01:50:46','1');
-/*!40000 ALTER TABLE `holicLab_shop` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_time_bucket`
@@ -571,15 +381,6 @@ CREATE TABLE `holicLab_time_bucket` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `holicLab_time_bucket`
---
-
--- LOCK TABLES `holicLab_time_bucket` WRITE;
-/*!40000 ALTER TABLE `holicLab_time_bucket` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_time_bucket` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
 -- Table structure for table `holicLab_time_limit_coupon`
 --
 
@@ -596,15 +397,6 @@ CREATE TABLE `holicLab_time_limit_coupon` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `holicLab_time_limit_coupon`
---
-
--- LOCK TABLES `holicLab_time_limit_coupon` WRITE;
-/*!40000 ALTER TABLE `holicLab_time_limit_coupon` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_time_limit_coupon` ENABLE KEYS */;
--- UNLOCK TABLES;
-
---
 -- Table structure for table `holicLab_tries_limit_coupon`
 --
 
@@ -618,15 +410,6 @@ CREATE TABLE `holicLab_tries_limit_coupon` (
   CONSTRAINT `coupon_ptr_id_refs_id_ac51ec8e` FOREIGN KEY (`coupon_ptr_id`) REFERENCES `holicLab_coupon` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_tries_limit_coupon`
---
-
--- LOCK TABLES `holicLab_tries_limit_coupon` WRITE;
-/*!40000 ALTER TABLE `holicLab_tries_limit_coupon` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_tries_limit_coupon` ENABLE KEYS */;
--- UNLOCK TABLES;
 
 --
 -- Table structure for table `holicLab_user`
@@ -657,15 +440,6 @@ CREATE TABLE `holicLab_user` (
   CONSTRAINT `invited_by_id_refs_id_fc2ddbdf` FOREIGN KEY (`invited_by_id`) REFERENCES `holicLab_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `holicLab_user`
---
-
--- LOCK TABLES `holicLab_user` WRITE;
-/*!40000 ALTER TABLE `holicLab_user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `holicLab_user` ENABLE KEYS */;
--- UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -676,4 +450,4 @@ CREATE TABLE `holicLab_user` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-09 10:28:23
+-- Dump completed on 2016-07-16  8:31:09
