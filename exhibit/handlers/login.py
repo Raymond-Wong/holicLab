@@ -30,7 +30,7 @@ def login(request, view):
   params['grant_type'] = 'authorization_code'
   res = send_request('api.weixin.qq.com', '/sns/oauth2/access_token', 'GET', params=params)
   if not res[0]:
-    return HttpResponse(Response(c=1, m="登陆失败: 获取access token失败").toJson(), content_type='application/json')
+    return HttpResponse(Response(c=1, m="login failed: get access token failed").toJson(), content_type='application/json')
   access_token = res[1]['access_token']
   openid = res[1]['openid']
   # 获取用户
@@ -44,11 +44,10 @@ def login(request, view):
     params['access_token'] = access_token
     params['openid'] = openid
     params['lang'] = 'zh_CN'
-    print params
-    res = send_request('api.weixin.qq.com', '/sns/userinfo/', 'GET', params=params)
+    res = send_request('api.weixin.qq.com', '/sns/userinfo', 'GET', params=params)
     print res
     if not res[0]:
-      return HttpResponse(Response(c=2, m="登陆失败: 获取用户身份失败").toJson(), content_type='application/json')
+      return HttpResponse(Response(c=2, m="login failed: get user from wechat info failed").toJson(), content_type='application/json')
     userInfo = res[1]
     user = User()
     user.wx_openid = openid
