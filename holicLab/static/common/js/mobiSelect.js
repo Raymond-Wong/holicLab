@@ -11,6 +11,7 @@ MobiSelect = function(obj, arg) {
     }
     for (var n in node['children']) {
       if (!valideTreeDeep(node['children'][n], deep + 1))
+        console.log(node['value'], node['children'][n]['value'], deep)
         return false;
     }
     return true;

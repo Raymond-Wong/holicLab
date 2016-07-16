@@ -6,11 +6,12 @@ MobiSelect = function(obj, arg) {
   var colWidth = arg['colWidth'];
   // 检查树的深度
   var valideTreeDeep = function(node, deep) {
-    if (node['value'] == null) {
+    if (node['children'] == null) {
       return (deep == col ? true : false);
     }
-    for (var n in node['value']) {
-      if (!valideTreeDeep(node['value'][n], deep + 1))
+    for (var n in node['children']) {
+      if (!valideTreeDeep(node['children'][n], deep + 1))
+        console.log(node['value'], node['children'][n]['value'], deep)
         return false;
     }
     return true;
@@ -37,7 +38,7 @@ MobiSelect = function(obj, arg) {
       throw new Error('the sum of col width should be 12');
     }
     // 查看selection树的深度是否和col相等
-    var root = {'key' : 'root', 'value' : selections};
+    var root = {'key' : 'root', 'children' : selections};
     if (!valideTreeDeep(root, 0)) {
       throw new Error("selection is not match with the amount of col");
     }
@@ -78,35 +79,39 @@ MobiSelect = function(obj, arg) {
   var initScroller = function(container, ss, deep, parent) {
     if (ss == null)
       return null;
-    var nswrapper = $(selectWrapper).attr('parent', parent).attr('deep', deep).css('width', colWidth[deep] * 100 / 12.0 + '%');
+    var wrappers = $(container.find('.selectWrapper'));
+    var nswrapper = $(selectWrapper).attr('id', 'selectWrapper_' + wrappers.length).attr('parent', parent).attr('deep', deep).css('width', colWidth[deep] * 100 / 12.0 + '%');
     container.append(nswrapper);
     var nslist = $(nswrapper.find('.selectList')[0]);
     for (sel in ss) {
       var sid = "selectItem_" + deep + '_' + $('.selectWrapper[deep="' + deep + '"]').length + "_" + sel;
       sel = ss[sel];
-      nslist.append($(selectItem).html(sel['key']).attr('id', sid));
-      initScroller(container, sel['value'], deep + 1, sid);
+      nslist.append($(selectItem).html(sel['key']).attr('id', sid).attr('value', sel['value']));
+      initScroller(container, sel['children'], deep + 1, sid);
     }
     var iscroll = new IScroll(nswrapper[0], {
       mouseWheel : true,
       snap : "li",
       click : true,
+      bounce : false,
+      probeType : 3,
     });
-    w2s[nswrapper.attr('parent')] = iscroll;
+    w2s[nswrapper.attr('id')] = iscroll;
     if (deep != 0) {
       nswrapper.addClass('invisible');
     }
-    iscroll.on('scrollEnd', function() {
+    iscroll.on('scroll', function() {
       var wrapper = $(this.wrapper);
       while (wrapper != null && wrapper != undefined && wrapper.length > 0) {
         var nextDeep = parseInt(wrapper.attr('deep')) + 1;
         var listItem = $(wrapper.find('li')[this.currentPage.pageY]);
-        wrapper = $('.selectWrapper[parent="' + listItem.attr('id') + '"]');
+        var toShowWrapper = $('.selectWrapper[parent="' + listItem.attr('id') + '"]');
         $('.selectWrapper[deep="' + nextDeep + '"]').addClass('invisible').removeClass('active');
-        if (wrapper.attr('parent') != undefined)
-          w2s[wrapper.attr('parent')].goToPage(0, 0);
-        wrapper.removeClass('invisible');
-        wrapper.addClass('active');
+        // if (w2s[toShowWrapper.attr('id')] != undefined)
+          // w2s[toShowWrapper.attr('id')].goToPage(0, 0, 1);
+        toShowWrapper.removeClass('invisible');
+        toShowWrapper.addClass('active');
+        wrapper = toShowWrapper;
       }
     });
     return nswrapper;
@@ -117,19 +122,25 @@ MobiSelect = function(obj, arg) {
     var nsCancelBtn = $(nscontainer.find('.selectCancelBtn')[0]);
     $('body').append(nscontainer);
     initScroller(nscontainer, selections, 0, 'root');
-    w2s['root'].goToPage(0, 0, 1);
+    w2s['selectWrapper_0'].goToPage(0, 0, 1);
     if (selectedCallback != undefined) {
       nsSelectBtn.click(function() {
         var res = [];
-        var page = w2s['root'].currentPage.pageY;
-        var val = $($(nscontainer.find('.selectWrapper[deep="0"]')).find('li')[page]).html();
+        var page = w2s['selectWrapper_0'].currentPage.pageY;
+        var val = $($(nscontainer.find('.selectWrapper[deep="0"]')).find('li')[page]).attr('value');
         res.push({'deep' : 0, 'value' : val});
         $.each($(nscontainer.find('.selectWrapper.active')), function() {
-          var page = w2s[$(this).attr('parent')].currentPage.pageY;
-          var val = $($(this).find('li')[page]).html();
-          var deep = $(this).attr('deep');
-          res.push({'deep' : deep, 'val' : val});
+          var page = w2s[$(this).attr('id')].currentPage.pageY;
+          var val = $($(this).find('li')[page]).attr('value');
+          var deep = parseInt($(this).attr('deep'));
+          res.push({'deep' : deep, 'value' : val});
         });
+        res = res.sort(function(a, b) {
+          return a.deep - b.deep;
+        });
+        res = $.map(res, function(obj) {
+          return obj.value;
+        })
         selectedCallback(res);
         return false;
       });
@@ -137,6 +148,7 @@ MobiSelect = function(obj, arg) {
     nsCancelBtn.click(function() {
       animateHide(nscontainer);
     });
+    nscontainer.click(function() {return false;});
     obj.click(function() {
       // 把所有selection隐藏
       $('.selectContainer').css('bottom', '-14em');

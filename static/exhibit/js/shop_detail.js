@@ -90,7 +90,6 @@ var initTimepicker = function() {
       selection.pop();
     }
   }
-  console.log(selection);
   var arg = {
     'col' : 3,
     'colWidth' : [6, 3, 3],
