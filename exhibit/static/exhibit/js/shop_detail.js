@@ -2,6 +2,7 @@ $(document).ready(function() {
   carouselInit();
   videoInit();
   initTimepicker();
+  wxConfig(['getLocation', 'openLocation']);
 });
 
 var carouselInit = function() {

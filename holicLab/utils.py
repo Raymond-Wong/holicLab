@@ -28,6 +28,10 @@ def md5(str):
   m.update(str)
   return m.hexdigest()
 
+def sha1(string):
+  import hashlib
+  return hashlib.sha1(string).hexdigest()
+
 class MyJsonEncoder(json.JSONEncoder):
   def default(self, obj):
     if isinstance(obj, datetime):

@@ -14,7 +14,6 @@ except ImportError:
 
 from datetime import datetime, timedelta
 from django.utils.encoding import smart_str
-from django.utils import timezone
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import render_to_response, redirect
@@ -39,7 +38,14 @@ def entrance(request):
   raise Http404
 
 def config(request):
-  return HttpResponse(get_ticket(request.GET.get('type', 2)).content)
+  params = {}
+  params['noncestr'] = request.POST.get('noncestr', 'holicLab')
+  params['jsapi_ticket'] = get_ticket(2).content
+  params['timestamp'] = request.POST.get('timestamp', str(int(time.time())))
+  params['url'] = request.POST.get('url')
+  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], params.iteritems()))
+  signStr = sha1(toSignStr)
+  return HttpResponse(Response(m=signStr).toJson(), content_type='application/json')
 
 # 获取某种类型的ticket，1为access token，2为jsapi
 def get_ticket(ticket_type):
@@ -47,7 +53,7 @@ def get_ticket(ticket_type):
   toRefresh = True
   if len(records) > 0:
     record = records.order_by('-start_time')[0]
-    if (timezone.now() - record.end_time).seconds < 7200:
+    if (datetime.now() - record.end_time).seconds < 7200:
       toRefresh = False
   if toRefresh:
     record = update_token() if ticket_type == 1 else update_jsapi()
@@ -79,7 +85,7 @@ def update_token():
   if res[1].get('errcode'):
     return False
   token = res[1].get('access_token')
-  starttime = timezone.now()
+  starttime = datetime.now()
   expires_in = timedelta(seconds=int(res[1].get('expires_in')))
   endtime = starttime + expires_in
   token_record = Ticket.objects.filter(ticket_type=1).order_by('-start_time')
@@ -107,7 +113,7 @@ def update_jsapi():
   if res[1].get('errcode'):
     return False
   token = res[1].get('ticket')
-  starttime = timezone.now()
+  starttime = datetime.now()
   expires_in = timedelta(seconds=int(res[1].get('expires_in')))
   endtime = starttime + expires_in
   token_record = Ticket.objects.filter(ticket_type=2).order_by('-start_time')
