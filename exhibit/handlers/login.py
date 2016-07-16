@@ -12,10 +12,9 @@ from django.core import serializers
 
 from holicLab.utils import *
 
-from os import environ
-APP_ID = environ.get("APP_ID", "")
-APP_SECRET = environ.get('APP_SECRET', "")
-TOKEN = environ.get('TOKEN', "")
+APPID = 'wx466a0c7c6871bc8e'
+APPSECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
+TOKEN = 'holicLab'
 
 def login(request, view):
   # 如果session中已经保存了用户信息，则不用重复获取用户信息
