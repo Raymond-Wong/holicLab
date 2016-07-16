@@ -29,6 +29,7 @@ def login(request, view):
     return handlers.error.login(request)
   access_token = res[1]['access_token']
   openid = res[1]['openid']
+  print 'openid: %s' % openid
   # 获取用户
   user = None
   try:
