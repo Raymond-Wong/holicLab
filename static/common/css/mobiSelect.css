@@ -8,7 +8,7 @@
   position: fixed;
   bottom: -14em;
   z-index: 100;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .selectTopic {
@@ -18,6 +18,7 @@
   text-align: center;
   position: relative;
   background-color: inherit;
+  font-weight: 400;
 }
 
 .selectBtn {

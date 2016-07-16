@@ -1,24 +1,3 @@
-/** {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-body, ul, li {
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-html {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #f6f6f6;
-  -ms-touch-action: none;
-}
-*/
 html * {
   font-family: "微软雅黑", "黑体", monospace;
   color: #5b5b5b;
@@ -31,7 +10,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: inherit;
-  /*overflow: hidden;  this is important to prevent the whole page to bounce */
 }
 
 .vertical_outer {
@@ -63,8 +41,4 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.pageWrapper {
-  padding-bottom: 60px;
 }
