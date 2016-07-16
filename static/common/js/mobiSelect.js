@@ -7,13 +7,12 @@ MobiSelect = function(obj, arg) {
   // 检查树的深度
   var valideTreeDeep = function(node, deep) {
     if (node['children'] == null) {
-      console.log(deep, col)
-      return (deep == col ? true : false);
+      return (deep == col)
     }
     for (var n in node['children']) {
-      if (!valideTreeDeep(node['children'][n], deep + 1))
-        console.log(node['value'], node['children'][n]['value'], deep)
+      if (!valideTreeDeep(node['children'][n], deep + 1)) {
         return false;
+      }
     }
     return true;
   }
