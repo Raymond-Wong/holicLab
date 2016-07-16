@@ -88,6 +88,7 @@ def send_request(host, path, method, port=443, params={}, toLoad=True):
     client.request(method, path, json.dumps(params, ensure_ascii=False).encode('utf8'))
     # client.request(method, path, urllib.urlencode(params))
   res = client.getresponse()
+  print res
   if not res.status == 200:
     return False, res.status
   resStr = res.read()

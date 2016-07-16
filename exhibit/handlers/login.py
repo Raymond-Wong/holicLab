@@ -28,7 +28,6 @@ def login(request, view):
   params['secret'] = APP_SECRET
   params['code'] = code
   params['grant_type'] = 'authorization_code'
-  print 'params', params
   res = send_request('api.weixin.qq.com', '/sns/oauth2/access_token', 'GET', params)
   print 'res', res
   if not res[0]:
