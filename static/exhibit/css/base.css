@@ -42,3 +42,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.pageWrapper {
+  padding-bottom: 60px;
+}
+
+.ui-loader {
+  display: none;
+}
