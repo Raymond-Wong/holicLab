@@ -46,14 +46,14 @@ def login(request, view):
     params['openid'] = openid
     params['lang'] = 'zh_CN'
     res = send_request('api.weixin.qq.com', '/sns/userinfo', 'GET', params=params)
+    print res
     if not res[0]:
       return HttpResponse(Response(c=2, m="login failed: get user from wechat info failed").toJson(), content_type='application/json')
     userInfo = res[1]
-    print userInfo
     user = User()
     user.wx_openid = openid
     user.nickname = userInfo['nickname']
-    user.gender = 'm' if userInfo['gender'] == '1' else 'f'
+    user.gender = 'm' if userInfo['gender'] == 1 else 'f'
     user.invite_code = genInviteCodeRepeate()
     user.save()
   request.session['user'] = user.invite_code
