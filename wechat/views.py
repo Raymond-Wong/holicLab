@@ -43,7 +43,6 @@ def config(request):
   params['timestamp'] = str(int(time.time()))
   params['url'] = request.POST.get('url')
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
-  print toSignStr
   ret = {}
   ret['signature'] = sha1(toSignStr)
   ret['timestamp'] = params['timestamp']
@@ -82,7 +81,6 @@ def update_token():
   method = 'GET'
  
   res = send_request(host, path, method, params=params)
-  print res
   if not res[0]:
     return False
   if res[1].get('errcode'):
