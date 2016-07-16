@@ -115,7 +115,8 @@ var initLocationAction = function() {
         }
     });
     getAddressLocation(address, function(loc) {
-      alert(loc);
+      alert(loc[0]);
+      alert(loc['latitude']);
       alert(typeof(loc));
       wx.openLocation({
         latitude: loc[0], // 纬度，浮点数，范围为90 ~ -90
