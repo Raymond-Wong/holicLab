@@ -64,3 +64,17 @@ var wxConfig = function(jsApiList) {
     console.log(res);
   });
 }
+
+var getAddressLocation = function(address, callback) {
+  var geocoder = new qq.maps.Geocoder();
+  //对指定地址进行解析
+  geocoder.getLocation(address);
+  //设置服务请求成功的回调函数
+  geocoder.setComplete(function(result) {
+    callback(result.detail.location)
+  });
+  //若服务请求失败，则运行以下函数
+  geocoder.setError(function() {
+    alert("无法在地图上找到以下位置：" + address);
+  });
+}
