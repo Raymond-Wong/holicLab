@@ -102,8 +102,12 @@ var initTimepicker = function() {
 }
 
 var initLocationAction = function() {
+  $('.btn.location').bind('click', function() {
+    alert('正在初始化地图，请稍后重试');
+  });
   wxConfig(['getLocation', 'openLocation']);
   wx.ready(function() {
+    $('.btn.location').unbind('click');
     $('.btn.location').click(function() {
       var address = $('.locationBox').text();
       getAddressLocation(address, function(result) {
