@@ -106,7 +106,9 @@ var initLocationAction = function() {
   wx.ready(function() {
     var address = $('.locationBox').text();
     alert(address);
-    alert(getAddressLocation(address));
+    getAddressLocation(address, function(loc) {
+      alert(loc);
+    });
   });
 }
 
