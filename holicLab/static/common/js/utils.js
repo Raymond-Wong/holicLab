@@ -61,7 +61,7 @@ var wxConfig = function(jsApiList) {
     });
   });
   wx.error(function(res){
-    console.log(res);
+    alert(res);
   });
 }
 
