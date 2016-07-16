@@ -107,7 +107,14 @@ var initLocationAction = function() {
     var address = $('.locationBox').text();
     alert(address);
     getAddressLocation(address, function(loc) {
-      alert(loc);
+      wx.openLocation({
+        latitude: loc[0], // 纬度，浮点数，范围为90 ~ -90
+        longitude: loc[1], // 经度，浮点数，范围为180 ~ -180。
+        name: '全能工作室', // 位置名
+        address: '深圳市宝安中心新安六路与宝源南路交界处众里创业社区首层', // 地址详情说明
+        scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
+        infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+      });
     });
   });
 }
