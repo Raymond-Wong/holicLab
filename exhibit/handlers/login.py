@@ -28,7 +28,7 @@ def login(request, view):
   params['secret'] = APP_SECRET
   params['code'] = code
   params['grant_type'] = 'authorization_code'
-  res = send_request('api.weixin.qq.com', '/sns/oauth2/access_token', 'GET', params)
+  res = send_request('api.weixin.qq.com', '/sns/oauth2/access_token', 'GET', params=params)
   print 'res', res
   if not res[0]:
     return HttpResponse(Response(c=-1, m="登陆失败: 获取access token失败").toJson(), content_type='application/json')
