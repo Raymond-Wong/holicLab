@@ -44,11 +44,12 @@ def login(request, view):
     params['access_token'] = access_token
     params['openid'] = openid
     params['lang'] = 'zh_CN'
+    print params
     res = send_request('api.weixin.qq.com', '/sns/userinfo/', 'GET', params=params)
+    print res
     if not res[0]:
       return HttpResponse(Response(c=2, m="登陆失败: 获取用户身份失败").toJson(), content_type='application/json')
     userInfo = res[1]
-    print userInfo
     user = User()
     user.wx_openid = openid
     user.nickname = userInfo['nickname']
