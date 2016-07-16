@@ -19,12 +19,10 @@ TOKEN = environ.get('TOKEN', "")
 
 def login(request, view):
   # 如果session中已经保存了用户信息，则不用重复获取用户信息
-  print 'login.py 16'
   if request.session.has_key('user'):
     return view(request)
   # 获取code
   code = request.GET.get('code')
-  print 'code: %s' % code
   # 用code换取access token
   params = {}
   params['appid'] = APP_ID,
@@ -33,8 +31,9 @@ def login(request, view):
   params['grant_type'] = 'authorization_code'
   res = send_request('api.weixin.qq.com', '/sns/oauth2/access_token', 'GET', params)
   if not res[0]:
-    return handlers.error.login(request)
+    return HttpResponse(Response(c=-1, m="登陆失败: 获取access token失败").toJson(), content_type='application/json')
   access_token = res[1]['access_token']
+  print 'access_token: %s' % access_token
   openid = res[1]['openid']
   print 'openid: %s' % openid
   # 获取用户
