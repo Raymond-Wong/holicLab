@@ -105,8 +105,8 @@ var initLocationAction = function() {
   wxConfig(['getLocation', 'openLocation']);
   wx.ready(function() {
     var address = $('.locationBox').text();
-    alert(address);
     getAddressLocation(address, function(loc) {
+      alert('lat: ', loc[0], ' long: ', loc[1]);
       wx.openLocation({
         latitude: loc[0], // 纬度，浮点数，范围为90 ~ -90
         longitude: loc[1], // 经度，浮点数，范围为180 ~ -180。
