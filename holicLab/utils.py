@@ -53,13 +53,36 @@ def appendImageUrl(x):
     x = "/static/pc/icon/logo.png"
   return x
 
+# 发送请求
+# 如果发送请求时服务器返回的是access_token过期的话，就跑出一个PastDueException
+# def send_request(host, path, method, port=443, params={}, toLoad=True):
+#   client = httplib.HTTPSConnection(host, port)
+#   # client.request(method, path, json.dumps(params, ensure_ascii=False).encode('utf8'))
+#   client.request(method, path, urllib.urlencode(params))
+#   res = client.getresponse()
+#   if not res.status == 200:
+#     return False, res.status
+#   resStr = res.read()
+#   if toLoad:
+#     resDict = json.loads(resStr, encoding="utf-8")
+#     if 'errcode' in resDict.keys() and resDict['errcode'] == 40001:
+#       raise PastDueException('access token past due')
+#     if 'errcode' in resDict.keys() and resDict['errcode'] != 0:
+#       return False, resDict
+#     return True, resDict
+#   else:
+#     return True, resStr
 
 # 发送请求
 # 如果发送请求时服务器返回的是access_token过期的话，就跑出一个PastDueException
 def send_request(host, path, method, port=443, params={}, toLoad=True):
   client = httplib.HTTPSConnection(host, port)
-  # client.request(method, path, json.dumps(params, ensure_ascii=False).encode('utf8'))
-  client.request(method, path, urllib.urlencode(params))
+  if method == 'GET':
+    path = '?'.join([path, urllib.urlencode(params)])
+    client.request(method, path)
+  else:
+    client.request(method, path, json.dumps(params, ensure_ascii=False).encode('utf8'))
+    # client.request(method, path, urllib.urlencode(params))
   res = client.getresponse()
   if not res.status == 200:
     return False, res.status

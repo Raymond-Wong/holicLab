@@ -39,15 +39,15 @@ def entrance(request):
   raise Http404
 
 def config(request):
-  return HttpResponse(json.dumps(get_ticket(request.GET.get('type', 1))))
+  return HttpResponse(get_ticket(request.GET.get('type', 2)).content)
 
 # 获取某种类型的ticket，1为access token，2为jsapi
 def get_ticket(ticket_type):
   records = Ticket.objects.filter(ticket_type=ticket_type)
   toRefresh = True
   if len(records) > 0:
-    record = records.orer_by('-start_time')[0]
-    if (timezone.now - record.end_time).seconds < 7200:
+    record = records.order_by('-start_time')[0]
+    if (timezone.now() - record.end_time).seconds < 7200:
       toRefresh = False
   if toRefresh:
     record = update_token() if ticket_type == 1 else update_jsapi()
@@ -82,7 +82,7 @@ def update_token():
   starttime = timezone.now()
   expires_in = timedelta(seconds=int(res[1].get('expires_in')))
   endtime = starttime + expires_in
-  token_record = Ticket.objects.filder(ticket_type=1).order_by('-start_time')
+  token_record = Ticket.objects.filter(ticket_type=1).order_by('-start_time')
   if len(token_record) > 0:
     token_record = token_record[0]
   else:
@@ -95,7 +95,7 @@ def update_token():
 def update_jsapi():
   params = {
     'access_token': get_ticket(1).content,
-    'type': jsapi,
+    'type': 'jsapi',
   }
   host = 'api.weixin.qq.com'
   path = '/cgi-bin/ticket/getticket'
@@ -110,7 +110,7 @@ def update_jsapi():
   starttime = timezone.now()
   expires_in = timedelta(seconds=int(res[1].get('expires_in')))
   endtime = starttime + expires_in
-  token_record = Ticket.objects.filder(ticket_type=2).order_by('-start_time')
+  token_record = Ticket.objects.filter(ticket_type=2).order_by('-start_time')
   if len(token_record) > 0:
     token_record = token_record[0]
   else:
