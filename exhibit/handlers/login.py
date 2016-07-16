@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
 from holicLab.utils import *
+from holicLab.models import User
 
 APP_ID = 'wx466a0c7c6871bc8e'
 APP_SECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
@@ -45,10 +46,10 @@ def login(request, view):
     params['openid'] = openid
     params['lang'] = 'zh_CN'
     res = send_request('api.weixin.qq.com', '/sns/userinfo', 'GET', params=params)
-    print res
     if not res[0]:
       return HttpResponse(Response(c=2, m="login failed: get user from wechat info failed").toJson(), content_type='application/json')
     userInfo = res[1]
+    print userInfo
     user = User()
     user.wx_openid = openid
     user.nickname = userInfo['nickname']
