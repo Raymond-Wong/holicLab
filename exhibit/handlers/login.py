@@ -24,8 +24,8 @@ def login(request, view):
   code = request.GET.get('code')
   # 用code换取access token
   params = {}
-  params['appid'] = APP_ID,
-  params['secret'] = APP_SECRET,
+  params['appid'] = APP_ID
+  params['secret'] = APP_SECRET
   params['code'] = code
   params['grant_type'] = 'authorization_code'
   print 'params', params
