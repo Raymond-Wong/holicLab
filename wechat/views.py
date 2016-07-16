@@ -22,6 +22,7 @@ from django.views.decorators.csrf import csrf_exempt
 from holicLab.utils import *
 from models import Ticket
 
+from os import environ
 APP_ID = environ.get("APP_ID", "")
 APP_SECRET = environ.get('APP_SECRET', "")
 TOKEN = environ.get('TOKEN', "")

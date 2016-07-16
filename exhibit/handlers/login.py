@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import sys
-import os
 sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -13,9 +12,10 @@ from django.core import serializers
 
 from holicLab.utils import *
 
-APP_ID = os.environ.get("APP_ID", "")
-APP_SECRET = os.environ.get('APP_SECRET', "")
-TOKEN = os.environ.get('TOKEN', "")
+from os import environ
+APP_ID = environ.get("APP_ID", "")
+APP_SECRET = environ.get('APP_SECRET', "")
+TOKEN = environ.get('TOKEN', "")
 
 def login(request, view):
   # 如果session中已经保存了用户信息，则不用重复获取用户信息
