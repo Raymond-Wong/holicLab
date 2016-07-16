@@ -43,7 +43,8 @@ def config(request):
   params['jsapi_ticket'] = get_ticket(2).content
   params['timestamp'] = request.POST.get('timestamp', str(int(time.time())))
   params['url'] = request.POST.get('url')
-  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], params.iteritems()))
+  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
+  print toSignStr
   signStr = sha1(toSignStr)
   return HttpResponse(Response(m=signStr).toJson(), content_type='application/json')
 

@@ -47,7 +47,7 @@ var wxConfig = function(jsApiList) {
   var nonceStr = 'holicLab';
   var appId = 'wx466a0c7c6871bc8e';
   var timestamp = new Date().getTime();
-  var url = window.location.host + window.location.pathname + window.location.search
+  var url = window.location.href.split('#')[0]
   post('/wechat/config', {'nonceStr' : nonceStr, 'timestamp' : timestamp, 'url' : url}, function(signature) {
     console.log(signature);
     wx.config({
