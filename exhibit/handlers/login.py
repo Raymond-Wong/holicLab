@@ -12,8 +12,8 @@ from django.core import serializers
 
 from holicLab.utils import *
 
-APPID = 'wx466a0c7c6871bc8e'
-APPSECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
+APP_ID = 'wx466a0c7c6871bc8e'
+APP_SECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
 TOKEN = 'holicLab'
 
 def login(request, view):
