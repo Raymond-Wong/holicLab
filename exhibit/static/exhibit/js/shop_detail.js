@@ -117,7 +117,6 @@ var initLocationAction = function() {
         }
     });
     getAddressLocation(address, function(result) {
-      alert(result.latitude);
       wx.openLocation({
         latitude: lat, // 纬度，浮点数，范围为90 ~ -90
         longitude: lon, // 经度，浮点数，范围为180 ~ -180。
