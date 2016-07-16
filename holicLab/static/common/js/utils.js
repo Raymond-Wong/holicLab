@@ -44,11 +44,12 @@ function getUrlParam(name) {
 }
 
 var wxConfig = function(jsApiList) {
-  var nonceStr = 'holicLab';
   var appId = 'wx466a0c7c6871bc8e';
-  var timestamp = new Date().getTime();
   var url = window.location.href.split('#')[0]
-  post('/wechat/config', {'nonceStr' : nonceStr, 'timestamp' : timestamp, 'url' : url}, function(signature) {
+  post('/wechat/config', {'url' : url}, function(msg) {
+    var signature = msg['signature'];
+    var timestamp = msg['timestamp'];
+    var nonceStr = msg['noncestr'];
     console.log(signature);
     wx.config({
       debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
