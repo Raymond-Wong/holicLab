@@ -29,28 +29,26 @@ def login(request, view):
   params['code'] = code
   params['grant_type'] = 'authorization_code'
   res = send_request('api.weixin.qq.com', '/sns/oauth2/access_token', 'GET', params=params)
-  print 'res', res
   if not res[0]:
-    return HttpResponse(Response(c=-1, m="登陆失败: 获取access token失败").toJson(), content_type='application/json')
+    return HttpResponse(Response(c=1, m="登陆失败: 获取access token失败").toJson(), content_type='application/json')
   access_token = res[1]['access_token']
-  print 'access_token: %s' % access_token
   openid = res[1]['openid']
-  print 'openid: %s' % openid
   # 获取用户
   user = None
   try:
     # 用户存在数据库中
-    user = User.objects.get(wx_openid=openid)
+    user = User.objects.get(wx_openid=str(openid))
   except:
     # 用户不存在数据库中
     params = {}
     params['access_token'] = access_token
     params['openid'] = openid
     params['lang'] = 'zh_CN'
-    res = send_request('api.weixin.qq.com', '/sns/userinfo/', 'GET', params)
+    res = send_request('api.weixin.qq.com', '/sns/userinfo/', 'GET', params=params)
     if not res[0]:
-      return handlers.error.login(request)
+      return HttpResponse(Response(c=2, m="登陆失败: 获取用户身份失败").toJson(), content_type='application/json')
     userInfo = res[1]
+    print userInfo
     user = User()
     user.wx_openid = openid
     user.nickname = userInfo['nickname']
