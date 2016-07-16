@@ -15,11 +15,11 @@ from holicLab.utils import *
 def login(request, view):
   # 如果session中已经保存了用户信息，则不用重复获取用户信息
   print 'login.py 16'
-  if request.session['user']:
-    print 'login.py 19'
+  if request.session.has_key('user'):
     return view(request)
   # 获取code
   code = request.GET.get('code')
+  print 'code: %s' % code
   # 用code换取access token
   params = {}
   params['appid'] = APP_ID,
