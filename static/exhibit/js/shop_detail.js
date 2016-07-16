@@ -115,7 +115,7 @@ var initLocationAction = function() {
         }
     });
     getAddressLocation(address, function(result) {
-      $(body).prepend('<h1>' + result + '</h1>')
+      alert(result);
       wx.openLocation({
         latitude: 22.562163, // 纬度，浮点数，范围为90 ~ -90
         longitude: 113.873918, // 经度，浮点数，范围为180 ~ -180。
