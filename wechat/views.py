@@ -72,6 +72,7 @@ def verify(token, timestamp, nonce, signature):
 
 # 当数据库中access_token失效以后用于更新token的接口
 def update_token():
+  print 'update access token'
   params = {
     'grant_type': 'client_credential',
     'appid': APPID,
@@ -101,6 +102,7 @@ def update_token():
   return token_record
 
 def update_jsapi():
+  print 'update jsapi'
   params = {
     'access_token': get_ticket(1).content,
     'type': 'jsapi',
