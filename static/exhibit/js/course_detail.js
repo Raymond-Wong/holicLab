@@ -42,8 +42,7 @@ var str2date = function(str) {
   var leftArr = left.split('-');
   var rightArr = right.split(':');
   var date = new Date(leftArr[0], leftArr[1], leftArr[2], rightArr[0], rightArr[1]);
-  alert(date);
-  return date
+  return tzAware(date);
 }
 
 var initTimepicker = function() {
