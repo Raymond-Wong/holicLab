@@ -13,7 +13,7 @@ var calendarAction = function() {
 
 var deleteCourse = function() {
   $('.shopBox .deleteBtn').click(function() {
-    var sid = $(this).parent().parent().attr('sid');
+    var sid = $(this).parent().parent().attr('cid');
     var name = $(this).parent().children('.shopName').text();
     if (!confirm("确定删除课程\"" + name + "\"吗？\n删除的课程将无法恢复"))
       return false;
