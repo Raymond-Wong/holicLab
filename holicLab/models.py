@@ -80,7 +80,7 @@ class Course(models.Model):
   cover_type = models.CharField(max_length=5, choices=COVER_TYPE, default=1)
   cover = models.TextField()
   price = models.PositiveIntegerField()
-  state = models.CharField(max_length=20, choices=COURSE_STATE, default='started')
+  course_state = models.CharField(max_length=20, choices=COURSE_STATE, default='started')
   tags = models.TextField(blank=True)
   capacity = models.PositiveIntegerField(default=0)
   shop = models.ForeignKey(Shop)
