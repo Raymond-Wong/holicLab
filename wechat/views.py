@@ -56,7 +56,7 @@ def get_ticket(ticket_type):
   toRefresh = True
   if len(records) > 0:
     record = records.order_by('-start_time')[0]
-    print timezone.now, record.end_time
+    print timezone.now(), record.end_time
     if (timezone.now() - record.end_time).seconds < 7200:
       toRefresh = False
   if toRefresh:
