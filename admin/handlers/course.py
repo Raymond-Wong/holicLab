@@ -109,7 +109,7 @@ def delete(request):
   # 删除与该课程相关的所有订单
   deleteOrders(course.order_set.all())
   # 删除和该课程相关的所有时间
-  for time_bucket in course.time_bucket_set.all():
+  for time_bucket in course.bookable_time_set.all():
     time_buckets.delete()
   # 删除该课程
   course.delete()
