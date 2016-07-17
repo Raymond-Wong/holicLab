@@ -38,6 +38,7 @@ var videoInit = function() {
 
 var str2date = function(str) {
   var date = new Date(str);
+  alert(date);
   return tzAware(date)
 }
 
@@ -49,12 +50,8 @@ var initTimepicker = function() {
   $('.shopDetailPage').removeAttr('capacity');
   var bookable_time_set = [];
   for (var i in bookable_times) {
-    alert(bookable_times[i]['startTime']);
-    alert(bookable_times[i]['endTime']);
     var startTime = str2date(bookable_times[i]['startTime']);
     var endTime = str2date(bookable_times[i]['endTime']);
-    alert(startTime);
-    alert(endTime);
     var occupation = parseInt(bookable_times[i]['occupation'])
     var bid = bookable_times[i]['id'];
     if (occupation < capacity)
