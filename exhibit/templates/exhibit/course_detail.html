@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page %}
-<div class="shopDetailPage" invalideTimes="{{ course.bookable_time }}">
+<div class="shopDetailPage" bookableTimes="{{ course.bookable_time }}" capacity={{ course.capacity }}>
 <button class="bookBtn" id="bookBtn">立即预约</button>
 
 <div id="viewport">
@@ -81,5 +81,5 @@
 <script type="text/javascript" src="/static/plugin/iscroll/iscroll-probe.js"></script>
 <script type="text/javascript" src="/static/common/js/mobiSelect.js"></script>
 <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
-<script type="text/javascript" src="/static/exhibit/js/shop_detail.js"></script>
+<script type="text/javascript" src="/static/exhibit/js/course_detail.js"></script>
 {% endblock %}
