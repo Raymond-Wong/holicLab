@@ -80,7 +80,7 @@
 }
 
 .featureTable td img {
-  margin-right: 5px;
+  margin: 0 5px;
 }
 
 .featureTable tr:first-child td:first-child {
