@@ -87,6 +87,7 @@ class Course(models.Model):
   last_modified_time = models.DateTimeField(auto_now=True)
   state = models.CharField(max_length=10, choices=SHOP_STATE, default=1)
   notice = models.TextField()
+  duration = models.CharField(max_length=50, default=u'一小时')
   def toJSON(self):
     import json
     import utils

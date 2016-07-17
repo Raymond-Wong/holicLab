@@ -134,6 +134,8 @@ var submitAction = function() {
     params['capacity'] = $('input[name="capacity"]').val();
     // 获取标签
     params['tags'] = $('input[name="tags"]').val();
+    // 获取课程时长
+    params['duration'] = $('input[name="duration"]').val();
     // 获取注意事项
     params['notice'] = $('textarea[name="notice"]').val();
     if (params['notice'].length <= 0) {
@@ -258,6 +260,8 @@ var initCourseUpdate = function() {
     $('input[name="tags"]').val(params['tags']);
     // 初始化注意事项
     $('textarea[name="notice"]').val(params['notice']);
+    // 初始化课程时长
+    $('input[name="duration"]').val(params['duration']);
     // 初始化可预约时间
     if (params['bookable_time'].length > 0) {
       $('.radio[name="bookType"][value="specialTime"]').trigger('click');

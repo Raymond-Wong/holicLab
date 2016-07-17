@@ -235,12 +235,14 @@ CREATE TABLE `holicLab_course` (
   `cover_type` varchar(5) NOT NULL,
   `cover` longtext NOT NULL,
   `price` int(10) unsigned NOT NULL,
+  `course_state` varchar(20) NOT NULL,
   `tags` longtext NOT NULL,
   `capacity` int(10) unsigned NOT NULL,
   `shop_id` int(11) NOT NULL,
   `last_modified_time` datetime NOT NULL,
   `state` varchar(10) NOT NULL,
   `notice` longtext NOT NULL,
+  `duration` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `holicLab_course_74d4252d` (`shop_id`),
   CONSTRAINT `shop_id_refs_id_a02511f0` FOREIGN KEY (`shop_id`) REFERENCES `holicLab_shop` (`id`)
@@ -467,4 +469,4 @@ CREATE TABLE `wechat_ticket` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-16  8:48:10
+-- Dump completed on 2016-07-17 14:11:03

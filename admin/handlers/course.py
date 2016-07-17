@@ -83,8 +83,9 @@ def add(request):
   capacity = request.POST.get('capacity', None)
   notice = request.POST.get('notice', None)
   tags = request.POST.get('tags', '')
+  duration = request.POST.get('duration', '')
   time_buckets = json.loads(request.POST.get('bookable_time', '[]'))
-  newCourse = Course(name=name, tags=tags, description=description, notice=notice, cover_type=cover_type, cover=cover, coach_description=coach_description, coach_cover=coach_cover, price=price, capacity=capacity)
+  newCourse = Course(name=name, tags=tags, duration=duration, description=description, notice=notice, cover_type=cover_type, cover=cover, coach_description=coach_description, coach_cover=coach_cover, price=price, capacity=capacity)
   newCourse.shop = Shop.objects.get(id=sid)
   newCourse.save()
   # 根据time_buckets创建该课程可预约时间
@@ -130,6 +131,7 @@ def update(request):
   course.name = name
   description = request.POST.get('description', None)
   tags = request.POST.get('tags', '')
+  duration = request.POST.get('duration', '一小时')
   course.description = description
   price = int(request.POST.get('price', None))
   course.price = price
@@ -141,6 +143,7 @@ def update(request):
   course.coach_description = request.POST.get('coach_description')
   course.coach_cover = request.POST.get('coach_cover')
   course.tags = tags
+  course.duration = duration
   bookable_time = json.loads(request.POST.get('bookable_time'))
   remain_bookable_time = []
   for time in bookable_time:

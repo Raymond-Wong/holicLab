@@ -54,6 +54,10 @@
       <textarea name="description" class="inputValue" placeholder="课程介绍"></textarea>
     </div>
     <div class="stepLine">
+      <div class="inputName">课程时长</div>
+      <input name="duration" type="text" placeholder="一小时" class="inputValue" />
+    </div>
+    <div class="stepLine">
       <div class="inputName">教练介绍</div>
       <textarea name="coach_description" class="inputValue" placeholder="教练介绍"></textarea>
       <div class="coachImg vertical_outer thumbImg uploadImgBtn" id="coachCover">
@@ -62,11 +66,11 @@
     </div>
     <div class="stepLine">
       <div class="inputName">价格</div>
-      <input name="price" type="number" min="0" placeholder="预定场地半小时的价格，单位为（角）" class="inputValue" />
+      <input name="price" type="number" min="0" placeholder="一人预定一次课程的价格，单位为（角）" class="inputValue" />
     </div>
     <div class="stepLine">
       <div class="inputName">容量</div>
-      <input name="capacity" type="number" min="0" placeholder="同一时间段内场地可容纳的人数" class="inputValue" />
+      <input name="capacity" type="number" min="0" placeholder="一个时间段的课程可容纳的人数" class="inputValue" />
     </div>
     <div class="stepLine">
       <div class="inputName">标签</div>
@@ -81,7 +85,7 @@
     <div class="stepHead">第三步: 设置可预约时间</div>
     <div class="stepLine">
       <div class="inputName">预约时间</div>
-      <div class="radio" name="bookType" value="specialTime">特殊时间不可预约</div>
+      <div class="radio" name="bookType" value="specialTime">特殊时间可预约</div>
       <div class="addTimeBtn" id="addTimeBtn"><span class="glyphicon glyphicon-plus"></span></div>
     </div>
     <div class="timeContainer" id="timeContainer">
