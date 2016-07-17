@@ -251,8 +251,8 @@
 
 .playVideoBtn {
   position: absolute;
-  left: 5vw;
-  bottom: 8vw;
+  left: 3vw;
+  top: 64vw;
   font-size: 10vw;
   color: rgba(255, 255, 255, 0.8);
   z-index: 2;
