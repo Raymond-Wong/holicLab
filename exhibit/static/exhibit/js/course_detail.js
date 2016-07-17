@@ -37,10 +37,8 @@ var videoInit = function() {
 }
 
 var str2date = function(str) {
-  alert(str);
   var date = new Date(str);
-  alert(date);
-  return tzAware(date)
+  return date
 }
 
 var initTimepicker = function() {
