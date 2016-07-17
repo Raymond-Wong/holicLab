@@ -58,7 +58,7 @@ var initTimepicker = function() {
     var occupation = parseInt(bookable_times[i]['occupation'])
     var bid = bookable_times[i]['id'];
     if (occupation < capacity)
-      bookable_time_set.push({'key' : startTime.Format('yyyy-MM-dd hh:mm') + ' ~ ' + endTime.Format('yyyy-MM-dd hh:mm'), 'value' : bid, 'children' : null});
+      bookable_time_set.push({'key' : startTime.Format('MM月dd hh:mm') + ' ~ ' + endTime.Format('MM月dd hh:mm'), 'value' : bid, 'children' : null});
   }
   var selection = bookable_time_set;
   var arg = {
