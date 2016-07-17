@@ -102,7 +102,6 @@ def add(request):
 def delete(request):
   # 检查数据合法性
   validate = isValidate(request, {'cid' : True}, False)
-  print cid
   if not validate[0]:
     return HttpResponse(validate[1], content_type='application/json')
   cid = int(request.POST.get('cid'))
