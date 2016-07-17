@@ -15,10 +15,10 @@ var deleteCourse = function() {
   $('.shopBox .deleteBtn').click(function() {
     var sid = $(this).parent().parent().attr('sid');
     var name = $(this).parent().children('.shopName').text();
-    if (!confirm("确定删除场地\"" + name + "\"吗？\n删除的课程将无法恢复"))
+    if (!confirm("确定删除课程\"" + name + "\"吗？\n删除的课程将无法恢复"))
       return false;
-    post('/admin/shop?action=delete', {'sid' : sid}, function(msg) {
-      window.location.href = '/admin/shop?action=list';
+    post('/admin/course?action=delete', {'cid' : sid}, function(msg) {
+      window.location.href = '/admin/course?action=list&sid=' + $('.shopWrapper').attr('sid');
     });
     return false;
   });
