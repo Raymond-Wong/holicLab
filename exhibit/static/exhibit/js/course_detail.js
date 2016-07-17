@@ -37,8 +37,12 @@ var videoInit = function() {
 }
 
 var str2date = function(str) {
-  var date = new Date(str);
-  alert(str + ' -> ' + date);
+  var left = str.split(' ')[0];
+  var right = str.split(' ')[1];
+  var leftArr = left.split('-');
+  var rightArr = right.split(':');
+  var date = new Date(leftArr[0], leftArr[1], leftArr[2], rightArr[0], rightArr[1]);
+  alert(date);
   return date
 }
 
