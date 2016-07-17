@@ -203,13 +203,14 @@ def isValidate(request, required, defaultRequired):
       required[key] = defaultRequired
   # 判断sid合法性
   sid = request.POST.get('sid', None)
-  if required['sid'] and sid is None:
-    return (False, Response(c=-9, m='未提供商店id').toJson())
-  try:
-    if required['sid']:
-      Shop.objects.get(id=int(sid))
-  except:
-    return (False, Response(c=-3, m='商店不存在').toJson())
+  if required['sid']:
+    if sid is None:
+      return (False, Response(c=-9, m='未提供商店id').toJson())
+    try:
+      if required['sid']:
+        Shop.objects.get(id=int(sid))
+    except:
+      return (False, Response(c=-3, m='商店不存在').toJson())
   # 判断name合法性
   name = request.POST.get('name', None)
   if required['name'] and name is None:
@@ -226,18 +227,20 @@ def isValidate(request, required, defaultRequired):
     return (False, Response(c=-9, m='未提供时间参数').toJson())
   # 判断价格合法性
   price = request.POST.get('price', None)
-  if required['price'] and price is None:
-    return (False, Response(c=-9, m='未提供课程价格').toJson())
-  try:
-    int(price)
-  except:
-    return (False, Response(c=3, m='课程价格必须为数值').toJson())
+  if required['price']:
+    if price is None:
+      return (False, Response(c=-9, m='未提供课程价格').toJson())
+    try:
+      int(price)
+    except:
+      return (False, Response(c=3, m='课程价格必须为数值').toJson())
   # 判断容量合法性
   capacity = request.POST.get('capacity', None)
-  if required['capacity'] and capacity is None:
-    return (False, Response(c=-9, m='未提供课程容量').toJson())
-  try:
-    int(capacity)
-  except:
-    return (False, Response(c=5, m='课程容量必须为数值').toJson())
+  if required['capacity']:
+    if capacity is None:
+      return (False, Response(c=-9, m='未提供课程容量').toJson())
+    try:
+      int(capacity)
+    except:
+      return (False, Response(c=5, m='课程容量必须为数值').toJson())
   return (True, None)
