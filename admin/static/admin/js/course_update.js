@@ -186,8 +186,8 @@ var getCoverMedia = function(params) {
   // 获取封面类型
   params['cover_type'] = $('.radio.checked').attr('value');
   // 获取封面内容
+  params['cover'] = []
   if (params['cover_type'] == 'image') {
-    params['cover'] = []
     $('.imgBox .thumbImg').each(function() {
       var imgUrl = $(this).css('background-image');
       imgUrl = imgUrl.replace('url(', '');
