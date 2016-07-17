@@ -37,6 +37,5 @@ def detail(request):
   for i, course in enumerate(shop.courses):
     shop.courses[i].cover = json.loads(shop.courses[i].cover)
     shop.courses[i].bookable_time = shop.courses[i].bookable_time_set.order_by('-start_time')[0]
-  print shop.invalide_times
   # 返回商店详情
   return render(request, 'exhibit/shop_detail.html', {'shop' : shop})
