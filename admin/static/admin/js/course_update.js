@@ -174,7 +174,7 @@ var getBookableTime = function(params) {
     if (endTime < startTime) {
       error = false;
     }
-    params['bookable_time'].push({'startTime' : tzAware(startTime), 'endTime' : tzAware(endTime), 'tid' : tid});
+    params['bookable_time'].push({'startTime' : startTime.Format('yyyy-MM-dd hh:mm:ss'), 'endTime' : endTime.Format('yyyy-MM-dd hh:mm:ss'), 'tid' : tid});
   });
   if (!error)
     return error
@@ -276,8 +276,8 @@ var initCourseUpdate = function() {
         var newTimeBox = $(timeBox);
         var startDom = $(newTimeBox.find('input.startTime')[0]);
         var endDom = $(newTimeBox.find('input.endTime')[0]);
-        initStartTime(startDom, period['start_time']);
-        initEndTime(endDom, period['end_time']);
+        initStartTime(startDom, tzAware(new Date(period['start_time'])));
+        initEndTime(endDom, tzAware(new Date(period['end_time'])));
         newTimeBox.attr('tid', period['id'])
         $('#timeContainer').append(newTimeBox);
       }
