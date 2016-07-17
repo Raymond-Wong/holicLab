@@ -30,8 +30,8 @@ var carouselInit = function() {
 var videoInit = function() {
   if ($('.videoBox').length == 0)
     return false;
-  $('.playVideoBtn').click(function() {
-    var video = $(this).parent().children('video')[0];
+  $('.videoBox').click(function() {
+    var video = $(this).children('video')[0];
     video.play();
   });
 }
