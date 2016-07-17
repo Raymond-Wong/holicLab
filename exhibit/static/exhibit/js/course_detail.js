@@ -41,7 +41,7 @@ var str2date = function(str) {
   var right = str.split(' ')[1];
   var leftArr = left.split('-');
   var rightArr = right.split(':');
-  var date = new Date(leftArr[0], leftArr[1], leftArr[2], rightArr[0], rightArr[1]);
+  var date = new Date(leftArr[0], parseInt(leftArr[1])- 1, leftArr[2], rightArr[0], rightArr[1]);
   return tzAware(date);
 }
 
