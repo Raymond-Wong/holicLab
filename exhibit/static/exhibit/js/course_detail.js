@@ -45,6 +45,8 @@ var initTimepicker = function() {
   // 获取不可预约时间
   var bookable_times = $.parseJSON($('.shopDetailPage').attr('bookableTimes'));
   var capacity = parseInt($('.shopDetailPage').attr('capacity'));
+  alert(bookable_times);
+  alert(capacity);
   $('.shopDetailPage').removeAttr('bookableTimes');
   $('.shopDetailPage').removeAttr('capacity');
   var bookable_time_set = [];
