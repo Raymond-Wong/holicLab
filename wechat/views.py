@@ -61,8 +61,6 @@ def get_ticket(ticket_type):
   if toRefresh:
     print timezone.now(), record.start_time, (timezone.now() - record.start_time).seconds
     record = update_token() if ticket_type == 1 else update_jsapi()
-  else:
-    print '%s do need to update' % ('jsapi' if ticket_type == 2 else 'access_token')
   return record
 
 # 验证信息是否从微信发送过来
