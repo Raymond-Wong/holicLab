@@ -20,6 +20,10 @@
   padding: 22px 14px;
 }
 
+.shopListLink, .shopListLink:hover, .shopListLink:active, .shopListLink:focus, .shopListLink:visited {
+  text-decoration: none;
+}
+
 .shopName, .shopLoc {
   color: white;
   font-size: 12px;

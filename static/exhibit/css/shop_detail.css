@@ -19,7 +19,7 @@
 }
 
 .infoLine {
-  font-size: 24px;
+  font-size: 20px;
   height: 40px;
   line-height: 40px;
 }
@@ -28,11 +28,11 @@
   margin-right: 14px;
   color: #b2b2b2;
   top: 3px;
-  font-size: 30px;
+  font-size: 26px;
 }
 
 .infoLine .logo {
-  top: 5px;
+  top: 8px;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
@@ -56,7 +56,7 @@
 }
 
 .descBlock h1, .noticeBlock h1 {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .locationBox {
@@ -76,7 +76,11 @@
 
 .featureTable td {
   width: 50%;
-  padding: 1.5em 1em;
+  padding: 1em 0.5px;
+}
+
+.featureTable td img {
+  margin-right: 5px;
 }
 
 .featureTable tr:first-child td:first-child {
@@ -145,6 +149,7 @@
   outline: none;
   z-index: 100;
   height: 42px;
+  font-size: 18px;
 }
 
 .featureIcon {
