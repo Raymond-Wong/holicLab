@@ -107,6 +107,11 @@
   position: relative;
   margin-bottom: 14px;
   height: 30vw;
+  display: block;
+}
+
+.courseBox, .courseBox:hover, .courseBox:active, .courseBox:focus, .courseBox:visited {
+  text-decoration: none;
 }
 
 .courseWrapper {

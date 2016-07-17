@@ -34,12 +34,17 @@ def list(request):
 def detail(request):
   cid = request.GET.get('cid', None)
   course = None
-  # 判断sid合法性
+  # 判断cid合法性
   if cid is None:
     return HttpResponse(Response(c=-9, m="未提供cid").toJson(), content_type="application/json")
   try:
     course = Course.objects.get(id=int(cid))
   except Exception, e:
     return HttpResponse(Response(c=-4, m="待查询课程不存在").toJson(), content_type="application/json")
+  course.cover = json.loads(course.cover)
+  times = []
+  for i, time in enumerate(course.bookable_time_set.all()):
+    times.append({'start_time' : time.start_time, 'end_time' : time.end_time, 'occupation' : time.occupation})
+  course.bookable_time = json.dumps(times, cls=MyJsonEncoder)
   # 返回商店详情
   return render(request, 'exhibit/course_detail.html', {'course' : course})

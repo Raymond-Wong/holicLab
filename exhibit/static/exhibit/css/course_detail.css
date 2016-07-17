@@ -53,10 +53,28 @@
 
 .descBlock, .noticeBlock {
   min-height: 150px;
+  position: relative;
 }
 
 .descBlock h1, .noticeBlock h1 {
   font-size: 18px;
+}
+
+.descBlockText {
+  width: 70%;
+  margin-right: 20%;
+}
+
+.coachCover {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 28%;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding-bottom: 28%; /* 关键就在这里 */
+  border-radius: 50%;
 }
 
 .locationBox {

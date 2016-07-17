@@ -8,4 +8,5 @@ import views
 urlpatterns = patterns('',
   url(r'^$', views.homeHandler),
   url(r'^shop$', views.shopHandler),
+  url(r'^course$', views.courseHandler),
 )

@@ -2,18 +2,18 @@
 
 {% block style %}
 <link type="text/css" rel="stylesheet" href="/static/common/css/mobiSelect.css">
-<link type="text/css" rel="stylesheet" href="/static/exhibit/css/shop_detail.css">
+<link type="text/css" rel="stylesheet" href="/static/exhibit/css/course_detail.css">
 {% endblock %}
 
 {% block page %}
-<div class="shopDetailPage" invalideTimes="{{ shop.invalide_times }}">
+<div class="shopDetailPage" invalideTimes="{{ course.bookable_time }}">
 <button class="bookBtn" id="bookBtn">立即预约</button>
 
 <div id="viewport">
-  {% ifequal shop.cover_type "image" %}
+  {% ifequal course.cover_type "image" %}
   <div id="wrapper">
     <div id="scroller">
-      {% for cover in shop.cover %}
+      {% for cover in course.cover %}
       <div class="slide">
         <div class="painting thumbImg" style="background-image: {{ cover }}"></div>
       </div>
@@ -26,27 +26,30 @@
     </div>
   </div>
   {% else %}
-  <div class="videoBox thumbImg" style="background-image: {{ shop.cover.0 }}">
+  <div class="videoBox thumbImg" style="background-image: {{ course.cover.0 }}">
     <span class="playVideoBtn glyphicon glyphicon-play-circle"></span>
-    <video class="video" src="{{ shop.cover.1 }}" preload="auto" controls></video>
+    <video class="video" src="{{ course.cover.1 }}" preload="auto" controls></video>
   </div>
   {% endifequal %}
 </div>
 
 <div class="block descBlock">
-  <h1>场地介绍</h1>
-  <p>{{ shop.description }}</p>
+  <div class="descBlockText">
+    <h1>教练介绍</h1>
+    <p>{{ course.coach_description }}</p>
+  </div>
+  <div class="coachCover thumbImg" style="background-image: {{ course.coach_cover }}"></div>
 </div>
 <div class="line infoLine">
   <span class="left glyphicon glyphicon-time logo"></span>
-  <font class="left">全日24小时</font>
+  <font class="left">{{ course.duration }}</font>
   <a class="right glyphicon glyphicon-map-marker btn location"></a>
-  <a class="right glyphicon glyphicon-earphone btn phone" href="tel:{{ shop.phone }}"></a>
+  <a class="right glyphicon glyphicon-earphone btn phone" href="tel:{{ course.shop.phone }}"></a>
   <div class="clear"></div>
 </div>
 <div class="line">
   <span class="left glyphicon glyphicon-map-marker logo"></span>
-  <div class="left locationBox">{{ shop.location }}</div>
+  <div class="left locationBox">{{ course.shop.location }}</div>
   <div class="clear"></div>
 </div>
 <div class="block featureBlock">
@@ -64,23 +67,12 @@
   </div>
 </div>
 <div class="block noticeBlock">
-  <h1>注意事项</h1>
-  <p>{{ shop.notice }}</p>
+  <h1>课程介绍</h1>
+  <p>{{ course.description }}</p>
 </div>
-<div class="block courseBlock">
-  <h1>团体课</h1>
-  <div class="courseWrapper">
-    {% for course in shop.courses %}
-    <a class="courseBox" href="/course?action=detail&cid={{ course.id }}">
-      <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
-      <div class="courseDesc">
-        <div class="courseName">{{ course.name }}</div>
-        <div class="courseTags">{{ course.tags }}</div>
-        <div class="courseBookableTime">{{ course.bookable_time.start_time | date:"Y-m-d H:i" }} ~ {{ course.bookable_time.end_time | date:"Y-m-d H:i" }}</div>
-      </div>
-    </a>
-    {% endfor %}
-  </div>
+<div class="block noticeBlock">
+  <h1>注意事项</h1>
+  <p>{{ course.notice }}</p>
 </div>
 </div>
 {% endblock %}
