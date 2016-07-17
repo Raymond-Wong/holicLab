@@ -38,7 +38,6 @@ var videoInit = function() {
 
 var str2date = function(str) {
   var date = new Date(str);
-  // date.setHours(date.getHours() + date.getTimezoneOffset() / 60);
   return tzAware(date)
 }
 
