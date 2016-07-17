@@ -18,6 +18,7 @@ from django.utils.encoding import smart_str
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 from holicLab.utils import *
 from models import Ticket
@@ -55,7 +56,7 @@ def get_ticket(ticket_type):
   toRefresh = True
   if len(records) > 0:
     record = records.order_by('-start_time')[0]
-    if (datetime.now() - record.end_time).seconds < 7200:
+    if (timezone.now() - record.end_time).seconds < 7200:
       toRefresh = False
   if toRefresh:
     record = update_token() if ticket_type == 1 else update_jsapi()
@@ -86,7 +87,7 @@ def update_token():
   if res[1].get('errcode'):
     return False
   token = res[1].get('access_token')
-  starttime = datetime.now()
+  starttime = timezone.now()
   expires_in = timedelta(seconds=int(res[1].get('expires_in')))
   endtime = starttime + expires_in
   token_record = Ticket.objects.filter(ticket_type=1).order_by('-start_time')
@@ -114,7 +115,7 @@ def update_jsapi():
   if res[1].get('errcode'):
     return False
   token = res[1].get('ticket')
-  starttime = datetime.now()
+  starttime = timezone.now()
   expires_in = timedelta(seconds=int(res[1].get('expires_in')))
   endtime = starttime + expires_in
   token_record = Ticket.objects.filter(ticket_type=2).order_by('-start_time')
