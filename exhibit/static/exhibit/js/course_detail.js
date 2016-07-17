@@ -48,7 +48,6 @@ var initTimepicker = function() {
   var capacity = parseInt($('.shopDetailPage').attr('capacity'));
   $('.shopDetailPage').removeAttr('bookableTimes');
   $('.shopDetailPage').removeAttr('capacity');
-  console.log(bookable_times);
   var bookable_time_set = [];
   for (var i in bookable_times) {
     var startTime = str2date(bookable_times[i]['startTime']);
