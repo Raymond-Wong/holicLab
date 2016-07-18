@@ -21,7 +21,6 @@ var getMetaInfo = function() {
   isFirstOrder = line.attr('isFirstOrder') == 'True' ? true : false;
   balance = parseInt(line.attr('balance'));
   price = parseInt(line.attr('price'));
-  alert(price);
   capacity = parseInt(line.attr('capacity'));
   line.remove();
 }
@@ -44,6 +43,7 @@ var updatePrice = function() {
   });
   // 时长
   var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
+  alert(duration);
   totalPrice += duration * price;
   // 人数
   var amount = parseInt($('.radio.checked[name="amount"]').attr('value'));
