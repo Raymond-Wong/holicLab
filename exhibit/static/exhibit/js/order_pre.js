@@ -43,20 +43,21 @@ var updatePrice = function() {
   });
   // 时长
   var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
-  alert(duration);
   totalPrice += duration * price;
   // 人数
   var amount = parseInt($('.radio.checked[name="amount"]').attr('value'));
   totalPrice *= amount
+  var discountPrice = totalPrice;
   // 首单五折
   if (isFirstOrder) {
-    totalPrice /= 2;
+    discountPrice /= 2;
   } else {
     // 如果不是首单则每小时可以使用一张优惠券
     coupon = parseInt(duration / 2);
     coupon = coupon > balance ? balance : coupon;
-    totalPrice -= (coupon * 100);
+    discountPrice -= (coupon * 100);
   }
   // 更新价格
-  $('.priceBox').text('￥' + (parseFloat(totalPrice) / 10));
+  $('.discountPrice').text('￥' + (parseFloat(discountPrice) / 10));
+  $('.originPrice').text('￥' + (parseFloat(totalPrice) / 10));
 }

@@ -134,3 +134,8 @@ ol.block {
   font-size: 18px;
   padding: 0;
 }
+
+.originPrice {
+  color: red;
+  text-decoration: line-through;
+}
