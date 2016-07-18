@@ -30,6 +30,7 @@ def pre_site_order(request):
   sid = request.GET.get('sid', None)
   shop = None
   timestamp = request.GET.get('timestamp', None)
+  print timestamp
   try:
     shop = Shop.objects.get(id=int(sid))
   except Exception:
@@ -39,16 +40,16 @@ def pre_site_order(request):
   if start_time < now:
     print start_time, now
     return HttpResponse(Response(c=3, m='待预约时间已过期').toJson(), content_type='application/json')
-  user = User.objects.get(invite_code=request.session['user'])
   params = {}
+  user = User.objects.get(invite_code=request.session['user'])
+  params['is_first_order'] = True if len(user.order_set.filter(order_type=4)) == 0 else False
+  params['balance'] = user.balance
   params['cover'] = json.loads(shop.cover)[0]
   params['title'] = shop.name
   params['startTime'] = start_time.strftime('%a, %b %d, %H:%M')
   params['location'] = shop.location
   params['price'] = shop.price
   params['capacity'] = shop.capacity
-  params['is_first_order'] = True if len(user.order_set.filter(order_type=4)) == 0 else False
-  params['user_balance'] = user.balance
   params['bookable_time'] = []
   current_time = start_time
   for i in xrange(1, 4):

@@ -89,12 +89,10 @@ def useInvite(request):
     invite_user = User.objects.get(invite_code=invite_code)
   except:
     return HttpResponse(Response(c=3, m="邀请码无效").toJson(), content_type="application/json")
-  # 更新邀请码用户的余额
-  invite_user.balance = F('balance') + 30
   # 将邀请的用户和被邀请的用户进行绑定
   user.invited_by = invite_user
   # 更新被邀请用户的余额
-  user.balance = F('balance') + 30
+  user.balance = F('balance') + 1
   return HttpResponse(Response(m="使用邀请码成功").toJson(), content_type="application/json")
 
 

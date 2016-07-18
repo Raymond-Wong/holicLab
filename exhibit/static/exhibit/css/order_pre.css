@@ -1,3 +1,7 @@
+.navWrapper {
+  display: none;
+}
+
 .cover {
   width: 100vw;
   height: 89vw;
@@ -77,7 +81,7 @@
 }
 
 ol.block {
-  padding-left: 2.5em;
+  padding-left: 3em;
 }
 
 .featureTable {
@@ -108,4 +112,25 @@ ol.block {
 
 .featureTable .tr:last-child .td:first-child {
   border-right: 1px solid #e4e4e4;
+}
+
+.priceLine {
+  padding: 2em;
+}
+
+.priceBox {
+  margin-left: 3em;
+}
+
+.payBtn {
+  width: 90%;
+  margin: 0 5% 0 5%;
+  height: 3em;
+  line-height: 3em;
+  border-radius: 1.5em;
+  text-align: center;
+  color: white;
+  background-color: #f5a623;
+  font-size: 18px;
+  padding: 0;
 }
