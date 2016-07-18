@@ -99,6 +99,8 @@ ol.block {
   height: 20px;
   width: auto;
   margin: 0 5px;
+  position: relative;
+  top: -2px;
 }
 
 .featureTable .tr:first-child .td:first-child {
