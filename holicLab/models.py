@@ -95,8 +95,8 @@ class Course(models.Model):
 
 # 时间段类，记录每个时间段已预约的人数
 class Time_Bucket(models.Model):
-  date = models.DateField()
-  occupation = models.TextField()
+  start_time = models.DateTimeField()
+  occupation = models.PositiveIntegerField(default=0)
   shop = models.ForeignKey(Shop)
 
 # 课程的可预约时间

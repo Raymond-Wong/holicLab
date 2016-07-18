@@ -67,8 +67,8 @@ var initTimepicker = function() {
   var weeks = ['日', '一', '二', '三', '四', '五', '六'];
   var current = new Date(now);
   for (var doffset = 0; doffset < 3; doffset++) {
-    var col_1 = (doffset == 0 ? '今天' : (current.getMonth() + '月' + current.getDate() + '日 星期' + weeks[current.getDay()]));
-    selection.push({'key' : col_1, 'children' : [], 'value' : current.getFullYear() + '-' + current.getMonth() + '-' + current.getDate()});
+    var col_1 = (doffset == 0 ? '今天' : (current.getMonth() + 1 + '月' + current.getDate() + '日 星期' + weeks[current.getDay()]));
+    selection.push({'key' : col_1, 'children' : [], 'value' : current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate()});
     for (var hoffset = current.getHours(); hoffset < 24; hoffset++) {
       var hour = current.getHours() + '点';
       hour = hour.length == 3 ? hour : '0' + hour;
@@ -95,7 +95,10 @@ var initTimepicker = function() {
     'colWidth' : [6, 3, 3],
     'selection' : selection,
     'selected' : function(res) {
-      alert(res);
+      var sid = getUrlParam('sid');
+      var timestamp = new Date(res[0] + ' ' + res[1] + ':' + res[2]).valueOf() / 1000;
+      var url = '/order?action=pre&type=site&sid=' + sid + '&timestamp=' + timestamp;
+      window.location.href = url;
     },
   }
   new MobiSelect($('#bookBtn'), arg);

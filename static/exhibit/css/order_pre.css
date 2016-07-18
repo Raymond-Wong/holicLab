@@ -1,0 +1,111 @@
+.cover {
+  width: 100vw;
+  height: 89vw;
+}
+
+.line {
+  padding: 1.5em 1em;
+  border-bottom: 1px solid #e4e7f0;
+  width: 100%;
+}
+
+.lineName {
+  width: 25%;
+  color: #a1a6bb;
+}
+
+.lineValue {
+  max-width: 74%;
+  text-align: left;
+  color: #222328;
+}
+
+.radioLine {
+  height: 6em;
+  line-height: 3em;
+}
+
+.radio {
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  line-height: 3em;
+  text-align: center;
+  background-color: #f1f2f7;
+  color: #b9beb3;
+  border: 1px solid #b9beb3;
+  border-radius: 1.5em;
+  margin: 0;
+  padding: 0;
+}
+
+.radio.checked {
+  background-color: #f5a623;
+  color: #f1f2f7;
+  border: 1px solid #f5a623;
+}
+
+.hintLine {
+  background-color: #f9f9f9;
+}
+
+.line .name {
+  color: #222328;
+  width: 25%;
+}
+
+.line .hint {
+  color: #a1a6bb;
+}
+
+.checkBox {
+  padding: 3px;
+  border-radius: 9px;
+  border: 6px solid #d9d9d9;
+  background-color: white;
+  margin: 0;
+}
+
+.checkBox.checked {
+  border: 6px solid #f5a623;
+}
+
+.block {
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+ol.block {
+  padding-left: 2.5em;
+}
+
+.featureTable {
+  width: 100%;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+}
+
+.featureTable .td {
+  width: 50%;
+  padding: 1.2em 0.5em 1.1em 0.5em;
+}
+
+.featureTable .td img {
+  height: 20px;
+  width: auto;
+  margin: 0 5px;
+}
+
+.featureTable .tr:first-child .td:first-child {
+  border-right: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.featureTable .tr:first-child .td:nth-child(2) {
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.featureTable .tr:last-child .td:first-child {
+  border-right: 1px solid #e4e4e4;
+}

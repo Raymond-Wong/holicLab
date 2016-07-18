@@ -9,4 +9,5 @@ urlpatterns = patterns('',
   url(r'^$', views.homeHandler),
   url(r'^shop$', views.shopHandler),
   url(r'^course$', views.courseHandler),
+  url(r'^order$', views.orderHandler),
 )

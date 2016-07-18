@@ -4,6 +4,7 @@ sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
+from datetime import timedelta
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import redirect, render
@@ -11,20 +12,65 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
 from holicLab.utils import *
-from holicLab.models import Order
+from holicLab.models import Order, Shop, User
 
 def add(request):
-  order_type = request.GET.get('type', None)
-  if order_type == 'site':
-    return add_site_order(request)
-  elif order_type == 'course':
-    return add_course_order(request)
-  return HttpResponse(Response(c=1, m="待添加订单类型错误").toJson(), content_type="application/json")
-
-def add_site_order(request):
   pass
 
-def add_course_order(request):
+def pre(request):
+  order_type = request.GET.get('type', None)
+  if order_type == 'site':
+    return pre_site_order(request)
+  elif order_type == 'course':
+    return pre_course_order(request)
+  return HttpResponse(Response(c=1, m="待添加订单类型错误").toJson(), content_type="application/json")
+
+def pre_site_order(request):
+  # 判断数据合法性
+  sid = request.GET.get('sid', None)
+  shop = None
+  timestamp = request.GET.get('timestamp', None)
+  try:
+    shop = Shop.objects.get(id=int(sid))
+  except Exception:
+    return HttpResponse(Response(c=2, m='待预定场地不存在').toJson(), content_type='application/json')
+  start_time = datetime.fromtimestamp(float(timestamp))
+  now = datetime.now()
+  if start_time < now:
+    print start_time, now
+    return HttpResponse(Response(c=3, m='待预约时间已过期').toJson(), content_type='application/json')
+  user = User.objects.get(invite_code=request.session['user'])
+  params = {}
+  params['cover'] = json.loads(shop.cover)[0]
+  params['title'] = shop.name
+  params['startTime'] = start_time.strftime('%a, %b %d, %H:%M')
+  params['location'] = shop.location
+  params['price'] = shop.price
+  params['capacity'] = shop.capacity
+  params['is_first_order'] = True if len(user.order_set.filter(order_type=4)) == 0 else False
+  params['user_balance'] = user.balance
+  params['bookable_time'] = []
+  current_time = start_time
+  for i in xrange(1, 4):
+    current_time = current_time + timedelta(minutes=i * 30)
+    params['bookable_time'].append({'duration' : (i + 1) * 30, 'bookable' : True if getTimeOccupation(shop, current_time) < shop.capacity else False})
+  params['bookable_amount'] = []
+  start_time_occupation = getTimeOccupation(shop, start_time)
+  for i in xrange(1, 4):
+    if start_time_occupation + i < shop.capacity:
+      params['bookable_amount'].append(i)
+  if start_time_occupation == 0:
+    params['bookable_amount'].append('包场')
+  return render(request, 'exhibit/order_pre.html', params)
+
+def getTimeOccupation(shop, time):
+  time_bucket = shop.time_bucket_set.filter(start_time=time)
+  ret = 0
+  if len(time_bucket):
+    ret = time_bucket[0].occupation
+  return ret
+
+def pre_course_order(request):
   pass
 
 def list(request):
