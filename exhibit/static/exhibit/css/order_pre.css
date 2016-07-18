@@ -116,10 +116,13 @@ ol.block {
 
 .priceLine {
   padding: 2em;
+  height: 3em;
+  line-height: 3em;
 }
 
 .priceBox {
   margin-left: 3em;
+  font-size: 16px;
 }
 
 .payBtn {
