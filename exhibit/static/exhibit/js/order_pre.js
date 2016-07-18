@@ -49,6 +49,7 @@ var updatePrice = function() {
   totalPrice *= amount
   // 首单五折
   if (isFirstOrder) {
+    alert('首单五折');
     totalPrice /= 2;
   } else {
     // 如果不是首单则每小时可以使用一张优惠券

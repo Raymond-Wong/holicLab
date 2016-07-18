@@ -125,9 +125,9 @@ ol.block {
 .payBtn {
   width: 90%;
   margin: 0 5% 0 5%;
-  height: 3em;
-  line-height: 3em;
-  border-radius: 1.5em;
+  height: 42px;
+  line-height: 42px;
+  border-radius: 21px;
   text-align: center;
   color: white;
   background-color: #f5a623;

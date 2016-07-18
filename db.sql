@@ -260,7 +260,7 @@ CREATE TABLE `holicLab_image` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -361,7 +361,7 @@ CREATE TABLE `holicLab_shop` (
   `password` varchar(6) NOT NULL,
   `phone` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -373,8 +373,8 @@ DROP TABLE IF EXISTS `holicLab_time_bucket`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `holicLab_time_bucket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL,
-  `occupation` longtext NOT NULL,
+  `start_time` datetime NOT NULL,
+  `occupation` int(10) unsigned NOT NULL,
   `shop_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `holicLab_time_bucket_74d4252d` (`shop_id`),
@@ -457,7 +457,7 @@ CREATE TABLE `wechat_ticket` (
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -469,4 +469,4 @@ CREATE TABLE `wechat_ticket` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-17 14:11:03
+-- Dump completed on 2016-07-19  0:08:52
