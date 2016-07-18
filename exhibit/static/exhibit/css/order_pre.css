@@ -116,6 +116,8 @@ ol.block {
 
 .priceLine {
   padding: 2em;
+  height: 7em;
+  line-height: 7em;
 }
 
 .priceBox {
