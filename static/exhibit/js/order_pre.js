@@ -20,7 +20,8 @@ var getMetaInfo = function() {
   var line = $('.infoLine');
   isFirstOrder = line.attr('isFirstOrder') == 'True' ? true : false;
   balance = parseInt(line.attr('balance'));
-  price = parseInt(line.attr('price'))
+  price = parseInt(line.attr('price'));
+  alert(price);
   capacity = parseInt(line.attr('capacity'));
   line.remove();
 }
@@ -49,7 +50,6 @@ var updatePrice = function() {
   totalPrice *= amount
   // 首单五折
   if (isFirstOrder) {
-    alert('首单五折');
     totalPrice /= 2;
   } else {
     // 如果不是首单则每小时可以使用一张优惠券
