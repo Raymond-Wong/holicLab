@@ -66,6 +66,7 @@ def verify(request):
       phoneHasUsed = False
     if phoneHasUsed:
       return HttpResponse(Response(c=1, m="该手机已与其他用户绑定").toJson(), content_type="application/json")
+    return HttpResponse(Response(m=phone).toJson(), content_type="application/json")
   elif request.method == 'GET':
     phone = request.GET.get('phone', None)
     if phone is None:
