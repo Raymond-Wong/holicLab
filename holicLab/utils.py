@@ -134,6 +134,6 @@ def random_x_bit_code(x, code_range=CODE_RANGE):
 
 def sendSMS(mobile, code):
   print code
-  parmas = {}
+  params = {}
   params['code'] = 0
   return json.dumps(params)
