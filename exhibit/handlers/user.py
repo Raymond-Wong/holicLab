@@ -54,8 +54,10 @@ def update(request):
 def verify(request):
   action_type = request.GET.get('type', 'phone')
   if request.method == 'GET' and action_type != 'code':
+    print 1
     return render(request, 'exhibit/user_verifyPhone.html')
   elif request.method == 'POST' and action_type == 'phone':
+    print 2
     phone = request.GET.get('phone', None)
     if phone is None:
       return HttpResponse(Response(c=-9, m="未提供待验证手机号码").toJson(), content_type="application/json")
@@ -68,6 +70,7 @@ def verify(request):
       return HttpResponse(Response(c=1, m="该手机已与其他用户绑定").toJson(), content_type="application/json")
     return HttpResponse(Response(m=phone).toJson(), content_type="application/json")
   elif request.method == 'GET':
+    print 3
     phone = request.GET.get('phone', None)
     if phone is None:
       return HttpResponse(Response(c=-9, m="未提供待验证手机号码").toJson(), content_type="application/json")
@@ -79,6 +82,7 @@ def verify(request):
     # 将验证码以及生成验证码的时间存入session
     request.session['verification_code'] = json.dumps({'code' : code, 'create_time' : datetime.datetime.now(), 'phone' : phone})
     return render(request, 'exhibit/user_verifyPhone.html')
+  print 4
   # 如果是post请求则验证验证码是否正确
   user = User.objects.get(invite_code=request.session['user'])
   verification_code = json.loads(request.session['verification_code'])
