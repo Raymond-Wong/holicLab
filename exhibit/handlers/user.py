@@ -92,7 +92,7 @@ def verify(request):
     del request.session['phone']
   else:
     return HttpResponse(Response(c=4, m="验证码错误").toJson(), content_type="application/json")
-  backurl = None
+  backurl = '验证成功'
   if request.session.has_key('backUrl'):
     backurl = request.session['backUrl']
     del request.session['backUrl']
