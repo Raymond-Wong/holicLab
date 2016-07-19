@@ -20,5 +20,5 @@ var loading = function() {
 var finishLoading = function() {
   setTimeout(function() {
     $('#loadingContainer').remove();
-  }, 2000);
+  }, 1200);
 }
