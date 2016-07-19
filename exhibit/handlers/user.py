@@ -71,7 +71,7 @@ def verify(request):
   elif request.method == 'GET':
     phone = request.session['phone']
     # 随机生成一个验证码
-    code = random_x_bit_code(4, range(0, 9))
+    code = random_x_bit_code(4, [str(i) for i in xrange(0, 10)])
     res = json.loads(sendSMS(phone, code))
     if res['code'] != 0:
       return HttpResponse(Response(c=2, m="发送验证码失败，请检查手机号码是否正确，稍后重试").toJson(), content_type="application/json")
