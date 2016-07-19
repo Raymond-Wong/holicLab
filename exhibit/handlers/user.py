@@ -12,7 +12,7 @@ from django.core import serializers
 from django.db.models import F
 
 from holicLab.utils import *
-from holicLab.models import Shop, Time_Bucket, Course, Service
+from holicLab.models import Shop, Time_Bucket, Course, Service, User
 
 # 显示用户的基本信息
 def detail(request):
@@ -52,18 +52,49 @@ def update(request):
   return HttpResponse(Response(m="用户资料修改成功").toJson(), content_type="application/json")
 
 def verify(request):
-  phone = request.POST.get('phone', None)
-  if phone is None:
-    return HttpResponse(Response(c=-9, m="未提供待验证手机号码").toJson(), content_type="application/json")
-  # 随机生成一个验证码
-  code = random_x_bit_code(4)
-  res = json.loads(sendSMS(phone, code))
-  if res['code'] != 0:
-    return HttpResponse(Response(c=1, m="发送验证码失败，请检查手机号码是否正确，稍后重试").toJson(), content_type="application/json")
-  # 将验证码以及生成验证码的时间存入session
-  request.session['verification_code'] = json.dumps({'code' : code, 'create_time' : datetime.datetime.now(), 'phone' : phone})
-  # 将验证码返回给前端
-  return HttpResponse(Response(m=code).toJson(), content_type="application/json")
+  action_type = request.GET.get('type', 'phone')
+  if request.method == 'GET' and action_type != 'code':
+    return render(request, 'exhibit/user_verifyPhone.html')
+  elif request.method == 'POST' and action_type == 'phone':
+    phone = request.GET.get('phone', None)
+    if phone is None:
+      return HttpResponse(Response(c=-9, m="未提供待验证手机号码").toJson(), content_type="application/json")
+    phoneHasUsed = True
+    try:
+      User.objects.get(phone=phone)
+    except:
+      phoneHasUsed = False
+    if phoneHasUsed:
+      return HttpResponse(Response(c=1, m="该手机已与其他用户绑定").toJson(), content_type="application/json")
+  elif request.method == 'GET':
+    phone = request.GET.get('phone', None)
+    if phone is None:
+      return HttpResponse(Response(c=-9, m="未提供待验证手机号码").toJson(), content_type="application/json")
+    # 随机生成一个验证码
+    code = random_x_bit_code(4)
+    res = json.loads(sendSMS(phone, code))
+    if res['code'] != 0:
+      return HttpResponse(Response(c=2, m="发送验证码失败，请检查手机号码是否正确，稍后重试").toJson(), content_type="application/json")
+    # 将验证码以及生成验证码的时间存入session
+    request.session['verification_code'] = json.dumps({'code' : code, 'create_time' : datetime.datetime.now(), 'phone' : phone})
+    return render(request, 'exhibit/user_verifyPhone.html')
+  # 如果是post请求则验证验证码是否正确
+  user = User.objects.get(invite_code=request.session['user'])
+  verification_code = json.loads(request.session['verification_code'])
+  del request.session['verification_code']
+  gotCode = request.POST.get('code', None)
+  if gotCode is None:
+    return HttpResponse(Response(c=3, m="未提供验证码").toJson(), content_type="application/json")
+  if gotCode == verification_code['code']:
+    user.phone = verification_code['phone']
+    user.bind_date = timezone.now().date()
+  else:
+    return HttpResponse(Response(c=4, m="验证码错误").toJson(), content_type="application/json")
+  backurl = None
+  if request.session.has_key('backUrl'):
+    backurl = request.session['backUrl']
+    del request.session['backUrl']
+  return HttpResponse(Response(m=backurl).toJson(), content_type="application/json")
 
 def showInvite(request):
   invite_code = request.session['user']
