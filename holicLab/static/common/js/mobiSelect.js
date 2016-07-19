@@ -47,7 +47,7 @@ MobiSelect = function(obj, arg) {
   // animate的隐藏一个container
   var animateHide = function(container) {
     container.animate({'bottom' : '-14em'}, function() {
-      $(window).unbind('click');
+      $(window).unbind('tap');
     })
   };
   // container对象
@@ -124,7 +124,7 @@ MobiSelect = function(obj, arg) {
     initScroller(nscontainer, selections, 0, 'root');
     w2s['selectWrapper_0'].goToPage(0, 0, 1);
     if (selectedCallback != undefined) {
-      nsSelectBtn.click(function() {
+      nsSelectBtn.on('tap', function() {
         var res = [];
         var page = w2s['selectWrapper_0'].currentPage.pageY;
         var val = $($(nscontainer.find('.selectWrapper[deep="0"]')).find('li')[page]).attr('value');
@@ -145,15 +145,15 @@ MobiSelect = function(obj, arg) {
         return false;
       });
     }
-    nsCancelBtn.click(function() {
+    nsCancelBtn.on('tap', function() {
       animateHide(nscontainer);
     });
-    nscontainer.click(function() {return false;});
-    obj.click(function() {
+    nscontainer.on('tap', function() {return false;});
+    obj.on('tap', function() {
       // 把所有selection隐藏
       $('.selectContainer').css('bottom', '-14em');
       nscontainer.animate({'bottom' : "0"}, function() {
-        $(window).bind('click', function() {
+        $(window).bind('tap', function() {
           animateHide(nscontainer);
         })
       });
