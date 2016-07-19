@@ -4,7 +4,7 @@ $(document).ready(function() {
 });
 
 var submitAction = function() {
-  $('.submitBtn').click(function() {
+  $('.submitBtn').on('tap', function() {
     var phone = $('input').val();
     var url = '/user?action=verify&type=phone&phone=' + phone;
     post(url, {}, function(msg) {
@@ -28,7 +28,7 @@ var numberInputCallback = function(value) {
   }
   // 如果输入的是确认
   else if (value == 'commit') {
-    $('.submitBtn').trigger('click');
+    $('.submitBtn').trigger('tap');
   } else {
     // 如果输入的是数字
     var val = $('input').val();

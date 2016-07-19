@@ -30,7 +30,7 @@ var carouselInit = function() {
 var videoInit = function() {
   if ($('.videoBox').length == 0)
     return false;
-  $('.videoBox').click(function() {
+  $('.videoBox').on('tap', function() {
     var video = $(this).children('video')[0];
     video.play();
   });
@@ -106,13 +106,13 @@ var initTimepicker = function() {
 }
 
 var initLocationAction = function() {
-  $('.btn.location').bind('click', function() {
+  $('.btn.location').bind('tap', function() {
     alert('正在初始化地图，请稍后重试');
   });
   wxConfig(['getLocation', 'openLocation']);
   wx.ready(function() {
-    $('.btn.location').unbind('click');
-    $('.btn.location').click(function() {
+    $('.btn.location').unbind('tap');
+    $('.btn.location').on('tap', function() {
       var address = $('.locationBox').text();
       getAddressLocation(address, function(result) {
         wx.openLocation({
