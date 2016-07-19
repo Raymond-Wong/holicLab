@@ -70,6 +70,8 @@ def verify(request):
     request.session['phone'] = phone
     return HttpResponse(Response(m=phone).toJson(), content_type="application/json")
   elif request.method == 'GET':
+    if not request.session.has_key('phone'):
+      return redirect('/')
     phone = request.session['phone']
     # 随机生成一个验证码
     code = random_x_bit_code(4, [str(i) for i in xrange(0, 10)])
