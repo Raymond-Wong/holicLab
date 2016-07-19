@@ -23,7 +23,9 @@ var numberInputCallback = function(value) {
     codes.each(function() {
       code += $(this).attr('value');
     });
-    alert(code);
+    post('/user?action=verify&type=code', {'code' : code}, function(msg) {
+      alert(msg);
+    });
   } else {
     // 如果输入的是数字
     if (codes.length == 4) {
