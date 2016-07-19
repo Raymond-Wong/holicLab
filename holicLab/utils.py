@@ -103,10 +103,10 @@ def send_request(host, path, method, port=443, params={}, toLoad=True):
 
 CODE_RANGE = [str(i) for i in xrange(0, 10)] + [chr(i) for i in xrange(97, 123)] + [chr(i) for i in xrange(65, 91)]
 # 随机生成一个x位的码
-def random_x_bit_code(x):
+def random_x_bit_code(x, code_range=CODE_RANGE):
   ret = ''
   for i in xrange(x):
-    ret += random.choice(CODE_RANGE)
+    ret += random.choice(code_range)
   return ret
 
 def sendSMS(mobile, code):
@@ -124,6 +124,7 @@ def sendSMS(mobile, code):
   发送验证码
   """
   params = urllib.urlencode({'apikey': apikey, 'content': content, 'mobile':mobile})
+  print mobile, content
   headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
   conn = httplib.HTTPSConnection(sms_host, port=port, timeout=30)
   conn.request("POST", send_yzm_uri, params, headers)

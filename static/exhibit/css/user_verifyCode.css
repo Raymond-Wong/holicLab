@@ -1,0 +1,48 @@
+.navWrapper {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 13.3vw;
+  margin-bottom: 12vw;
+}
+
+.codeWrapper {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 9vw;
+}
+
+.codeBox {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  border-radius: 17px;
+  padding: 2px;
+}
+
+.codeBox.active {
+  background-color: #f5a623;
+}
+
+.code {
+  width: 30px;
+  height: 30px;
+  border-radius: 5em;
+  border: 5px solid white;
+  background-color: #e4e4e4;
+}
+
+.codeBox.active .code {
+  background-color: #f5a623;
+}
+
+a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: underline;
+  color: #f5a623;
+  margin-bottom: 2vw;
+}

@@ -66,19 +66,18 @@ def verify(request):
       phoneHasUsed = False
     if phoneHasUsed:
       return HttpResponse(Response(c=1, m="该手机已与其他用户绑定").toJson(), content_type="application/json")
+    request.session['phone'] = phone
     return HttpResponse(Response(m=phone).toJson(), content_type="application/json")
   elif request.method == 'GET':
-    phone = request.GET.get('phone', None)
-    if phone is None:
-      return HttpResponse(Response(c=-9, m="未提供待验证手机号码").toJson(), content_type="application/json")
+    phone = request.session['phone']
     # 随机生成一个验证码
-    code = random_x_bit_code(4)
+    code = random_x_bit_code(4, range(0, 9))
     res = json.loads(sendSMS(phone, code))
     if res['code'] != 0:
       return HttpResponse(Response(c=2, m="发送验证码失败，请检查手机号码是否正确，稍后重试").toJson(), content_type="application/json")
     # 将验证码以及生成验证码的时间存入session
     request.session['verification_code'] = json.dumps({'code' : code, 'create_time' : datetime.datetime.now(), 'phone' : phone})
-    return render(request, 'exhibit/user_verifyPhone.html')
+    return render(request, 'exhibit/user_verifyCode.html')
   # 如果是post请求则验证验证码是否正确
   user = User.objects.get(invite_code=request.session['user'])
   verification_code = json.loads(request.session['verification_code'])
