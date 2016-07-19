@@ -21,7 +21,6 @@ def loginHandler(request, view):
 # 首页的处理类
 @handler
 @wx_logined
-@verify_required
 def homeHandler(request):
   shops = Shop.objects.filter(state=2)[:2]
   for shop in shops:
@@ -73,6 +72,7 @@ def userHandler(request):
 # 订单的处理类
 @handler
 @wx_logined
+@verify_required
 def orderHandler(request):
   action = request.GET.get('action', None)
   if action == 'add':

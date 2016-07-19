@@ -27,7 +27,9 @@ var numberInputCallback = function(value) {
       alert('验证成功, 即将秒后自动跳转');
       setTimeout(function() {
         if (msg != null) {
-          window.location.href = msg
+          window.location.href = msg;
+        } else {
+          window.location.href = '/';
         }
       }, 1500);
     });
