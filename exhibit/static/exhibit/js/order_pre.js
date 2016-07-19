@@ -11,7 +11,10 @@ $(document).ready(function() {
 });
 
 var updatePriceAction = function() {
-  $('.radio, .checkBox').on('click', function() {
+  $('.checkBox').on('click', function() {
+    updatePrice();
+  });
+  $('.radio').on('touchstart', function() {
     updatePrice();
   });
 }
