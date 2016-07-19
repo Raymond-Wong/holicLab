@@ -140,7 +140,6 @@ def sendSMS(mobile, code):
   return json.dumps(params)
 
 def filterEmoji(desstr,restr=''):
-  return desstr
   try:
     co = re.compile(u'[\U00010000-\U0010ffff]')
   except re.error:
