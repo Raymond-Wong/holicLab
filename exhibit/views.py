@@ -71,7 +71,6 @@ def userHandler(request):
 
 # 订单的处理类
 @handler
-@verify_required
 @wx_logined
 def orderHandler(request):
   action = request.GET.get('action', None)
