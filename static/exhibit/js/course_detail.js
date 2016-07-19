@@ -66,7 +66,10 @@ var initTimepicker = function() {
     'colWidth' : [12],
     'selection' : selection,
     'selected' : function(res) {
-      alert(res);
+      var cid = getUrlParam('cid');
+      var bid = res[0]
+      var url = '/order?action=pre&type=course&cid=' + cid + '&bid=' + bid;
+      window.location.href = url;
     },
   }
   new MobiSelect($('#bookBtn'), arg);

@@ -10,9 +10,10 @@ from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
+from django.utils import timezone
 
 from holicLab.utils import *
-from holicLab.models import Order, Shop, User
+from holicLab.models import Order, Shop, User, Course, Bookable_Time
 
 def add(request):
   pass
@@ -30,7 +31,6 @@ def pre_site_order(request):
   sid = request.GET.get('sid', None)
   shop = None
   timestamp = request.GET.get('timestamp', None)
-  print timestamp
   try:
     shop = Shop.objects.get(id=int(sid))
   except Exception:
@@ -48,6 +48,7 @@ def pre_site_order(request):
   params['title'] = shop.name
   params['startTime'] = start_time.strftime('%a, %b %d, %H:%M')
   params['location'] = shop.location
+  params['type'] = 'site'
   params['price'] = shop.price
   params['capacity'] = shop.capacity
   params['bookable_time'] = []
@@ -72,7 +73,40 @@ def getTimeOccupation(shop, time):
   return ret
 
 def pre_course_order(request):
-  pass
+    # 判断数据合法性
+  cid = request.GET.get('cid', None)
+  bid = request.GET.get('bid', None)
+  course = None
+  to_book_time = None
+  try:
+    course = Course.objects.get(id=int(cid))
+  except Exception:
+    return HttpResponse(Response(c=2, m='待预定课程不存在').toJson(), content_type='application/json')
+  try:
+    to_book_time = Bookable_Time.objects.get(id=int(bid))
+  except Exception, e:
+    return HttpResponse(Response(c=3, m='待预定课程在待预定时间内没开课').toJson(), content_type='application/json')
+  now = timezone.now()
+  if to_book_time.start_time < now:
+    return HttpResponse(Response(c=4, m='待预约时间已过期').toJson(), content_type='application/json')
+  params = {}
+  user = User.objects.get(invite_code=request.session['user'])
+  params['is_first_order'] = True if len(user.order_set.filter(order_type=4)) == 0 else False
+  params['balance'] = user.balance
+  params['cover'] = json.loads(course.cover)[0]
+  params['title'] = course.name
+  params['type'] = 'course'
+  params['startTime'] = timezone.localtime(to_book_time.start_time).strftime('%a, %b %d, %H:%M') + '-' + timezone.localtime(to_book_time.end_time).strftime('%H:%M')
+  params['location'] = course.shop.location
+  params['price'] = course.price
+  params['capacity'] = course.capacity
+  params['bookable_amount'] = []
+  for i in xrange(1, 4):
+    if to_book_time.occupation + i < course.capacity:
+      params['bookable_amount'].append(i);
+  if to_book_time.occupation == 0:
+    params['bookable_amount'].append('包场')
+  return render(request, 'exhibit/order_pre.html', params)
 
 def list(request):
   invite_code = request.session['user']

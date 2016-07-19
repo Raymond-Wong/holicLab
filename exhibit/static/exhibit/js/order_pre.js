@@ -1,5 +1,5 @@
-var isFirstOrder = null;
-var balance = null;
+var isFirstOrder = false;
+var balance = 0;
 var price = null;
 var capacity = null;
 
@@ -19,7 +19,7 @@ var updatePriceAction = function() {
 var getMetaInfo = function() {
   var line = $('.infoLine');
   isFirstOrder = line.attr('isFirstOrder') == 'True' ? true : false;
-  balance = parseInt(line.attr('balance'));
+  balance = parseInt(line.attr('balance') == '' ? '0' : line.attr('balance'));
   price = parseInt(line.attr('price'));
   capacity = parseInt(line.attr('capacity'));
   line.remove();
@@ -33,7 +33,7 @@ var checkBoxAction = function() {
 }
 
 var updatePrice = function() {
-  var totalPrice = 0;
+  var totalPrice = price;
   // 增值服务
   $('.serviceLine').each(function() {
     var checkbox = $(this).children('.checkBox');
@@ -42,8 +42,10 @@ var updatePrice = function() {
       totalPrice += price;
   });
   // 时长
-  var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
-  totalPrice += duration * price;
+  if (getUrlParam['type'] == 'site') {
+    var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
+    totalPrice += duration * price;
+  }
   // 人数
   var amount = parseInt($('.radio.checked[name="amount"]').attr('value'));
   totalPrice *= amount
@@ -51,7 +53,7 @@ var updatePrice = function() {
   // 首单五折
   if (isFirstOrder) {
     discountPrice /= 2;
-  } else {
+  } else if (duration != undefined) {
     // 如果不是首单则每小时可以使用一张优惠券
     coupon = parseInt(duration / 2);
     coupon = coupon > balance ? balance : coupon;

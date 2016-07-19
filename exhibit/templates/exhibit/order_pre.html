@@ -17,6 +17,7 @@
   <div class="lineValue right">{{ startTime }}</div>
   <div class="clear"></div>
 </div>
+{% ifequal type 'site' %}
 <div class="line radioLine">
   <div class="lineName left">时长/分钟:</div>
   <div class="lineValue right">
@@ -30,6 +31,7 @@
   </div>
   <div class="clear"></div>
 </div>
+{% endifequal %}
 <div class="line radioLine">
   <div class="lineName left">人数:</div>
   <div class="lineValue right">

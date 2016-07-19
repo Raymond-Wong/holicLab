@@ -171,7 +171,7 @@ var getBookableTime = function(params) {
     if (endTime < startTime) {
       error = false;
     }
-    params['bookable_time'].push({'startTime' : startTime.Format('yyyy-MM-dd hh:mm:ss'), 'endTime' : endTime.Format('yyyy-MM-dd hh:mm:ss'), 'tid' : tid});
+    params['bookable_time'].push({'startTime' : startTime.Format('yyyy-MM-dd hh:mm:ss'), 'endTime' : endTime.Format('yyyy-MM-dd hh:mm:ss')});
   });
   if (!error)
     return error
