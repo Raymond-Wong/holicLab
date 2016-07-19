@@ -20,7 +20,6 @@ def loginHandler(request, view):
 
 # 首页的处理类
 @handler
-@verify_required
 @wx_logined
 def homeHandler(request):
   shops = Shop.objects.filter(state=2)[:2]
