@@ -8,10 +8,12 @@
   <link type="text/css" rel="stylesheet" href="/static/common/css/bootstrap.min.css" />
   <!-- <link type="text/css" rel="stylesheet" href="/static/common/css/jquery.mobile-1.4.5.min.css"> -->
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/base.css">
+  <link type="text/css" rel="stylesheet" href="/static/exhibit/css/load.css">
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/nav.css">
   {% block style %}{% endblock %}
 </head>
 <body>
+  {% include "exhibit/widgets/load.html" %}
   {% include "exhibit/widgets/nav.html" %}
   <div class="pageWrapper">
     {% block page %}{% endblock %}
@@ -28,5 +30,6 @@ $.ajaxSetup({
   data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 });
 </script>
+<script type="text/javascript" src="/static/exhibit/js/load.js"></script>
 {% block script %}{% endblock %}
 </html>

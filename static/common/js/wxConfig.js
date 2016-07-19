@@ -1,4 +1,5 @@
 var wxConfig = function(jsApiList) {
+  FINISHED_LOADING = false;
   var nonceStr = 'holicLab';
   var appId = 'wx466a0c7c6871bc8e';
   var timestamp = new Date().getTime();
@@ -13,6 +14,12 @@ var wxConfig = function(jsApiList) {
       signature: signature,// 必填，签名，见附录1
       jsApiList: jsApiList // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
+  });
+  wx.ready(function() {
+    FINISHED_LOADING = true;
+  });
+  wx.error(function() {
+    FINISHED_LOADING = true;
   });
 }
 
