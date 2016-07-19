@@ -32,6 +32,9 @@ var numberInputCallback = function(value) {
   } else {
     // 如果输入的是数字
     var val = $('input').val();
+    if (val.length > 11) {
+      return false;
+    }
     val = val + value;
     $('input').val(val);
   }
