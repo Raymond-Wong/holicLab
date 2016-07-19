@@ -47,7 +47,7 @@ MobiSelect = function(obj, arg) {
   // animate的隐藏一个container
   var animateHide = function(container) {
     container.animate({'bottom' : '-14em'}, function() {
-      $(window).unbind('tap');
+      $('html').unbind('tap');
     })
   };
   // container对象
@@ -153,7 +153,7 @@ MobiSelect = function(obj, arg) {
       // 把所有selection隐藏
       $('.selectContainer').css('bottom', '-14em');
       nscontainer.animate({'bottom' : "0"}, function() {
-        $(window).bind('tap', function() {
+        $('html').bind('tap', function() {
           animateHide(nscontainer);
         })
       });
