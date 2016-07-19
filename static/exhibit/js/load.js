@@ -18,7 +18,7 @@ var loading = function() {
 }
 
 var finishLoading = function() {
-  $('#loadingContainer').fadeOut(300, function() {
+  $('#loadingContainer').fadeOut(700, function() {
     $(this).remove();
   });
 }
