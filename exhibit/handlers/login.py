@@ -52,7 +52,7 @@ def login(request, view):
     userInfo = res[1]
     user = User()
     user.wx_openid = openid
-    user.nickname = userInfo['nickname']
+    user.nickname = userInfo['nickname'].decode('utf8')
     user.gender = 'm' if userInfo['sex'] == 1 else 'f'
     user.invite_code = genInviteCodeRepeate()
     user.save()
