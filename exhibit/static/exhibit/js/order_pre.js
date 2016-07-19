@@ -11,7 +11,7 @@ $(document).ready(function() {
 });
 
 var updatePriceAction = function() {
-  $('.radio, .checkBox').click(function() {
+  $('.radio, .checkBox').on('touchstart', function() {
     updatePrice();
   });
 }
