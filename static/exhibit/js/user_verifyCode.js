@@ -24,7 +24,8 @@ var numberInputCallback = function(value) {
       code += $(this).attr('value');
     });
     post('/user?action=verify&type=code', {'code' : code}, function(msg) {
-      alert(msg);
+      if (msg != null)
+        window.location.href = msg
     });
   } else {
     // 如果输入的是数字

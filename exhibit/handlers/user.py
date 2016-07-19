@@ -81,6 +81,8 @@ def verify(request):
     return render(request, 'exhibit/user_verifyCode.html')
   # 如果是post请求则验证验证码是否正确
   user = User.objects.get(invite_code=request.session['user'])
+  if not request.session.has_key('verification_code'):
+    return HttpResponse(Response(c=5, m="验证成功后请勿重复验证").toJson(), content_type="application/json")
   verification_code = json.loads(request.session['verification_code'])
   del request.session['verification_code']
   gotCode = request.POST.get('code', None)
