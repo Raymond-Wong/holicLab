@@ -14,7 +14,7 @@ var updatePriceAction = function() {
   $('.checkBox').on('click', function() {
     updatePrice();
   });
-  $('.radio').on('touchstart', function() {
+  $('.radio').on('touchend', function() {
     updatePrice();
   });
 }
@@ -29,7 +29,7 @@ var getMetaInfo = function() {
 }
 
 var checkBoxAction = function() {
-  $('.serviceLine').on('touchstart', function() {
+  $('.serviceLine').on('click', function() {
     var checkbox = $(this).children('.checkBox');
     checkbox.trigger('click');
   })
