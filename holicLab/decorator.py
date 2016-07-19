@@ -35,7 +35,7 @@ def verify_required(view):
       request.session['backUrl'] = request.get_full_path()
       return redirect('/user?action=verify&type=phone')
     return view(request, *args, **kwargs)
-  return verified(request, *args, **kwargs)
+  return verified
 # def verify_required(view):
 #   def verified(request, *args, **kwargs):
 #     return view(request, *args, **kwargs)
