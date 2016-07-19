@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.checkBox').click(function() {
+  $('.checkBox').on('tap', function() {
     if ($(this).hasClass('checked')) {
       $(this).removeClass('checked');
     } else {

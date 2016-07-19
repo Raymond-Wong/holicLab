@@ -28,7 +28,7 @@ var getMetaInfo = function() {
 var checkBoxAction = function() {
   $('.serviceLine').on('tap', function() {
     var checkbox = $(this).children('.checkBox');
-    checkbox.trigger('click');
+    checkbox.trigger('tap');
   })
 }
 
