@@ -29,7 +29,7 @@ var getMetaInfo = function() {
 }
 
 var checkBoxAction = function() {
-  $('.serviceLine').on('click', function() {
+  $('.serviceLine').on('touchend', function() {
     var checkbox = $(this).children('.checkBox');
     checkbox.trigger('click');
   })
