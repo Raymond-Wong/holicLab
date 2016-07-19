@@ -88,6 +88,7 @@ def verify(request):
   if gotCode == verification_code['code']:
     user.phone = verification_code['phone']
     user.bind_date = timezone.now().date()
+    del request.session['phone']
   else:
     return HttpResponse(Response(c=4, m="验证码错误").toJson(), content_type="application/json")
   backurl = None
