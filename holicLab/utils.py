@@ -7,6 +7,7 @@ import json
 import httplib
 import urllib
 import random
+import re
 from datetime import datetime, date
 from django.db import models
 
