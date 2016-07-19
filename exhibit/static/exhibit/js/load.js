@@ -18,7 +18,5 @@ var loading = function() {
 }
 
 var finishLoading = function() {
-  setTimeout(function() {
-    $('#loadingContainer').remove();
-  }, 1200);
+  $('#loadingContainer').remove();
 }
