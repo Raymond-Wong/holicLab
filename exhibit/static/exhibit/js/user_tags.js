@@ -5,11 +5,7 @@ $(document).ready(function() {
     post('/user?action=update', {'gender' : gender, 'role' : role}, function(msg) {
       alert('数据录入成功，即将自动跳转');
       setTimeout(function() {
-        if (msg != null) {
-          window.location.href = '/';
-        } else {
-          window.location.href = msg;
-        }
+        window.location.href = msg;
       }, 1500);
     });
   });
