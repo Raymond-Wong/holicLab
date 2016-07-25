@@ -113,7 +113,7 @@ def invite(request):
   if invite_code is None:
     return render(request, 'exhibit/user_invite_record.html', {'user' : user})
   # 判断数据合法性
-  if invite_code is None or len(invite_code) != 6:
+  if len(invite_code) != 6:
     return HttpResponse(Response(c=-9, m="未提供待使用的邀请码").toJson(), content_type="application/json")
   # 判断用户是否已使用过邀请码
   if user.invited_by:

@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block page %}
+<div class="hide infoLine" uid="{{ user.invite_code }}"></div>
 <h1 class="title">N个好友已被邀请参加运动，看看你的数字是多少</h1>
 {% include "exhibit/widgets/invite_record.html" %}
 <div class="ruleBlock">
