@@ -8,9 +8,9 @@
 <div class="line headLine">
   <div class="hint">个人资料</div>
 </div>
-<a class="line" href="/user?action=update&type=name">
+<a class="line" href="/user?action=update&type=nickname">
   <div class="name left textEllipsis">昵称</div>
-  <div class="value left textEllipsis">xxxx</div>
+  <div class="value left textEllipsis">{{ user.nickname }}</div>
   <div class="flag active">
     <span class="glyphicon glyphicon-ok"></span>
   </div>
@@ -18,7 +18,7 @@
 </a>
 <a class="line" href="/user?action=verify">
   <div class="name left textEllipsis">手机号码</div>
-  <div class="value left textEllipsis">13800138000</div>
+  <div class="value left textEllipsis">{{ user.phone }}</div>
   <div class="flag active">
     <span class="glyphicon glyphicon-ok"></span>
   </div>
@@ -26,7 +26,7 @@
 </a>
 <a class="line" href="/user?action=update&type=tags">
   <div class="name left textEllipsis">标签</div>
-  <div class="value left textEllipsis">男生，在职</div>
+  <div class="value left textEllipsis">{{ user.gender }}, {{ user.role }}</div>
   <div class="flag active">
     <span class="glyphicon glyphicon-ok"></span>
   </div>

@@ -18,7 +18,7 @@ from holicLab.models import Shop, Time_Bucket, Course, Service, User
 # 显示用户的基本信息
 def detail(request):
   user = User.objects.get(invite_code=request.session['user'])
-  return render(request, 'exhibit/user.html', {'user' : user})
+  return render(request, 'exhibit/user_detail.html', {'user' : user})
 
 # 更新用户的基本信息
 def update(request):
