@@ -13,7 +13,6 @@
   {% block style %}{% endblock %}
 </head>
 <body>
-  {% include "exhibit/widgets/load.html" %}
   {% include "exhibit/widgets/nav.html" %}
   <div class="pageWrapper">
     {% block page %}{% endblock %}
@@ -30,6 +29,6 @@ $.ajaxSetup({
   data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 });
 </script>
-<script type="text/javascript" src="/static/exhibit/js/load.js"></script>
+<!-- <script type="text/javascript" src="/static/exhibit/js/load.js"></script> -->
 {% block script %}{% endblock %}
 </html>
