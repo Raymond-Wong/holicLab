@@ -33,7 +33,13 @@ var checkBoxAction = function() {
 }
 
 var updatePrice = function() {
-  var totalPrice = price;
+  var totalPrice = 0;
+  // 时长
+  alert(getUrlParam['type']);
+  if (getUrlParam['type'] == 'site') {
+    var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
+    totalPrice = duration * price;
+  }
   // 增值服务
   $('.serviceLine').each(function() {
     var checkbox = $(this).children('.checkBox');
@@ -41,11 +47,6 @@ var updatePrice = function() {
     if (checkbox.hasClass('checked'))
       totalPrice += price;
   });
-  // 时长
-  if (getUrlParam['type'] != 'course') {
-    var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
-    totalPrice += duration * price;
-  }
   // 人数
   var amount = parseInt($('.radio.checked[name="amount"]').attr('value'));
   totalPrice *= amount
