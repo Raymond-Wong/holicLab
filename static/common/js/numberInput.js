@@ -1,5 +1,5 @@
 var bindNumberInputCallback = function(callback) {
-  $('.numberInputBtn').on('click', function() {
+  $('.numberInputBtn').on('touchend', function() {
     var value = $(this).attr('value');
     callback(value);
   });
