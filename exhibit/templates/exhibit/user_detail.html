@@ -26,7 +26,9 @@
 </a>
 <a class="line" href="/user?action=update&type=tags">
   <div class="name left textEllipsis">标签</div>
-  <div class="value left textEllipsis">{{ user.gender }}, {{ user.role }}</div>
+  <div class="value left textEllipsis">
+    {% ifequal user.gender 'm' %}男性{% else %}女性{% endifequal %},
+    {% ifeuqal user.role 1 %}学生{% else %}职员{% endifequal %}</div>
   <div class="flag active">
     <span class="glyphicon glyphicon-ok"></span>
   </div>
