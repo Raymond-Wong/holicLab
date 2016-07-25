@@ -22,7 +22,6 @@ var wxConfig = function(jsApiList) {
 $(document).ready(function() {
   wxConfig(['onMenuShareAppMessage']);
   wx.ready(function() {
-    if (autoRetweet) {
       wx.onMenuShareAppMessage({
         title: 'Holic Lab 健身试炼仓', // 分享标题
         desc: '你的好友邀请你一起来健身', // 分享描述
@@ -37,6 +36,5 @@ $(document).ready(function() {
           // 用户取消分享后执行的回调函数
         }
       });
-    }
   });
 });
