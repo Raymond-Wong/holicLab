@@ -114,23 +114,23 @@ def invite(request):
     return render(request, 'exhibit/user_invite_record.html', {'user' : user})
   # 判断数据合法性
   if len(invite_code) != 6:
-    return HttpResponse(Response(c=-9, m="未提供待使用的邀请码").toJson(), content_type="application/json")
+    return render(request, 'exhibit/user_invited.html', {'msg' : '未提供待使用的邀请码', 'state' : False})
   if invite_code == request.session['user']:
-    return HttpResponse(Response(c=1, m="自己不能够邀请自己").toJson(), content_type="application/json")
+    return render(request, 'exhibit/user_invited.html', {'msg' : '自己不能够邀请自己', 'state' : False})
   # 判断用户是否已使用过邀请码
   if user.invited_by:
-    return HttpResponse(Response(c=2, m="您已经使用过邀请码").toJson(), content_type="application/json")
+    return render(request, 'exhibit/user_invited.html', {'msg' : '您已经使用过邀请码', 'state' : False})
   # 判断邀请码是否有效
   invite_user = None
   try:
     invite_user = User.objects.get(invite_code=invite_code)
   except:
-    return HttpResponse(Response(c=3, m="邀请码无效").toJson(), content_type="application/json")
+    return render(request, 'exhibit/user_invited.html', {'msg' : '邀请码无效', 'state' : False})
   # 将邀请的用户和被邀请的用户进行绑定
   user.invited_by = invite_user
   # 更新被邀请用户的余额
   user.balance = F('balance') + 1
   user.save()
-  return render(request, 'exhibit/user_invited.html')
+  return render(request, 'exhibit/user_invited.html', {'msg' : '接受邀请成功', 'state' : True})
 
 
