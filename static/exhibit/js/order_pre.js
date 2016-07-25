@@ -2,6 +2,7 @@ var isFirstOrder = false;
 var balance = 0;
 var price = null;
 var capacity = null;
+var orderType = 'side';
 
 $(document).ready(function() {
   getMetaInfo();
@@ -22,6 +23,7 @@ var getMetaInfo = function() {
   balance = parseInt(line.attr('balance') == '' ? '0' : line.attr('balance'));
   price = parseInt(line.attr('price'));
   capacity = parseInt(line.attr('capacity'));
+  orderType = line.attr('type');
   line.remove();
 }
 
@@ -35,8 +37,7 @@ var checkBoxAction = function() {
 var updatePrice = function() {
   var totalPrice = 0;
   // 时长
-  alert(getUrlParam['type']);
-  if (getUrlParam['type'] == 'site') {
+  if (type == 'site') {
     var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
     totalPrice = duration * price;
   }
