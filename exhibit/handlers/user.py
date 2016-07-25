@@ -115,6 +115,8 @@ def invite(request):
   # 判断数据合法性
   if len(invite_code) != 6:
     return HttpResponse(Response(c=-9, m="未提供待使用的邀请码").toJson(), content_type="application/json")
+  if invite_code == request.session['user']:
+    return HttpResponse(Response(c=1, m="自己不能够邀请自己").toJson(), content_type="application/json")
   # 判断用户是否已使用过邀请码
   if user.invited_by:
     return HttpResponse(Response(c=2, m="您已经使用过邀请码").toJson(), content_type="application/json")
