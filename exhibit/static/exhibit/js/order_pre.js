@@ -35,12 +35,13 @@ var checkBoxAction = function() {
 }
 
 var updatePrice = function() {
-  var totalPrice = 0;
+  var totalPrice = 0.0;
   // 时长
   if (type == 'site') {
     var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
     totalPrice = duration * price;
   }
+  alert(totalPrice);
   // 增值服务
   $('.serviceLine').each(function() {
     var checkbox = $(this).children('.checkBox');
