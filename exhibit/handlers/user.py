@@ -106,11 +106,10 @@ def verify(request):
 def invite(request):
   if request.method == 'POST':
     return Http404
-  invite_code = request.GET.get('code', None)
+  invite_code = request.GET.get('invited', None)
   # 获取当前用户
   user = request.session['user']
   user = User.objects.get(invite_code=user)
-  print invite_code
   if invite_code is None:
     return render(request, 'exhibit/user_invite_record.html', {'user' : user})
   # 判断数据合法性
