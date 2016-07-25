@@ -51,7 +51,6 @@ def update(request):
   backUrl = '/'
   if request.session.has_key('backUrl'):
     backUrl = request.session['backUrl']
-    print backUrl
     del request.session['backUrl']
   return HttpResponse(Response(m=backUrl).toJson(), content_type="application/json")
 
