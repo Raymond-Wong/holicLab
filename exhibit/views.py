@@ -34,7 +34,8 @@ def homeHandler(request):
     shop.courses = shop.course_set.filter(state=2)
     for i, course in enumerate(shop.courses):
       shop.courses[i].cover = json.loads(course.cover)
-  return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops)})
+  user = User.objects.get(invite_code=request.session['user'])
+  return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops), 'user' : user})
 
 # 商店的处理类
 @handler
@@ -69,10 +70,8 @@ def userHandler(request):
     return handlers.user.update(request)
   elif action == 'verify':
     return handlers.user.verify(request)
-  elif action == 'showInvite':
-    return handlers.user.showInvite(request)
-  elif action == 'useInvite':
-    return handlers.user.useInvite(request)
+  elif action == 'invite':
+    return handlers.user.invite(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 订单的处理类

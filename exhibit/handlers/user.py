@@ -103,16 +103,11 @@ def verify(request):
   nextUrl = '/user?action=update&type=tags'
   return HttpResponse(Response(m=nextUrl).toJson(), content_type="application/json")
 
-def showInvite(request):
-  invite_code = request.session['user']
-  return render(request, 'exhibit/invite_show.html', {'code' : request.session['user']})
-
-def useInvite(request):
+def invite(request):
+  if request.method == 'POST':
+    return Http404
   invite_code = request.GET.get('code', None)
-  if request.method == 'GET' and invite_code is None:
-    return render(request, 'exhibit/invite_use.html')
   # 判断数据合法性
-  invite_code = request.POST.get('code', None) if invite_code is None else invite_code
   if invite_code is None or len(invite_code) != 6:
     return HttpResponse(Response(c=-9, m="未提供待使用的邀请码").toJson(), content_type="application/json")
   # 获取当前用户

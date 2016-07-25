@@ -20,12 +20,14 @@ var wxConfig = function(jsApiList) {
 }
 
 $(document).ready(function() {
+  var invite_code = $('.pageWrapper').attr('uid');
+  $('.pageWrapper').removeAttr('uid');
   wxConfig(['onMenuShareAppMessage']);
   wx.ready(function() {
-      wx.onMenuShareAppMessage({
+    wx.onMenuShareAppMessage({
       title: 'Holic Lab 健身试炼仓', // 分享标题
       desc: '你的好友邀请你一起来健身', // 分享描述
-      link: 'http://holicLab.applinzi.com', // 分享链接
+      link: 'http://holicLab.applinzi.com/user?action=invite&code=' + invite_code, // 分享链接
       imgUrl: '', // 分享图标
       type: 'link', // 分享类型,music、video或link，不填默认为link
       dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空

@@ -14,7 +14,7 @@
 </head>
 <body>
   {% include "exhibit/widgets/nav.html" %}
-  <div class="pageWrapper">
+  <div class="pageWrapper" uid="{{ user.invite_code }}">
     {% block page %}{% endblock %}
   </div>
 </body>
