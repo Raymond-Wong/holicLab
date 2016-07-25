@@ -1,11 +1,4 @@
-var wxConfig = function(jsApiList, autoRetweet) {
-  // 如果没有申明是否需要自动转发，则认为需要
-  if (autoRetweet == undefined || autoRetweet == null) {
-    autoRetweet = true;
-  }
-  if (!('onMenuShareAppMessage' in jsApiList)) {
-    jsApiList.push('onMenuShareAppMessage');
-  }
+var wxConfig = function(jsApiList) {
   var appId = 'wx466a0c7c6871bc8e';
   var url = window.location.href.split('#')[0];
   post('/wechat/config', {'url' : url}, function(msg) {
@@ -21,6 +14,13 @@ var wxConfig = function(jsApiList, autoRetweet) {
       jsApiList: jsApiList // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
   });
+  wx.error(function(res){
+    alert(res);
+  });
+}
+
+$(document).ready(function() {
+  wxConfig(['onMenuShareAppMessage']);
   wx.ready(function() {
     if (autoRetweet) {
       wx.onMenuShareAppMessage({
@@ -39,7 +39,4 @@ var wxConfig = function(jsApiList, autoRetweet) {
       });
     }
   });
-  wx.error(function(res){
-    alert(res);
-  });
-}
+});
