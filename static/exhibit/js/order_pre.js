@@ -42,7 +42,7 @@ var updatePrice = function() {
       totalPrice += price;
   });
   // 时长
-  if (getUrlParam['type'] == 'site') {
+  if (getUrlParam['type'] != 'course') {
     var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
     totalPrice += duration * price;
   }
