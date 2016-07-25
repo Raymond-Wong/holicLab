@@ -46,7 +46,7 @@ def wx_logined(view):
     if request.session.has_key('user'):
       return view(request, *args, **kwargs)
     return exhibit.views.loginHandler(request, view, *args, **kwargs)
- return verified
+  return verified
 # def wx_logined(view):
 #   def verified(request, *args, **kwargs):
 #     return view(request, *args, **kwargs)
