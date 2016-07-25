@@ -1,4 +1,11 @@
-var wxConfig = function(jsApiList) {
+var wxConfig = function(jsApiList, autoRetweet) {
+  // 如果没有申明是否需要自动转发，则认为需要
+  if (autoRetweet == undefined || autoRetweet == null) {
+    autoRetweet = true;
+  }
+  if (!('onMenuShareAppMessage' in jsApiList)) {
+    jsApiList.push('onMenuShareAppMessage');
+  }
   var appId = 'wx466a0c7c6871bc8e';
   var url = window.location.href.split('#')[0];
   post('/wechat/config', {'url' : url}, function(msg) {
@@ -14,29 +21,25 @@ var wxConfig = function(jsApiList) {
       jsApiList: jsApiList // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
   });
+  wx.ready(function() {
+    if (autoRetweet) {
+      wx.onMenuShareAppMessage({
+        title: 'Holic Lab 健身试炼仓', // 分享标题
+        desc: '你的好友邀请你一起来健身', // 分享描述
+        link: window.location.href, // 分享链接
+        imgUrl: '', // 分享图标
+        type: 'link', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () { 
+          // 用户确认分享后执行的回调函数
+        },
+        cancel: function () { 
+          // 用户取消分享后执行的回调函数
+        }
+      });
+    }
+  });
   wx.error(function(res){
     alert(res);
   });
 }
-
-$(document).ready(function() {
-  var invite_code = $('.pageWrapper').attr('uid');
-  $('.pageWrapper').removeAttr('uid');
-  wxConfig(['onMenuShareAppMessage']);
-  wx.ready(function() {
-    wx.onMenuShareAppMessage({
-      title: 'Holic Lab 健身试炼仓', // 分享标题
-      desc: '你的好友邀请你一起来健身', // 分享描述
-      link: 'http://holicLab.applinzi.com/user?action=invite&code=' + invite_code, // 分享链接
-      imgUrl: '', // 分享图标
-      type: 'link', // 分享类型,music、video或link，不填默认为link
-      dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-      success: function () { 
-        // 用户确认分享后执行的回调函数
-      },
-      cancel: function () { 
-        // 用户取消分享后执行的回调函数
-      }
-    });
-  });
-});

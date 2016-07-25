@@ -126,6 +126,7 @@ def invite(request):
   user.invited_by = invite_user
   # 更新被邀请用户的余额
   user.balance = F('balance') + 1
+  user.save()
   return HttpResponse(Response(m="使用邀请码成功").toJson(), content_type="application/json")
 
 
