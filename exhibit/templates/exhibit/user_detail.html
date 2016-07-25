@@ -19,7 +19,7 @@
 <a class="line" href="/user?action=verify">
   <div class="name left textEllipsis">手机号码</div>
   <div class="value left textEllipsis">{% if user.phone %}{{ user.phone }}{% else %}点击绑定手机号码{% endif %}</div>
-  <div class="flag{% if user.phone %}{% else %} active{% endif %}">
+  <div class="flag{% if user.phone %} active{% endif %}">
     <span class="glyphicon glyphicon-ok"></span>
   </div>
   <div class="clear"></div>
