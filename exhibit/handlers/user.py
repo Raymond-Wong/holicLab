@@ -21,7 +21,6 @@ def detail(request):
   return render(request, 'exhibit/user.html', {'user' : user})
 
 # 更新用户的基本信息
-@verify_required
 def update(request):
   user = User.objects.get(invite_code=request.session['user'])
   if request.method == 'GET':
