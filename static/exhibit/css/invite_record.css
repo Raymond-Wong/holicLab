@@ -1,0 +1,162 @@
+
+.stepLine {
+  width: 80vw;
+  height: 6em;
+  line-height: 6em;
+  margin: auto;
+}
+
+.stepLine .leftTextBox {
+  width: 35vw;
+  height: 6em;
+  text-align: center;
+}
+
+.stepLine .centerBox {
+  width: 10vw;
+  height: 100%;
+  background-color: white;
+  position: relative;
+}
+
+.stepLine .rightTextBox {
+  width: 35vw;
+  height: 6em;
+  padding: 1.5em 0 1.5em 2em;
+}
+
+.centerBox .centerBoxTopBox, .centerBox .centerBoxMidBox, .centerBox .centerBoxBottomBox {
+  width: 100%;
+  height: 2.2em;
+  background-color: transparent;
+  position: absolute;
+}
+
+.centerBox .centerBoxTopBox {
+  top: 0;
+  z-index: 10;
+}
+
+.centerBox .centerBoxMidBox {
+  top: 2em;
+  z-index: 5;
+}
+
+.centerBox .centerBoxBottomBox {
+  top: 3.8em;
+  z-index: 10;
+}
+
+.centerBox .centerBoxMidBox .outCircle {
+  height: 2em;
+  line-height: 2em;
+  width: 2em;
+  border-radius: 1em;
+  background-color: white;
+  border: 1px solid #e2e2e2;
+  padding: 6px;
+  margin: auto;
+  position: relative;
+}
+
+.centerBox .centerBoxMidBox .outCircle .inCircle {
+  height: 1em;
+  width: 1em;
+  background-color: #ffcb3c;
+  border-radius: 0.5em;
+}
+
+.vLineInner {
+  width: 4px;
+  height: 100%;
+  background-color: #ffcb3c;
+  margin: auto;
+}
+
+.centerBox .centerBoxMidBox .outCircle .vLineInner:first-child {
+  position: absolute;
+  left: 11px;
+  top: 0;
+  height: 8px;
+}
+
+.centerBox .centerBoxMidBox .outCircle .vLineInner:last-child {
+  position: absolute;
+  left: 11px;
+  bottom: 0;
+  height: 8px;
+}
+
+.vLineOuter {
+  width: 12px;
+  border: 1px solid #e2e2e2;
+  border-top: 0px;
+  border-bottom: 0px;
+  height: 100%;
+  margin: auto;
+  background-color: white;
+}
+
+.leftTextBox .amounts {
+  height: 56px;
+  line-height: 56px;
+  width: 56px;
+  border-radius: 28px;
+  margin: 14px auto;
+  background-color: #F1F2F7;
+  border: 1px solid #a1a6bb;
+  color: #a1a6bb;
+  font-size: 18px;
+}
+
+.firstStepLine .leftTextBox .amounts {
+  line-height: 1.2em;
+  padding: 1em 6px;
+  background-color: #ffcb3c;
+  color: white;
+  font-size: 14px;
+  border: 1px solid #ffcb3c;
+}
+
+.rightTextLine {
+  width: 100%;
+  height: 1.5em;
+  line-height: 1.5em;
+  text-align: left;
+}
+
+.rightTextLine:first-child {
+  font-size: 16px;
+}
+
+.rightTextLine:last-child {
+  color: #b2b2b2;
+}
+
+.finalStepLine .centerBoxBottomBox .vLineOuter {
+  display: none;
+}
+
+.noUseStepLine .vLineInner, .noUseStepLine .inCircle {
+  display: none;
+}
+
+.activeStepLine .centerBoxMidBox {
+  z-index: 15;
+}
+
+.activeStepLine .centerBox .centerBoxMidBox .outCircle {
+  padding: 8px;
+  border: 2px solid #ffcb3c;
+}
+
+.activeStepLine .centerBox .centerBoxMidBox .outCircle .inCircle {
+  height: 8px;
+  width: 8px;
+  border-radius: 4px;
+}
+
+.activeStepLine .centerBox .centerBoxBottomBox .vLineOuter .vLineInner,
+.activeStepLine .centerBox .centerBoxMidBox .outCircle .vLineInner {
+  display: none;
+}

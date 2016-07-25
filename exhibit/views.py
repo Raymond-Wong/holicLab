@@ -13,6 +13,9 @@ from holicLab.decorator import *
 from holicLab.models import *
 import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order
 
+def testHandler(request):
+  return render(request, 'exhibit/order_success.html', {})
+
 # 微信端入口
 @handler
 def loginHandler(request, view):

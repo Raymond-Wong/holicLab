@@ -24,14 +24,11 @@ var numberInputCallback = function(value) {
       code += $(this).attr('value');
     });
     post('/user?action=verify&type=code', {'code' : code}, function(msg) {
-      alert('验证成功, 即将秒后自动跳转');
-      setTimeout(function() {
-        if (msg != null) {
-          window.location.href = msg;
-        } else {
-          window.location.href = '/';
-        }
-      }, 1500);
+      if (msg != null) {
+        window.location.href = msg;
+      } else {
+        window.location.href = '/';
+      }
     });
   } else {
     // 如果输入的是数字

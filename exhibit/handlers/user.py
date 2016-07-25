@@ -21,10 +21,12 @@ def detail(request):
   return render(request, 'exhibit/user.html', {'user' : user})
 
 # 更新用户的基本信息
+@verify_required
 def update(request):
-  if request.method == 'GET':
-    raise Http404
   user = User.objects.get(invite_code=request.session['user'])
+  if request.method == 'GET':
+    updateType = request.GET.get('type', 'tags')
+    return render(request, 'exhibit/user_%s.html' % updateType, {'user' : user})
   # 更新昵称
   nickname = request.POST.get('nickname', None)
   if nickname is not None and len(nickname) > 100:
@@ -40,16 +42,13 @@ def update(request):
     if role not in [1, 2]:
       return HttpResponse(Response(c=2, m="角色不合法").toJson(), content_type="application/json")
     user.role = role
-  # 绑定手机
-  phone = request.POST.get('phone', None)
-  code = request.POST.get('code', None)
-  if phone is not None:
-    verification_code = json.loads(request.session['verification_code'])
-    if code is None or code != verification_code['code'] or phone != verification_code['phone']:
-      return HttpResponse(Response(c=3, m="验证码错误").toJson(), content_type="application/json")
-    del request.session['verification_code']
-    user.phone = phone
-    user.bind_date = datetime.datetime.utcnow().date()
+  # 绑定性别
+  gender = request.POST.get('gender', None)
+  if gender is not None:
+    if gender not in ['m', 'f']:
+      return HttpResponse(Response(c=3, m="性别不合法").toJson(), content_type="application/json")
+    user.gender = gender
+  user.save()
   return HttpResponse(Response(m="用户资料修改成功").toJson(), content_type="application/json")
 
 def verify(request):
@@ -97,11 +96,8 @@ def verify(request):
     del request.session['verification_code']
   else:
     return HttpResponse(Response(c=4, m="验证码错误").toJson(), content_type="application/json")
-  backurl = None
-  if request.session.has_key('backUrl'):
-    backurl = request.session['backUrl']
-    del request.session['backUrl']
-  return HttpResponse(Response(m=backurl).toJson(), content_type="application/json")
+  nextUrl = '/user?action=update&type=tags'
+  return HttpResponse(Response(m=nextUrl).toJson(), content_type="application/json")
 
 def showInvite(request):
   invite_code = request.session['user']

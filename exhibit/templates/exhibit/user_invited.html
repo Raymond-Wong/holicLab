@@ -1,0 +1,33 @@
+{% extends 'exhibit/widgets/base.html' %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/exhibit/css/user_invited.css">
+{% endblock %}
+
+{% block page %}
+<div class="line">
+  <div class="invitedWindowWrapper thumbImg">
+    <div class="invitedWindow">
+      <div class="invitedWindowText">文案</div>
+      <a class="btn invitedWindowBtn">开始健身</a>
+    </div>
+  </div>
+</div>
+<div class="line ruleLine">
+  <div class="titleLine">
+    <div class="hr left"></div>
+    <div class="left ruleTitle">游戏规则</div>
+    <div class="hr right"></div>
+    <div class="clear"></div>
+  </div>
+  <ol>
+    <li>适用优惠时的下单手机需为抢优惠时的下单手机</li>
+    <li>发送至手机号的优惠需在holic lab已注册，或将手机号绑定至holic lab账号后才可使用</li>
+    <li>优惠仅限在线支付使用，没一小时预约仅可使用一个优惠，优惠不找零</li>
+    <li>holic lab保留法律范围内允许的对活动的解释权</li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

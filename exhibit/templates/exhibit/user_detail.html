@@ -1,0 +1,53 @@
+{% extends 'exhibit/widgets/base.html' %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/exhibit/css/user_detail.css">
+{% endblock %}
+
+{% block page %}
+<div class="line headLine">
+  <div class="hint">个人资料</div>
+</div>
+<a class="line" href="/user?action=update&type=name">
+  <div class="name left textEllipsis">昵称</div>
+  <div class="value left textEllipsis">xxxx</div>
+  <div class="flag active">
+    <span class="glyphicon glyphicon-ok"></span>
+  </div>
+  <div class="clear"></div>
+</a>
+<a class="line" href="/user?action=verify">
+  <div class="name left textEllipsis">手机号码</div>
+  <div class="value left textEllipsis">13800138000</div>
+  <div class="flag active">
+    <span class="glyphicon glyphicon-ok"></span>
+  </div>
+  <div class="clear"></div>
+</a>
+<a class="line" href="/user?action=update&type=tags">
+  <div class="name left textEllipsis">标签</div>
+  <div class="value left textEllipsis">男生，在职</div>
+  <div class="flag active">
+    <span class="glyphicon glyphicon-ok"></span>
+  </div>
+  <div class="clear"></div>
+</a>
+<a class="line" href="/order?action=list&type=user&uid={{ user.id }}">
+  <div class="name left textEllipsis">预约记录</div>
+  <div class="value left textEllipsis"></div>
+  <div class="flag">
+    <span class="glyphicon glyphicon-ok"></span>
+  </div>
+  <div class="clear"></div>
+</a>
+<a class="line" href="/user?action=invite">
+  <div class="name left textEllipsis">邀请情况</div>
+  <div class="value left textEllipsis"></div>
+  <div class="flag active">
+    <span class="glyphicon glyphicon-ok"></span>
+  </div>
+  <div class="clear"></div>
+</a>
+{% endblock %}
+
+{% block script %}{% endblock %}

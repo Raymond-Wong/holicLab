@@ -1,0 +1,39 @@
+.navWrapper {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 13.3vw;
+  margin-bottom: 12vw;
+}
+
+input {
+  height: 20px;
+  padding: 5vw;
+  text-align: center;
+  font-size: 16px;
+  width: 66.67vw;
+  margin: auto;
+  display: block;
+  outline: none;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  margin-bottom: 7.3vw;
+  -webkit-appearance: none;
+}
+
+.submitBtn {
+  width: 66.67vw;
+  height: 10.6vw;
+  line-height: 10.6vw;
+  font-size: 18px;
+  color: white;
+  border-radius: 5.3vw;
+  background-color: #f5a623;
+  border: 0;
+  outline: none;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 8vw;
+}

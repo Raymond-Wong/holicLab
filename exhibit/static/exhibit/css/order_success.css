@@ -1,0 +1,79 @@
+.navWrapper {
+  display: none;
+}
+
+.pageWrapper {
+  padding-bottom: 0;
+  text-align: center;
+}
+
+.successFlag {
+  width: 32vw;
+  height: 32vw;
+  line-height: 32vw;
+  border-radius: 32vw;
+  background-color: #f5a623;
+  margin: 2em auto 0 auto;
+}
+
+.successFlag * {
+  color: white;
+  font-size: 40px;
+  top: 14px;
+}
+
+.title {
+  width: 13em;
+  text-align: center;
+  margin: auto;
+  font-size: 24px;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.hint {
+  width: 14em;
+  margin: auto;
+  color: #b2b2b2;
+  text-align: center;
+}
+
+.ruleBlock {
+  padding: 1em;
+}
+
+.ruleBlock .hr {
+  width: 30%;
+  height: 0;
+  border: 1px solid #e4e7f0;
+  margin: 1em 0;
+}
+
+.ruleBlock .ruleTitle {
+  width: 40%;
+  height: 2em;
+  line-height: 2em;
+  color: #b2b2b2;
+  text-align: center;
+}
+
+.ruleBlock .contentBox {
+  text-align: left;
+  padding: 1em 2em;
+  color: #b2b2b2;
+}
+
+.inviteBtn {
+  font-size: 18px;
+  background-color: #f5a623;
+  color: white;
+  height: 2.8em;
+  line-height: 2.8em;
+  padding: 0;
+  width: 90%;
+  margin: 5%;
+  border-radius: 1.4em;
+  outline: none;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}

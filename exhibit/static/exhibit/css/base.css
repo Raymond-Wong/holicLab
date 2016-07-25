@@ -49,6 +49,12 @@ body {
   background-repeat: no-repeat;
 }
 
+.textEllipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .pageWrapper {
   padding-bottom: 60px;
 }
