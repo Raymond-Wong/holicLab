@@ -110,6 +110,7 @@ def invite(request):
   # 获取当前用户
   user = request.session['user']
   user = User.objects.get(invite_code=user)
+  print invite_code
   if invite_code is None:
     return render(request, 'exhibit/user_invite_record.html', {'user' : user})
   # 判断数据合法性
