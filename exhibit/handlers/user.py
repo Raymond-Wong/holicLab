@@ -48,7 +48,11 @@ def update(request):
       return HttpResponse(Response(c=3, m="性别不合法").toJson(), content_type="application/json")
     user.gender = gender
   user.save()
-  return HttpResponse(Response(m="用户资料修改成功").toJson(), content_type="application/json")
+  backUrl = '/'
+  if request.session.has_key('backUrl'):
+    backUrl = request.session['backUrl']
+    del request.session['backUrl']
+  return HttpResponse(Response(m=backUrl).toJson(), content_type="application/json")
 
 def verify(request):
   action_type = request.GET.get('type', 'phone')

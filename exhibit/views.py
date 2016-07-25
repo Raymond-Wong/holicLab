@@ -14,7 +14,10 @@ from holicLab.models import *
 import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order
 
 def testHandler(request):
-  return render(request, 'exhibit/order_success.html', {})
+  user = {}
+  user['gender'] = 'm'
+  user['role'] = '1'
+  return render(request, 'exhibit/user_tags.html', {'user' : user})
 
 # 微信端入口
 @handler

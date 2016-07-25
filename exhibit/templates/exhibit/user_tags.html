@@ -7,12 +7,12 @@
 {% block page %}
 <div class="btn" id="submitBtn">立即保存</div>
 <div class="line">
-  <div class="radio" name="gender" value="male">男生</div>
-  <div class="radio" name="gender" value="female">女生</div>
-  <div class="radio" name="role" value="staff">在职</div>
+  <div class="radio{% ifequal user.gender 'm' %} checked{% endifequal %}" name="gender" value="m">男生</div>
+  <div class="radio{% ifequal user.gender 'f' %} checked{% endifequal %}" name="gender" value="f">女生</div>
+  <div class="radio{% ifequal user.role '2' %} checked{% endifequal %}" name="role" value="2">在职</div>
 </div>
 <div class="line">
-  <div class="radio" name="role" value="student">学生</div>
+  <div class="radio{% ifequal user.role '1' %} checked{% endifequal %}" name="role" value="1">学生</div>
   <div class="fakeRadio checked">发掘中+</div>
 </div>
 {% endblock %}
