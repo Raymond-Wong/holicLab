@@ -107,12 +107,14 @@ def invite(request):
   if request.method == 'POST':
     return Http404
   invite_code = request.GET.get('code', None)
-  # 判断数据合法性
-  if invite_code is None or len(invite_code) != 6:
-    return HttpResponse(Response(c=-9, m="未提供待使用的邀请码").toJson(), content_type="application/json")
   # 获取当前用户
   user = request.session['user']
   user = User.objects.get(invite_code=user)
+  if invite_code is None:
+    return render(request, 'exhibit/user_invite_record.html', {'user' : user})
+  # 判断数据合法性
+  if invite_code is None or len(invite_code) != 6:
+    return HttpResponse(Response(c=-9, m="未提供待使用的邀请码").toJson(), content_type="application/json")
   # 判断用户是否已使用过邀请码
   if user.invited_by:
     return HttpResponse(Response(c=2, m="您已经使用过邀请码").toJson(), content_type="application/json")
@@ -127,6 +129,6 @@ def invite(request):
   # 更新被邀请用户的余额
   user.balance = F('balance') + 1
   user.save()
-  return HttpResponse(Response(m="使用邀请码成功").toJson(), content_type="application/json")
+  return render(request, 'exhibit/user_invited.html')
 
 

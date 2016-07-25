@@ -35,7 +35,7 @@ def homeHandler(request):
     for i, course in enumerate(shop.courses):
       shop.courses[i].cover = json.loads(course.cover)
   user = User.objects.get(invite_code=request.session['user'])
-  return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops), 'user' : user})
+  return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops)})
 
 # 商店的处理类
 @handler
