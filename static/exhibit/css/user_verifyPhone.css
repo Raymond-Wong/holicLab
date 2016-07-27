@@ -2,10 +2,16 @@
   display: none;
 }
 
+.pageWrapper {
+  padding-bottom: 0;
+}
+
 h1 {
   text-align: center;
-  margin-top: 13.3vw;
-  margin-bottom: 12vw;
+  padding-top: 13.3vw;
+  padding-bottom: 12vw;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 input {

@@ -17,7 +17,7 @@ def testHandler(request):
   user = {}
   user['gender'] = 'm'
   user['role'] = '1'
-  return render(request, 'exhibit/user_invite_record.html', {'user' : user})
+  return render(request, 'exhibit/user_verifyCode.html', {'user' : user})
 
 # 微信端入口
 @handler
