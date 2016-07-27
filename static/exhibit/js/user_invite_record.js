@@ -5,7 +5,19 @@ $(document).ready(function() {
   getMetaInfo();
   initRecord();
   initShare();
+  initInviteAction();
 });
+
+var initInviteAction = function() {
+  $('.inviteBtn').on('tap', function() {
+    $('#shareMask').show();
+    $('#shareMask').bind('tap', function() {
+      $(this).hide();
+      $(this).unbind('tap');
+    });
+    return false;
+  });
+}
 
 var getMetaInfo = function() {
   var line = $('.infoLine');

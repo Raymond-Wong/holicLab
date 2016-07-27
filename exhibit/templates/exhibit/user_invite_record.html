@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block page %}
+<div id="shareMask">
+  <img src="/static/exhibit/icon/share.jpg" />
+</div>
 <div class="hide infoLine" uid="{{ user.invite_code }}" balance="{{ user.balance }}"></div>
 <h1 class="title">{{ user.balance }}个好友已被邀请参加运动，看看你的数字是多少</h1>
 {% include "exhibit/widgets/invite_record.html" %}
