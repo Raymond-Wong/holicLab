@@ -103,6 +103,7 @@ MobiSelect = function(obj, arg) {
     iscroll.on('scrollEnd', function() {
       var wrapper = $(this.wrapper);
       while (wrapper != null && wrapper != undefined && wrapper.length > 0) {
+        alert(this.y);
         var nextDeep = parseInt(wrapper.attr('deep')) + 1;
         var listItem = $(wrapper.find('li')[this.currentPage.pageY]);
         var toShowWrapper = $('.selectWrapper[parent="' + listItem.attr('id') + '"]');
