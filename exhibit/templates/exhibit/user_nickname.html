@@ -6,9 +6,10 @@
 
 {% block page %}
 <h1>修改昵称</h1>
-<input type="tel" placeholder="默认微信名称" />
-<div class="submitBtn">立即保存</div>
+<input type="text" placeholder="默认微信名称" />
+<div class="submitBtn" id="submitBtn">立即保存</div>
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript" src="/static/exhibit/js/user_nickname.js"></script>
 {% endblock %}
