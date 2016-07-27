@@ -45,7 +45,7 @@ var initRecord = function() {
 var initShare = function() {
   wxConfig(['onMenuShareAppMessage']);
   wx.ready(function() {
-    var thumbUrl = window.location.host + '/static/exhibit/res/user_invited.jpg'
+    var thumbUrl = 'http://' + window.location.host + '/static/exhibit/res/user_invited.jpg'
     alert(thumbUrl);
     wx.onMenuShareAppMessage({
       title: '来一次HolicLab吧，优惠拿去别客气！', // 分享标题
