@@ -103,8 +103,7 @@ MobiSelect = function(obj, arg) {
     iscroll.on('scrollEnd', function() {
       var wrapper = $(this.wrapper);
       while (wrapper != null && wrapper != undefined && wrapper.length > 0) {
-        alert(this.y);
-        var currentPageY = abs(this.y) / 24 - 1;
+        var currentPageY = Math.abs(this.y) / 24 - 1;
         alert(currentPageY);
         var nextDeep = parseInt(wrapper.attr('deep')) + 1;
         var listItem = $(wrapper.find('li')[currentPageY]);
