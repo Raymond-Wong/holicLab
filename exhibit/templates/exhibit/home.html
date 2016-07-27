@@ -19,17 +19,13 @@
     </div>
     <div class="courseWrapper">
       <div class="courseContainer">
-        <ul>
         {% for course in shop.courses %}
-        <li>
-          <a class="courseBox" href="/course?action=detail&cid={{ course.id }}">
-            <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
-            <div class="courseName">{{ course.name }}</div>
-            <div class="courseTag">{{ course.tags }}</div>
-          </a>
-        </li>
+        <a class="courseBox" href="/course?action=detail&cid={{ course.id }}">
+          <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
+          <div class="courseName">{{ course.name }}</div>
+          <div class="courseTag">{{ course.tags }}</div>
+        </a>
         {% endfor %}
-        </ul>
       </div>
     </div>
   </div>
