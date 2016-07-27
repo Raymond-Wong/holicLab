@@ -93,8 +93,8 @@ MobiSelect = function(obj, arg) {
       mouseWheel : true,
       snap : "li",
       click : true,
-      bounce : false,
-      probeType : 3,
+      // bounce : false,
+      // probeType : 3,
     });
     w2s[nswrapper.attr('id')] = iscroll;
     if (deep != 0) {
