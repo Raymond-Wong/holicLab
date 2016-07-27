@@ -42,6 +42,17 @@
   font-weight: 200 !important;
 }
 
+.triangle {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 14px solid white;
+  position: absolute;
+  left: 14px;
+  bottom: 0px;
+}
+
 .courseWrapper {
   width: 100%;
   overflow-x: auto;
@@ -53,23 +64,42 @@
   margin-bottom: 30px;
 }
 
+.courseContainer {
+  position: absolute;
+  z-index: 1;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  width: 100%;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  -o-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+.courseContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: left;
+}
+
 .courseBox:first-child {
   margin-left: 14px;
 }
 
 .courseBox:last-child {
   margin-right: 14px;
-}
-
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-bottom: 14px solid white;
-  position: absolute;
-  left: 14px;
-  bottom: 0px;
 }
 
 .courseBox, .courseBox:hover, .courseBox:active, .courseBox:focus, .courseBox:visited {
