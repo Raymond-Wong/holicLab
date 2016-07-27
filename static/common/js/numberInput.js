@@ -1,7 +1,8 @@
 var bindNumberInputCallback = function(callback) {
-  $('.numberInputText').on('tap', function() {
-    $('body').prepend('tap ');
-    var value = $(this).parent().attr('value');
+  $('.numberInputBtn').on('tap', function() {
+    $('body').prepend('tap1 ');
+    var value = $(this).attr('value');
     callback(value);
+    return false;
   });
 }
