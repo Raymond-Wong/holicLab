@@ -23,10 +23,11 @@
   border-left: 0;
 }
 
-.navItem.active a {
-  color: #f5a623 !important;
+.navItem a, .navItem a:hover, .navItem a:active, .navItem a:focus, .navItem a:visited {
+  color: #5a5959 !important;
+  text-decoration: none;
 }
 
-.navItem a {
-  color: #5a5959 !important;
+.navItem.active a {
+  color: #f5a623 !important;
 }
