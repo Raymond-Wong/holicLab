@@ -22,7 +22,8 @@ def add(request):
   newOrder.order_type = int(request.POST.get('type', None))
   newOrder.user = user
   newOrder.oid = md5(user.invite_code + str(time.time() * 1000))
-    
+  newOrder.start_time = datetime.strptime(request.POST.get('start_time', None), '%a, %d %b %Y, %H:%M')
+  newOrder.end_time = newOrder.start_time + timedelta(minutes=int(request.POST.get('duration', None)))
   newOrder.people_amount = int(request.POST.get('amount', None))
   newOrder.services = request.POST.get('services', "[]")
   # 计算基础价格
@@ -30,14 +31,10 @@ def add(request):
   if newOrder.order_type == 1:
     newOrder.shop = Shop.objects.get(id=request.POST.get('sid'))
     newOrder.price = newOrder.shop.price
-    newOrder.start_time = datetime.strptime(request.POST.get('start_time', None), '%a, %d %b %Y, %H:%M')
-    newOrder.end_time = newOrder.start_time + timedelta(minutes=int(request.POST.get('duration', None)))
   else:
     newOrder.course = Course.objects.get(id=request.POST.get('cid'))
     newOrder.shop = newOrder.course.shop
     newOrder.price = newOrder.course.price
-    newOrder.start_time = newOrder.course.start_time
-    newOrder.end_time = newOrder.course.end_time
   newOrder.price = int(request.POST.get('duration', None)) / 30 * newOrder.price
   for service in json.loads(newOrder.services):
     if service == 'food':
