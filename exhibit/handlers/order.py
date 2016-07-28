@@ -162,7 +162,7 @@ def list(request):
     if order.order_type == "1":
       order.duration = order.end_time - order.start_time
       order.duration = order.duration.seconds / 60.0
-      order.duration = str(order.duration) + 'min'
+      order.duration = str(int(order.duration)) + 'min'
       print order.duration
   return render(request, 'exhibit/order_list.html', {'orders' : orders, 'type' : orderType})
 
