@@ -135,8 +135,8 @@ class Order(models.Model):
   start_time = models.DateTimeField()
   end_time = models.DateTimeField()
   people_amount = models.PositiveIntegerField(default=1)
-  services = models.ManyToManyField(Service, null=True)
-  state = models.CharField(max_length=20, choices=ORDER_STATE)
+  services = models.TextField(null=True)
+  state = models.CharField(max_length=20, choices=ORDER_STATE, default=1)
   shop = models.ForeignKey(Shop)
   def __unicode__(self):
     return '%s->%s' % (self.user.id, self.create_time)
