@@ -42,7 +42,7 @@ def add(request):
       newOrder.price += 500
     elif service == 'coach':
       newOrder.price += 1000
-  newOrder.price = newOrder.people_amount * price
+  newOrder.price = newOrder.people_amount * newOrder.price
   # 计算优惠
   if len(user.order_set.all()) == 0:
     newOrder.price = newOrder.price / 2
