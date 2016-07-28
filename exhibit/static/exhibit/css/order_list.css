@@ -38,7 +38,7 @@
 
 .option a, .option a:active, .option a:hover, .option a:focus, .option a:visited {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 
 .dateBox, .iconBox, .priceBox, .infoBox, .detailBtnBox {
