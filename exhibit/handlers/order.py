@@ -4,6 +4,7 @@ sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
+import time
 from datetime import timedelta
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
