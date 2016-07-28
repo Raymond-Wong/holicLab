@@ -28,6 +28,7 @@ var submitAction = function() {
       if (checkbox.hasClass('checked'))
         params['services'].push(service.attr('value'));
     }
+    params['services'] = $.parseJSON(params['services']);
     alert(params['services']);
     if (orderType == 'site') {
       params['sid'] = targetId;
