@@ -26,7 +26,7 @@ def add(request):
   newOrder.end_time = newOrder.start_time + timedelta(minutes=int(request.POST.get('duration', None)))
   newOrder.people_amout = int(request.POST.get('amount', None))
   print request.POST.get('services', None)
-  newOrder.services = request.POST.get('services', None)
+  newOrder.services = request.POST.get('services', [])
   # 计算基础价格
   newOrder.price = 0
   if newOrder.order_type == 1:
