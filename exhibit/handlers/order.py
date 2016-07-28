@@ -78,7 +78,7 @@ def pre_site_order(request):
     return HttpResponse(Response(c=3, m='待预约时间已过期').toJson(), content_type='application/json')
   params = {}
   user = User.objects.get(invite_code=request.session['user'])
-  params['is_first_order'] = True if len(user.order_set.filter(order_type=4)) == 0 else False
+  params['is_first_order'] = True if len(user.order_set.filter(state=4)) == 0 else False
   params['balance'] = user.balance
   params['cover'] = json.loads(shop.cover)[0]
   params['title'] = shop.name
@@ -128,7 +128,7 @@ def pre_course_order(request):
     return HttpResponse(Response(c=4, m='待预约时间已过期').toJson(), content_type='application/json')
   params = {}
   user = User.objects.get(invite_code=request.session['user'])
-  params['is_first_order'] = True if len(user.order_set.filter(order_type=4)) == 0 else False
+  params['is_first_order'] = True if len(user.order_set.filter(state=4)) == 0 else False
   params['balance'] = user.balance
   params['cover'] = json.loads(course.cover)[0]
   params['title'] = course.name
