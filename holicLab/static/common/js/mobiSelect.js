@@ -127,11 +127,13 @@ MobiSelect = function(obj, arg) {
     if (selectedCallback != undefined) {
       nsSelectBtn.on('tap', function() {
         var res = [];
-        var page = w2s['selectWrapper_0'].currentPage.pageY;
+        // var page = w2s['selectWrapper_0'].currentPage.pageY;
+        var page = Math.abs(w2s['selectWrapper_0'].y) / 36;
         var val = $($(nscontainer.find('.selectWrapper[deep="0"]')).find('li')[page]).attr('value');
         res.push({'deep' : 0, 'value' : val});
         $.each($(nscontainer.find('.selectWrapper.active')), function() {
-          var page = w2s[$(this).attr('id')].currentPage.pageY;
+          // var page = w2s[$(this).attr('id')].currentPage.pageY;
+          var page = Math.abs(w2s[$(this).attr('id')].y) / 36;
           var val = $($(this).find('li')[page]).attr('value');
           var deep = parseInt($(this).attr('deep'));
           res.push({'deep' : deep, 'value' : val});
