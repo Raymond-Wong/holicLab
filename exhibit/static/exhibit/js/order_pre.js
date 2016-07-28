@@ -66,11 +66,11 @@ var checkBoxAction = function() {
 }
 
 var updatePrice = function() {
-  var totalPrice = 0.0;
+  var totalPrice = price;
   // 时长
   if (orderType == 'site') {
     var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
-    totalPrice = duration * price;
+    totalPrice *= duration;
   }
   alert('duration: ' + totalPrice);
   // 增值服务
