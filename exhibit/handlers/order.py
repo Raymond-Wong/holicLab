@@ -31,6 +31,7 @@ def add(request):
     newOrder.price = newOrder.shop.price
     newOrder.start_time = datetime.strptime(request.POST.get('start_time', None), '%a, %d %b %Y, %H:%M')
     newOrder.end_time = newOrder.start_time + timedelta(minutes=int(request.POST.get('duration', None)))
+    newOrder.price = int(request.POST.get('duration', None)) / 30 * newOrder.price
   else:
     newOrder.course = Course.objects.get(id=request.POST.get('cid'))
     newOrder.shop = newOrder.course.shop
@@ -38,7 +39,6 @@ def add(request):
     bookable_time = Bookable_Time.objects.get(id=request.POST.get('bid', None))
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
-  newOrder.price = int(request.POST.get('duration', None)) / 30 * newOrder.price
   for service in json.loads(newOrder.services):
     if service == 'food':
       newOrder.price += 500
