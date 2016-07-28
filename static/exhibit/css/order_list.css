@@ -36,6 +36,11 @@
   border-bottom: 2px solid #f5a623;
 }
 
+.option a, .option a:active, .option a:hover, .option a:focus, .option a:visited {
+  text-decoration: none;
+  color: black;
+}
+
 .dateBox, .iconBox, .priceBox, .infoBox, .detailBtnBox {
   height: 6em;
   line-height: 2em;
