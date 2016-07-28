@@ -130,7 +130,7 @@ def pre_course_order(request):
   params['cover'] = json.loads(course.cover)[0]
   params['title'] = course.name
   params['type'] = 'course'
-  params['startTime'] = timezone.localtime(to_book_time.start_time).strftime('%a, %b %d, %H:%M') + '-' + timezone.localtime(to_book_time.end_time).strftime('%H:%M')
+  params['startTime'] = timezone.localtime(to_book_time.start_time).strftime('%a, %d %b %Y, %H:%M') + '-' + timezone.localtime(to_book_time.end_time).strftime('%H:%M')
   params['location'] = course.shop.location
   params['price'] = course.price
   params['capacity'] = course.capacity
