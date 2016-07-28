@@ -46,7 +46,7 @@ def add(request):
   if len(user.order_set.all()) == 0:
     newOrder.price = newOrder.price / 2
   else:
-    coupon = request.POST.get('duration', None) / 60
+    coupon = int(request.POST.get('duration', None)) / 60
     coupon = coupon if user.balance > coupon else user.balance
     newOrder.price = newOrder.price - 100 * coupon
   newOrder.save()
