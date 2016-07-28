@@ -28,6 +28,7 @@ var submitAction = function() {
       if (checkbox.hasClass('checked'))
         params['services'].push(service.attr('value'));
     }
+    alert(params['services']);
     if (orderType == 'site') {
       params['sid'] = targetId;
     } else {
