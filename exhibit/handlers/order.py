@@ -23,8 +23,9 @@ def add(request):
   newOrder.user = user
   newOrder.oid = md5(user.invite_code + str(time.time() * 1000))
   newOrder.start_time = datetime.strptime(request.POST.get('start_time', None), '%a, %d %b %Y, %H:%M')
-  newOrder.end_time = newOrder.start_time + timedelta(minutes=request.POST.get('duration', None))
-  newOrder.people_amount = request.POST.get('amount', None)
+  newOrder.end_time = newOrder.start_time + timedelta(minutes=int(request.POST.get('duration', None)))
+  newOrder.people_amout = int(request.POST.get('amount', None))
+  print request.POST.get('services', None)
   newOrder.services = request.POST.get('services', None)
   # 计算基础价格
   newOrder.price = 0
