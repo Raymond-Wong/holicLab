@@ -21,7 +21,7 @@
     <div class="month">{{ order.create_time | date:"b" | truncatewords }}</div>
     <div class="time">{{ order.create_time | date:"H:i"}}</div>
   </div>
-  {% ifequal orderType 1 %}
+  {% ifequal order.order_type 1 %}
   <div class="left infoBox">
     <div class="firstName">{{ order.shop.name }}</div>
     <!-- <div class="secondName textEllipsis">课程名称</div> -->
