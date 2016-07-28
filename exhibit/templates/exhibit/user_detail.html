@@ -43,7 +43,7 @@
     已完成{{ user.order }}个订单
     {% endifequal %}
   </div>
-  <div class="flag{% ifequal user.order 0 %}{% else %} active{% endif %}">
+  <div class="flag{% ifequal user.order 0 %}{% else %} active{% endifequal %}">
     <span class="glyphicon glyphicon-ok"></span>
   </div>
   <div class="clear"></div>
