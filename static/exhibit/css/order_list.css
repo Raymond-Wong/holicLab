@@ -1,0 +1,116 @@
+.navWrapper {
+  display: none;
+}
+
+.pageWrapper {
+  padding: 0;
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid #e4e4e4;
+  display: block;
+  position: relative;
+}
+
+.optionsLine {
+  padding: 0 0.5%;
+  border-bottom: 0;
+  height: auto;
+}
+
+.option {
+  height: 4em;
+  line-height: 4em;
+  width: 33%;
+  text-align: center;
+  border: 1px solid #e4e4e4;
+  border-right: none;
+}
+
+.option:nth-child(1) {
+  border-left: none;
+}
+
+.option.active {
+  border-bottom: 2px solid #f5a623;
+}
+
+.dateBox, .iconBox, .priceBox, .infoBox, .detailBtnBox {
+  height: 6em;
+  line-height: 2em;
+  padding: 1.5em 0;
+}
+
+.cancelFlag {
+  position: absolute;
+  margin: 5px 8px;
+  right: 0;
+  top: 0;
+  height: 3em;
+}
+
+.dateBox {
+  width: 18%;
+  height: 100%;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.date {
+  font-size: 1.5em;
+}
+
+.month {
+  color: #b2b2b2;
+}
+
+.iconBox {
+  width: 10%;
+  text-align: center;
+}
+
+.iconBox img {
+  height: 6em;
+}
+
+.infoBox {
+  width: 50%;
+  padding-left: 1em;
+}
+
+.firstName, .secondName {
+  font-size: 1.3em;
+}
+
+.secondName {
+  color: #717070;
+}
+
+.duration, .startEndTime {
+  color: #b2b2b2;
+}
+
+.priceBox {
+  width: 22%;
+  text-align: center;
+  line-height: 6em;
+}
+
+.price {
+  font-size: 1.5em;
+}
+
+.detailBtnBox {
+  width: 10%;
+  text-align: center;
+  line-height: 6em;
+}
+
+.detailBtnBox .detailBtn {
+  font-size: 1.5em;
+}
+
+.detailBtnBox .detailBtn .glyphicon {
+  color: #b2b2b2;
+}

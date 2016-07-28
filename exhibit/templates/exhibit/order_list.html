@@ -1,0 +1,52 @@
+{% extends 'exhibit/widgets/base.html' %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/exhibit/css/order_list.css">
+{% endblock %}
+
+{% block page %}
+<div class="line optionsLine">
+  <div class="left option{% ifequal type 0 %} active{% endifequal %}"><a href="/order?action=list&type=0">全部</a></div>
+  <div class="left option{% ifequal type 1 %} active{% endifequal %}"><a href="/order?action=list&type=1">场地预约</a></div>
+  <div class="left option{% ifequal type 2 %} active{% endifequal %}"><a href="/order?action=list&type=2">团体课预约</a></div>
+  <div class="clear"></div>
+</div>
+{% for order in orders %}
+<a class="line" href="/order?action=detail&oid={{ order.id }}">
+  {% ifequal order.state 3 %}
+  <img class="cancelFlag" src="/static/exhibit/icon/cancel-flag.png" />
+  {% endifequal %}
+  <div class="left dateBox">
+    <div class="date">{{ order.create_time | date:"d"}}</div>
+    <div class="month">{{ order.create_time | date:"b"}}</div>
+    <div class="time">{{ order.create_time | date:"H:i"}}</div>
+  </div>
+  {% ifequal orderType 1 %}
+  <div class="left infoBox">
+    <div class="firstName">{{ order.shop.name }}</div>
+    <!-- <div class="secondName textEllipsis">课程名称</div> -->
+    <div class="duration textEllipsis">预约时长: 2小时</div>
+    <div class="startEndTime textEllipsis">{{ order.start_time | date:"m-d H:i"}}~{{ order.end_time | date:"H:i"}}</div>
+  </div>
+  {% else %}
+  <div class="left infoBox">
+    <div class="firstName">{{ order.course.name }}</div>
+    <div class="secondName textEllipsis">{{ order.course.shop.name }}</div>
+    <!-- <div class="duration textEllipsis">预约时长: 2小时</div> -->
+    <div class="startEndTime textEllipsis">{{ order.start_time | date:"m-d H:i"}}~{{ order.end_time | date:"H:i"}}</div>
+  </div>
+  {% endifequal %}
+  <div class="left priceBox">
+    <div class="price">{{ order.price }}元</div>
+  </div>
+  <div class="left detailBtnBox">
+    <div class="detailBtn"><span class="glyphicon glyphicon-chevron-right"></span></div>
+  </div>
+  <div class="clear"></div>
+</a>
+{% endfor %}
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/static/exhibit/js/order_list.js"></script>
+{% endblock %}

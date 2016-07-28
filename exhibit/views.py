@@ -17,7 +17,7 @@ def testHandler(request):
   user = {}
   user['gender'] = 'm'
   user['role'] = '1'
-  return render(request, 'exhibit/home.html', {'user' : user})
+  return render(request, 'exhibit/order_list.html')
 
 # 微信端入口
 @handler

@@ -145,13 +145,18 @@ def pre_course_order(request):
 
 def list(request):
   invite_code = request.session['user']
+  orderType = int(request.GET.get('type', '0'))
   user = None
   try:
     user = User.objects.get(invite_code=invite_code)
   except:
     return HttpResponse(Response(c=-2, m="待查询用户不存在").toJson(), content_type="application/json")
-  orders = user.order_set.all()
-  return render(request, 'exhibit/order_list.html', {'orders' : orders})
+  if orderType == 1 or orderType == 2:
+    orders = user.order_set.filter(order_type=orderType)
+  else:
+    orders = user.order_set.all()
+    orderType = 0
+  return render(request, 'exhibit/order_list.html', {'orders' : orders, 'type' : orderType})
 
 def get(request):
   oid = request.GET.get('oid', None)
