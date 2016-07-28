@@ -44,7 +44,7 @@ def detail(request):
   course.cover = json.loads(course.cover)
   times = []
   for i, time in enumerate(course.bookable_time_set.all()):
-    times.append({'id' : time.id, 'startTime' : time.start_time, 'endTime' : time.end_time, 'occupation' : time.occupation})
+    times.append({'id' : time.id, 'startTime' : timezone.localtime(time.start_time), 'endTime' : timezone.localtime(time.end_time), 'occupation' : time.occupation})
   course.bookable_time = json.dumps(times, cls=MyJsonEncoder)
   # 返回商店详情
   return render(request, 'exhibit/course_detail.html', {'course' : course})

@@ -68,8 +68,6 @@ var initTimepicker = function() {
     'selected' : function(res) {
       var cid = getUrlParam('cid');
       var bid = res[0]
-      alert(res[0]);
-      return false;
       var url = '/order?action=pre&type=course&cid=' + cid + '&bid=' + bid;
       window.location.href = url;
     },
