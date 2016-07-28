@@ -95,8 +95,6 @@ var initTimepicker = function() {
     'colWidth' : [6, 3, 3],
     'selection' : selection,
     'selected' : function(res) {
-      alert(res);
-      return false;
       var sid = getUrlParam('sid');
       var dateArr = res[0].split('-');
       var newDate = new Date(dateArr[0], parseInt(dateArr[1]) - 1, dateArr[2], res[1], res[2]);
