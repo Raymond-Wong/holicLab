@@ -36,7 +36,7 @@ def add(request):
     newOrder.course = Course.objects.get(id=request.POST.get('cid'))
     newOrder.shop = newOrder.course.shop
     newOrder.price = newOrder.course.price
-  newOrder.price = request.POST.get('duration', None) / 30 * newOrder.price
+  newOrder.price = int(request.POST.get('duration', None)) / 30 * newOrder.price
   for service in newOrder.services:
     if service == 'food':
       newOrder.price += 500
