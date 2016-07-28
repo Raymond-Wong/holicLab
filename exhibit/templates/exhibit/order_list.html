@@ -24,15 +24,13 @@
   {% ifequal order.order_type 1 %}
   <div class="left infoBox">
     <div class="firstName">{{ order.shop.name }}</div>
-    <!-- <div class="secondName textEllipsis">课程名称</div> -->
-    <div class="duration textEllipsis">预约时长: 2小时</div>
+    <div class="duration textEllipsis">预约时长: {{ order.duration }}</div>
     <div class="startEndTime textEllipsis">{{ order.start_time | date:"m-d H:i"}}~{{ order.end_time | date:"H:i"}}</div>
   </div>
   {% else %}
   <div class="left infoBox">
     <div class="firstName">{{ order.course.name }}</div>
     <div class="secondName textEllipsis">{{ order.course.shop.name }}</div>
-    <!-- <div class="duration textEllipsis">预约时长: 2小时</div> -->
     <div class="startEndTime textEllipsis">{{ order.start_time | date:"m-d H:i"}}~{{ order.end_time | date:"H:i"}}</div>
   </div>
   {% endifequal %}
