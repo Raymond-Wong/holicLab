@@ -126,7 +126,7 @@ ol.block {
   font-size: 18px;
 }
 
-.payBtn {
+.payBtn, .payBtn:hover, .payBtn:active, .payBtn:focus, .payBtn:visited {
   width: 90%;
   margin: 0 5% 0 5%;
   height: 42px;

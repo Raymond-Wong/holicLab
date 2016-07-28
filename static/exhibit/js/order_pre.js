@@ -15,6 +15,7 @@ $(document).ready(function() {
 
 var submitAction = function() {
   $('#payBtn').on('tap', function() {
+    alert('付款');
     var params = {};
     params['type'] = orderType;
     params['start_time'] = $('#startTimeBox').text();
