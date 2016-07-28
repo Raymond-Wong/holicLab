@@ -6,9 +6,9 @@
 
 {% block page %}
 <div class="line optionsLine">
-  <div class="left option{% ifequal type 0 %} active{% endifequal %}"><a href="/order?action=list&type=0">全部</a></div>
-  <div class="left option{% ifequal type 1 %} active{% endifequal %}"><a href="/order?action=list&type=1">场地预约</a></div>
-  <div class="left option{% ifequal type 2 %} active{% endifequal %}"><a href="/order?action=list&type=2">团体课预约</a></div>
+  <div class="left option{% ifequal type '0' %} active{% endifequal %}"><a href="/order?action=list&type=0">全部</a></div>
+  <div class="left option{% ifequal type '1' %} active{% endifequal %}"><a href="/order?action=list&type=1">场地预约</a></div>
+  <div class="left option{% ifequal type '2' %} active{% endifequal %}"><a href="/order?action=list&type=2">团体课预约</a></div>
   <div class="clear"></div>
 </div>
 {% for order in orders %}
