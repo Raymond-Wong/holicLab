@@ -52,7 +52,6 @@ var getMetaInfo = function() {
   isFirstOrder = line.attr('isFirstOrder') == 'True' ? true : false;
   balance = parseInt(line.attr('balance') == '' ? '0' : line.attr('balance'));
   price = parseInt(line.attr('price'));
-  alert(price);
   capacity = parseInt(line.attr('capacity'));
   orderType = line.attr('type');
   targetId = parseInt(line.attr('id'));
@@ -73,6 +72,7 @@ var updatePrice = function() {
     var duration = parseInt($('.radio.checked[name="duration"]').attr('value')) / 30;
     totalPrice = duration * price;
   }
+  alert('duration: ' + totalPrice);
   // 增值服务
   $('.serviceLine').each(function() {
     var checkbox = $(this).children('.checkBox');
@@ -80,9 +80,11 @@ var updatePrice = function() {
     if (checkbox.hasClass('checked'))
       totalPrice += price;
   });
+  alert('serices: ' + totalPrice);
   // 人数
   var amount = parseInt($('.radio.checked[name="amount"]').attr('value'));
   totalPrice *= amount
+  alert('amounts: ' + totalPrice);
   var discountPrice = totalPrice;
   // 首单五折
   if (isFirstOrder) {
