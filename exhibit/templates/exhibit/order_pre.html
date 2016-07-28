@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block page %}
-<div class="hide infoLine" capacity="{{ capacity }}" isFirstOrder="{{ is_first_order }}" balance="{{ balance }}" price="{{ price }}" type="{{ type }}"></div>
+<div class="hide infoLine" capacity="{{ capacity }}" isFirstOrder="{{ is_first_order }}" balance="{{ balance }}" price="{{ price }}" type="{{ type }}" id="{{ id }}"></div>
 <div class="cover thumbImg" style="background-image: {{ cover }}"></div>
 <div class="line">
   <div class="lineName left">场地:</div>
@@ -14,7 +14,7 @@
 </div>
 <div class="line">
   <div class="lineName left">时间:</div>
-  <div class="lineValue right">{{ startTime }}</div>
+  <div class="lineValue right" id="startTimeBox">{{ startTime }}</div>
   <div class="clear"></div>
 </div>
 {% ifequal type 'site' %}
@@ -53,13 +53,13 @@
   <div class="hint left">可选</div>
   <div class="clear"></div>
 </div>
-<div class="line serviceLine" price="500">
+<div class="line serviceLine" price="500" value="food">
   <div class="name left">健身餐</div>
   <div class="price left">￥50.00</div>
   <div class="checkBox right"></div>
   <div class="clear"></div>
 </div>
-<div class="line serviceLine" price="1000">
+<div class="line serviceLine" price="1000" value="coach">
   <div class="name left">私教</div>
   <div class="price left">￥100.00</div>
   <div class="checkBox right"></div>
@@ -97,7 +97,7 @@
   <div class="right priceTitle">总价:</div>
   <div class="clear"></div>
 </div>
-<div class="btn payBtn">确认订单，微信支付</div>
+<div class="btn payBtn" id="payBtn">确认订单，微信支付</div>
 {% endblock %}
 
 {% block script %}

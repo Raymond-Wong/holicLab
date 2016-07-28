@@ -16,7 +16,40 @@ from holicLab.utils import *
 from holicLab.models import Order, Shop, User, Course, Bookable_Time
 
 def add(request):
-  pass
+  user = User.objects.get(invite_code=request.session['user'])
+  newOrder = Order()
+  newOrder.order_type = request.POST.get('type', None)
+  newOrder.user = user
+  newOrder.oid = md5(user.invite_code + str(time.time() * 1000))
+  newOrder.start_time = datetime.strptime(request.POST.get('start_time', None), '%a, %b %d, %H:%M')
+  newOrder.end_time = newOrder.start_time + timedelta(minutes=request.POST.get('duration', None))
+  newOrder.people_amount = request.POST.get('amount', None)
+  newOrder.services = request.POST.get('services', None)
+  # 计算基础价格
+  newOrder.price = 0
+  if newOrder.order_type == 1:
+    newOrder.shop = Shop.objects.get(id=request.POST.get('sid'))
+    newOrder.price = newOrder.shop.price
+  else:
+    newOrder.course = Course.objects.get(id=request.POST.get('cid'))
+    newOrder.shop = newOrder.course.shop
+    newOrder.price = newOrder.course.price
+  newOrder.price = request.POST.get('duration', None) / 30 * newOrder.price
+  for service in newOrder.services:
+    if service == 'food':
+      newOrder.price += 500
+    elif service == 'coach':
+      newOrder.price += 1000
+  newOrder.price = newOrder.people_amount * price
+  # 计算优惠
+  if len(user.order_set.all()) == 0:
+    newOrder.price = newOrder.price / 2
+  else:
+    coupon = request.POST.get('duration', None) / 60
+    coupon = coupon if user.balance > coupon else user.balance
+    newOrder.price = newOrder.price - 100 * coupon
+  newOrder.save()
+  return HttpResponse(Response(m="添加订单成功").toJson(), content_type="application/json")
 
 def pre(request):
   order_type = request.GET.get('type', None)
@@ -35,10 +68,9 @@ def pre_site_order(request):
     shop = Shop.objects.get(id=int(sid))
   except Exception:
     return HttpResponse(Response(c=2, m='待预定场地不存在').toJson(), content_type='application/json')
-  start_time = datetime.fromtimestamp(float(timestamp))
+  start_time = datetime.fromtimestamp(float(timestamp)) - timedelta(months=1)
   now = datetime.now()
   if start_time < now:
-    print start_time, now
     return HttpResponse(Response(c=3, m='待预约时间已过期').toJson(), content_type='application/json')
   params = {}
   user = User.objects.get(invite_code=request.session['user'])
@@ -51,6 +83,7 @@ def pre_site_order(request):
   params['type'] = 'site'
   params['price'] = shop.price
   params['capacity'] = shop.capacity
+  params['id'] = shop.id
   params['bookable_time'] = []
   current_time = start_time
   for i in xrange(1, 4):
@@ -100,6 +133,7 @@ def pre_course_order(request):
   params['location'] = course.shop.location
   params['price'] = course.price
   params['capacity'] = course.capacity
+  params['id'] = course.id
   params['bookable_amount'] = []
   for i in xrange(1, 4):
     if to_book_time.occupation + i < course.capacity:

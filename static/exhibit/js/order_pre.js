@@ -2,14 +2,38 @@ var isFirstOrder = false;
 var balance = 0;
 var price = null;
 var capacity = null;
-var orderType = 'side';
+var orderType = 'site';
+var targetId = null;
 
 $(document).ready(function() {
   getMetaInfo();
   updatePrice();
   updatePriceAction();
   checkBoxAction();
+  submitAction();
 });
+
+var submitAction = function() {
+  $('#payBtn').on('tap', function() {
+    var params = {};
+    params['type'] = orderType;
+    params['start_time'] = $('#startTimeBox').text();
+    params['duration'] = parseInt($('.radio.checked[name="duration"]').attr('value'));
+    params['amount'] = parseInt($('.radio.checked[name="amount"]').attr('value'));
+    params['services'] = [];
+    $('.serviceLine').each(function() {
+      var checkbox = $(this).children('.checkBox');
+      if (checkbox.hasClass('checked'))
+        params['services'].push($(this).attr('value'));
+    });
+    if (orderType == 'site') {
+      params['sid'] = targetId;
+    } else {
+      params['cid'] = targetId;
+    }
+    alert(params);
+  });
+}
 
 var updatePriceAction = function() {
   $('.checkBox, .radio').on('tap', function() {
@@ -24,6 +48,7 @@ var getMetaInfo = function() {
   price = parseInt(line.attr('price'));
   capacity = parseInt(line.attr('capacity'));
   orderType = line.attr('type');
+  targetId = parseInt(line.attr('id'));
   line.remove();
 }
 
