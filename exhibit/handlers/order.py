@@ -68,7 +68,7 @@ def pre_site_order(request):
     shop = Shop.objects.get(id=int(sid))
   except Exception:
     return HttpResponse(Response(c=2, m='待预定场地不存在').toJson(), content_type='application/json')
-  start_time = datetime.fromtimestamp(float(timestamp)) - timedelta(months=1)
+  start_time = datetime.fromtimestamp(float(timestamp))
   now = datetime.now()
   if start_time < now:
     return HttpResponse(Response(c=3, m='待预约时间已过期').toJson(), content_type='application/json')
