@@ -16,7 +16,7 @@ $(document).ready(function() {
 var submitAction = function() {
   $('#payBtn').on('tap', function() {
     var params = {};
-    params['type'] = orderType == 'site' ? 1 : 0;
+    params['type'] = orderType == 'site' ? 1 : 2;
     if (params['type'] == 1) {
       params['start_time'] = $('#startTimeBox').text();
       params['duration'] = parseInt($('.radio.checked[name="duration"]').attr('value'));
