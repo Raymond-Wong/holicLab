@@ -52,7 +52,7 @@ var getMetaInfo = function() {
   isFirstOrder = line.attr('isFirstOrder') == 'True' ? true : false;
   balance = parseInt(line.attr('balance') == '' ? '0' : line.attr('balance'));
   price = parseInt(line.attr('price'));
-  alert('price');
+  alert(price);
   capacity = parseInt(line.attr('capacity'));
   orderType = line.attr('type');
   targetId = parseInt(line.attr('id'));
