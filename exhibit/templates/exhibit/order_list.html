@@ -13,7 +13,7 @@
 </div>
 {% for order in orders %}
 <a class="line" href="/order?action=detail&oid={{ order.id }}">
-  {% ifequal order.state "3" %}
+  {% ifequal order.state "2" %}
   <img class="cancelFlag" src="/static/exhibit/icon/cancel-flag.png" />
   {% endifequal %}
   <div class="left dateBox">
