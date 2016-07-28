@@ -19,7 +19,7 @@ from holicLab.models import Order, Shop, User, Course, Bookable_Time
 def add(request):
   user = User.objects.get(invite_code=request.session['user'])
   newOrder = Order()
-  newOrder.order_type = request.POST.get('type', None)
+  newOrder.order_type = int(request.POST.get('type', None))
   newOrder.user = user
   newOrder.oid = md5(user.invite_code + str(time.time() * 1000))
   newOrder.start_time = datetime.strptime(request.POST.get('start_time', None), '%a, %d %b %Y, %H:%M')
