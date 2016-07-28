@@ -14,7 +14,7 @@
 </div>
 <div class="line">
   <div class="lineName left">时间:</div>
-  <div class="lineValue right" id="startTimeBox">{{ startTime }}</div>
+  <div class="lineValue right" id="startTimeBox" {% ifequal type 'course' %}bid="{{ bid }}"{% endifequal %}>{{ startTime }}</div>
   <div class="clear"></div>
 </div>
 {% ifequal type 'site' %}

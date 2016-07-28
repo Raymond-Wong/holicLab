@@ -17,8 +17,12 @@ var submitAction = function() {
   $('#payBtn').on('tap', function() {
     var params = {};
     params['type'] = orderType == 'site' ? 1 : 0;
-    params['start_time'] = $('#startTimeBox').text();
-    params['duration'] = parseInt($('.radio.checked[name="duration"]').attr('value'));
+    if (params['type'] == 1) {
+      params['start_time'] = $('#startTimeBox').text();
+      params['duration'] = parseInt($('.radio.checked[name="duration"]').attr('value'));
+    } else {
+      params['bid'] = $('#startTimeBox').attr('bid');
+    }
     params['amount'] = parseInt($('.radio.checked[name="amount"]').attr('value'));
     params['services'] = [];
     var services = $('.serviceLine');
