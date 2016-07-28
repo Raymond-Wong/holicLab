@@ -158,7 +158,8 @@ def list(request):
     orderType = 0
   # 处理duration
   for order in orders:
-    if order.order_type == 1:
+    print order.order_type
+    if order.order_type == "1":
       order.duration = order.end_time - order.start_time
       order.duration = order.duration.seconds / 3600
       order.duration = order.duration + '小时'
