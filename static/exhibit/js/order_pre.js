@@ -25,11 +25,11 @@ var submitAction = function() {
     for (var i = 0; i < services.length; i++) {
       var service = $(services[i]);
       var checkbox = service.children('.checkBox');
-      if (checkbox.hasClass('checked'))
+      if (checkbox.hasClass('checked')) {
         params['services'].push(service.attr('value'));
+      }
     }
-    params['services'] = $.parseJSON(params['services']);
-    alert(params['services']);
+    params['services'] = JSON.stringify(params['services']);
     if (orderType == 'site') {
       params['sid'] = targetId;
     } else {
