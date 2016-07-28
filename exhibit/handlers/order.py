@@ -21,7 +21,7 @@ def add(request):
   newOrder.order_type = request.POST.get('type', None)
   newOrder.user = user
   newOrder.oid = md5(user.invite_code + str(time.time() * 1000))
-  newOrder.start_time = datetime.strptime(request.POST.get('start_time', None), '%a, %b %d, %H:%M')
+  newOrder.start_time = datetime.strptime(request.POST.get('start_time', None), '%a, %d %b %Y, %H:%M')
   newOrder.end_time = newOrder.start_time + timedelta(minutes=request.POST.get('duration', None))
   newOrder.people_amount = request.POST.get('amount', None)
   newOrder.services = request.POST.get('services', None)
@@ -73,12 +73,12 @@ def pre_site_order(request):
   if start_time < now:
     return HttpResponse(Response(c=3, m='待预约时间已过期').toJson(), content_type='application/json')
   params = {}
-  user = User.objects.get(invite_code=request.session['user'])
-  params['is_first_order'] = True if len(user.order_set.filter(order_type=4)) == 0 else False
-  params['balance'] = user.balance
+  # user = User.objects.get(invite_code=request.session['user'])
+  # params['is_first_order'] = True if len(user.order_set.filter(order_type=4)) == 0 else False
+  # params['balance'] = user.balance
   params['cover'] = json.loads(shop.cover)[0]
   params['title'] = shop.name
-  params['startTime'] = start_time.strftime('%a, %b %d, %H:%M')
+  params['startTime'] = start_time.strftime('%a, %d %b %Y, %H:%M')
   params['location'] = shop.location
   params['type'] = 'site'
   params['price'] = shop.price

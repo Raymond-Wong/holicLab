@@ -15,7 +15,6 @@ $(document).ready(function() {
 
 var submitAction = function() {
   $('#payBtn').on('tap', function() {
-    alert('付款');
     var params = {};
     params['type'] = orderType;
     params['start_time'] = $('#startTimeBox').text();
@@ -32,7 +31,9 @@ var submitAction = function() {
     } else {
       params['cid'] = targetId;
     }
-    alert(params);
+    post('/order?action=add', params, function(msg) {
+      alert(msg);
+    });
   });
 }
 

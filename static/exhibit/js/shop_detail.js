@@ -97,7 +97,8 @@ var initTimepicker = function() {
     'selected' : function(res) {
       var sid = getUrlParam('sid');
       var dateArr = res[0].split('-');
-      var timestamp = new Date(dateArr[0], parseInt(dateArr[1]) - 1, dateArr[2], res[1], res[2]).valueOf() / 1000;
+      var newDate = new Date(dateArr[0], parseInt(dateArr[1]) - 1, dateArr[2], res[1], res[2]);
+      var timestamp = newDate.valueOf() / 1000;
       var url = '/order?action=pre&type=site&sid=' + sid + '&timestamp=' + timestamp;
       window.location.href = url;
     },
