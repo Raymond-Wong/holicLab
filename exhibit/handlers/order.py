@@ -43,7 +43,7 @@ def add(request):
       newOrder.price += 1000
   newOrder.price = newOrder.people_amount * newOrder.price
   # 计算优惠
-  if len(user.order_set.all()) == 0:
+  if len(user.order_set.filter(order_type=4)) == 0:
     newOrder.price = newOrder.price / 2
   else:
     coupon = int(request.POST.get('duration', None)) / 60
