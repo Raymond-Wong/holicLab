@@ -162,6 +162,7 @@ def list(request):
       order.duration = order.end_time - order.start_time
       order.duration = order.duration.seconds / 3600
       order.duration = order.duration + '小时'
+      print order.duration
   return render(request, 'exhibit/order_list.html', {'orders' : orders, 'type' : orderType})
 
 def get(request):
