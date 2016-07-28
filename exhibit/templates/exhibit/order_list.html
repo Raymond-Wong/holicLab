@@ -18,7 +18,7 @@
   {% endifequal %}
   <div class="left dateBox">
     <div class="date">{{ order.create_time | date:"d"}}</div>
-    <div class="month">{{ order.create_time | date:"b" | truncatewords }}</div>
+    <div class="month">{{ order.create_time | date:"b" | capfirst }}</div>
     <div class="time">{{ order.create_time | date:"H:i"}}</div>
   </div>
   {% ifequal order.order_type 1 %}
