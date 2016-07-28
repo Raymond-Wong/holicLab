@@ -21,15 +21,15 @@
     <div class="month">{{ order.create_time | date:"b" | capfirst }}</div>
     <div class="time">{{ order.create_time | date:"H:i"}}</div>
   </div>
-  {% ifequal order.order_type 1 %}
+  {% ifequal order.order_type "1" %}
   <div class="left infoBox">
-    <div class="firstName">site{{ order.shop.name }}</div>
+    <div class="firstName">{{ order.shop.name }}</div>
     <div class="duration textEllipsis">预约时长: {{ order.duration }}</div>
     <div class="startEndTime textEllipsis">{{ order.start_time | date:"m-d H:i"}}~{{ order.end_time | date:"H:i"}}</div>
   </div>
   {% else %}
   <div class="left infoBox">
-    <div class="firstName">course{{ order.course.name }}</div>
+    <div class="firstName">{{ order.course.name }}</div>
     <div class="secondName textEllipsis">{{ order.course.shop.name }}</div>
     <div class="startEndTime textEllipsis">{{ order.start_time | date:"m-d H:i"}}~{{ order.end_time | date:"H:i"}}</div>
   </div>
