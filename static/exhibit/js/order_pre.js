@@ -21,11 +21,13 @@ var submitAction = function() {
     params['duration'] = parseInt($('.radio.checked[name="duration"]').attr('value'));
     params['amount'] = parseInt($('.radio.checked[name="amount"]').attr('value'));
     params['services'] = [];
-    $('.serviceLine').each(function() {
-      var checkbox = $(this).children('.checkBox');
+    var services = $('.serviceLine');
+    for (var i = 0; i < services.length; i++) {
+      var service = $(services[i]);
+      var checkbox = service.children('.checkBox');
       if (checkbox.hasClass('checked'))
-        params['services'].push($(this).attr('value'));
-    });
+        params['services'].push(service.attr('value'));
+    }
     if (orderType == 'site') {
       params['sid'] = targetId;
     } else {
