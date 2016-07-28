@@ -36,8 +36,14 @@
 </a>
 <a class="line myLink" href="/order?action=list&type=0">
   <div class="name left textEllipsis">预约记录</div>
-  <div class="value left textEllipsis"></div>
-  <div class="flag{% if user.order_set %} active{% endif %}">
+  <div class="value left textEllipsis">
+    {% ifequal user.order 0 %}
+    还没有任何订单
+    {% else %}
+    已完成{{ user.order }}个订单
+    {% endifequal %}
+  </div>
+  <div class="flag{% ifequal user.order 0 %}{% else %} active{% endif %}">
     <span class="glyphicon glyphicon-ok"></span>
   </div>
   <div class="clear"></div>
