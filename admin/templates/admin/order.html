@@ -35,7 +35,7 @@
       用户: {{ order.user.nickname }}<br>
       场地: {{ order.shop.name }}
       {% ifequal order.order_type "2" %}
-      <br>团体课: {{ order.course.name }}
+      <br>课程: {{ order.course.name }}
       {% endifequal %}
     </td>
     <td>{{ order.price }}</td>
