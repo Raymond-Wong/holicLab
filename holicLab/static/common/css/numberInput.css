@@ -39,6 +39,11 @@
   border-radius: 50%;
 }
 
+.numberInputBtn[value="del"] .numberInputText, .numberInputBtn[value="commit"] .numberInputText {
+  font-size: 18px;
+  padding: 40% 0;
+}
+
 .numberInputMask {
   background-color: #eee;
   opacity: 0;
