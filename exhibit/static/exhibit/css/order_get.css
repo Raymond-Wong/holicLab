@@ -126,9 +126,12 @@ ol.block {
   font-size: 18px;
 }
 
-.payBtn, .payBtn:hover, .payBtn:active, .payBtn:focus, .payBtn:visited {
-  width: 90%;
-  margin: 0 5% 0 5%;
+.btnBox {
+  width: 100%;
+  padding: 0 5%;
+}
+
+.btn, .btn:hover, .btn:active, .btn:focus, .btn:visited {
   height: 42px;
   line-height: 42px;
   border-radius: 21px;
@@ -137,6 +140,18 @@ ol.block {
   background-color: #f5a623;
   font-size: 18px;
   padding: 0;
+}
+
+.cancelBtn {
+  margin-right: 5%;
+  width: 30%;
+  border: 1px solid #f5a623;
+  background-color: white;
+  color: #f5a623;
+}
+
+.shareBtn {
+  width: 45%;
 }
 
 .originPrice {
