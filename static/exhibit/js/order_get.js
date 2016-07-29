@@ -15,9 +15,9 @@ var initInviteAction = function() {
 }
 
 var initShare = function() {
-  alert('initShare');
   wxConfig(['onMenuShareAppMessage']);
   wx.ready(function() {
+    alert('initShare');
     wx.onMenuShareAppMessage({
       title: '来一次HolicLab吧，优惠拿去别客气！', // 分享标题
       desc: '首次预约立享五折，无需年卡，永不打烊，24小时不停摆只等你来练🏋', // 分享描述
