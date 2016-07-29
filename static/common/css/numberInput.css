@@ -37,8 +37,8 @@
   font-size: 26px;
   padding: 35% 0;
   border-radius: 50%;
-  font-family: "ScalaSans";
-  color: #232323;
+  font-family: "FreeSans";
+  color: #e4e4e4;
 }
 
 .numberInputBtn[value="del"] .numberInputText, .numberInputBtn[value="commit"] .numberInputText {
