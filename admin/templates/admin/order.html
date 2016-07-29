@@ -32,7 +32,6 @@
     <td>{% ifequal order.order_type "1" %}场地{% else %}团体课{% endifequal %}</td>
     <td>
       时间: {{ order.start_time | date:"Y-m-d H:i:s" }} - {{ order.start_time | date:"Y-m-d H:i:s" }}<br>
-      密码: {{ order.password.content }}<br>
       用户: {{ order.user.nickname }}<br>
       场地: {{ order.shop.name }}
     </td>
