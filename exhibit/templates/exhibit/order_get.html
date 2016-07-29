@@ -19,8 +19,7 @@
 <div class="line">
   <div class="lineName left">时间:</div>
   <div class="lineValue right" id="startTimeBox">
-    {{ order.start_time | date:"D, "}}{{ order.start_time | date:"d " }}{{ order.start_time | date:" b Y, H:i" | capfirst}}~
-    {{ order.end_time | date:"H:i"}}
+    {{ order.start_time | date:"D, "}}{{ order.start_time | date:"d " }}{{ order.start_time | date:" b Y, H:i" | capfirst}}~{{ order.end_time | date:"H:i"}}
   </div>
   <div class="clear"></div>
 </div>
