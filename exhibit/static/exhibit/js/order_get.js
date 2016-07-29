@@ -15,6 +15,7 @@ var initInviteAction = function() {
 }
 
 var initShare = function() {
+  alert('initShare');
   wxConfig(['onMenuShareAppMessage']);
   wx.ready(function() {
     wx.onMenuShareAppMessage({
