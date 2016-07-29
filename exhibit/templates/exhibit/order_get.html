@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block page %}
+<div id="shareMask">
+  <img src="/static/exhibit/icon/share.jpg" />
+</div>
 <div class="cover thumbImg" style="background-image: {{ order.cover }}"></div>
 <div class="line">
   {% ifequal order.order_type '1' %}
@@ -112,4 +115,5 @@
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript" src="/static/exhibit/js/order_get.js"></script>
 {% endblock %}
