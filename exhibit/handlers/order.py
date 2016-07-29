@@ -183,6 +183,11 @@ def get(request):
     order.cover = json.loads(order.shop.cover)[0]
   else:
     order.cover = json.loads(order.course.cover)[0]
+  order.services = json.loads(order.services)
+  if 'food' in order.services:
+    order.food = True
+  if 'coach' in order.services:
+    order.coach = True
   return render(request, 'exhibit/order_get.html', {'order' : order})
 
 def update(request):

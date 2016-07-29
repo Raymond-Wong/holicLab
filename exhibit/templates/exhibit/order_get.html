@@ -63,13 +63,13 @@
 <div class="line serviceLine" price="500" value="food">
   <div class="name left">健身餐</div>
   <div class="price left">￥50.00</div>
-  <div class="checkBox right"></div>
+  <div class="checkBox right{% if order.food %} checked{% endif %}"></div>
   <div class="clear"></div>
 </div>
 <div class="line serviceLine" price="1000" value="coach">
   <div class="name left">私教</div>
   <div class="price left">￥100.00</div>
-  <div class="checkBox right"></div>
+  <div class="checkBox right{% if order.coach %} checked{% endif %}"></div>
   <div class="clear"></div>
 </div>
 <div class="line hintLine">
