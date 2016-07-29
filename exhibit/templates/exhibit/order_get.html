@@ -23,29 +23,24 @@
   </div>
   <div class="clear"></div>
 </div>
-{% ifequal type 'site' %}
-<div class="line radioLine">
-  <div class="lineName left">时长/分钟:</div>
-  <div class="lineValue right">
-    {% for item in bookable_time %}
-    <div class="radio{% ifequal forloop.counter 1 %} checked{% endifequal %}" value="{{ item.duration }}" name="duration">
-      {% if item.bookable %}
-      &nbsp;{{ item.duration }}&nbsp;
-      {% endif %}
-    </div>
-    {% endfor %}
-  </div>
-  <div class="clear"></div>
-</div>
-{% endifequal %}
 <div class="line radioLine">
   <div class="lineName left">人数:</div>
   <div class="lineValue right">
-    {% for item in bookable_amount %}
-    <div class="radio{% ifequal forloop.counter 1 %} checked{% endifequal %}" name="amount" value={% ifequal item "包场" %}"{{ capacity }}"{% else %}{{ item }}{% endifequal %}>
-      {{ item }}
+    <div class="radio checked" name="amount">
+      {% ifequal order.order_type "1" %}
+        {% ifequal order.shop.capacity order.people_amount %}
+        包场
+        {% else %}
+        order.people_amount
+        {% endifequal %}
+      {% else %}
+        {% ifequal order.course.capacity order.people_amount %}
+        包场
+        {% else %}
+        order.people_amount
+        {% endifequal %}
+      {% endifequal %}
     </div>
-    {% endfor %}
   </div>
   <div class="clear"></div>
 </div>
