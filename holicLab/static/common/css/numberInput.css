@@ -37,7 +37,7 @@
   font-size: 26px;
   padding: 35% 0;
   border-radius: 50%;
-  font-family: "黑体";
+  font-family: "微软雅黑";
 }
 
 .numberInputBtn[value="del"] .numberInputText, .numberInputBtn[value="commit"] .numberInputText {
