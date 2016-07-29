@@ -21,11 +21,13 @@ def deleteOrders(orders):
 
 def list(request):
   if request.method == 'GET':
-    state = request.GET.get('state', 'unfinished')
+    state = request.GET.get('state', 'all')
     if state == 'finished':
       orders = Order.objects.filter(state__in=[2,3,4])
-    else:
+    elif state == 'unfinished:
       orders = Order.objects.filter(state=1)
+    else:
+      orders = Order.objects.all()
     return render(request, 'admin/order.html', {'orders' : orders, 'activePage' : 'order'})
   orders = Order.objects.all()
   # 商店
