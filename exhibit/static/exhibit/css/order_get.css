@@ -1,54 +1,145 @@
-.pageWrapper {
-  padding-bottom: 0;
-}
-
 .navWrapper {
   display: none;
 }
 
-.blockWrapper {
+.cover {
   width: 100vw;
-  height: 100vh;
-  padding: 1.5em;
-}
-
-.block {
-  width: 100%;
-  height: 100%;
-  background-color: #f5a623;
-  border-radius: 8px;
+  height: 89vw;
 }
 
 .line {
+  padding: 1.5em 1em;
+  border-bottom: 1px solid #e4e7f0;
   width: 100%;
-  padding: 0 2em 1em 2em;
 }
 
-.line, .line * {
-  color: white;
+.lineName {
+  width: 25%;
+  color: #a1a6bb;
 }
 
-.titleLine {
+.lineValue {
+  max-width: 74%;
+  text-align: left;
+  color: #222328;
+}
+
+.radioLine {
+  height: 6em;
+  line-height: 3em;
+}
+
+.radio {
+  display: inline-block;
+  width: 3em;
+  height: 3em;
+  line-height: 3em;
   text-align: center;
-  padding: 2em;
-}
-
-.blockTitle {
+  background-color: #f1f2f7;
+  color: #b9beb3;
+  border: 1px solid #b9beb3;
+  border-radius: 1.5em;
   margin: 0;
   padding: 0;
-  font-size: 28px;
+}
+
+.radio.checked {
+  background-color: #f5a623;
+  color: #f1f2f7;
+  border: 1px solid #f5a623;
+}
+
+.hintLine {
+  background-color: #f9f9f9;
 }
 
 .line .name {
+  color: #222328;
   width: 25%;
 }
 
-.line .value {
-  width: 73%;
+.line .hint {
+  color: #a1a6bb;
 }
 
-.qrcode {
-  width: 200px;
-  height: 200px;
-  background-color: #d8d8d8;
+.checkBox {
+  padding: 3px;
+  border-radius: 9px;
+  border: 6px solid #d9d9d9;
+  background-color: white;
+  margin: 0;
+}
+
+.checkBox.checked {
+  border: 6px solid #f5a623;
+}
+
+.block {
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+ol.block {
+  padding-left: 3em;
+}
+
+.featureTable {
+  width: 100%;
+  border: 1px solid #e4e4e4;
+  border-radius: 5px;
+}
+
+.featureTable .td {
+  width: 50%;
+  padding: 1.2em 0.5em 1.1em 0.5em;
+}
+
+.featureTable .td img {
+  height: 20px;
+  width: auto;
+  margin: 0 5px;
+  position: relative;
+  top: -2px;
+}
+
+.featureTable .tr:first-child .td:first-child {
+  border-right: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.featureTable .tr:first-child .td:nth-child(2) {
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.featureTable .tr:last-child .td:first-child {
+  border-right: 1px solid #e4e4e4;
+}
+
+.priceLine {
+  padding: 1em 2em;
+  line-height: 3em;
+}
+
+.priceBox {
+  margin-left: 3em;
+  font-size: 18px;
+}
+
+.payBtn, .payBtn:hover, .payBtn:active, .payBtn:focus, .payBtn:visited {
+  width: 90%;
+  margin: 0 5% 0 5%;
+  height: 42px;
+  line-height: 42px;
+  border-radius: 21px;
+  text-align: center;
+  color: white;
+  background-color: #f5a623;
+  font-size: 18px;
+  padding: 0;
+}
+
+.originPrice {
+  color: red;
+  text-decoration: line-through;
 }

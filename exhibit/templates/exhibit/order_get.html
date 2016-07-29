@@ -5,44 +5,100 @@
 {% endblock %}
 
 {% block page %}
-<div class="blockWrapper">
-<div class="block">
-  <div class="line titleLine">
-    <h1 class="blockTitle">宝安中心店</h1>
+<div class="cover thumbImg" style="background-image: {% ifequal order.order_type "1" %}{{ order.shop.cover.0 }}{% else %}{{ order.course.cover.0 }}{% endifequal %}"></div>
+<div class="line">
+  <div class="lineName left">场地:</div>
+  <div class="lineValue right">{{ title }}</div>
+  <div class="clear"></div>
+</div>
+<div class="line">
+  <div class="lineName left">时间:</div>
+  <div class="lineValue right" id="startTimeBox" {% ifequal type 'course' %}bid="{{ bid }}"{% endifequal %}>{{ startTime }}</div>
+  <div class="clear"></div>
+</div>
+{% ifequal type 'site' %}
+<div class="line radioLine">
+  <div class="lineName left">时长/分钟:</div>
+  <div class="lineValue right">
+    {% for item in bookable_time %}
+    <div class="radio{% ifequal forloop.counter 1 %} checked{% endifequal %}" value="{{ item.duration }}" name="duration">
+      {% if item.bookable %}
+      &nbsp;{{ item.duration }}&nbsp;
+      {% endif %}
+    </div>
+    {% endfor %}
   </div>
-  <div class="line">
-    <div class="name left">时间:</div>
-    <div class="value right">06月04日 13:00-15:30</div>
-    <div class="clear"></div>
+  <div class="clear"></div>
+</div>
+{% endifequal %}
+<div class="line radioLine">
+  <div class="lineName left">人数:</div>
+  <div class="lineValue right">
+    {% for item in bookable_amount %}
+    <div class="radio{% ifequal forloop.counter 1 %} checked{% endifequal %}" name="amount" value={% ifequal item "包场" %}"{{ capacity }}"{% else %}{{ item }}{% endifequal %}>
+      {{ item }}
+    </div>
+    {% endfor %}
   </div>
-  <div class="line">
-    <div class="name left">地址:</div>
-    <div class="value right">xxxxxx</div>
-    <div class="clear"></div>
-  </div>
-  <div class="line">
-    <div class="name left">预约人数:</div>
-    <div class="value right">2人</div>
-    <div class="clear"></div>
-  </div>
-  <div class="line">
-    <div class="name left">入场密码:</div>
-    <div class="value right">123456</div>
-    <div class="clear"></div>
-  </div>
-  <div class="line">
-    <div class="name left">验票码:</div>
-    <div class="value right"><img class="qrcode" src="" /></div>
-    <div class="clear"></div>
-  </div>
-  <div class="line">
-    <div class="name left"></div>
-    <div class="value right">请出示二维码给工作人员验票</div>
-    <div class="clear"></div>
+  <div class="clear"></div>
+</div>
+<div class="line">
+  <div class="lineName left">地址:</div>
+  <div class="lineValue right">{{ location }}</div>
+  <div class="clear"></div>
+</div>
+<div class="line hintLine">
+  <div class="name left">增值服务</div>
+  <div class="hint left">可选</div>
+  <div class="clear"></div>
+</div>
+<div class="line serviceLine" price="500" value="food">
+  <div class="name left">健身餐</div>
+  <div class="price left">￥50.00</div>
+  <div class="checkBox right"></div>
+  <div class="clear"></div>
+</div>
+<div class="line serviceLine" price="1000" value="coach">
+  <div class="name left">私教</div>
+  <div class="price left">￥100.00</div>
+  <div class="checkBox right"></div>
+  <div class="clear"></div>
+</div>
+<div class="line hintLine">
+  <div class="name left">温馨提示</div>
+  <div class="hint left"></div>
+  <div class="clear"></div>
+</div>
+<div class="line">
+  <ol class="block">
+    <li>开始时间前4个小时取消预约，支持全额退款，开始时间前6个小时后取消预约，不能退款</li>
+    <li>请自备毛巾</li>
+    <li>新用户五折优惠，第二次预约时邀请优惠才生效</li>
+  </ol>
+  <div class="featureTable">
+    <div class="tr">
+      <div class="td left"><img src="/static/exhibit/icon/wifi-icon.png" class="featureIcon">免费Wi-Fi</div>
+      <div class="td left"><img src="/static/exhibit/icon/flag-icon.png" class="featureIcon">停车位有限</div>
+      <div class="clear"></div>
+    </div>
+    <div class="tr">
+      <div class="td left"><img src="/static/exhibit/icon/water-icon.png" class="featureIcon">饮用水</div>
+      <div class="td left"><img src="/static/exhibit/icon/cabinet-icon.png" class="featureIcon">储物柜有限</div>
+      <div class="clear"></div>
+    </div>
   </div>
 </div>
+<div class="priceLine">
+  <div class="right priceBox">
+    <font class="originPrice"></font>
+    <font class="discountPrice"></font>
+  </div>
+  <div class="right priceTitle">总价:</div>
+  <div class="clear"></div>
 </div>
+<div class="btn payBtn" id="payBtn">确认订单，微信支付</div>
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript" src="/static/exhibit/js/order_pre.js"></script>
 {% endblock %}
