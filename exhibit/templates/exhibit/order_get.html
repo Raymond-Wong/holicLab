@@ -31,13 +31,13 @@
         {% ifequal order.shop.capacity order.people_amount %}
         包场
         {% else %}
-        order.people_amount
+        {{ order.people_amount }}
         {% endifequal %}
       {% else %}
         {% ifequal order.course.capacity order.people_amount %}
         包场
         {% else %}
-        order.people_amount
+        {{ order.people_amount }}
         {% endifequal %}
       {% endifequal %}
     </div>
