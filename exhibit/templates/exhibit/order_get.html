@@ -46,7 +46,13 @@
 </div>
 <div class="line">
   <div class="lineName left">地址:</div>
-  <div class="lineValue right">{{ location }}</div>
+  <div class="lineValue right">
+    {% ifequal order.order_type "1" %}
+    {{ order.shop.location }}
+    {% else %}
+    {{ order.course.shop.location }}
+    {% endifequal %}
+  </div>
   <div class="clear"></div>
 </div>
 <div class="line hintLine">
