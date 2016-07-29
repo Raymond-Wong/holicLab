@@ -21,7 +21,7 @@ def deleteOrders(orders):
 
 def list(request):
   if request.method == 'GET':
-    state = request.GET.get('state', 'all')
+    state = request.GET.get('state', 'unfinished')
     if state == 'finished':
       orders = Order.objects.filter(state__in=[2,3,4])
     elif state == 'unfinished':
