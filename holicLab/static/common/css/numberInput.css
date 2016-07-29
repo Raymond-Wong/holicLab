@@ -20,10 +20,12 @@
   border: 1px solid #e4e4e4;
   border-radius: 50%;
   position: relative;
+  font-size: 2em;
 }
 
 .numberInputBtn[value="del"], .numberInputBtn[value="commit"] {
   border: none;
+  font-size: 1em;
 }
 
 .numberInputText, .numberInputMask {
