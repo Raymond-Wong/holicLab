@@ -188,6 +188,7 @@ def get(request):
     order.food = True
   if 'coach' in order.services:
     order.coach = True
+  order.price /= 10.0
   return render(request, 'exhibit/order_get.html', {'order' : order})
 
 def update(request):
