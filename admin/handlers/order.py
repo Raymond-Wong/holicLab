@@ -24,7 +24,7 @@ def list(request):
     state = request.GET.get('state', 'all')
     if state == 'finished':
       orders = Order.objects.filter(state__in=[2,3,4])
-    elif state == 'unfinished'
+    elif state == 'unfinished':
       orders = Order.objects.filter(state=1)
     else:
       orders = Order.objects.all()
