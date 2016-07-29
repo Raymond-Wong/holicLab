@@ -7,8 +7,13 @@
 {% block page %}
 <div class="cover thumbImg" style="background-image: {{ order.cover }}"></div>
 <div class="line">
+  {% ifequal order.order_type '1' %}
   <div class="lineName left">场地:</div>
-  <div class="lineValue right">{{ title }}</div>
+  <div class="lineValue right">{{ order.shop.name }}</div>
+  {% else %}
+  <div class="lineName left">课程:</div>
+  <div class="lineValue right">{{ order.course.name }}</div>
+  {% endifequal %}
   <div class="clear"></div>
 </div>
 <div class="line">
