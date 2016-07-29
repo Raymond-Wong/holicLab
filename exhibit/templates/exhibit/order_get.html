@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block page %}
-<div class="cover thumbImg" style="background-image: {% ifequal order.order_type "1" %}{{ order.shop.cover.0 }}{% else %}{{ order.course.cover.0 }}{% endifequal %}"></div>
+<div class="cover thumbImg" style="background-image: {% ifequal order.order_type 1 %}{{ order.shop.cover.0 }}{% else %}{{ order.course.cover.0 }}{% endifequal %}"></div>
 <div class="line">
   <div class="lineName left">场地:</div>
   <div class="lineValue right">{{ title }}</div>
