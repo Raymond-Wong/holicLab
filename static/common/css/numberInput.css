@@ -37,7 +37,7 @@
   font-size: 26px;
   padding: 35% 0;
   border-radius: 50%;
-  font-family: "Times New Roman";
+  font-family: "Arial";
 }
 
 .numberInputBtn[value="del"] .numberInputText, .numberInputBtn[value="commit"] .numberInputText {
