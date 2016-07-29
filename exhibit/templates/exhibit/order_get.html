@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block page %}
-<div id="shareMask" uid={{ order.user.id }}>
+<div id="shareMask" uid={{ order.user.invite_code }}>
   <img src="/static/exhibit/icon/share.jpg" />
 </div>
 <div class="cover thumbImg" style="background-image: {{ order.cover }}"></div>
