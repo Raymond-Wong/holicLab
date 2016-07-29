@@ -18,7 +18,10 @@
 </div>
 <div class="line">
   <div class="lineName left">时间:</div>
-  <div class="lineValue right" id="startTimeBox" {% ifequal type 'course' %}bid="{{ bid }}"{% endifequal %}>{{ startTime }}</div>
+  <div class="lineValue right" id="startTimeBox" {% ifequal order.order_type '2' %}bid="{{ order.bookable_time.id }}"{% endifequal %}>
+    {{ startTime | date:"D, "}}{{ startTime | date:"d" | capfirst }}{{ startTime | date:" b Y, H:i"}}~
+    {{ endTime | date:"H:i"}}
+  </div>
   <div class="clear"></div>
 </div>
 {% ifequal type 'site' %}
