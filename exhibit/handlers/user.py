@@ -112,6 +112,7 @@ def invite(request):
   user = request.session['user']
   user = User.objects.get(invite_code=user)
   if invite_code is None:
+    user.balance -= 1 if user.invited_by else 0
     return render(request, 'exhibit/user_invite_record.html', {'user' : user})
   # 判断数据合法性
   if len(invite_code) != 6:
