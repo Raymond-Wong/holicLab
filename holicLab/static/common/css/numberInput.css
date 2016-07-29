@@ -35,7 +35,7 @@
   line-height: 100%;
   text-align: center;
   font-size: 26px;
-  padding: 35% 0;
+  padding: 33% 0;
   border-radius: 50%;
   font-family: "Arial";
 }
@@ -46,6 +46,6 @@
 }
 
 .numberInputMask {
-  background-color: white;
+  background-color: #c0c0c0;
   opacity: 0;
 }
