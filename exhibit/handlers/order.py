@@ -179,6 +179,10 @@ def get(request):
     order = Order.objects.get(id=oid)
   except:
     return HttpResponse(Response(c=-5, m="待查询订单不存在").toJson(), content_type="application/json")
+  if order.order_type == "1":
+    order.cover = json.loads(order.shop.cover)[0]
+  else:
+    order.cover = json.loads(order.course.cover)[0]
   return render(request, 'exhibit/order_get.html', {'order' : order})
 
 def update(request):
