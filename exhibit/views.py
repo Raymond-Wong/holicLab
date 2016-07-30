@@ -89,6 +89,8 @@ def orderHandler(request):
     return handlers.order.get(request)
   elif action == 'pre':
     return handlers.order.pre(request)
+  elif action == 'price':
+    return handlers.order.price(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 def errorHandler(request):
