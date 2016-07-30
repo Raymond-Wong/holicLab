@@ -63,7 +63,7 @@ var getMetaInfo = function() {
 }
 
 var checkBoxAction = function() {
-  $('.serviceLine').on('tap', function() {
+  $('.serviceLine').on('touchstart', function() {
     var checkbox = $(this).children('.checkBox');
     checkbox.trigger('tap');
   })
