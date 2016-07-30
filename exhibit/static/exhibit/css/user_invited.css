@@ -37,7 +37,7 @@
 
 .invitedWindowText {
   width: 100%;
-  min-height: 200px;
+  padding: 2em;
   color: white;
   text-align: left;
 }

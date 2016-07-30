@@ -127,7 +127,7 @@ def invite(request):
   try:
     invite_user = User.objects.get(invite_code=invite_code)
   except:
-    return render(request, 'exhibit/user_invited.html', {'msg' : '邀请码无效', 'state' : False})
+    return render(request, 'exhibit/user_invited.html', {'msg' : '你提供的邀请码存在问题', 'state' : False})
   # 将邀请的用户和被邀请的用户进行绑定
   user.invited_by = invite_user
   # 更新被邀请用户的余额
