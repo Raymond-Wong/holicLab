@@ -17,16 +17,19 @@
       </div>
       <div class="triangle"></div>
     </div>
-    <div class="courseWrapper">
-      <div class="courseContainer">
-        {% for course in shop.courses %}
-        <a class="courseBox" href="/course?action=detail&cid={{ course.id }}">
-          <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
-          <div class="courseName">{{ course.name }}</div>
-          <div class="courseTag">{{ course.tags }}</div>
-        </a>
-        {% endfor %}
+    <div class="courseWrapper" id="courseWrapper">
+      <div class="courseContainer" id="courseScroller">
+        <ul>
+          {% for course in shop.courses %}
+          <li><a class="courseBox" href="/course?action=detail&cid={{ course.id }}">
+            <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
+            <div class="courseName">{{ course.name }}</div>
+            <div class="courseTag">{{ course.tags }}</div>
+          </a></li>
+          {% endfor %}
+        </ul>
       </div>
+    </div>
     </div>
   </div>
   {% endfor %}
@@ -44,4 +47,6 @@
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript" src="/static/plugin/iscroll/iscroll-probe.js"></script>
+<script type="text/javascript" src="/static/exhibit/js/home.js"></script>
 {% endblock %}

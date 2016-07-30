@@ -41,13 +41,13 @@ def verify_required(view):
 #     return view(request, *args, **kwargs)
 #   return verified
 
-def wx_logined(view):
-  def verified(request, *args, **kwargs):
-    if request.session.has_key('user'):
-      return view(request, *args, **kwargs)
-    return exhibit.views.loginHandler(request, view, *args, **kwargs)
-  return verified
 # def wx_logined(view):
 #   def verified(request, *args, **kwargs):
-#     return view(request, *args, **kwargs)
+#     if request.session.has_key('user'):
+#       return view(request, *args, **kwargs)
+#     return exhibit.views.loginHandler(request, view, *args, **kwargs)
 #   return verified
+def wx_logined(view):
+  def verified(request, *args, **kwargs):
+    return view(request, *args, **kwargs)
+  return verified
