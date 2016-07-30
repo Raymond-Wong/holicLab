@@ -147,7 +147,7 @@ ol.block {
   padding: 0;
 }
 
-.cancelBtn {
+.cancelBtn, .cancelBtn:visited {
   margin-right: 5%;
   width: 40%;
   border: 1px solid #f5a623;
