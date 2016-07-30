@@ -50,8 +50,14 @@
 </a>
 <a class="line myLink" href="/user?action=invite">
   <div class="name left textEllipsis">邀请情况</div>
-  <div class="value left textEllipsis"></div>
-  <div class="flag{% ifequal user.balance 0 %}{% else %} active{% endif %}">
+  <div class="value left textEllipsis">
+    {% ifequal user.balance 0 %}
+    已成功邀请{{ user.balance }}位好友
+    {% else %}
+    未成功邀请任何好友
+    {% endifequal %}
+  </div>
+  <div class="flag{% ifequal user.balance 0 %}{% else %} active{% endifequal %}">
     <span class="glyphicon glyphicon-ok"></span>
   </div>
   <div class="clear"></div>
