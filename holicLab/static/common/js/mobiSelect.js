@@ -92,7 +92,7 @@ MobiSelect = function(obj, arg) {
     var iscroll = new IScroll(nswrapper[0], {
       mouseWheel : true,
       snap : "li",
-      click : true,
+      tap : true,
       // bounce : false,
       // probeType : 3,
     });
