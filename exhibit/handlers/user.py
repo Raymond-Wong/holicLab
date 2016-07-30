@@ -116,12 +116,12 @@ def invite(request):
     return render(request, 'exhibit/user_invite_record.html', {'user' : user})
   # 判断数据合法性
   if len(invite_code) != 6:
-    return render(request, 'exhibit/user_invited.html', {'msg' : '未提供待使用的邀请码', 'state' : False})
+    return render(request, 'exhibit/user_invited.html', {'msg' : '你提供的邀请码存在问题', 'state' : False})
   if invite_code == request.session['user']:
-    return render(request, 'exhibit/user_invited.html', {'msg' : '自己不能够邀请自己', 'state' : False})
+    return render(request, 'exhibit/user_invited.html', {'msg' : '只能邀请好友参与健身哦～', 'state' : False})
   # 判断用户是否已使用过邀请码
   if user.invited_by:
-    return render(request, 'exhibit/user_invited.html', {'msg' : '您已经使用过邀请码', 'state' : False})
+    return render(request, 'exhibit/user_invited.html', {'msg' : '你已被邀请，邀请机制仅限新用户，赶快邀请好友来健身吧！', 'state' : False})
   # 判断邀请码是否有效
   invite_user = None
   try:
@@ -133,6 +133,6 @@ def invite(request):
   # 更新被邀请用户的余额
   user.balance = F('balance') + 1
   user.save()
-  return render(request, 'exhibit/user_invited.html', {'msg' : '接受邀请成功', 'state' : True})
+  return render(request, 'exhibit/user_invited.html', {'msg' : '快进行Holic初体验，超值优惠等着你！', 'state' : True})
 
 
