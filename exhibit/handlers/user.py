@@ -18,7 +18,10 @@ from holicLab.models import Shop, Time_Bucket, Course, Service, User
 # 显示用户的基本信息
 def detail(request):
   user = User.objects.get(invite_code=request.session['user'])
-  user.invite_user = User.objects.filter(invited_by=user)
+  user.invite_user = 0
+  for u in User.objects.filter(invited_by=user):
+    if len(u.order_set.filter(state=4)) > 0:
+      user.invite_user += 1
   user.order = len(user.order_set.filter(state=4))
   return render(request, 'exhibit/user_detail.html', {'user' : user})
 
@@ -112,7 +115,10 @@ def invite(request):
   user = request.session['user']
   user = User.objects.get(invite_code=user)
   if invite_code is None:
-    user.balance -= 1 if user.invited_by else 0
+    user.balance = 0
+    for u in User.objects.filter(invited_by=user):
+      if len(u.order_set.filter(state=4)) > 0:
+        user.balance += 1
     return render(request, 'exhibit/user_invite_record.html', {'user' : user})
   # 判断数据合法性
   if len(invite_code) != 6:
