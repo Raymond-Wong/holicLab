@@ -11,7 +11,13 @@
       <div class="invitedWindowTextBox vertical_outer">
         <div class="invitedWindowText vertical_inner">{{ msg }}</div>
       </div>
-      <a class="btn invitedWindowBtn" href="/">开始健身</a>
+      <a class="btn invitedWindowBtn" href="/">
+        {% if state %}
+        开始健身
+        {% else %}
+        回到主页
+        {% endif %}
+      </a>
     </div>
   </div>
 </div>
