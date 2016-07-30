@@ -37,9 +37,8 @@
 
 .invitedWindowText {
   width: 100%;
-  padding: 2em;
+  padding: 2em 0;
   color: white;
-  text-align: left;
 }
 
 .invitedWindowBtn {
