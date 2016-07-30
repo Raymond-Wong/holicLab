@@ -34,7 +34,7 @@ def add(request):
     bookable_time = Bookable_Time.objects.get(id=request.POST.get('bid', None))
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
-  newOrder = getOrderPrice(newOrder)
+  newOrder = getOrderPrice(newOrder, int(request.POST.get('duration', None)))
   newOrder.save()
   return HttpResponse(Response(m="添加订单成功").toJson(), content_type="application/json")
 
@@ -56,7 +56,7 @@ def price(request):
     bookable_time = Bookable_Time.objects.get(id=request.POST.get('bid', None))
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
-  newOrder = getOrderPrice(newOrder)
+  newOrder = getOrderPrice(newOrder, int(request.POST.get('duration', None)))
   return HttpResponse(Response(m=newOrder.price).toJson(), content_type="application/json")
 
 def pre(request):
@@ -209,12 +209,12 @@ def update(request):
   return HttpResponse(Response(m="订单状态更新成功").toJson(), content_type="application/json")
 
 # 传入一个order对象，获取其价格
-def getOrderPrice(newOrder):
+def getOrderPrice(newOrder, duration):
   # 计算基础价格
   newOrder.price = 0
   if newOrder.order_type == 1:
     newOrder.price = newOrder.shop.price
-    newOrder.price = newOrder.duration / 30 * newOrder.price
+    newOrder.price = duration / 30 * newOrder.price
   else:
     newOrder.price = newOrder.course.price
   for service in json.loads(newOrder.services):
@@ -228,7 +228,7 @@ def getOrderPrice(newOrder):
   if len(user.order_set.filter(state=4)) == 0:
     newOrder.price = newOrder.price / 2
   else:
-    coupon = newOrder.duration / 60
+    coupon = duration / 60
     coupon = coupon if user.balance > coupon else user.balance
     newOrder.price = newOrder.price - 100 * coupon
   return newOrder
