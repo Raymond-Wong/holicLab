@@ -95,7 +95,7 @@ var updatePrice = function() {
     params['cid'] = targetId;
   }
   post('/order?action=price', params, function(msg) {
-    $('.originPrice').text('￥' + (parseFloat(msg) / 10));
+    $('.discountPrice').text('￥' + (parseFloat(msg) / 10));
   });
 }
 
