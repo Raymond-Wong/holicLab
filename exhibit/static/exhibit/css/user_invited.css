@@ -35,9 +35,13 @@
   padding: 1em;
 }
 
+.invitedWindowTextBox {
+  width: 100%;
+  height: 200px;
+}
+
 .invitedWindowText {
   width: 100%;
-  padding: 2em 0;
   color: white;
 }
 
