@@ -51,7 +51,7 @@
 <a class="line myLink" href="/user?action=invite">
   <div class="name left textEllipsis">邀请情况</div>
   <div class="value left textEllipsis"></div>
-  <div class="flag{% if user.invited_by %} active{% endif %}">
+  <div class="flag{% ifequal user.balance 0 %}{% else %} active{% endif %}">
     <span class="glyphicon glyphicon-ok"></span>
   </div>
   <div class="clear"></div>
