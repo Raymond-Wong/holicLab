@@ -23,8 +23,7 @@ var carouselInit = function() {
     indicators: {
       el: document.getElementById('indicator'),
       resize: false
-    },
-    eventPassthrough: true
+    }
   });
 }
 
