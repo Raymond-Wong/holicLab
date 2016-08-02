@@ -10,6 +10,10 @@ import random
 import re
 from datetime import datetime, date
 from django.db import models
+try: 
+  import xml.etree.cElementTree as ET
+except ImportError: 
+  import xml.etree.ElementTree as ET
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 

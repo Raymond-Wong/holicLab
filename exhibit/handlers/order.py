@@ -8,10 +8,6 @@ import time
 import qrcode
 import base64
 import cStringIO
-try: 
-  import xml.etree.cElementTree as ET
-except ImportError: 
-  import xml.etree.ElementTree as ET
 from datetime import timedelta
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
