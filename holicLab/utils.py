@@ -131,8 +131,8 @@ def filterEmoji(desstr,restr=''):
   return co.sub(restr, desstr)
 
 def getUserIp(request):
-  if request.META.has_key('HTTP_X_FORWARDED_FOR'):  
-    ip =  request.META['HTTP_X_FORWARDED_FOR']  
+  if request.META.has_key('HTTP_X_FORWARDED_FOR'):
+    ip =  request.META['HTTP_X_FORWARDED_FOR'].split(',')[0]
   else:  
     ip = request.META['REMOTE_ADDR'] 
   return ip
