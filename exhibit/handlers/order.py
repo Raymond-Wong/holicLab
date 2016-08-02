@@ -8,7 +8,6 @@ import time
 import qrcode
 import base64
 import cStringIO
-import urllib2
 from datetime import timedelta
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404

@@ -5,7 +5,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
 import httplib
-import urllib
+import urllib, urllib2
 import random
 import re
 from datetime import datetime, date
