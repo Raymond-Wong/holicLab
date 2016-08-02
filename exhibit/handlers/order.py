@@ -8,6 +8,7 @@ import time
 import qrcode
 import base64
 import cStringIO
+import urllib2
 from datetime import timedelta
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
@@ -269,8 +270,8 @@ def unifiedorder(order, request):
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   toSignStr += ('&key=' + '170f387b748f8290db44515613dc959f')
   params['sign'] = md5(toSignStr).upper()
-  # msg = ET.tostring(dict2xml(ET.Element('xml'), params), 'utf-8')
-  res = send_request('api.mch.weixin.qq.com', '/pay/unifiedorder', 'POST', params=params)
+  msg = ET.tostring(dict2xml(ET.Element('xml'), params), 'utf-8')
+  res = urllib2.urlopen('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
   print res
 
 
