@@ -16,6 +16,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.utils import timezone
 
+import holicLab.settings as settings
 from holicLab.utils import *
 from holicLab.models import Order, Shop, User, Course, Bookable_Time
 
@@ -257,8 +258,8 @@ def password(request):
 
 def unifiedorder(order, request):
   params = {}
-  params['appid'] = 'wx8a6f32cf9d22a289'
-  params['mch_id'] = '1370718902'
+  params['appid'] = settings.WX_APP_ID
+  params['mch_id'] = settings.WX_MCH_ID
   params['nonce_str'] = random_x_bit_code(20)
   params['body'] = 'HolicLab 健身试炼仓-场地/课程预约'
   params['out_trade_no'] = str(order.oid)
@@ -267,7 +268,7 @@ def unifiedorder(order, request):
   params['notify_url'] = 'http://holicLab.applinzi.com/pay'
   params['trade_type'] = 'JSAPI'
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
-  toSignStr += ('&key=' + '170f387b748f8290db44515613dc959f')
+  toSignStr += ('&key=' + settings.WX_MCH_KEY)
   params['sign'] = md5(toSignStr).upper()
   print toSignStr
   print params['sign']

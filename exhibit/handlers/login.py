@@ -10,6 +10,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 
+import holicLab.settings as settings
 from holicLab.utils import *
 from holicLab.models import User
 
@@ -17,9 +18,9 @@ from holicLab.models import User
 # APP_ID = 'wx466a0c7c6871bc8e'
 # APP_SECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
 # holicLab
-APP_ID = 'wx8a6f32cf9d22a289'
-APP_SECRET = '170f387b748f8290db44515613dc959f'
-TOKEN = 'holicLab'
+APP_ID = settings.WX_APP_ID
+APP_SECRET = settings.WX_APP_SECRET
+TOKEN = settings.WX_APP_TOKEN
 
 def login(request, view):
   # 如果session中已经保存了用户信息，则不用重复获取用户信息

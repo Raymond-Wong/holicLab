@@ -20,6 +20,7 @@ from django.shortcuts import render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 
+import holicLab.settings as settings
 from holicLab.utils import *
 from models import Ticket
 
@@ -27,9 +28,9 @@ from models import Ticket
 # APPID = 'wx466a0c7c6871bc8e'
 # APPSECRET = 'aa06e2a00ce7dcae1d5e975e5217c478'
 # holicLab
-APPID = 'wx8a6f32cf9d22a289'
-APPSECRET = '170f387b748f8290db44515613dc959f'
-TOKEN = 'holicLab'
+APPID = settings.WX_APP_ID
+APPSECRET = settings.WX_APP_SECRET
+TOKEN = settings.WX_APP_TOKEN
 
 @csrf_exempt
 def entrance(request):
