@@ -9,6 +9,10 @@ import qrcode
 import base64
 import cStringIO
 from datetime import timedelta
+try: 
+  import xml.etree.cElementTree as ET
+except ImportError: 
+  import xml.etree.ElementTree as ET
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import redirect, render
@@ -269,10 +273,11 @@ def unifiedorder(order, request):
   params['trade_type'] = 'JSAPI'
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   toSignStr += ('&key=' + settings.WX_MCH_KEY)
-  params['sign'] = md5(toSignStr).upper()
-  print toSignStr
-  print params['sign']
-  msg = ET.tostring(dict2xml(ET.Element('xml'), params), 'utf-8')
+  # 在xml最后面加入签名
+  xml = dict2xml(ET.Element('xml'), params)
+  signNode = ET.SubElement(xml, 'sign')
+  signNode.text = md5(toSignStr).upper()
+  msg = ET.tostring(xml, 'utf-8')
   print msg
   res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
   print res
