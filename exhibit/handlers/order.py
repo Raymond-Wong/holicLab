@@ -59,7 +59,7 @@ def price(request):
     bookable_time = Bookable_Time.objects.get(id=request.POST.get('bid', None))
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
-  newOrder = getOrderPrice(newOrder, int(request.POST.get('duration', None)))
+  newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
   return HttpResponse(Response(m=newOrder.price).toJson(), content_type="application/json")
 
 def pre(request):
