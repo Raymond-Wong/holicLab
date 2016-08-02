@@ -265,9 +265,9 @@ def unifiedorder(order, request):
   params['mch_id'] = '1370718902'
   params['nonce_str'] = random_x_bit_code(20)
   params['body'] = 'HolicLab 健身试炼仓-场地/课程预约'
-  params['out_trade_no'] = order.oid
-  params['total_fee'] = order.price * 10
-  params['spbill_create_ip'] = getUserIp(request)
+  params['out_trade_no'] = str(order.oid)
+  params['total_fee'] = str(order.price * 10)
+  params['spbill_create_ip'] = str(getUserIp(request))
   params['notify_url'] = 'http://holicLab.applinzi.com/pay'
   params['trade_type'] = 'JSAPI'
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
