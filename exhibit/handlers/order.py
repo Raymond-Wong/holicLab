@@ -273,7 +273,7 @@ def unifiedorder(order, request):
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   toSignStr += ('&key=' + '170f387b748f8290db44515613dc959f')
   params['sign'] = md5(toSignStr).upper()
-  msg = xml2dict('xml', params)
+  msg = dict2xml('xml', params)
   print msg
 
 
