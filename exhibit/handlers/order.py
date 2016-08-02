@@ -266,14 +266,16 @@ def unifiedorder(order, request):
   params['spbill_create_ip'] = str(getUserIp(request))
   params['notify_url'] = 'http://holicLab.applinzi.com/pay'
   params['trade_type'] = 'JSAPI'
-  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
+  params = sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))
+  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], params))
   toSignStr += ('&key=' + '170f387b748f8290db44515613dc959f')
   params['sign'] = md5(toSignStr).upper()
   print toSignStr
   print params['sign']
   msg = ET.tostring(dict2xml(ET.Element('xml'), params), 'utf-8')
-  # res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
-  # print res
+  print msg
+  res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
+  print res
 
 
 
