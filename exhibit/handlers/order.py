@@ -5,6 +5,9 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
 import time
+import qrcode
+import base64
+import cStringIO
 from datetime import timedelta
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
@@ -232,3 +235,20 @@ def getOrderPrice(newOrder, duration):
     coupon = coupon if user.balance > coupon else user.balance
     newOrder.price = newOrder.price - 100 * coupon
   return newOrder
+
+def password(request):
+  if request.method == 'POST':
+    user = User.objects.get(invite_code=request.session['user'])
+    now = timezone.now()
+    now = timedelta(minutes=15)
+    order = user.order_set.filter(start_time__lte=now).filter(end_time__gt=now)
+    if len(order) == 0:
+      return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前15分钟点击获取密码'))
+    order = order[0]
+    return HttpResponse(Response(m='/order?action=password&oid=%s') % str(order.id).toJson(), content_type="application/json")
+  url = 'http://holicLab.applinzi.com/order?action=get&oid=' + request.GET.get('oid')
+  img = qrcode.make(url)
+  img_buffer = cStringIO.StringIO()
+  img.save(img_buffer, format='PNG')
+  qrcode = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
+  return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcode})

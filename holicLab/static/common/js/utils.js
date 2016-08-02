@@ -43,7 +43,8 @@ function getUrlParam(name) {
 }
 
 var wxConfig = function(jsApiList) {
-  var appId = 'wx466a0c7c6871bc8e';
+  // var appId = 'wx466a0c7c6871bc8e';
+  var appId = 'wx8a6f32cf9d22a289';
   var url = window.location.href.split('#')[0];
   post('/wechat/config', {'url' : url}, function(msg) {
     var signature = msg['signature'];
