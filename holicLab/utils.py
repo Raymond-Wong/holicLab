@@ -91,7 +91,7 @@ def send_xml(url, data):
   opener = urllib2.build_opener(cookies)
   request = urllib2.Request(url=url, headers={'Content-Type' : 'application/xml','charset':'UTF-8'}, data=data)
   f = opener.open(request)
-  print f.read()
+  return f.read()
 
 CODE_RANGE = [str(i) for i in xrange(0, 10)] + [chr(i) for i in xrange(97, 123)] + [chr(i) for i in xrange(65, 91)]
 # 随机生成一个x位的码
