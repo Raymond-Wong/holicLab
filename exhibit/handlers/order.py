@@ -261,7 +261,7 @@ def password(request):
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcode})
 
 def unifiedorder(order, request):
-  user = User.object.get(invite_code=request.session['user'])
+  user = User.objects.get(invite_code=request.session['user'])
   params = {}
   params['openid'] = user.wx_openid
   params['device_info'] = 'WEB'
