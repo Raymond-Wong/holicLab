@@ -70,6 +70,7 @@ var checkBoxAction = function() {
 }
 
 var updatePrice = function() {
+  $('.discountPrice').text('正在计算价格...');
   var params = {};
   params['type'] = orderType == 'site' ? 1 : 2;
   if (params['type'] == 1) {
