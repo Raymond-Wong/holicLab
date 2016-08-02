@@ -8,6 +8,10 @@ import time
 import qrcode
 import base64
 import cStringIO
+try: 
+  import xml.etree.cElementTree as ET
+except ImportError: 
+  import xml.etree.ElementTree as ET
 from datetime import timedelta
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
@@ -38,7 +42,9 @@ def add(request):
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
   newOrder = getOrderPrice(newOrder, int(request.POST.get('duration', None)))
-  newOrder.save()
+  # pay
+  unifiedorder(newOrder)
+  # newOrder.save()
   return HttpResponse(Response(m="添加订单成功").toJson(), content_type="application/json")
 
 def price(request):
@@ -252,3 +258,23 @@ def password(request):
   img.save(img_buffer, format='PNG')
   qrcode = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcode})
+
+def unifiedorder(order):
+  params = {}
+  params['appid'] = 'wx8a6f32cf9d22a289'
+  params['mch_id'] = '1370718902'
+  params['nonce_str'] = random_x_bit_code(20)
+  params['body'] = 'HolicLab 健身试炼仓-场地/课程预约'
+  params['out_trade_no'] = order.oid
+  params['total_fee'] = order.price * 10
+  params['spbill_create_ip'] = getUserIp(request)
+  params['notify_url'] = 'http://holicLab.applinzi.com/pay'
+  params['trade_type'] = 'JSAPI'
+  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
+  toSignStr += ('&key=' + '170f387b748f8290db44515613dc959f')
+  params['sign'] = md5(toSignStr).upper()
+  msg = xml2dict('xml', params)
+  print msg
+
+
+

@@ -60,26 +60,6 @@ def appendImageUrl(x):
 
 # 发送请求
 # 如果发送请求时服务器返回的是access_token过期的话，就跑出一个PastDueException
-# def send_request(host, path, method, port=443, params={}, toLoad=True):
-#   client = httplib.HTTPSConnection(host, port)
-#   # client.request(method, path, json.dumps(params, ensure_ascii=False).encode('utf8'))
-#   client.request(method, path, urllib.urlencode(params))
-#   res = client.getresponse()
-#   if not res.status == 200:
-#     return False, res.status
-#   resStr = res.read()
-#   if toLoad:
-#     resDict = json.loads(resStr, encoding="utf-8")
-#     if 'errcode' in resDict.keys() and resDict['errcode'] == 40001:
-#       raise PastDueException('access token past due')
-#     if 'errcode' in resDict.keys() and resDict['errcode'] != 0:
-#       return False, resDict
-#     return True, resDict
-#   else:
-#     return True, resStr
-
-# 发送请求
-# 如果发送请求时服务器返回的是access_token过期的话，就跑出一个PastDueException
 def send_request(host, path, method, port=443, params={}, toLoad=True):
   client = httplib.HTTPSConnection(host, port)
   if method == 'GET':
@@ -145,3 +125,27 @@ def filterEmoji(desstr,restr=''):
   except re.error:
     co = re.compile(u'[\uD800-\uDBFF][\uDC00-\uDFFF]')
   return co.sub(restr, desstr)
+
+def getUserIp(request):
+  if request.META.has_key('HTTP_X_FORWARDED_FOR'):  
+    ip =  request.META['HTTP_X_FORWARDED_FOR']  
+  else:  
+    ip = request.META['REMOTE_ADDR'] 
+  return ip
+
+# 将字典解析成xml
+def dict2xml(root, d):
+  if isinstance(d, dict):
+    for key in d.keys():
+      child = ET.SubElement(root, key)
+      child = dict2xml(child, d[key])
+  elif isinstance(d, list):
+    for item in d:
+      for key in item.keys():
+        child = ET.SubElement(root, key)
+        child = dict2xml(child, item[key])
+  else:
+    if isinstance(d, int) or isinstance(d, float):
+      d = str(d)
+    root.text = d
+  return root

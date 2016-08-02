@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from holicLab.decorator import *
 from holicLab.models import *
-import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order
+import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order, handlers.pay
 
 def testHandler(request):
   user = {}
@@ -94,6 +94,12 @@ def orderHandler(request):
   elif action == 'password':
     return handlers.order.password(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
+
+def payHandler(request):
+  if request.method == 'GET':
+    return handlers.pay.order(request)
+  else:
+    return handlers.pay.goPay(request)
 
 def errorHandler(request):
   errType = request.GET.get('type', None)
