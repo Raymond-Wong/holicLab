@@ -268,7 +268,7 @@ def unifiedorder(order, request):
   params['appid'] = settings.WX_APP_ID
   params['mch_id'] = settings.WX_MCH_ID
   params['nonce_str'] = random_x_bit_code(20)
-  params['body'] = 'HolicLab 健身试炼仓-场地/课程预约'
+  params['body'] = 'HolicLab-site/course booking'
   params['out_trade_no'] = str(order.oid)
   params['total_fee'] = str(order.price * 10)
   params['spbill_create_ip'] = str(getUserIp(request))
