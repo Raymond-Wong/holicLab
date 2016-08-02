@@ -15,6 +15,7 @@ $(document).ready(function() {
 
 var submitAction = function() {
   $('#payBtn').on('tap', function() {
+    $(this).attr('disabled', true);
     var params = {};
     params['type'] = orderType == 'site' ? 1 : 2;
     if (params['type'] == 1) {
