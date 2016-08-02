@@ -147,11 +147,11 @@ def getUserIp(request):
 # 将字典解析成xml
 def dict2xml(root, d):
   if isinstance(d, dict):
-    for key in d.keys():
+    for key in sorted(d.keys()):
       child = ET.SubElement(root, key)
       child = dict2xml(child, d[key])
   elif isinstance(d, list):
-    for item in d:
+    for item in sorted(d):
       for key in item.keys():
         child = ET.SubElement(root, key)
         child = dict2xml(child, item[key])
