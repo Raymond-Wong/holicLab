@@ -261,7 +261,10 @@ def password(request):
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcode})
 
 def unifiedorder(order, request):
+  user = User.object.get(invite_code=request.session['user'])
   params = {}
+  params['openid'] = user.wx_openid
+  params['device_info'] = 'WEB'
   params['appid'] = settings.WX_APP_ID
   params['mch_id'] = settings.WX_MCH_ID
   params['nonce_str'] = random_x_bit_code(20)
@@ -269,7 +272,7 @@ def unifiedorder(order, request):
   params['out_trade_no'] = str(order.oid)
   params['total_fee'] = str(order.price * 10)
   params['spbill_create_ip'] = str(getUserIp(request))
-  params['notify_url'] = 'http://holicLab.applinzi.com/pay'
+  params['notify_url'] = 'http://holicLab.applinzi.com/notify'
   params['trade_type'] = 'JSAPI'
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   toSignStr += ('&key=' + settings.WX_MCH_KEY)

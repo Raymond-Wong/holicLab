@@ -10,6 +10,7 @@ urlpatterns = patterns('',
   url(r'^shop$', views.shopHandler),
   url(r'^course$', views.courseHandler),
   url(r'^order$', views.orderHandler),
+  url(r'^notify$', views.notifyHandler),
   url(r'^user$', views.userHandler),
   url(r'^test$', views.testHandler),
 )

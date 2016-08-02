@@ -100,3 +100,6 @@ def errorHandler(request):
   if errType == 'login':
     return handlers.error.login(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
+
+def notifyHandler(request):
+  return HttpResponse(True)
