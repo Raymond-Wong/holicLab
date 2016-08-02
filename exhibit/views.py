@@ -95,12 +95,6 @@ def orderHandler(request):
     return handlers.order.password(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
-def payHandler(request):
-  if request.method == 'GET':
-    return handlers.pay.order(request)
-  else:
-    return handlers.pay.goPay(request)
-
 def errorHandler(request):
   errType = request.GET.get('type', None)
   if errType == 'login':

@@ -43,7 +43,7 @@ def add(request):
     newOrder.end_time = bookable_time.end_time
   newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
   # pay
-  unifiedorder(newOrder)
+  unifiedorder(newOrder, request)
   # newOrder.save()
   return HttpResponse(Response(m="添加订单成功").toJson(), content_type="application/json")
 
@@ -259,7 +259,7 @@ def password(request):
   qrcode = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcode})
 
-def unifiedorder(order):
+def unifiedorder(order, request):
   params = {}
   params['appid'] = 'wx8a6f32cf9d22a289'
   params['mch_id'] = '1370718902'
