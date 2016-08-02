@@ -102,4 +102,4 @@ def errorHandler(request):
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 def notifyHandler(request):
-  return HttpResponse(True)
+  return HttpResponse('''<xml><return_code><![CDATA[SUCCESS]]></return_code><return_msg><![CDATA[OK]]></return_msg></xml>''')
