@@ -271,7 +271,7 @@ def unifiedorder(order, request):
   toSignStr += ('&key=' + '170f387b748f8290db44515613dc959f')
   params['sign'] = md5(toSignStr).upper()
   msg = ET.tostring(dict2xml(ET.Element('xml'), params), 'utf-8')
-  res = urllib2.urlopen('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
+  res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
   print res
 
 

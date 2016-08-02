@@ -86,6 +86,13 @@ def send_request(host, path, method, port=443, params={}, toLoad=True):
   else:
     return True, resStr
 
+def send_xml(url, data):
+  cookies = urllib2.HTTPCookieProcessor()
+  opener = urllib2.build_opener(cookies)
+  request = urllib2.Request(url=url, headers={'Content-Type' : 'application/xml','charset':'UTF-8'}, data=data)
+  f = opener.open(request)
+  print f.read()
+
 CODE_RANGE = [str(i) for i in xrange(0, 10)] + [chr(i) for i in xrange(97, 123)] + [chr(i) for i in xrange(65, 91)]
 # 随机生成一个x位的码
 def random_x_bit_code(x, code_range=CODE_RANGE):
