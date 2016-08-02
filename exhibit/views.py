@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from holicLab.decorator import *
 from holicLab.models import *
-import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order, handlers.pay
+import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order
 
 def testHandler(request):
   user = {}
