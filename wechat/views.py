@@ -54,8 +54,6 @@ def config(request):
   ret['timestamp'] = params['timestamp']
   ret['noncestr'] = params['noncestr']
   ret['appId'] = APPID
-  print params
-  print ret
   return HttpResponse(Response(m=ret).toJson(), content_type='application/json')
 
 # 获取某种类型的ticket，1为access token，2为jsapi
@@ -65,8 +63,8 @@ def get_ticket(ticket_type):
   if len(records) > 0:
     record = records.order_by('-start_time')[0]
     if (timezone.now() - record.start_time).seconds < 7200:
-      print (timezone.now() - record.start_time).seconds
       toRefresh = False
+      print timezone.now(), record.start_time, (timezone.now() - record.start_time), (timezone.now() - record.start_time).seconds
   if toRefresh:
     record = update_token() if ticket_type == 1 else update_jsapi()
   return record
