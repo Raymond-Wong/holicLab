@@ -282,7 +282,7 @@ def unifiedorder(order, request):
   signNode.text = md5(toSignStr).upper()
   msg = ET.tostring(xml, 'utf-8')
   print msg
-  res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
+  res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg.decode('utf-8').encode('ISO-8859-1'))
   print res
 
 
