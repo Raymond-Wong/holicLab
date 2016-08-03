@@ -29,7 +29,7 @@ def add(request):
   newOrder = Order()
   newOrder.order_type = int(request.POST.get('type', None))
   newOrder.user = user
-  newOrder.oid = user.invite_code + str(time.time() * 1000)
+  newOrder.oid = user.invite_code + str(int(time.time() * 1000))
   newOrder.people_amount = int(request.POST.get('amount', None))
   newOrder.services = request.POST.get('services', "[]")
   if newOrder.order_type == 1:
