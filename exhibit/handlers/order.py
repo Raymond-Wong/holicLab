@@ -29,7 +29,7 @@ def add(request):
   newOrder = Order()
   newOrder.order_type = int(request.POST.get('type', None))
   newOrder.user = user
-  newOrder.oid = md5(user.invite_code + str(time.time() * 1000))
+  newOrder.oid = user.invite_code + str(time.time() * 1000)
   newOrder.people_amount = int(request.POST.get('amount', None))
   newOrder.services = request.POST.get('services', "[]")
   if newOrder.order_type == 1:
@@ -282,7 +282,7 @@ def unifiedorder(order, request):
   signNode.text = md5(toSignStr).upper()
   msg = ET.tostring(xml, 'utf-8')
   print msg
-  res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg.decode('utf-8').encode('ISO-8859-1'))
+  res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
   print res
 
 
