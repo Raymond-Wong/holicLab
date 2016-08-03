@@ -54,6 +54,7 @@ def config(request):
   ret['timestamp'] = params['timestamp']
   ret['noncestr'] = params['noncestr']
   ret['appId'] = APPID
+  print params
   print ret
   return HttpResponse(Response(m=ret).toJson(), content_type='application/json')
 
