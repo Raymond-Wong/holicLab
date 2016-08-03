@@ -62,9 +62,8 @@ def get_ticket(ticket_type):
   toRefresh = True
   if len(records) > 0:
     record = records.order_by('-start_time')[0]
-    if (timezone.now() - record.start_time).seconds < 7200:
+    if (timezone.now() - record.start_time).total_seconds() < 7200:
       toRefresh = False
-      print timezone.now(), record.start_time, (timezone.now() - record.start_time), (timezone.now() - record.start_time).seconds
   if toRefresh:
     record = update_token() if ticket_type == 1 else update_jsapi()
   return record
