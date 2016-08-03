@@ -53,6 +53,7 @@ def config(request):
   ret['signature'] = sha1(toSignStr)
   ret['timestamp'] = params['timestamp']
   ret['noncestr'] = params['noncestr']
+  ret['appId'] = APPID
   return HttpResponse(Response(m=ret).toJson(), content_type='application/json')
 
 # 获取某种类型的ticket，1为access token，2为jsapi

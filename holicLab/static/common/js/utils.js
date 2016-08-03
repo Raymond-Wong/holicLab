@@ -43,15 +43,14 @@ function getUrlParam(name) {
 }
 
 var wxConfig = function(jsApiList) {
-  // var appId = 'wx466a0c7c6871bc8e';
-  var appId = 'wx8a6f32cf9d22a289';
   var url = window.location.href.split('#')[0];
   post('/wechat/config', {'url' : url}, function(msg) {
     var signature = msg['signature'];
     var timestamp = msg['timestamp'];
     var nonceStr = msg['noncestr'];
+    var appId = msg['appId'];
     wx.config({
-      debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
       appId: appId, // 必填，公众号的唯一标识
       timestamp: timestamp, // 必填，生成签名的时间戳
       nonceStr: nonceStr, // 必填，生成签名的随机串
