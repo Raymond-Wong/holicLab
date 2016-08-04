@@ -12,6 +12,7 @@ except ImportError:
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.utils.encoding import smart_str
+from django.db.models import F
 
 from holicLab.utils import *
 from holicLab.models import Order, Shop, User, Course, Bookable_Time
@@ -27,18 +28,22 @@ def notify(request):
   order = Order.objects.get(oid=params['out_trade_no'])
   # 验证签名
   if not verifySign(params, order):
+    print '签名验证错误'
     return RET_STR % ('FAIL', 'sign verification failed')
   # 如果订单已经被处理过，则直接返回修改成功
   if order.state != "1":
+    print '订单已经处理过'
     return RET_STR % ('SUCCESS', 'order has been processed')
   if params['result_code'] == 'SUCCESS':
     # 更新订单对象
     updateOrderObject(params, order)
     # 更新订单状态为success
     order.state = "4"
+    print '订单支付成功'
   else:
     # 更新订单状态为cancel
     order.state = "2"
+    print '订单支付失败'
   order.save()
   return HttpResponse(RET_STR % ('SUCCESS', 'OK'))
 
