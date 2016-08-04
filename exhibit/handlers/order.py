@@ -296,8 +296,6 @@ def getPrePayId(order, request):
   res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
   res = ET.fromstring(smart_str(res))
   res = xml2dict(res)
-  print 'res:', res
-  print 'return_msg:', res['return_msg']
   if res['return_code'] == 'SUCCESS' and res['return_msg'] == 'OK':
     return True, res['prepay_id']
   return False, '发起支付请求失败，请联系客服人员'

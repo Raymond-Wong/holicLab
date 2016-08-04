@@ -15,7 +15,7 @@ $(document).ready(function() {
 });
 
 var wxInit = function() {
-  wxConfig('chooseWXPay');
+  wxConfig(['chooseWXPay']);
 }
 
 var submitAction = function() {
@@ -57,7 +57,7 @@ var submitAction = function() {
             alert('支付成功！');
           }
         })
-      })
+      });
     });
   });
 }
