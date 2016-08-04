@@ -22,6 +22,7 @@ def notify(request):
   # 获取请求参数
   params = ET.fromstring(smart_str(request.body))
   params = xml2dict(params)
+  print params
   if params['return_code'] != 'SUCCESS':
     return HttpResponse(RET_STR % ('FAIL', 'communication error'))
   order = Order.objects.get(oid=params['out_trade_no'])
