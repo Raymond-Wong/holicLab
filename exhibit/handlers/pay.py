@@ -25,7 +25,6 @@ import holicLab.settings as settings
 from holicLab.utils import *
 from holicLab.models import Order, Shop, User, Course, Bookable_Time
 
-
 def add(request):
   user = User.objects.get(invite_code=request.session['user'])
   newOrder = Order()
