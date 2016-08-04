@@ -19,7 +19,7 @@ from holicLab.models import Order, Shop, User, Course, Bookable_Time
 def notify(request):
   # 待返回信息
   RET_STR = '<xml><return_code><![CDATA[%s]]></return_code><return_msg><![CDATA[%s]]></return_msg></xml>'
-  # params = ET.fromstring(smart_str(request.body))
-  # params = xml2dict(params)
-  print 'asdf'
+  params = ET.fromstring(smart_str(request.body))
+  params = xml2dict(params)
+  print params
   return HttpResponse(RET_STR % ('SUCCESS', 'OK'))
