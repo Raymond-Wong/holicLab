@@ -228,13 +228,13 @@ def update(request):
 # 传入一个order对象，获取其价格
 def getOrderPrice(newOrder, duration):
   # 计算基础价格
-  newOrder.price = 0.0
+  newOrder.price = 0
   if newOrder.order_type == 1:
     newOrder.price = newOrder.shop.price
     newOrder.price = duration / 30 * newOrder.price
   else:
     newOrder.price = newOrder.course.price
-  print newOrder.price
+  newOrder.price = float(newOrder.price)
   for service in json.loads(newOrder.services):
     if service == 'food':
       newOrder.price += 500
