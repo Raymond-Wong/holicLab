@@ -287,10 +287,10 @@ def getPreId(order, request):
   res = xml2dict(res)
   print 'res:', res
   print 'return_msg:', res['return_msg']
-  if res['return_code'] == 'SUCCESS' and res['return_msg']['result_code'] == 'SUCCESS':
-    return True, res['return_msg']['prepay_id']
+  if res['return_code'] == 'SUCCESS' and res['return_msg'] == 'OK':
+    return True, res['prepay_id']
   else:
-    return False, res['return_msg']['err_code_des']
+    return False, '支付失败，请联系客服人员'
 
 
 
