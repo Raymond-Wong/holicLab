@@ -44,9 +44,9 @@ def add(request):
     newOrder.end_time = bookable_time.end_time
   newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
   # pay
-  unifiedorder(newOrder, request)
+  pre_id = unifiedorder(newOrder, request)
   # newOrder.save()
-  return HttpResponse(Response(m="添加订单成功").toJson(), content_type="application/json")
+  return HttpResponse(Response(m=pre_id).toJson(), content_type="application/json")
 
 def price(request):
   user = User.objects.get(invite_code=request.session['user'])
@@ -283,7 +283,7 @@ def unifiedorder(order, request):
   msg = ET.tostring(xml, 'utf-8')
   print msg
   res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
-  print res
+  return res
 
 
 
