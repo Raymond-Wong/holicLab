@@ -285,6 +285,8 @@ def getPreId(order, request):
   res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
   res = ET.fromstring(smart_str(res))
   res = xml2dict(res)
+  print 'res:', res
+  print 'return_msg:', res['return_msg']
   if res['return_code'] == 'SUCCESS' and res['return_msg']['result_code'] == 'SUCCESS':
     return True, res['return_msg']['prepay_id']
   else:
