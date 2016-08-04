@@ -55,7 +55,7 @@ var submitAction = function() {
           paySign: msg['paySign'], // 支付签名
           success: function (res) {
             alert('支付成功！');
-          }
+          },
           cancel: function(res) {
             alert('支付中遇到问题了？\n请联系我们的客服人员');
           }
