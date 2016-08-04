@@ -282,8 +282,7 @@ def getPrePayId(order, request):
   params['nonce_str'] = random_x_bit_code(20)
   params['body'] = 'HolicLab-site/course booking'
   params['out_trade_no'] = str(order.oid)
-  params['total_fee'] = str(order.price * 10)
-  print params['total_fee']
+  params['total_fee'] = str(int(order.price * 10))
   params['spbill_create_ip'] = str(getUserIp(request))
   params['notify_url'] = 'http://holicLab.applinzi.com/notify'
   params['trade_type'] = 'JSAPI'
@@ -301,7 +300,7 @@ def getPrePayId(order, request):
   print 'return_msg:', res['return_msg']
   if res['return_code'] == 'SUCCESS' and res['return_msg'] == 'OK':
     return True, res['prepay_id']
-  return False, '支付失败，请联系客服人员'
+  return False, '发起支付请求失败，请联系客服人员'
 
 
 
