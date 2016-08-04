@@ -26,7 +26,7 @@ def notify(request):
     return HttpResponse(RET_STR % ('FAIL', 'communication error'))
   order = Order.objects.get(oid=params['out_trade_no'])
   # 验证签名
-  if not verifySign(paramsm order):
+  if not verifySign(params, order):
     return RET_STR % ('FAIL', 'sign verification failed')
   # 如果订单已经被处理过，则直接返回修改成功
   if order.state != 1:
