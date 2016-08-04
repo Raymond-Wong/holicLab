@@ -44,10 +44,16 @@ def add(request):
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
   newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
-  # pay
-  pre_id = getPreId(newOrder, request)
+  # 获取前段需要的签名
+  params['appId'] = settings.WX_APP_ID
+  params['timeStamp'] = str(int(time.time()))
+  params['nonceStr'] = random_x_bit_code(10)
+  params['package'] = getPrePayId(newOrder, request)
+  params['signType'] = 'MD5'
+  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
+  params['paySign'] = md5(toSignStr).upper()
   # newOrder.save()
-  return HttpResponse(Response(m=pre_id[1]).toJson(), content_type="application/json")
+  return HttpResponse(Response(m=params).toJson(), content_type="application/json")
 
 def price(request):
   user = User.objects.get(invite_code=request.session['user'])
@@ -261,7 +267,7 @@ def password(request):
   qrcode = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcode})
 
-def getPreId(order, request):
+def getPrePayId(order, request):
   user = User.objects.get(invite_code=request.session['user'])
   params = {}
   params['openid'] = user.wx_openid
@@ -289,8 +295,7 @@ def getPreId(order, request):
   print 'return_msg:', res['return_msg']
   if res['return_code'] == 'SUCCESS' and res['return_msg'] == 'OK':
     return True, res['prepay_id']
-  else:
-    return False, '支付失败，请联系客服人员'
+  return False, '支付失败，请联系客服人员'
 
 
 
