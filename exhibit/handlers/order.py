@@ -44,12 +44,16 @@ def add(request):
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
   newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
+  # 获取prepayid
+  prepay_id = getPrePayId(newOrder, request)
+  if not prepay_id[0]:
+    return HttpResponse(Response(c=1, m=prepay_id[1]).toJson(), content_type="application/json")
   # 获取前段需要的签名
   params = {}
   params['appId'] = settings.WX_APP_ID
   params['timeStamp'] = str(int(time.time()))
   params['nonceStr'] = random_x_bit_code(10)
-  params['package'] = getPrePayId(newOrder, request)
+  params['package'] = prepay_id[1]
   params['signType'] = 'MD5'
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   params['paySign'] = md5(toSignStr).upper()
