@@ -47,7 +47,7 @@ var submitAction = function() {
     }
     post('/order?action=add', params, function(msg) {
       wx.ready(function() {
-        $.each(function(key, val) {
+        $.each(msg, function(key, val) {
           alert('key: ' + key + ' val: ' + val + ' valType: ' + typeof(val));
         })
         // wx.chooseWXPay({
