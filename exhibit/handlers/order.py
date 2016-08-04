@@ -44,7 +44,7 @@ def add(request):
     newOrder.end_time = bookable_time.end_time
   newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
   # pay
-  pre_id = unifiedorder(newOrder, request)
+  pre_id = getPreId(newOrder, request)
   # newOrder.save()
   return HttpResponse(Response(m=pre_id).toJson(), content_type="application/json")
 
@@ -260,12 +260,12 @@ def password(request):
   qrcode = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcode})
 
-def unifiedorder(order, request):
+def getPreId(order, request):
   user = User.objects.get(invite_code=request.session['user'])
   params = {}
   params['openid'] = user.wx_openid
   params['device_info'] = 'WEB'
-  params['appid'] = settings.WX_APP_ID
+  params['appid'] = 'wx8a6f32cf9d22a280'
   params['mch_id'] = settings.WX_MCH_ID
   params['nonce_str'] = random_x_bit_code(20)
   params['body'] = 'HolicLab-site/course booking'
