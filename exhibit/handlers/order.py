@@ -228,7 +228,7 @@ def update(request):
 # 传入一个order对象，获取其价格
 def getOrderPrice(newOrder, duration):
   # 计算基础价格
-  newOrder.price = 0
+  newOrder.price = 0.0
   if newOrder.order_type == 1:
     newOrder.price = newOrder.shop.price
     newOrder.price = duration / 30 * newOrder.price
