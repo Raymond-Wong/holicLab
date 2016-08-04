@@ -105,6 +105,7 @@ def payHandler(request):
 
 # 付款结果通知的处理类
 @handler
+@csrf_exempt
 def notifyHandler(request):
   return handlers.notify.notify(request)
 
