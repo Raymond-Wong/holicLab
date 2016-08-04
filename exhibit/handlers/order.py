@@ -253,7 +253,6 @@ def getOrderPrice(newOrder, duration):
     coupon = duration / 60
     coupon = coupon if user.balance > coupon else user.balance
     newOrder.price = newOrder.price - 100 * coupon
-  print newOrder.price
   return newOrder
 
 def password(request):
@@ -284,6 +283,7 @@ def getPrePayId(order, request):
   params['body'] = 'HolicLab-site/course booking'
   params['out_trade_no'] = str(order.oid)
   params['total_fee'] = str(order.price * 10)
+  print params['total_fee']
   params['spbill_create_ip'] = str(getUserIp(request))
   params['notify_url'] = 'http://holicLab.applinzi.com/notify'
   params['trade_type'] = 'JSAPI'
