@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from holicLab.decorator import *
 from holicLab.models import *
-import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order
+import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order, handlers.pay
 
 def testHandler(request):
   user = {}
@@ -79,20 +79,28 @@ def userHandler(request):
 @verify_required
 def orderHandler(request):
   action = request.GET.get('action', None)
-  if action == 'add':
-    return handlers.order.add(request)
-  elif action == 'list':
+  if action == 'list':
     return handlers.order.list(request)
   elif action == 'update':
     return handlers.order.update(request)
   elif action == 'get':
     return handlers.order.get(request)
-  elif action == 'pre':
-    return handlers.order.pre(request)
-  elif action == 'price':
-    return handlers.order.price(request)
   elif action == 'password':
     return handlers.order.password(request)
+  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
+
+# 支付的处理类
+@handler
+@wx_logined
+@verify_required
+def payHandler(request):
+  action = request.GET.get('action', None)
+  if action == 'add':
+    return handlers.pay.add(request)
+  elif action == 'pre':
+    return handlers.pay.pre(request)
+  elif action == 'price':
+    return handlers.pay.price(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 def errorHandler(request):

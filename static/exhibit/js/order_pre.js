@@ -112,7 +112,7 @@ var updatePrice = function() {
   } else {
     params['cid'] = targetId;
   }
-  post('/order?action=price', params, function(msg) {
+  post('/order/pay?action=price', params, function(msg) {
     $('.discountPrice').text('￥' + (parseFloat(msg) / 10));
   });
 }
