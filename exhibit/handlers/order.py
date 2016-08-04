@@ -248,6 +248,7 @@ def getOrderPrice(newOrder, duration):
     coupon = duration / 60
     coupon = coupon if user.balance > coupon else user.balance
     newOrder.price = newOrder.price - 100 * coupon
+  print newOrder.price
   return newOrder
 
 def password(request):
