@@ -212,7 +212,7 @@ def getPrePayId(order, request):
   params['out_trade_no'] = str(order.oid)
   params['total_fee'] = str(int(order.price * 10))
   params['spbill_create_ip'] = str(getUserIp(request))
-  params['notify_url'] = 'http://holicLab.applinzi.com/notify'
+  params['notify_url'] = 'http://holicLab.applinzi.com/order/notify'
   params['trade_type'] = 'JSAPI'
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   toSignStr += ('&key=' + settings.WX_MCH_KEY)
