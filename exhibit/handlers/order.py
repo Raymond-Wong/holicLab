@@ -56,6 +56,7 @@ def add(request):
   params['package'] = 'prepay_id=%s' % prepay_id[1]
   params['signType'] = 'MD5'
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
+  toSignStr += ('&key=' + settings.WX_MCH_KEY)
   params['paySign'] = md5(toSignStr).upper()
   # newOrder.save()
   return HttpResponse(Response(m=params).toJson(), content_type="application/json")
