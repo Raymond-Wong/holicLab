@@ -30,7 +30,7 @@ class Response:
 def md5(str):
   import hashlib
   m = hashlib.md5()
-  m.update(str)
+  m.update(str.encode("utf8"))
   return m.hexdigest()
 
 def sha1(string):

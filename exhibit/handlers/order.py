@@ -265,7 +265,7 @@ def getPreId(order, request):
   params = {}
   params['openid'] = user.wx_openid
   params['device_info'] = 'WEB'
-  params['appid'] = 'wx8a6f32cf9d22a280'
+  params['appid'] = settings.WX_APP_ID
   params['mch_id'] = settings.WX_MCH_ID
   params['nonce_str'] = random_x_bit_code(20)
   params['body'] = 'HolicLab-site/course booking'
