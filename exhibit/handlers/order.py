@@ -234,6 +234,7 @@ def getOrderPrice(newOrder, duration):
     newOrder.price = duration / 30 * newOrder.price
   else:
     newOrder.price = newOrder.course.price
+  print newOrder.price
   for service in json.loads(newOrder.services):
     if service == 'food':
       newOrder.price += 500
@@ -248,7 +249,6 @@ def getOrderPrice(newOrder, duration):
     coupon = duration / 60
     coupon = coupon if user.balance > coupon else user.balance
     newOrder.price = newOrder.price - 100 * coupon
-  print newOrder.price
   return newOrder
 
 def password(request):
