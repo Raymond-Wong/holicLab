@@ -20,26 +20,26 @@ def notify(request):
   # 待返回信息
   RET_STR = '<xml><return_code><![CDATA[%s]]></return_code><return_msg><![CDATA[%s]]></return_msg></xml>'
   # 获取请求参数
-  # params = ET.fromstring(smart_str(request.body))
-  # params = xml2dict(params)
-  # if params['return_code'] != 'SUCCESS':
-  #   return HttpResponse(RET_STR % ('FAIL', 'communication error'))
-  # order = Order.objects.get(oid=params['out_trade_no'])
-  # # 验证签名
-  # if not verifySign(params, order):
-  #   return RET_STR % ('FAIL', 'sign verification failed')
-  # # 如果订单已经被处理过，则直接返回修改成功
-  # if order.state != "1":
-  #   return RET_STR % ('SUCCESS', 'order has been processed')
-  # if params['result_code'] == 'SUCCESS':
-  #   # 更新订单对象
-  #   updateOrderObject(params, order)
-  #   # 更新订单状态为success
-  #   order.state = "4"
-  # else:
-  #   # 更新订单状态为cancel
-  #   order.state = "2"
-  # order.save()
+  params = ET.fromstring(smart_str(request.body))
+  params = xml2dict(params)
+  if params['return_code'] != 'SUCCESS':
+    return HttpResponse(RET_STR % ('FAIL', 'communication error'))
+  order = Order.objects.get(oid=params['out_trade_no'])
+  # 验证签名
+  if not verifySign(params, order):
+    return RET_STR % ('FAIL', 'sign verification failed')
+  # 如果订单已经被处理过，则直接返回修改成功
+  if order.state != "1":
+    return RET_STR % ('SUCCESS', 'order has been processed')
+  if params['result_code'] == 'SUCCESS':
+    # 更新订单对象
+    updateOrderObject(params, order)
+    # 更新订单状态为success
+    order.state = "4"
+  else:
+    # 更新订单状态为cancel
+    order.state = "2"
+  order.save()
   return HttpResponse(RET_STR % ('SUCCESS', 'OK'))
 
 # 验证签名是否正确
