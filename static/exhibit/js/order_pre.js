@@ -4,6 +4,7 @@ var price = null;
 var capacity = null;
 var orderType = 'site';
 var targetId = null;
+var oid = null;
 
 $(document).ready(function() {
   wxInit();
@@ -46,6 +47,7 @@ var submitAction = function() {
       params['cid'] = targetId;
     }
     post('/order/pay?action=add', params, function(msg) {
+      oid = params['oid']
       wx.ready(function() {
         wx.chooseWXPay({
           timestamp: msg['timeStamp'], // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
@@ -54,7 +56,9 @@ var submitAction = function() {
           signType: msg['signType'], // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
           paySign: msg['paySign'], // 支付签名
           success: function (res) {
-            alert('支付成功！');
+            // loadingAlert('正在产生订单，请耐心等候...');
+            // checkOrderState();
+            alert('支付成功');
           },
           cancel: function(res) {
             alert('支付中遇到问题了？\n请联系我们的客服人员');
@@ -62,6 +66,12 @@ var submitAction = function() {
         });
       });
     });
+  });
+}
+
+var checkOrderState = function() {
+  post('/order/pay?action=check', {'oid' : oid}, function(msg) {
+    loadingAlert(msg);
   });
 }
 

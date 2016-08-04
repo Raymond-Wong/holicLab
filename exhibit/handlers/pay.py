@@ -58,7 +58,8 @@ def add(request):
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   toSignStr += ('&key=' + settings.WX_MCH_KEY)
   params['paySign'] = md5(toSignStr).upper()
-  # newOrder.save()
+  params['oid'] = newOrder.oid
+  newOrder.save()
   return HttpResponse(Response(m=params).toJson(), content_type="application/json")
 
 def price(request):
@@ -172,6 +173,9 @@ def pre_course_order(request):
   if to_book_time.occupation == 0:
     params['bookable_amount'].append('包场')
   return render(request, 'exhibit/order_pre.html', params)
+
+def check(request):
+  return HttpResponse(Response(c=1, m="待添加订单类型错误").toJson(), content_type="application/json")
 
 # 传入一个order对象，获取其价格
 def getOrderPrice(newOrder, duration):
