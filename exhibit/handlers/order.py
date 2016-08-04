@@ -65,7 +65,6 @@ def price(request):
   newOrder = Order()
   newOrder.order_type = int(request.POST.get('type', None))
   newOrder.user = user
-  newOrder.oid = md5(user.invite_code + str(time.time() * 1000))
   newOrder.people_amount = int(request.POST.get('amount', None))
   newOrder.services = request.POST.get('services', "[]")
   if newOrder.order_type == 1:
@@ -254,6 +253,7 @@ def getOrderPrice(newOrder, duration):
     coupon = duration / 60
     coupon = coupon if user.balance > coupon else user.balance
     newOrder.price = newOrder.price - 100 * coupon
+  print newOrder.price
   return newOrder
 
 def password(request):
