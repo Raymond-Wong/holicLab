@@ -53,7 +53,7 @@ def add(request):
   params['appId'] = settings.WX_APP_ID
   params['timeStamp'] = str(int(time.time()))
   params['nonceStr'] = random_x_bit_code(10)
-  params['package'] = prepay_id[1]
+  params['package'] = 'prepay_id=%s' % prepay_id[1]
   params['signType'] = 'MD5'
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   params['paySign'] = md5(toSignStr).upper()
