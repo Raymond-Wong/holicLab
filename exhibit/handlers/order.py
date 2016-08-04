@@ -45,6 +45,7 @@ def add(request):
     newOrder.end_time = bookable_time.end_time
   newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
   # 获取前段需要的签名
+  params = {}
   params['appId'] = settings.WX_APP_ID
   params['timeStamp'] = str(int(time.time()))
   params['nonceStr'] = random_x_bit_code(10)
