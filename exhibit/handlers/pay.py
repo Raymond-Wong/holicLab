@@ -173,7 +173,7 @@ def pre_course_order(request):
   if to_book_time.occupation == 0:
     params['bookable_amount'].append('包场')
   return render(request, 'exhibit/order_pre.html', params)
-  
+
 # 传入一个order对象，获取其价格
 def getOrderPrice(newOrder, duration):
   # 计算基础价格
@@ -208,7 +208,7 @@ def getPrePayId(order, request):
   params['appid'] = settings.WX_APP_ID
   params['mch_id'] = settings.WX_MCH_ID
   params['nonce_str'] = random_x_bit_code(20)
-  params['body'] = 'HolicLab-site/course booking'
+  params['body'] = 'HolicLab - %s预约' % ('场地' if order.order_type == 1 else '课程')
   params['out_trade_no'] = str(order.oid)
   params['total_fee'] = str(int(order.price * 10))
   params['spbill_create_ip'] = str(getUserIp(request))
