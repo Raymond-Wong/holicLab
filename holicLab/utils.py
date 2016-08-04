@@ -161,3 +161,21 @@ def dict2xml(root, d):
       d = str(d)
     root.text = d
   return root
+
+# 将xml解析成字典
+def xml2dict(root):
+  dictionary = {}
+  for child in root:
+    if isinstance(dictionary, dict) and not dictionary.has_key(child.tag):
+      if child.text:
+        dictionary[child.tag] = child.text
+      else:
+        dictionary[child.tag] = xml2dict(child)
+    else:
+      if isinstance(dictionary, dict) and not isinstance(dictionary[child.tag], list):
+        dictionary = [{child.tag : dictionary[child.tag]}]
+      if child.text:
+        dictionary.append({child.tag : child.text})
+      else:
+        dictionary.append({child.tag : xml2dict(child)})
+  return dictionary

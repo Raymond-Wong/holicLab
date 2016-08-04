@@ -19,6 +19,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.utils import timezone
+from django.utils.encoding import smart_str
 
 import holicLab.settings as settings
 from holicLab.utils import *
@@ -46,7 +47,7 @@ def add(request):
   # pay
   pre_id = getPreId(newOrder, request)
   # newOrder.save()
-  return HttpResponse(Response(m=pre_id).toJson(), content_type="application/json")
+  return HttpResponse(Response(m=pre_id[1]).toJson(), content_type="application/json")
 
 def price(request):
   user = User.objects.get(invite_code=request.session['user'])
@@ -281,9 +282,13 @@ def getPreId(order, request):
   signNode = ET.SubElement(xml, 'sign')
   signNode.text = md5(toSignStr).upper()
   msg = ET.tostring(xml, 'utf-8')
-  print msg
   res = send_xml('https://api.mch.weixin.qq.com/pay/unifiedorder', msg)
-  return res
+  res = ET.fromstring(smart_str(res))
+  res = xml2dict(res)
+  if res['return_code'] == 'SUCCESS' and res['return_msg']['result_code'] == 'SUCCESS':
+    return True, res['return_msg']['prepay_id']
+  else:
+    return False, res['return_msg']['err_code_des']
 
 
 
