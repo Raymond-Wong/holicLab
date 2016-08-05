@@ -37,9 +37,12 @@ var videoInit = function() {
 }
 
 var str2date = function(str) {
-  var date = new Date(str);
-  // date.setHours(date.getHours() + date.getTimezoneOffset() / 60);
-  return date
+  var left = str.split(' ')[0];
+  var right = str.split(' ')[1];
+  var leftArr = left.split('-');
+  var rightArr = right.split(':');
+  var date = new Date(leftArr[0], parseInt(leftArr[1])- 1, leftArr[2], rightArr[0], rightArr[1]);
+  return date;
 }
 
 var initTimepicker = function() {
@@ -50,7 +53,7 @@ var initTimepicker = function() {
   for (var i in invalide_times) {
     var startTime = str2date(invalide_times[i]['startTime']);
     var endTime = str2date(invalide_times[i]['endTime']);
-    alert(invalide_times[i]['startTime']);
+    alert(startTime);
     for (; startTime < endTime; startTime.setMinutes(startTime.getMinutes() + 30)) {
       invalide_times_set.push(startTime.Format('yyyy-MM-dd hh:mm'));
     }
