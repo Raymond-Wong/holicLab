@@ -56,9 +56,8 @@ var submitAction = function() {
           signType: msg['signType'], // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
           paySign: msg['paySign'], // 支付签名
           success: function (res) {
-            // loadingAlert('正在产生订单，请耐心等候...');
-            // checkOrderState();
-            alert('支付成功');
+            showToast('正在产生订单...');
+            checkOrderState();
           },
           cancel: function(res) {
             alert('支付中遇到问题了？\n请联系我们的客服人员');
@@ -71,7 +70,7 @@ var submitAction = function() {
 
 var checkOrderState = function() {
   post('/order/pay?action=check', {'oid' : oid}, function(msg) {
-    loadingAlert(msg);
+    showToast(msg);
   });
 }
 

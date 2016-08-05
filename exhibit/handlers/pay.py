@@ -175,7 +175,27 @@ def pre_course_order(request):
   return render(request, 'exhibit/order_pre.html', params)
 
 def check(request):
-  return HttpResponse(Response(c=1, m="待添加订单类型错误").toJson(), content_type="application/json")
+  order = Order.objects.get(oid=request.POST.get('oid'))
+  if order.state != "1":
+    return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '支付成功', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
+  user = User.objects.get(invite_code=request.session['user'])
+  params = {}
+  params['appid'] = settings.WX_APP_ID
+  params['mch_id'] = settings.WX_MCH_ID
+  params['nonce_str'] = random_x_bit_code(20)
+  params['out_trade_no'] = str(order.oid)
+  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
+  toSignStr += ('&key=' + settings.WX_MCH_KEY)
+  # 在xml最后面加入签名
+  xml = dict2xml(ET.Element('xml'), params)
+  signNode = ET.SubElement(xml, 'sign')
+  signNode.text = md5(toSignStr).upper()
+  msg = ET.tostring(xml, 'utf-8')
+  res = send_xml('https://api.mch.weixin.qq.com/pay/orderquery', msg)
+  res = ET.fromstring(smart_str(res))
+  res = xml2dict(res)
+  print res
+  return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '支付成功', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
 
 # 传入一个order对象，获取其价格
 def getOrderPrice(newOrder, duration):
@@ -213,7 +233,8 @@ def getPrePayId(order, request):
   params['nonce_str'] = random_x_bit_code(20)
   params['body'] = 'HolicLab - %s预约' % ('场地' if order.order_type == 1 else '课程')
   params['out_trade_no'] = str(order.oid)
-  params['total_fee'] = str(int(order.price * 10))
+  # params['total_fee'] = str(int(order.price * 10))
+  params['total_fee'] = str(1)
   params['spbill_create_ip'] = str(getUserIp(request))
   params['notify_url'] = 'http://holicLab.applinzi.com/order/notify'
   params['trade_type'] = 'JSAPI'

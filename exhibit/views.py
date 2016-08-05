@@ -17,7 +17,7 @@ def testHandler(request):
   user = {}
   user['gender'] = 'm'
   user['role'] = '1'
-  return render(request, 'exhibit/home.html', {'msg' : '你已被邀请，邀请机制仅限新用户，赶快邀请好友来健身吧！'})
+  return render(request, 'exhibit/order_pre.html', {'msg' : '你已被邀请，邀请机制仅限新用户，赶快邀请好友来健身吧！'})
 
 # 微信端入口
 @handler
