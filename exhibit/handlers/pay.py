@@ -176,8 +176,8 @@ def pre_course_order(request):
 
 def check(request):
   order = Order.objects.get(oid=request.POST.get('oid'))
-  if order.state != "1":
-    return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '支付成功', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
+  # if order.state != "1":
+  #   return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '支付成功', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
   user = User.objects.get(invite_code=request.session['user'])
   params = {}
   params['appid'] = settings.WX_APP_ID
