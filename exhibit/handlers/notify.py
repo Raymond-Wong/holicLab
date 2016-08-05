@@ -60,7 +60,8 @@ def successOrder(order, status, time_end):
   # 4. 修改订单涉及课程或者场地的占用人次
   if order.order_type == "1":
     shop = order.shop
-    for period in xrange(order.duration / 30):
+    duration = int((order.end_time - order.start_time).total_seconds()) / 60
+    for period in xrange(duration / 30):
       start_time = order.start_time + datetime.timedelta(seconds=60*30*period)
       try:
         timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=start_time)
