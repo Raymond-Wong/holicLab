@@ -45,5 +45,6 @@ def detail(request):
   for tb in shop.time_bucket_set.filter(start_time__gt=timezone.now()).filter(occupation__gte=shop.capacity):
     shop.invalide_times.append({'startTime' : timezone.localtime(tb.start_time), 'endTime' : timezone.localtime(tb.start_time) + timedelta(seconds=60*30)})
   shop.invalide_times = json.dumps(shop.invalide_times, cls=MyJsonEncoder)
+  print shop.invalide_times
   # 返回商店详情
   return render(request, 'exhibit/shop_detail.html', {'shop' : shop})
