@@ -50,11 +50,11 @@ var initTimepicker = function() {
   for (var i in invalide_times) {
     var startTime = str2date(invalide_times[i]['startTime']);
     var endTime = str2date(invalide_times[i]['endTime']);
-    alert(invalide_times[i]['startTime']);
     for (; startTime < endTime; startTime.setMinutes(startTime.getMinutes() + 30)) {
       invalide_times_set.push(startTime.Format('yyyy-MM-dd hh:mm'));
     }
   }
+  alert(invalide_times_set);
   var selection = [];
   var now = new Date();
   // 把当前时间变成最近的一个整30分钟
