@@ -18,7 +18,7 @@ from holicLab.models import User
 def list(request):
   if request.method == 'GET':
     user_type = request.GET.get('state', 'old')
-    members = User.objects.filter(user_type=(1 if user_type == 'new' else 2))
+    members = User.objects.filter(user_type=("1" if user_type == 'new' else "2"))
     return render(request, 'admin/member.html', {'members' : members, 'activePage' : 'member'})
   # 检查数据合法性
   times_lb = request.POST.get('times_lb', 0)
