@@ -52,6 +52,7 @@ def get(request):
   oid = request.GET.get('oid', None)
   if oid is None:
     return HttpResponse(Response(c=-9, m="未提供待查询订单id").toJson(), content_type="application/json")
+  print oid
   order = None
   try:
     order = Order.objects.get(oid=oid)
