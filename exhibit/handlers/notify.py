@@ -64,11 +64,12 @@ def successOrder(order, status, time_end):
     for period in xrange(duration / 30):
       start_time = order.start_time + timedelta(seconds=60*30*period)
       print start_time
+      timeBucket = None
       try:
         timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=start_time)
       except:
         timeBucket = Time_Bucket()
-        timeBucket.start_time = order.start_time
+        timeBucket.start_time = start_time
         timeBucket.shop = order.shop
         timeBucket.occupation = 0
         timeBucket.save()
