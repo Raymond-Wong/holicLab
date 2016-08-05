@@ -79,7 +79,7 @@ var checkOrderState = function() {
     showToast(msg['desc']);
     if (msg['status'] == 'SUCCESS') {
       showToast(msg['desc']);
-      showToast('页面即将跳转', 500);
+      showToast('页面即将跳转', 1000);
       setTimeout(function() {
         window.location.href = msg['url'];
       }, 1500);

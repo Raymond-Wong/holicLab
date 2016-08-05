@@ -54,7 +54,7 @@ def get(request):
     return HttpResponse(Response(c=-9, m="未提供待查询订单id").toJson(), content_type="application/json")
   order = None
   try:
-    order = Order.objects.get(id=oid)
+    order = Order.objects.get(oid=oid)
   except:
     return HttpResponse(Response(c=-5, m="待查询订单不存在").toJson(), content_type="application/json")
   if order.order_type == "1":
