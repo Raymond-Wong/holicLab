@@ -60,8 +60,14 @@ def successOrder(order, status, time_end):
   # 4. 修改订单涉及课程或者场地的占用人次
   if order.order_type == "1":
     shop = order.shop
-    timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=order.start_time)
-    timeBucket.occupation = F('occupation') + 1
+    try:
+      timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=order.start_time)
+      timeBucket.occupation = F('occupation') + 1
+    except:
+      timeBucket = Time_Bucket()
+      timeBucket.start_time = order.start_time
+      timeBucket.shop = order.shop
+      timeBucket.occupation = 1
     timeBucket.save()
   else:
     course = order.course
