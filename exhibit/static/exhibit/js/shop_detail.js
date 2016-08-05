@@ -44,12 +44,13 @@ var str2date = function(str) {
 
 var initTimepicker = function() {
   // 获取不可预约时间
-  var invalide_times = $('.shopDetailPage').attr('invalideTimes');
+  var invalide_times = $.parseJSON($('.shopDetailPage').attr('invalideTimes'));
   $('.shopDetailPage').removeAttr('invalideTimes');
   var invalide_times_set = [];
   for (var i in invalide_times) {
     var startTime = str2date(invalide_times[i]['startTime']);
     var endTime = str2date(invalide_times[i]['endTime']);
+    alert(invalide_times[i]['startTime']);
     for (; startTime < endTime; startTime.setMinutes(startTime.getMinutes() + 30)) {
       invalide_times_set.push(startTime.Format('yyyy-MM-dd hh:mm'));
     }
