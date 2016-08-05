@@ -68,10 +68,9 @@ var submitAction = function() {
   });
 }
 
-
 var checkOrderState = function() {
   post('/order/pay?action=check', {'oid' : oid}, function(msg) {
-    showToast(msg);
+    showToast(msg['desc']);
   });
 }
 
