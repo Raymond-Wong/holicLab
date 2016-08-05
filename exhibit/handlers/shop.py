@@ -42,7 +42,7 @@ def detail(request):
   # 根据预约情况设置不可预约时间
   shop.invalide_times = json.loads(shop.invalide_times)
   for tb in shop.time_bucket_set.filter(start_time__gt=timezone.now()).filter(occupation__gte=shop.capacity):
-    shop.invalide_times.append({'startTime' : tb.start_time, 'endTime' : tb.startTime + datetime.timedelta(seconds=60*30)})
+    shop.invalide_times.append({'startTime' : tb.start_time, 'endTime' : tb.start_time + datetime.timedelta(seconds=60*30)})
   shop.invalide_times = json.dumps(shop.invalide_times, cls=MyJsonEncoder)
   # 返回商店详情
   return render(request, 'exhibit/shop_detail.html', {'shop' : shop})
