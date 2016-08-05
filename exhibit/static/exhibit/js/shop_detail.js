@@ -50,9 +50,9 @@ var initTimepicker = function() {
   for (var i in invalide_times) {
     var startTime = str2date(invalide_times[i]['startTime']);
     var endTime = str2date(invalide_times[i]['endTime']);
+    alert(startTime + ' ' + endTime)
     for (; startTime < endTime; startTime.setMinutes(startTime.getMinutes() + 30)) {
       invalide_times_set.push(startTime.Format('yyyy-MM-dd hh:mm'));
-      alert(startTime.Format('yyyy-MM-dd hh:mm'));
     }
   }
   var selection = [];
