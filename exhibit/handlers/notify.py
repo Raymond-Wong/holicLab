@@ -78,6 +78,7 @@ def successOrder(order, status, time_end):
   else:
     course = order.course
     bookableTime = Bookable_Time.objects.filter(course=course).get(start_time=order.start_time)
+    print bookableTime.start_time
     bookableTime.occupation = F('occupation') + 1
     bookableTime.save()
   # 保存对象
