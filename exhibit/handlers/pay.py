@@ -142,6 +142,7 @@ def pre_course_order(request):
     # 判断数据合法性
   cid = request.GET.get('cid', None)
   bid = request.GET.get('bid', None)
+  print bid
   course = None
   to_book_time = None
   try:
