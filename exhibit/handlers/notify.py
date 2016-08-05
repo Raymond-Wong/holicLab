@@ -62,7 +62,7 @@ def successOrder(order, status, time_end):
     shop = order.shop
     duration = int((order.end_time - order.start_time).total_seconds()) / 60
     for period in xrange(duration / 30):
-      start_time = order.start_time + datetime.timedelta(seconds=60*30*period)
+      start_time = order.start_time + timedelta(seconds=60*30*period)
       try:
         timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=start_time)
       except:
