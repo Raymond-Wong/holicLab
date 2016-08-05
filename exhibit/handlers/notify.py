@@ -71,8 +71,8 @@ def successOrder(order, status, time_end):
         timeBucket.shop = order.shop
         timeBucket.occupation = 0
         timeBucket.save()
-    timeBucket.occupation = F('occupation') + 1
-    timeBucket.save()
+      timeBucket.occupation = F('occupation') + 1
+      timeBucket.save()
   else:
     course = order.course
     bookableTime = Bookable_Time.objects.filter(course=course).get(start_time=order.start_time)
