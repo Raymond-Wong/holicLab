@@ -44,8 +44,7 @@ var str2date = function(str) {
 
 var initTimepicker = function() {
   // 获取不可预约时间
-  var invalide_times = $.parseJSON($('.shopDetailPage').attr('invalideTimes'));
-  alert(invalide_times);
+  var invalide_times = $('.shopDetailPage').attr('invalideTimes');
   $('.shopDetailPage').removeAttr('invalideTimes');
   var invalide_times_set = [];
   for (var i in invalide_times) {
