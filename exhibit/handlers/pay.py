@@ -178,8 +178,8 @@ def pre_course_order(request):
 
 def check(request):
   order = Order.objects.get(oid=request.POST.get('oid'))
-  # if order.state != "1":
-  #   return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
+  if order.state != "1":
+    return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
   user = User.objects.get(invite_code=request.session['user'])
   params = {}
   params['appid'] = settings.WX_APP_ID
@@ -197,11 +197,11 @@ def check(request):
   res = ET.fromstring(smart_str(res))
   res = xml2dict(res)
   if res['return_code'] != 'SUCCESS':
-    return HttpResponse(Response(m={'status' : 'RETRY', 'desc' : '', 'url' : ''}).toJson(), content_type="application/json")
+    return HttpResponse(Response(m={'status' : 'RETRY', 'desc' : '请耐心等候...', 'url' : ''}).toJson(), content_type="application/json")
   # 如果订单状态为支付成功，则修改订单状态
   if res['trade_state'] == 'USERPAYING':
     # 如果订单状态为用户支付中，则要求重新检查用户支付状态
-    return HttpResponse(Response(m={'status' : 'RETRY', 'desc' : '', 'url' : ''}).toJson(), content_type="application/json")
+    return HttpResponse(Response(m={'status' : 'RETRY', 'desc' : '请耐心等候...', 'url' : ''}).toJson(), content_type="application/json")
   elif res['trade_state'] == 'SUCCESS':
     successOrder(order, res['trade_state'], res['time_end'])
     return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")

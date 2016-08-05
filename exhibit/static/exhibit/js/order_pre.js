@@ -68,9 +68,24 @@ var submitAction = function() {
   });
 }
 
+var retriedTime = 0;
 var checkOrderState = function() {
+  retriedTime++;
   post('/order/pay?action=check', {'oid' : oid}, function(msg) {
+    if (msg['status'] == 'RETRY' && retriedTime > 3) {
+      msg['status'] = 'FAILED';
+      msg['desc'] = '请联系工作人员';
+    }
     showToast(msg['desc']);
+    if (msg['status'] == 'SUCCESS') {
+      showToast(msg['desc']);
+      showToast('页面即将跳转', 500);
+      setTimeout(function() {
+        window.location.href = msg['url'];
+      }, 1500);
+    } else if (msg['status'] == 'RETRY') {
+      checkOrderState();
+    }
   });
 }
 
