@@ -142,7 +142,6 @@ def pre_course_order(request):
     # 判断数据合法性
   cid = request.GET.get('cid', None)
   bid = request.GET.get('bid', None)
-  print bid
   course = None
   to_book_time = None
   try:
@@ -171,7 +170,7 @@ def pre_course_order(request):
   params['id'] = course.id
   params['bookable_amount'] = []
   for i in xrange(1, 4):
-    if to_book_time.occupation + i < course.capacity:
+    if to_book_time.occupation + i <= course.capacity:
       params['bookable_amount'].append(i);
   if to_book_time.occupation == 0:
     params['bookable_amount'].append('包场')
