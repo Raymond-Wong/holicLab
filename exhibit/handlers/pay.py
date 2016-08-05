@@ -203,7 +203,7 @@ def check(request):
     # 如果订单状态为用户支付中，则要求重新检查用户支付状态
     return HttpResponse(Response(m={'status' : 'RETRY', 'desc' : '', 'url' : ''}).toJson(), content_type="application/json")
   elif res['trade_state'] == 'SUCCESS':
-    successOrder(order, res['trade_state'], res['end_time'])
+    successOrder(order, res['trade_state'], res['time_end'])
     return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
   successOrder(order, res['trade_state'])
   # 如果订单状态为失败，则告知失败
