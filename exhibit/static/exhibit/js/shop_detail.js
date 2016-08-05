@@ -45,6 +45,7 @@ var str2date = function(str) {
 var initTimepicker = function() {
   // 获取不可预约时间
   var invalide_times = $.parseJSON($('.shopDetailPage').attr('invalideTimes'));
+  alert(invalide_times);
   $('.shopDetailPage').removeAttr('invalideTimes');
   var invalide_times_set = [];
   for (var i in invalide_times) {
@@ -54,7 +55,6 @@ var initTimepicker = function() {
       invalide_times_set.push(startTime.Format('yyyy-MM-dd hh:mm'));
     }
   }
-  alert(invalide_times_set);
   var selection = [];
   var now = new Date();
   // 把当前时间变成最近的一个整30分钟
