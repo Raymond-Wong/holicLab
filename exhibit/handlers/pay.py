@@ -24,7 +24,7 @@ from django.db.models import F
 
 import holicLab.settings as settings
 from holicLab.utils import *
-from holicLab.models import Order, Shop, User, Course, Bookable_Time
+from holicLab.models import Order, Shop, User, Course, Bookable_Time, Time_Bucket
 from notify import successOrder
 
 def add(request):

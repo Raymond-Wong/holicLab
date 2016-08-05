@@ -15,7 +15,7 @@ from django.utils.encoding import smart_str
 from django.db.models import F
 
 from holicLab.utils import *
-from holicLab.models import Order, Shop, User, Course, Bookable_Time
+from holicLab.models import Order, Shop, User, Course, Bookable_Time, Time_Bucket
 
 def notify(request):
   # 待返回信息
@@ -60,14 +60,17 @@ def successOrder(order, status, time_end):
   # 4. 修改订单涉及课程或者场地的占用人次
   if order.order_type == "1":
     shop = order.shop
-    try:
-      timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=order.start_time)
-      timeBucket.occupation = F('occupation') + 1
-    except:
-      timeBucket = Time_Bucket()
-      timeBucket.start_time = order.start_time
-      timeBucket.shop = order.shop
-      timeBucket.occupation = 1
+    for period in xrange(order.duration / 30):
+      start_time = order.start_time + datetime.timedelta(seconds=60*30*period)
+      try:
+        timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=start_time)
+      except:
+        timeBucket = Time_Bucket()
+        timeBucket.start_time = order.start_time
+        timeBucket.shop = order.shop
+        timeBucket.occupation = 0
+        timeBucket.save()
+    timeBucket.occupation = F('occupation') + 1
     timeBucket.save()
   else:
     course = order.course
