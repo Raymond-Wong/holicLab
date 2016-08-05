@@ -9,6 +9,7 @@ from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
+from django.utils import timezone
 
 from holicLab.utils import *
 from holicLab.models import Shop, Time_Bucket, Course, Service
@@ -43,7 +44,8 @@ def detail(request):
     return HttpResponse(Response(c=-4, m="待查询课程不存在").toJson(), content_type="application/json")
   course.cover = json.loads(course.cover)
   times = []
-  for i, time in enumerate(course.bookable_time_set.all()):
+  bookable_time_records = course.bookable_time_set.filter(start_time__gte=timezone.now()).filter(occupation__lt=course.capacity)
+  for i, time in enumerate(bookable_time_records):
     times.append({'id' : time.id, 'startTime' : time.start_time, 'endTime' : time.end_time, 'occupation' : time.occupation})
   course.bookable_time = json.dumps(times, cls=MyJsonEncoder)
   # 返回商店详情
