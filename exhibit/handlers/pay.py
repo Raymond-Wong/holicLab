@@ -210,6 +210,7 @@ def check(request):
   return HttpResponse(Response(m={'status' : 'FAILED', 'desc' : '请联系工作人员', 'url' : ''}).toJson(), content_type="application/json")
 
 def cancel(request):
+  print 'cancelOrder: ', request.POST.get('oid')
   order = Order.objects.get(oid=request.POST.get('oid'))
   order.state = "2"
   order.save()
