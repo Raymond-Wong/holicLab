@@ -63,7 +63,6 @@ def successOrder(order, status, time_end):
     duration = int((order.end_time - order.start_time).total_seconds()) / 60
     for period in xrange(duration / 30):
       start_time = order.start_time + timedelta(seconds=60*30*period)
-      print start_time
       timeBucket = None
       try:
         timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=start_time)
@@ -78,7 +77,6 @@ def successOrder(order, status, time_end):
   else:
     course = order.course
     bookableTime = Bookable_Time.objects.filter(course=course).get(start_time=order.start_time)
-    print bookableTime.start_time
     bookableTime.occupation = F('occupation') + 1
     bookableTime.save()
   # 保存对象
