@@ -1,8 +1,10 @@
 $(document).ready(function() {
-  wxConfig(['hideOptionMenu']);
-  wx.ready(function() {
-    wx.hideOptionMenu();
-  });
+  if (wx != undefined) {
+    wxConfig(['hideOptionMenu']);
+    wx.ready(function() {
+      wx.hideOptionMenu();
+    });
+  }
 });
 
 var post = function(url, data, callback) {
