@@ -11,7 +11,7 @@ var hideToast = function(seconds) {
     $('.toastToast').hide();
   } else {
     setTimeout(function() {
-      $('.toastToast').hide();
+      $('.toastContainer').hide();
     }, seconds);
   }
 }
