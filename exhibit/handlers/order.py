@@ -8,7 +8,7 @@ import time
 import qrcode
 import base64
 import cStringIO
-from urllib import urlencode
+from urllib import quote
 from datetime import timedelta
 try: 
   import xml.etree.cElementTree as ET
@@ -95,7 +95,7 @@ def password(request):
     return HttpResponse(Response(m='/order?action=password&oid=%s' % str(order.oid)).toJson(), content_type="application/json")
   order = Order.objects.get(oid=request.GET.get('oid'))
   url = 'http://' + request.get_host() + '/order?action=get&oid=' + request.GET.get('oid')
-  url = urlencode(url)
+  url = quote(url, safe='')
   url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a6f32cf9d22a289&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
   img = qrcode.make(url)
   img_buffer = cStringIO.StringIO()
