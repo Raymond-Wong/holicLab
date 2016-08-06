@@ -103,6 +103,8 @@ def payHandler(request):
     return handlers.pay.price(request)
   elif action == 'check':
     return handlers.pay.check(request)
+  elif action == 'cancel':
+    return handlers.pay.check(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 付款结果通知的处理类

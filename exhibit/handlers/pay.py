@@ -209,6 +209,12 @@ def check(request):
   # 如果订单状态为失败，则告知失败
   return HttpResponse(Response(m={'status' : 'FAILED', 'desc' : '请联系工作人员', 'url' : ''}).toJson(), content_type="application/json")
 
+def cancel(request):
+  order = Order.objects.get(oid=request.POST.get('oid'))
+  order.state = "2"
+  order.save()
+  return HttpResponse(Response(m='取消订单成功').toJson(), content_type="application/json")
+
 # 传入一个order对象，获取其价格
 def getOrderPrice(newOrder, duration):
   # 计算基础价格

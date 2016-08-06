@@ -60,7 +60,7 @@ var submitAction = function() {
             checkOrderState();
           },
           cancel: function(res) {
-            alert('支付中遇到问题了？\n请联系我们的客服人员');
+            cancelOrder();
           }
         });
       });
@@ -88,6 +88,17 @@ var checkOrderState = function() {
     } else if (msg['status'] == 'RETRY') {
       checkOrderState();
     }
+  });
+}
+
+var cancelOrder = function() {
+  showToast('正在取消订单...');
+  setTimeout(function() {
+    showToast('请勿关闭页面!');
+  }, 1000);
+  post('/order/pay?action=cancel', {'oid' : oid}, function(msg) {
+    showToast(msg);
+    hideToast(1000);
   });
 }
 
