@@ -8,6 +8,7 @@ import time
 import qrcode
 import base64
 import cStringIO
+from urllib import urlencode
 from datetime import timedelta
 try: 
   import xml.etree.cElementTree as ET
@@ -92,14 +93,13 @@ def password(request):
       return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前15分钟点击获取密码').toJson(), content_type="application/json")
     order = order[0]
     return HttpResponse(Response(m='/order?action=password&oid=%s' % str(order.oid)).toJson(), content_type="application/json")
-  import qrcode
   order = Order.objects.get(oid=request.GET.get('oid'))
   url = 'http://holicLab.applinzi.com/order?action=get&oid=' + request.GET.get('oid')
   img = qrcode.make(url)
   img_buffer = cStringIO.StringIO()
   img.save(img_buffer, format='PNG')
-  qrcode = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
-  return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcode})
+  qrcodeImg = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
+  return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcodeImg})
 
 
 
