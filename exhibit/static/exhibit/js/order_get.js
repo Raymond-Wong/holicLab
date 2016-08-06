@@ -11,23 +11,15 @@ var getMetaInfo = function() {
   $('#shareMask').removeAttr('uid');
 }
 
-// var initInviteAction = function() {
-//   $('.shareBtn').on('tap', function() {
-//     $('#shareMask').show();
-//     $('#shareMask').bind('tap', function() {
-//       $(this).hide();
-//       $(this).unbind('tap');
-//     });
-//     return false;
-//   });
-// }
-
 var initInviteAction = function() {
-  // wxConfig(['onMenuShareAppMessage'])
-  // $('.shareBtn').on('tap', function() {
-  //   wx.invoke('')
-  // });
-  alert(WeixinJSBridge);
+  $('.shareBtn').on('tap', function() {
+    $('#shareMask').show();
+    $('#shareMask').bind('tap', function() {
+      $(this).hide();
+      $(this).unbind('tap');
+    });
+    return false;
+  });
 }
 
 var initShare = function() {
