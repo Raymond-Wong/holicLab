@@ -29,7 +29,7 @@ var initShare = function() {
       menuList: ['menuItem:share:appMessage'] // 要显示的菜单项，所有menu项见附录3
     });
     // var link = 'http://' + window.location.host + '/user?action=invite&invited=' + uid;
-    var link = 'http://holicLab.applinzi.com/user?action=invite&invited=' + uid;
+    var link = 'http://holiclab.applinzi.com/user?action=invite&invited=' + uid;
     alert(window.location.host);
     link = encodeURIComponent(link);
     link = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a6f32cf9d22a289&redirect_uri=' + link + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
