@@ -94,6 +94,7 @@ def password(request):
     return HttpResponse(Response(m='/order?action=password&oid=%s' % str(order.oid)).toJson(), content_type="application/json")
   url = 'http://holicLab.applinzi.com/order?action=get&oid=' + request.GET.get('oid')
   img = qrcode.make(url)
+  print img
   img_buffer = cStringIO.StringIO()
   img.save(img_buffer, format='PNG')
   qrcode = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
