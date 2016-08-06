@@ -95,11 +95,11 @@ var cancelOrder = function() {
   showToast('正在取消订单...');
   setTimeout(function() {
     showToast('请勿关闭页面!');
+    post('/order/pay?action=cancel', {'oid' : oid}, function(msg) {
+      showToast(msg);
+      hideToast(1000);
+    });
   }, 1000);
-  post('/order/pay?action=cancel', {'oid' : oid}, function(msg) {
-    showToast(msg);
-    hideToast(1000);
-  });
 }
 
 var updatePriceAction = function() {
