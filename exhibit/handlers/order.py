@@ -91,7 +91,7 @@ def password(request):
     if len(order) == 0:
       return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前15分钟点击获取密码'))
     order = order[0]
-    return HttpResponse(Response(m='/order?action=password&oid=%s') % str(order.id).toJson(), content_type="application/json")
+    return HttpResponse(Response(m='/order?action=password&oid=%s') % str(order.oid).toJson(), content_type="application/json")
   url = 'http://holicLab.applinzi.com/order?action=get&oid=' + request.GET.get('oid')
   img = qrcode.make(url)
   img_buffer = cStringIO.StringIO()
