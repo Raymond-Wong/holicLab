@@ -36,7 +36,7 @@ var initShare = function() {
     wx.onMenuShareAppMessage({
       title: '来一次HolicLab吧，优惠拿去别客气！', // 分享标题
       desc: '首次预约立享五折，无需年卡，永不打烊，24小时不停摆只等你来练🏋', // 分享描述
-      'link: https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a6f32cf9d22a289&redirect_uri=http%3a%2f%2fholicLab.applinzi.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect', // 分享链接
+      link: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a6f32cf9d22a289&redirect_uri=http%3a%2f%2fholicLab.applinzi.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect', // 分享链接
       imgUrl: 'http://' + window.location.host + '/static/exhibit/res/user_invited.jpg', // 分享图标
       type: 'link', // 分享类型,music、video或link，不填默认为link
       dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
