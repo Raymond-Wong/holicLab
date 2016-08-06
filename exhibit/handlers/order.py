@@ -86,9 +86,9 @@ def update(request):
 def password(request):
   if request.method == 'POST':
     user = User.objects.get(invite_code=request.session['user'])
-    now = timezone.now()
-    now += timedelta(minutes=15)
-    order = user.order_set.filter(start_time__lte=now).filter(end_time__gt=now)
+    start = timezone.now()
+    end += start + timedelta(minutes=15)
+    order = user.order_set.filter(start_time__lte=end).filter(start_time__gte=start).filter(end_time__gt=start)
     if len(order) == 0:
       return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前15分钟点击获取密码').toJson(), content_type="application/json")
     order = order[0]
