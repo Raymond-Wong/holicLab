@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  if (wx != undefined) {
+  if (!wx) {
     wxConfig(['hideOptionMenu']);
     wx.ready(function() {
       wx.hideOptionMenu();
