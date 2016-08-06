@@ -1,10 +1,7 @@
 $(document).ready(function() {
-  wxConfig(['hideOptionMenu', 'showMenuItems']);
+  wxConfig(['hideOptionMenu']);
   wx.ready(function() {
     wx.hideOptionMenu();
-    wx.showMenuItems({
-      menuList: ['menuItem:share:appMessage'] // 要显示的菜单项，所有menu项见附录3
-    });
   });
 });
 
