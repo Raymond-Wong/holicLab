@@ -1,3 +1,11 @@
+$(document).ready(function() {
+  wxConfig(['hideOptionMenu', 'closeWindow']);
+  wx.ready(function() {
+    wx.hideOptionMenu();
+    wx.closeWindow();
+  });
+});
+
 var post = function(url, data, callback) {
   $.post(url, data, function(res) {
     if (res['code'] == '0') {
