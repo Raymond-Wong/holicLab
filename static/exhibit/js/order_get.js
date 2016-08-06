@@ -30,7 +30,9 @@ var initShare = function() {
     });
     var link = window.location.host + '/user?action=invite&invited=' + uid;
     link = encodeURIComponent(link);
+    alert(link);
     link = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a6f32cf9d22a289&redirect_uri=' + link + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+    alert(link);
     wx.onMenuShareAppMessage({
       title: '来一次HolicLab吧，优惠拿去别客气！', // 分享标题
       desc: '首次预约立享五折，无需年卡，永不打烊，24小时不停摆只等你来练🏋', // 分享描述
