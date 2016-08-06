@@ -85,6 +85,7 @@ def update(request):
 def password(request):
   if request.method == 'POST':
     user = User.objects.get(invite_code=request.session['user'])
+    print user
     now = timezone.now()
     now = timedelta(minutes=15)
     order = user.order_set.filter(start_time__lte=now).filter(end_time__gt=now)
