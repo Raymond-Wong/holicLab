@@ -87,7 +87,6 @@ def password(request):
     user = User.objects.get(invite_code=request.session['user'])
     now = timezone.now()
     now += timedelta(minutes=15)
-    print user.order_set.all()
     order = user.order_set.filter(start_time__lte=now).filter(end_time__gt=now)
     if len(order) == 0:
       return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前15分钟点击获取密码').toJson(), content_type="application/json")

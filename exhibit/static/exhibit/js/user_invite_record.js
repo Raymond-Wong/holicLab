@@ -55,8 +55,11 @@ var initRecord = function() {
 }
 
 var initShare = function() {
-  wxConfig(['onMenuShareAppMessage']);
+  wxConfig(['onMenuShareAppMessage', 'showMenuItems']);
   wx.ready(function() {
+    wx.showMenuItems({
+      menuList: ['menuItem:share:appMessage'] // 要显示的菜单项，所有menu项见附录3
+    });
     wx.onMenuShareAppMessage({
       title: '来一次HolicLab吧，优惠拿去别客气！', // 分享标题
       desc: '首次预约立享五折，无需年卡，永不打烊，24小时不停摆只等你来练🏋', // 分享描述
