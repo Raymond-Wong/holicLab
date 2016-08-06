@@ -11,6 +11,7 @@ from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
+from django.utils import timezone
 
 from holicLab.utils import *
 from holicLab.models import Order, Shop
@@ -22,12 +23,12 @@ def deleteOrders(orders):
 def list(request):
   if request.method == 'GET':
     state = request.GET.get('state', 'unfinished')
+    orders = Order.objects.all()
+    now = timezone.now()
     if state == 'finished':
-      orders = Order.objects.filter(state__in=["2","3","4"])
+      orders = orders.filter(end_time__lt=now)
     elif state == 'unfinished':
-      orders = Order.objects.filter(state="1")
-    else:
-      orders = Order.objects.all()
+      orders = orders.filter(end_time__gte=now)
     return render(request, 'admin/order.html', {'orders' : orders, 'activePage' : 'order'})
   orders = Order.objects.all()
   # 商店
