@@ -1,12 +1,3 @@
-$(document).ready(function() {
-  if (!wx) {
-    wxConfig(['hideOptionMenu']);
-    wx.ready(function() {
-      wx.hideOptionMenu();
-    });
-  }
-});
-
 var post = function(url, data, callback) {
   $.post(url, data, function(res) {
     if (res['code'] == '0') {
