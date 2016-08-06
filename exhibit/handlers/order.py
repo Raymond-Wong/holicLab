@@ -90,7 +90,7 @@ def password(request):
     order = user.order_set.filter(start_time__lte=now).filter(end_time__gt=now)
     print len(order)
     if len(order) == 0:
-      return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前15分钟点击获取密码'))
+      return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前15分钟点击获取密码').toJson(), content_type="application/json")
     order = order[0]
     return HttpResponse(Response(m='/order?action=password&oid=%s') % str(order.oid).toJson(), content_type="application/json")
   url = 'http://holicLab.applinzi.com/order?action=get&oid=' + request.GET.get('oid')
