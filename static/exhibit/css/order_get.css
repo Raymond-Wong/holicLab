@@ -179,3 +179,7 @@ ol.block {
   margin-right: 2em;
   margin-top: -1em;
 }
+
+.fullWidth {
+  width: 100%;
+}
