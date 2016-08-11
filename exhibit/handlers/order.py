@@ -149,8 +149,14 @@ def refund(request):
   # print res
   from os import environ
   remote = environ.get("APP_NAME", "")
-  tmpDir = sae.core.get_tmp_dir() if remote else sys.path[0] + '/tmpDir'
-  return HttpResponse(Response(m=tmpDir).toJson(), content_type="application/json")
+  remoteFilePath = os.path.join(remote, 'test.txt')
+  f = open(remoteFilePath, 'w')
+  f.write('test')
+  f.close()
+  f = open(remoteFilePath, 'r')
+  content = f.read()
+  r.close()
+  return HttpResponse(Response(m=content).toJson(), content_type="application/json")
 
 def cancelSuccess(order):
   pass
