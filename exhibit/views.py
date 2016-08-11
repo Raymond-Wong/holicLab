@@ -87,6 +87,8 @@ def orderHandler(request):
     return handlers.order.get(request)
   elif action == 'password':
     return handlers.order.password(request)
+  elif action == 'cancel':
+    return handlers.order.cancel(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 支付的处理类

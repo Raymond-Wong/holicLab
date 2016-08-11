@@ -104,5 +104,43 @@ def password(request):
   qrcodeImg = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcodeImg})
 
+def cancel(request):
+  # 获取待取消订单
+  order = Order.objects.get(oid=request.POST.get('oid'))
+  # 判断订单可取消金额
+  now = timezone.now()
+  refund = 0
+  hours = (order.start_time - now).total_seconds() / 60 / 60
+  if hours > 6:
+    refund = order.price
+  elif hours > 4:
+    refund = order.price / 2
+  if refund == 0:
+    cancelSuccess(order)
+  # 构造请求字典
+  params = {}
+  params['appid'] = settings.WX_APP_ID
+  params['mch_id'] = settings.WX_MCH_ID
+  params['device_info'] = 'WEB'
+  params['nonce_str'] = random_x_bit_code(20)
+  params['out_trade_no'] = order.oid
+  params['out_refund_no'] = order.oid
+  params['total_fee'] = 1 # order.price
+  params['refund_fee'] = 1 # refund
+  params['op_user_id'] = settings.WX_MCH_ID
+  # 生成签名以及构造xml
+  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
+  toSignStr += ('&key=' + settings.WX_MCH_KEY)
+  xml = dict2xml(ET.Element('xml'), params)
+  signNode = ET.SubElement(xml, 'sign')
+  signNode.text = md5(toSignStr).upper()
+  # 发送退款请求
+  msg = ET.tostring(xml, 'utf-8')
+  res = send_xml_ssl('https://api.mch.weixin.qq.com/secapi/pay/refund', msg)
+  res = ET.fromstring(smart_str(res))
+  res = xml2dict(res)
+  print res
+  return HttpResponse(Response(m="订单取消成功").toJson(), content_type="application/json")
 
-
+def cancelSuccess(order):
+  pass
