@@ -108,7 +108,7 @@ def password(request):
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcodeImg})
 
 def refund(request):
-  print '取消订单: ' + order.oid
+  print '取消订单: ' + request.POST.get('oid')
   # 获取待取消订单
   order = Order.objects.get(oid=request.POST.get('oid'))
   # 判断订单可取消金额
