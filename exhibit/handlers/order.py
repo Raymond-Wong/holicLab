@@ -121,6 +121,7 @@ def cancel(request):
     refund = order.price / 2
   if refund == 0:
     cancelSuccess(order)
+    return HttpResponse(Response(m="订单取消成功,四小时内订单不退款").toJson(), content_type="application/json")
   # 构造请求字典
   params = {}
   params['appid'] = settings.WX_APP_ID

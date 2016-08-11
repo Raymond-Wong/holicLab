@@ -4,7 +4,17 @@ $(document).ready(function() {
   getMetaInfo();
   initShare();
   initInviteAction();
+  initCancelAction();
 });
+
+var initCancelAction = function() {
+  $('#cancelBtn').on('tap', function() {
+    var oid = $(this).attr('oid');
+    post('/order?action=cancel', {'oid' : oid}, function(msg) {
+      alert(msg);
+    });
+  });
+}
 
 var getMetaInfo = function() {
   uid = $('#shareMask').attr('uid');
