@@ -5,10 +5,9 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
 import httplib
-import urllib, urllib2
+import urllib, urllib2, requests
 import random
 import re
-import pycurl
 from datetime import datetime, date
 from django.db import models
 try: 
@@ -91,28 +90,9 @@ def send_xml(url, data):
   return urllib2.urlopen(url, data, timeout=30).read()
 
 def send_xml_ssl(url, data):
-  """初始化curl对象"""
-  curl = pycurl.Curl()
-  self.curl.setopt(pycurl.SSL_VERIFYHOST, False)
-  self.curl.setopt(pycurl.SSL_VERIFYPEER, False)
-  """使用证书"""  
-  self.curl.setopt(pycurl.URL, url)  
-  self.curl.setopt(pycurl.TIMEOUT, second)  
-  #设置证书  
-  #使用证书：cert 与 key 分别属于两个.pem文件  
-  #默认格式为PEM，可以注释  
-  self.curl.setopt(pycurl.SSLKEYTYPE, "PEM")  
-  self.curl.setopt(pycurl.SSLKEY, WxPayConf_pub.SSLKEY_PATH)  
-  self.curl.setopt(pycurl.SSLCERTTYPE, "PEM")  
-  self.curl.setopt(pycurl.SSLCERT, WxPayConf_pub.SSLKEY_PATH)  
-  #post提交方式  
-  self.curl.setopt(pycurl.POST, True)  
-  self.curl.setopt(pycurl.POSTFIELDS, data)  
-  buff = StringIO()  
-  self.curl.setopt(pycurl.WRITEFUNCTION, buff.write)  
-  # 获取返回结果
-  self.curl.perform()  
-  return buff.getvalue()  
+  certPath = '/static/wechat/cert/apiclient_cert.pem'
+  keyPath = '/static/wechat/cert/apiclient_key.pem'
+  return requests.post(url, cert=(certPath, keyPath), data=data).text
 
 CODE_RANGE = [str(i) for i in xrange(0, 10)] + [chr(i) for i in xrange(97, 123)] + [chr(i) for i in xrange(65, 91)]
 # 随机生成一个x位的码
