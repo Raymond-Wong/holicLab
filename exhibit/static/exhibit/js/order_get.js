@@ -12,7 +12,14 @@ var initCancelAction = function() {
     var oid = $(this).attr('oid');
     showToast('正在取消订单中...');
     post('/order?action=refund', {'oid' : oid}, function(msg) {
-      alert(msg);
+      if (parseFloat(msg)) {
+        showToast('成功退款' + msg + '元');
+      } else {
+        showToast(msg);
+      }
+      setTimeout(function() {
+        window.location.href = window.location.href;
+      }, 1500);
     });
   });
 }
