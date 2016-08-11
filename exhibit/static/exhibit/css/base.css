@@ -65,3 +65,7 @@ body {
 .ui-loader {
   display: none;
 }
+
+.fullWidth {
+  width: 100%;
+}

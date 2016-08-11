@@ -108,8 +108,8 @@
   <div class="clear"></div>
 </div>
 <div class="btnBox">
-  {% if order.cancelable %}<div class="btn left cancelBtn">取消订单</div>{% endif %}
-  <div class="btn right shareBtn">邀请好友</div>
+  {% if order.cancelable %}<div class="btn left cancelBtn" disabled>取消订单</div>{% endif %}
+  <div class="btn right shareBtn{% if order.cancelable %}{% else %} fullWidth{% endif %}">邀请好友</div>
   <div class="clear"></div>
 </div>
 {% endblock %}
