@@ -72,6 +72,7 @@ def get(request):
     order.cancelable = False
   else:
     order.cancelable = True
+  print order.cancelable
   return render(request, 'exhibit/order_get.html', {'order' : order})
 
 def update(request):
