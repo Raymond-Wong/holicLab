@@ -90,8 +90,8 @@ def send_xml(url, data):
   return urllib2.urlopen(url, data, timeout=30).read()
 
 def send_xml_ssl(url, data):
-  certPath = 'http://holiclab-secure.stor.sinaapp.com/apiclient_cert.pem'
-  keyPath = 'http://holiclab-secure.stor.sinaapp.com/apiclient_key.pem'
+  certPath = '/data1/www/htdocs/898/holicLab/1/static/wechat/cert/apiclient_cert.pem'
+  keyPath = '/data1/www/htdocs/898/holicLab/1/static/wechat/cert/apiclient_key.pem'
   return requests.post(url, cert=(certPath, keyPath), data=data).text
 
 CODE_RANGE = [str(i) for i in xrange(0, 10)] + [chr(i) for i in xrange(97, 123)] + [chr(i) for i in xrange(65, 91)]
