@@ -47,8 +47,8 @@ def successOrder(order, status, time_end):
     order.state = "4"
     order.pay_time = datetime.strptime(time_end, '%Y%m%d%H%M%S')
   else:
-    order.state = "2"
-    return order.save()
+    order.delete()
+    return None
   # 2. 设置该用户为老用户
   user = order.user
   user.user_type = "2"

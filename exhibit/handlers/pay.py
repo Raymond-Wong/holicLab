@@ -211,8 +211,7 @@ def check(request):
 
 def cancel(request):
   order = Order.objects.get(oid=request.POST.get('oid'))
-  order.state = "2"
-  order.save()
+  order.delete()
   return HttpResponse(Response(m='取消订单成功').toJson(), content_type="application/json")
 
 # 传入一个order对象，获取其价格
