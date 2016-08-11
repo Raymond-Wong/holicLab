@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block page %}
+{% include 'exhibit/widgets/toast.html' %}
 <div id="shareMask" uid={{ order.user.invite_code }}>
   <img src="/static/exhibit/icon/share.jpg" />
 </div>
