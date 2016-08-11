@@ -68,11 +68,10 @@ def get(request):
   if 'coach' in order.services:
     order.coach = True
   order.price /= 10.0
-  if order.state == "2" or order.start_time > timezone.now():
+  if order.state == "2" or order.start_time <= timezone.now():
     order.cancelable = False
   else:
     order.cancelable = True
-  print order.cancelable
   return render(request, 'exhibit/order_get.html', {'order' : order})
 
 def update(request):
