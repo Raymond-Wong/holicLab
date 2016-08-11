@@ -3,6 +3,7 @@ import sys
 sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
+import os
 import json
 import time
 import qrcode
