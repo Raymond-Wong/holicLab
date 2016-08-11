@@ -146,7 +146,7 @@ def refund(request):
   print res
   if res.has_key('return_code') and res['return_code'] == 'SUCCESS' and res.has_key('result_code') and res['result_code'] == 'SUCCESS':
     cancelSuccess(order)
-    return HttpResponse(Response(m=float(res['coupon_refund_fee']) / 10 / 10).toJson(), content_type="application/json")
+    return HttpResponse(Response(m=float(res['refund_fee']) / 10 / 10).toJson(), content_type="application/json")
   return HttpResponse(Response(m='退款失败，请联系工作人员').toJson(), content_type="application/json")
 
 def cancelSuccess(order):
