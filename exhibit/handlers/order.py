@@ -23,6 +23,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.utils import timezone
 from django.utils.encoding import smart_str
+from django.db.models import F
 
 import holicLab.settings as settings
 from holicLab.utils import *
@@ -110,7 +111,6 @@ def password(request):
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcodeImg})
 
 def refund(request):
-  print '取消订单: ' + request.POST.get('oid')
   # 获取待取消订单
   order = Order.objects.get(oid=request.POST.get('oid'))
   # 判断订单可取消金额
@@ -121,10 +121,6 @@ def refund(request):
     refund = order.price
   elif hours > 4:
     refund = order.price / 2
-  if refund == 0:
-    cancelSuccess(order)
-    return HttpResponse(Response(m="订单取消成功,四小时内订单不退款").toJson(), content_type="application/json")
-  print refund
   # 构造请求字典
   params = {}
   params['appid'] = settings.WX_APP_ID
@@ -148,7 +144,45 @@ def refund(request):
   res = ET.fromstring(smart_str(res))
   res = xml2dict(res)
   print res
-  return HttpResponse(Response(m='写入临时文件成功').toJson(), content_type="application/json")
+  if res.has_key('return_code') and res['return_code'] == 'SUCCESS' and res.has_key('result_code') and res['result_code'] == 'SUCCESS':
+    cancelSuccess(order)
+    return HttpResponse(Response(m=refund).toJson(), content_type="application/json")
+  return HttpResponse(Response(m='退款失败，请联系工作人员').toJson(), content_type="application/json")
 
 def cancelSuccess(order):
-  pass
+  user = order.user
+  # 1. 修改订单状态
+  order.state = "2"
+  # 如果该用户除了当前订单没有其他订单
+  if len(user.order_set.filter(state="4")) == 0:
+    # 2. 设置该用户为新用户
+    user.user_type = "1"
+    user.save()
+    # 3. 减少邀请该用户的用户的抵扣券
+    inviteUser = user.invited_by
+    inviteUser.balance = F('balance') - 1
+    inviteUser.save()
+  # 4. 修改订单涉及课程或者场地的占用人次
+  if order.order_type == "1":
+    shop = order.shop
+    duration = int((order.end_time - order.start_time).total_seconds()) / 60
+    for period in xrange(duration / 30):
+      start_time = order.start_time + timedelta(seconds=60*30*period)
+      timeBucket = None
+      try:
+        timeBucket = Time_Bucket.objects.filter(shop=shop).get(start_time=start_time)
+      except:
+        timeBucket = Time_Bucket()
+        timeBucket.start_time = start_time
+        timeBucket.shop = order.shop
+        timeBucket.occupation = 0
+        timeBucket.save()
+      timeBucket.occupation = F('occupation') - 1
+      timeBucket.save()
+  else:
+    course = order.course
+    bookableTime = Bookable_Time.objects.filter(course=course).get(start_time=order.start_time)
+    bookableTime.occupation = F('occupation') - 1
+    bookableTime.save()
+  # 保存对象
+  order.save()
