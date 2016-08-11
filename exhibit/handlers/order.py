@@ -107,7 +107,8 @@ def password(request):
   qrcodeImg = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcodeImg})
 
-def cancel(request):
+def refund(request):
+  print '取消订单: ' + order.oid
   # 获取待取消订单
   order = Order.objects.get(oid=request.POST.get('oid'))
   # 判断订单可取消金额
@@ -121,6 +122,7 @@ def cancel(request):
   if refund == 0:
     cancelSuccess(order)
     return HttpResponse(Response(m="订单取消成功,四小时内订单不退款").toJson(), content_type="application/json")
+  print refund
   # 构造请求字典
   params = {}
   params['appid'] = settings.WX_APP_ID
