@@ -31,7 +31,7 @@
             <div class="shopName ellipsis">{{ shop.name }}</div>
             <div class="location ellipsis">{{ shop.location }}</div>
             <div class="lastModifiedTime ellipsis">最后更新时间:<font>{{ shop.last_modified_time | date:"Y-m-d H:i:s" }}</font></div>
-            <div class="calendarBtn btn">修改日历</div>
+            <div class="calendarBtn btn" sid="{{ shop.id }}">修改日历</div>
           </div>
           <div class="clear"></div>
         </a>

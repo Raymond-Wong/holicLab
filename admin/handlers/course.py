@@ -122,28 +122,45 @@ def update(request):
     cid = request.GET.get('cid', None)
     return render(request, 'admin/course_update.html', {'activePage' : 'content', 'course' : Course.objects.get(id=int(cid))})
   # 检查数据合法性
-  validate = isValidate(request, {'sid' : False, 'tags' : False}, True)
+  validate = isValidate(request, {'sid' : False, 'tags' : False}, False)
   if not validate[0]:
     return HttpResponse(validate[1], content_type='application/json')
   cid = int(request.POST.get('cid', None))
   course = Course.objects.get(id=cid)
+  # 更新名称
   name = request.POST.get('name', None)
-  course.name = name
+  course.name = name if name else course.name
+  # 更新描述
   description = request.POST.get('description', None)
-  tags = request.POST.get('tags', '')
-  duration = request.POST.get('duration', '一小时')
-  course.description = description
-  price = int(request.POST.get('price', None))
-  course.price = price
-  capacity = int(request.POST.get('capacity'))
-  course.capacity = capacity
-  course.cover = request.POST.get('cover')
-  course.cover_type = request.POST.get('cover_type')
-  course.notice = request.POST.get('notice')
-  course.coach_description = request.POST.get('coach_description')
-  course.coach_cover = request.POST.get('coach_cover')
-  course.tags = tags
-  course.duration = duration
+  course.description = description if description else course.description
+  # 更新价格
+  price = request.POST.get('price', None)
+  course.price = int(price) if price else course.price
+  # 更新容量
+  capacity = request.POST.get('capacity')
+  course.capacity = capacity if capacity else course.capacity
+  # 更新封面
+  cover = request.POST.get('cover', None)
+  course.cover = cover if cover else course.cover
+  # 更新封面类型
+  cover_type = request.POST.get('cover_type', None)
+  course.cover_type = cover_type if cover_type else course.cover_type
+  # 更新提醒
+  notice = request.POST.get('notice', None)
+  course.notice = notice if notice else course.notice
+  # 更新教练描述
+  coach_description = request.POST.get('coach_description', None)
+  course.coach_description = coach_description if coach_description else course.coach_description
+  # 更新教练封面
+  coach_cover = request.POST.get('coach_cover', None)
+  course.coach_cover = coach_cover if coach_cover else course.coach_cover
+  # 更新课程标签
+  tags = request.POST.get('tags', None)
+  course.tags = tags if tags else course.tags
+  # 更新课程长度
+  duration = request.POST.get('duration', None)
+  course.duration = duration if duration else course.duration
+  # 更新课程可预约时间
   bookable_time = json.loads(request.POST.get('bookable_time'))
   remain_bookable_time = []
   for time in bookable_time:
@@ -247,3 +264,9 @@ def isValidate(request, required, defaultRequired):
     except:
       return (False, Response(c=5, m='课程容量必须为数值').toJson())
   return (True, None)
+
+def calendar(request):
+  if request.method == 'GET':
+    course = Course.objects.get(id=request.GET.get('cid'))
+    return render(request, 'admin/course_calendar.html', {'activePage' : 'content', 'course' : course})
+  raise Http404

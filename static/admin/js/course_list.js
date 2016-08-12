@@ -6,7 +6,8 @@ $(document).ready(function() {
 
 var calendarAction = function() {
   $('.calendarBtn').click(function() {
-    window.location.href = $(this).parent().parent().attr('href') + '#bookStepBox';
+    window.location.href = '/admin/course?action=calendar&cid=' + $(this).attr('cid');
+    // window.location.href = $(this).parent().parent().attr('href') + '#bookStepBox';
     return false;
   });
 }

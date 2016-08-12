@@ -30,6 +30,8 @@ def indexHandler(request):
 @handler
 def loginHandler(request):
   if request.method == 'GET':
+    if request.session.has_key('logined') and request.session['logined']:
+      return redirect('/admin/shop?action=list')
     return render(request,'admin/login.html')
   else:
     username = request.POST.get('account', None)
@@ -65,10 +67,11 @@ def shopHandler(request):
     return handlers.shop.release(request)
   elif action == 'get':
     return handlers.shop.get(request)
+  elif action == 'calendar':
+    return handlers.shop.calendar(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 课程的处理类
-@handler
 @login_required
 def courseHandler(request):
   action = request.GET.get('action', None)
@@ -84,6 +87,8 @@ def courseHandler(request):
     return handlers.course.release(request)
   elif action == 'get':
     return handlers.course.get(request)
+  elif action == 'calendar':
+    return handlers.course.calendar(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 会员处理类

@@ -182,3 +182,9 @@ def get(request):
   except Exception, e:
     return HttpResponse(Response(c=-3, m='指定删除门店不存在').toJson(), content_type='application/json')
   return HttpResponse(Response(m=shop.toJSON()).toJson(), content_type='application/json')
+
+def calendar(request):
+  if request.method == 'GET':
+    shop = Shop.objects.get(id=request.GET.get('sid'))
+    return render(request, 'admin/shop_calendar.html', {'activePage' : 'content', 'shop' : shop})
+  raise Http404

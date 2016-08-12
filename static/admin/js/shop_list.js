@@ -6,7 +6,8 @@ $(document).ready(function() {
 
 var calendarAction = function() {
   $('.calendarBtn').click(function() {
-    window.location.href = $(this).parent().parent().attr('href') + '#bookStepBox';
+    // window.location.href = $(this).parent().parent().attr('href') + '#bookStepBox';
+    window.location.href = '/admin/shop?action=calendar&sid=' + $(this).attr('sid');
     return false;
   });
 }
