@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  // wxConfig(['hideOptionMenu']);
-  // wx.ready(function() {
-  //   wx.hideOptionMenu();
-  // });
+  wxConfig(['hideAllNonBaseMenuItem']);
+  wx.ready(function() {
+    wx.hideAllNonBaseMenuItem();
+  });
 });
