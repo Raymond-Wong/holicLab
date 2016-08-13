@@ -27,6 +27,7 @@ var getMetaInfo = function() {
 }
 
 var initRecord = function() {
+  alert(balance);
   if (balance > 0) {
     $('.stepLine.firstStepLine').removeClass('activeStepLine');
   }

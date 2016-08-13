@@ -15,7 +15,7 @@ import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.o
 
 def testHandler(request):
   user = {}
-  user['balance'] = 4
+  user['balance'] = 10
   return render(request, 'exhibit/user_invite_record.html', {'user' : user})
 
 # 微信端入口
