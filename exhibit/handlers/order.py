@@ -200,8 +200,8 @@ def belongTo(order, user):
 def success(request):
   order = Order.objects.get(oid=request.GET.get('oid'))
   user = order.user
-  # user.balance = 0
-  # for u in User.objects.filter(invited_by=user):
-  #   if len(u.order_set.filter(state=4)) > 0:
-  #     user.balance += 1
+  user.balance = 0
+  for u in User.objects.filter(invited_by=user):
+    if len(u.order_set.filter(state=4)) > 0:
+      user.balance += 1
   return render(request, 'exhibit/order_success.html', {'user' : user})
