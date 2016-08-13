@@ -123,9 +123,9 @@ def refund(request):
   now = timezone.now()
   refund = 0
   hours = int((order.start_time - now).total_seconds()) / 60 / 60
-  if order.type == "1" and hours < 4:
+  if order.order_type == "1" and hours < 4:
     refund = order.price
-  elif order.type == "2" and hours < 6:
+  elif order.order_type == "2" and hours < 6:
     refund = order.price
   # 构造请求字典
   params = {}
