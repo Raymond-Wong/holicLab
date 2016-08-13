@@ -10,6 +10,5 @@ $(document).ready(function() {
     wx.hideMenuItems({
       menuList: list,
     });
-    alert('asdf');
   });
 });
