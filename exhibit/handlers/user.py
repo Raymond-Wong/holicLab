@@ -109,7 +109,7 @@ def verify(request):
 
 def invite(request):
   if request.method == 'POST':
-    return Http404
+    raise Http404
   invite_code = request.GET.get('invited', None)
   # 获取当前用户
   user = request.session['user']
