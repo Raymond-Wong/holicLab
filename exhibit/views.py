@@ -15,9 +15,8 @@ import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.o
 
 def testHandler(request):
   user = {}
-  user['gender'] = 'm'
-  user['role'] = '1'
-  return render(request, 'exhibit/home.html', {'msg' : '你已被邀请，邀请机制仅限新用户，赶快邀请好友来健身吧！'})
+  user['balance'] = 4
+  return render(request, 'exhibit/user_invite_record.html', {'user' : user})
 
 # 微信端入口
 @handler
