@@ -50,8 +50,8 @@ def add(request):
     return HttpResponse(Response(c=1, m="门店名称不得超过50字").toJson(), content_type='application/json')
   if len(location) > 200:
     return HttpResponse(Response(c=2, m="地址长度不得超过200字").toJson(), content_type='application/json')
-  if len(phone) > 12:
-    return HttpResponse(Response(c=3, m="电话长度不得超过12字").toJson(), content_type='application/json')
+  # if len(phone) > 12:
+  #   return HttpResponse(Response(c=3, m="电话长度不得超过12字").toJson(), content_type='application/json')
   if len(password) != 6:
     return HttpResponse(Response(c=4, m="场地密码长度必须为6位").toJson(), content_type='application/json')
   try:

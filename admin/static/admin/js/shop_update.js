@@ -187,7 +187,7 @@ var submitAction = function() {
     }
     // 获取联系方式
     params['phone'] = $('input[name="phone"]').val();
-    if (params['phone'].length <= 0 || params['phone'].length > 12) {
+    if (params['phone'].length <= 0) {
       topAlert('请输入正确的联系电话', 'error');
       return false;
     }

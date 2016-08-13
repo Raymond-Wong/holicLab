@@ -63,7 +63,7 @@ class Shop(models.Model):
   last_modified_time = models.DateTimeField(auto_now=True)
   state = models.CharField(max_length=10, choices=SHOP_STATE, default=1)
   password = models.CharField(max_length=6, blank=True)
-  phone = models.CharField(max_length=11, default='')
+  phone = models.CharField(max_length=30, default='')
   def toJSON(self):
     import json
     import utils

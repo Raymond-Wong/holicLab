@@ -340,7 +340,7 @@ CREATE TABLE `holicLab_shop` (
   `last_modified_time` datetime NOT NULL,
   `state` varchar(10) NOT NULL,
   `password` varchar(6) NOT NULL,
-  `phone` varchar(11) NOT NULL,
+  `phone` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -450,4 +450,4 @@ CREATE TABLE `wechat_ticket` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-28 15:07:22
+-- Dump completed on 2016-08-13 23:35:59
