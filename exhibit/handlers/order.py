@@ -123,10 +123,10 @@ def refund(request):
   now = timezone.now()
   refund = 0
   hours = int((order.start_time - now).total_seconds()) / 60 / 60
-  if hours > 6:
+  if order.type == "1" and hours < 4:
     refund = order.price
-  elif hours > 4:
-    refund = order.price / 2
+  elif order.type == "2" and hours < 6:
+    refund = order.price
   # 构造请求字典
   params = {}
   params['appid'] = settings.WX_APP_ID
