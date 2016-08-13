@@ -199,4 +199,4 @@ def belongTo(order, user):
 
 def success(request):
   order = Order.objects.get(oid=request.GET.get('oid'))
-  return render(request, 'exhibit/order_success.html', {user : order.user})
+  return render(request, 'exhibit/order_success.html', {'user' : order.user})
