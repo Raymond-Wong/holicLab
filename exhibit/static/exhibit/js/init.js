@@ -7,9 +7,9 @@ $(document).ready(function() {
         window.location.href.indexOf('/user?action=invite') < 0) {
       list.push('menuItem:share:appMessage');
     }
-    alert('asdf');
     wx.hideMenuItems({
       menuList: list,
     });
+    alert('asdf');
   });
 });
