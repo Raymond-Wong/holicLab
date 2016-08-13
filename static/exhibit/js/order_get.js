@@ -41,7 +41,7 @@ var initInviteAction = function() {
 }
 
 var initShare = function() {
-  wxConfig(['onMenuShareAppMessage', 'showMenuItems']);
+  wxConfig(['showMenuItems', 'onMenuShareAppMessage',]);
   wx.ready(function() {
     wx.showMenuItems({
       menuList: ['menuItem:share:appMessage'] // 要显示的菜单项，所有menu项见附录3
