@@ -55,10 +55,10 @@ var initRecord = function() {
 }
 
 var initShare = function() {
-  wxConfig(['onMenuShareAppMessage', 'showMenuItems']);
+  wxConfig(['onMenuShareAppMessage']);
   wx.ready(function() {
-    wx.showMenuItems({
-      menuList: ['menuItem:share:appMessage'] // 要显示的菜单项，所有menu项见附录3
+    // wx.showMenuItems({
+    //   menuList: ['menuItem:share:appMessage'] // 要显示的菜单项，所有menu项见附录3
     });
     var link = 'http://' + window.location.host + '/user?action=invite&invited=' + uid;
     link = encodeURIComponent(link);
