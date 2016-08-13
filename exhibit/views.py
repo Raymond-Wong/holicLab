@@ -89,6 +89,8 @@ def orderHandler(request):
     return handlers.order.password(request)
   elif action == 'refund':
     return handlers.order.refund(request)
+  elif action == 'success':
+    return handlers.order.success(request)
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 支付的处理类

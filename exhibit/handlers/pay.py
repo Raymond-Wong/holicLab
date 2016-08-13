@@ -179,7 +179,7 @@ def pre_course_order(request):
 def check(request):
   order = Order.objects.get(oid=request.POST.get('oid'))
   if order.state != "1":
-    return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
+    return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=success&oid=%s' % order.oid}).toJson(), content_type="application/json")
   user = User.objects.get(invite_code=request.session['user'])
   params = {}
   params['appid'] = settings.WX_APP_ID
@@ -204,7 +204,7 @@ def check(request):
     return HttpResponse(Response(m={'status' : 'RETRY', 'desc' : '请耐心等候...', 'url' : ''}).toJson(), content_type="application/json")
   elif res['trade_state'] == 'SUCCESS':
     successOrder(order, res['trade_state'], res['time_end'])
-    return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=get&oid=%s' % order.oid}).toJson(), content_type="application/json")
+    return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=success&oid=%s' % order.oid}).toJson(), content_type="application/json")
   successOrder(order, res['trade_state'])
   # 如果订单状态为失败，则告知失败
   return HttpResponse(Response(m={'status' : 'FAILED', 'desc' : '请联系工作人员', 'url' : ''}).toJson(), content_type="application/json")

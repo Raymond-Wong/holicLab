@@ -196,3 +196,7 @@ def cancelSuccess(order):
 # 判断订单order是否由用户user发起
 def belongTo(order, user):
   return order.user == user
+
+def success(request):
+  order = Order.objects.get(oid=request.GET.get('oid'))
+  return render(request, 'exhibit/order_success.html', {user : order.user})

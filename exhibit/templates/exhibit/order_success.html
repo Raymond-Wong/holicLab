@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block page %}
+<div class="infoLine hide" uid='{{ user.id }}' balance='{{ user.balance }}'></div>
 <div class="successFlag">
   <span class="glyphicon glyphicon-ok"></span>
 </div>
@@ -34,4 +35,5 @@
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript" src="/static/exhibit/js/order_success.js"></script>
 {% endblock %}
