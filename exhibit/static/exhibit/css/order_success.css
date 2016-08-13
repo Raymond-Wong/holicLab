@@ -63,7 +63,7 @@
   color: #b2b2b2;
 }
 
-.inviteBtn {
+.inviteBtn, .inviteBtn:visited, .inviteBtn:active, .inviteBtn:focus, .inviteBtn:hover {
   font-size: 18px;
   background-color: #f5a623;
   color: white;
