@@ -238,6 +238,8 @@ def getOrderPrice(newOrder, duration):
     coupon = duration / 60
     coupon = coupon if user.balance > coupon else user.balance
     newOrder.price = newOrder.price - 100 * coupon
+  # 如果优惠后的价格小于0，则为0
+  newOrder.price = 0 if newOrder.price < 0  else newOrder.price
   return newOrder
 
 def getPrePayId(order, request):
