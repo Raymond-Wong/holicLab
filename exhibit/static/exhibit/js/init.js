@@ -5,9 +5,9 @@ $(document).ready(function() {
                 'menuItem:editTag', 'menuItem:delete', 'menuItem:copyUrl', 'menuItem:originPage', 'menuItem:readMode', 'menuItem:openWithQQBrowser', 'menuItem:openWithSafari', 'menuItem:share:email', 'menuItem:share:brand'];
     if (window.location.href.indexOf('/order?action=get') < 0 &&
         window.location.href.indexOf('/user?action=invite') < 0) {
-      alert('不可转发');
       list.push('menuItem:share:appMessage');
     }
+    alert('asdf');
     wx.hideMenuItems({
       menuList: list,
     });
