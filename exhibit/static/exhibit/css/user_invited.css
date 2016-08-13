@@ -45,7 +45,7 @@
   color: white;
 }
 
-.invitedWindowBtn, .invitedWindowBtn:visited {
+.invitedWindowBtn, .invitedWindowBtn:visited, .invitedWindowBtn:focus, .invitedWindowBtn:hover, .invitedWindowBtn:active {
   display: block;
   width: 100%;
   height: 3em;
