@@ -9,6 +9,7 @@ $(document).ready(function() {
 var getMetaInfo = function() {
   var line = $('.infoLine');
   balance = parseInt(line.attr('balance'));
+  alert(balance);
   uid = line.attr('uid');
   line.remove();
 }
