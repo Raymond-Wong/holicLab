@@ -306,7 +306,9 @@ def successOrder(order, status, time_end):
   # 3. 设置该用户为老用户
   user.user_type = "2"
   # 2.1 更新该用户的优惠券数量
+  priceBK = order.price
   price, usedCoupon = getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
+  order.price = priceBK
   user.balance = F('balance') - usedCoupon
   user.balance = F('balance') if F('balance') >= 0 else 0
   # 4. 修改订单涉及课程或者场地的占用人次
