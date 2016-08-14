@@ -244,7 +244,7 @@ def getOrderPrice(newOrder, duration):
         newOrder.price, usedCoupon = getCouponPrice(newOrder.price, user.balance, duration)
   elif sinceShopRelease.days / 30.0 <= 2:
     # 如果当前订单离商店发布时间在两个月内
-    if user.user_type == "1":
+    if str(user.user_type) == "1":
       newOrder.price = newOrder.price / 2
   else:
     # 如果当前订单离商店发布时间三个月以上，则只能根据balance进行减免
