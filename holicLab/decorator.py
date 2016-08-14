@@ -6,6 +6,7 @@ sys.setdefaultencoding('utf-8')
 
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.utils import timezone
 from utils import Response
 
 import exhibit.views
@@ -19,7 +20,7 @@ def handler(view):
       info = sys.exc_info()
       info = str(info[1]).decode("unicode-escape")
       print e
-      return render(request, 'exhibit/error.html', {'msg' : info})
+      return render(request, 'exhibit/error.html', {'msg' : info, 'time' : timezone.now()})
       # return HttpResponse(Response(c=-1, m=info).toJson(), content_type='application/json')
   return unKnownErr
 
