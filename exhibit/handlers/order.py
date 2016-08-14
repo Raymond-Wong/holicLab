@@ -27,7 +27,7 @@ from django.db.models import F
 
 import holicLab.settings as settings
 from holicLab.utils import *
-from holicLab.models import Order, Shop, User, Course, Bookable_Time
+from holicLab.models import Order, Shop, User, Course, Bookable_Time, Time_Bucket
 
 def list(request):
   invite_code = request.session['user']
