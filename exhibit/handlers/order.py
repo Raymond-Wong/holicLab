@@ -69,7 +69,10 @@ def get(request):
     order.food = True
   if 'coach' in order.services:
     order.coach = True
-  order.price /= 10.0
+  if order.price % 10 == 0:
+    order.price /= 10
+  else:
+    order.price /= 10.0
   if order.state == "2" or order.start_time <= timezone.now():
     order.cancelable = False
   elif not belongTo(order, User.objects.get(invite_code=request.session['user'])):

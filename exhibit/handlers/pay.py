@@ -223,7 +223,6 @@ def getOrderPrice(newOrder, duration):
   else:
     newOrder.price = newOrder.course.price
   newOrder.price = float(newOrder.price)
-  print newOrder.price
   for service in json.loads(newOrder.services):
     if service == 'food':
       newOrder.price += 500
