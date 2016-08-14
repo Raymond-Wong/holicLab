@@ -237,7 +237,7 @@ def getOrderPrice(newOrder, duration):
   sinceShopRelease = timezone.now().date() - newOrder.shop.releaseDate
   if sinceShopRelease.days / 30.0 <= 1:
     # 如果当前订单离商店发布时间在一个月内
-    if user.user_type == "1":
+    if str(user.user_type) == "1":
       newOrder.price = newOrder.price / 2
       # 如果用户是被邀请的，则每一小时可以减免十元
       if user.invited_by != None:
