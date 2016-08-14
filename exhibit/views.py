@@ -73,7 +73,6 @@ def userHandler(request):
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 订单的处理类
-@handler
 @wx_logined
 @verify_required
 def orderHandler(request):
@@ -93,7 +92,6 @@ def orderHandler(request):
   return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
 
 # 支付的处理类
-@handler
 @wx_logined
 @verify_required
 def payHandler(request):
