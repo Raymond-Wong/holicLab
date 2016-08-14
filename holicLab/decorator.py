@@ -15,10 +15,12 @@ def handler(view):
   def unKnownErr(request, *args, **kwargs):
     try:
       return view(request, *args, **kwargs)
-    except:
+    except Exception, e:
       info = sys.exc_info()
       info = str(info[1]).decode("unicode-escape")
-      return HttpResponse(Response(c=-1, m=info).toJson(), content_type='application/json')
+      print e
+      return render(request, 'exhibit/error.html', {'msg' : info})
+      # return HttpResponse(Response(c=-1, m=info).toJson(), content_type='application/json')
   return unKnownErr
 
 def login_required(view):
