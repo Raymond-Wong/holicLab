@@ -234,7 +234,7 @@ def getOrderPrice(newOrder, duration):
   user = newOrder.user
   # 使用的优惠券数量
   usedCoupon = 0
-  sinceShopRelease = timezone.now().date() - newOrder.shop.releaseTime
+  sinceShopRelease = timezone.now().date() - newOrder.shop.releaseDate
   if sinceShopRelease.days / 30.0 <= 1:
     # 如果当前订单离商店发布时间在一个月内
     if user.user_type == "1":
