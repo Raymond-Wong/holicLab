@@ -45,7 +45,7 @@ def add(request):
     bookable_time = Bookable_Time.objects.get(id=request.POST.get('bid', None))
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
-  newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
+  newOrder, tmpCoupon = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
   # 获取prepayid
   prepay_id = getPrePayId(newOrder, request)
   if not prepay_id[0]:
@@ -81,8 +81,8 @@ def price(request):
     bookable_time = Bookable_Time.objects.get(id=request.POST.get('bid', None))
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
-  newOrder = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
-  return HttpResponse(Response(m=newOrder.price).toJson(), content_type="application/json")
+  newOrder, tmpCoupon = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
+  return HttpResponse(Response(m=(newOrder.price / 10.0)).toJson(), content_type="application/json")
 
 def pre(request):
   order_type = request.GET.get('type', None)
@@ -231,16 +231,34 @@ def getOrderPrice(newOrder, duration):
       newOrder.price += 1000
   newOrder.price = newOrder.people_amount * newOrder.price
   # 计算优惠
+  # 计算当前下单时间离商店发布时间的差
   user = newOrder.user
-  if len(user.order_set.filter(state=4)) == 0:
-    newOrder.price = newOrder.price / 2
+  # 使用的优惠券数量
+  usedCoupon = 0
+  sinceShopRelease = timezone.now().date() - newOrder.shop.releaseTime
+  if sinceShopRelease.days / 30.0 <= 1:
+    # 如果当前订单离商店发布时间在一个月内
+    if user.user_type == "1":
+      newOrder.price = newOrder.price / 2
+      # 如果用户是被邀请的，则每一小时可以减免十元
+      if user.invited_by != None:
+        newOrder.price, usedCoupon = getCouponPrice(newOrder.price, user.balance, duration)
+  elif sinceShopRelease.days / 30.0 <= 2:
+    # 如果当前订单离商店发布时间在两个月内
+    if user.user_type == "1":
+      newOrder.price = newOrder.price / 2
   else:
-    coupon = duration / 60
-    coupon = coupon if user.balance > coupon else user.balance
-    newOrder.price = newOrder.price - 100 * coupon
+    # 如果当前订单离商店发布时间三个月以上，则只能根据balance进行减免
+    newOrder.price, usedCoupon = getCouponPrice(newOrder.price, user.balance, duration)
   # 如果优惠后的价格小于0，则为0
   newOrder.price = 0 if newOrder.price < 0  else newOrder.price
-  return newOrder
+  return newOrder, usedCoupon
+
+def getCouponPrice(price, balance, duration):
+  coupon = duration / 60
+  coupon = coupon if balance > coupon else balance
+  price = price - 100 * coupon
+  return price, coupon
 
 def getPrePayId(order, request):
   user = User.objects.get(invite_code=request.session['user'])

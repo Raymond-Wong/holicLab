@@ -162,11 +162,12 @@ def cancelSuccess(order):
   # 如果该用户除了当前订单没有其他订单
   if len(user.order_set.filter(state="4")) == 0:
     # 2. 设置该用户为新用户
-    user.user_type = "1"
-    user.save()
+    # user.user_type = "1"
+    # user.save()
     # 3. 减少邀请该用户的用户的抵扣券
     inviteUser = user.invited_by
     inviteUser.balance = F('balance') - 1
+    inviteUser.balance = F('balance') if F('balance') >= 0 else 0
     inviteUser.save()
   # 4. 修改订单涉及课程或者场地的占用人次
   if order.order_type == "1":
@@ -202,6 +203,6 @@ def success(request):
   user = order.user
   user.balance = 0
   for u in User.objects.filter(invited_by=user):
-    if len(u.order_set.filter(state=4)) > 0:
+    if u.user_type == "2":
       user.balance += 1
   return render(request, 'exhibit/order_success.html', {'user' : user})

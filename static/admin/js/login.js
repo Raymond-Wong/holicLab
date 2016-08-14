@@ -1,6 +1,4 @@
 $(document).ready(function() {
-  // 监听回车
-  listenReturn();
   $('#submitBtn').click(function() {
   	var url="/admin/login";
   	var account = $('input[name="account"]').val();
@@ -18,6 +16,8 @@ $(document).ready(function() {
       window.location.href=msg;
     })
   });
+  // 监听回车
+  listenReturn();
 });
 
 var listenReturn = function() {

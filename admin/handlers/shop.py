@@ -166,6 +166,7 @@ def release(request):
   except Exception, e:
     return HttpResponse(Response(c=-3, m='指定删除门店不存在').toJson(), content_type='application/json')
   shop.state = 2
+  shop.releaseDate = timezone.now().date()
   shop.save()
   return HttpResponse(Response(m='发布成功').toJson(), content_type='application/json')
 

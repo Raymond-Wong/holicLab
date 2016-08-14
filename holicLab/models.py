@@ -64,6 +64,7 @@ class Shop(models.Model):
   state = models.CharField(max_length=10, choices=SHOP_STATE, default=1)
   password = models.CharField(max_length=6, blank=True)
   phone = models.CharField(max_length=30, default='')
+  releaseDate = models.DateField(null=True)
   def toJSON(self):
     import json
     import utils

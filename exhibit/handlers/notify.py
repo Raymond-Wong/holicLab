@@ -16,6 +16,7 @@ from django.db.models import F
 
 from holicLab.utils import *
 from holicLab.models import Order, Shop, User, Course, Bookable_Time, Time_Bucket
+from pay import getOrderPrice
 
 def notify(request):
   # 待返回信息
@@ -49,14 +50,18 @@ def successOrder(order, status, time_end):
   else:
     order.delete()
     return None
-  # 2. 设置该用户为老用户
   user = order.user
-  user.user_type = "2"
-  # 3. 如果该用户第一次下单且是被邀请用户的话，邀请他的用户可以获得优惠券
-  if user.invited_by and len(user.order_set.filter(state="4")) == 1:
-    invite_user = User.objects.get(invite_code=user.invited_by)
+  # 2. 如果该用户是新用户且是被邀请用户的话，邀请他的用户可以获得优惠券
+  if user.invited_by and user.user_type == "1":
+    invite_user = user.invited_by
     invite_user.balance = F('balance') + 1
     invite_user.save()
+  # 3. 设置该用户为老用户
+  user.user_type = "2"
+  # 2.1 更新该用户的优惠券数量
+  price, usedCoupon = getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
+  user.balance = F('balance') - usedCoupon
+  user.balance = F('balance') if F('balance') >= 0 else 0
   # 4. 修改订单涉及课程或者场地的占用人次
   if order.order_type == "1":
     shop = order.shop

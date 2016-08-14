@@ -20,7 +20,7 @@ def detail(request):
   user = User.objects.get(invite_code=request.session['user'])
   user.balance = 0
   for u in User.objects.filter(invited_by=user):
-    if len(u.order_set.filter(state=4)) > 0:
+    if u.user_type == "2":
       user.balance += 1
   user.order = len(user.order_set.filter(state=4))
   return render(request, 'exhibit/user_detail.html', {'user' : user})
