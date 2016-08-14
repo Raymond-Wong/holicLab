@@ -152,7 +152,6 @@ def refund(request):
   res = send_xml_ssl('https://api.mch.weixin.qq.com/secapi/pay/refund', msg)
   res = ET.fromstring(smart_str(res))
   res = xml2dict(res)
-  print res
   if res.has_key('return_code') and res['return_code'] == 'SUCCESS' and res.has_key('result_code') and res['result_code'] == 'SUCCESS':
     cancelSuccess(order)
     return HttpResponse(Response(m=float(res['refund_fee']) / 10 / 10).toJson(), content_type="application/json")
