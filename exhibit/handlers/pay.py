@@ -81,7 +81,6 @@ def price(request):
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
   newOrder, tmpCoupon = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
-  print newOrder.price
   return HttpResponse(Response(m=(newOrder.price / 10.0)).toJson(), content_type="application/json")
 
 def pre(request):
@@ -224,6 +223,7 @@ def getOrderPrice(newOrder, duration):
   else:
     newOrder.price = newOrder.course.price
   newOrder.price = float(newOrder.price)
+  print newOrder.price
   for service in json.loads(newOrder.services):
     if service == 'food':
       newOrder.price += 500
