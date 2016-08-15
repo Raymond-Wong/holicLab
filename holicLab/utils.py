@@ -119,13 +119,11 @@ def sendSMS(mobile, code):
   """
   params = urllib.urlencode({'apikey': apikey, 'content': content, 'mobile':mobile})
   headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
-  # conn = httplib.HTTPSConnection(sms_host, port=port, timeout=30)
-  # conn.request("POST", send_yzm_uri, params, headers)
-  # response = conn.getresponse()
-  # response_str = response.read()
-  # conn.close()
-  response_str = {'code' : 1, "msg" : '成功', "result" : '201608152138021830'}
-  response_str = json.dumps(response_str)
+  conn = httplib.HTTPSConnection(sms_host, port=port, timeout=30)
+  conn.request("POST", send_yzm_uri, params, headers)
+  response = conn.getresponse()
+  response_str = response.read()
+  conn.close()
   return response_str
 
 # def sendSMS(mobile, code):

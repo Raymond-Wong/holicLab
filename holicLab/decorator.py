@@ -4,8 +4,7 @@ sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from utils import Response
 
 import exhibit.views
@@ -19,7 +18,7 @@ def handler(view):
       info = sys.exc_info()
       print info
       info = str(info[1]).decode("unicode-escape")
-      return redirect('/error?msg=%s' % info)
+      return HttpResponseRedirect('/error?msg=%s' % info)
   return unKnownErr
 
 def login_required(view):
