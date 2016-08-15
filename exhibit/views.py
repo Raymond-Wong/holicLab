@@ -21,7 +21,7 @@ def testHandler(request):
 def error(request):
   msg = request.GET.get('msg', '未获取错误信息')
   time = timezone.now()
-  ptiny msg, time
+  print msg, time
   return render(request, 'exhibit/error.html', {'msg' : msg, 'time' : time})
 
 # 微信端入口
