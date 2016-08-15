@@ -311,6 +311,8 @@ def successOrder(order, status, time_end):
   order.price = priceBK
   user.balance = F('balance') - usedCoupon
   user.balance = F('balance') if F('balance') >= 0 else 0
+  # 2.2 更新用户消费总金额
+  user.consumption = F('consumption') + order.price
   # 4. 修改订单涉及课程或者场地的占用人次
   if order.order_type == "1":
     shop = order.shop

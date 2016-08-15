@@ -163,9 +163,8 @@ def cancelSuccess(order):
   order.state = "2"
   # 如果该用户除了当前订单没有其他订单
   if len(user.order_set.filter(state="4")) == 0:
-    # 2. 设置该用户为新用户
-    # user.user_type = "1"
-    # user.save()
+    # 2. 更新用户的总消费金额
+    user.consumption = F('consumption') - order.price
     # 3. 减少邀请该用户的用户的抵扣券
     inviteUser = user.invited_by
     inviteUser.balance = F('balance') - 1
