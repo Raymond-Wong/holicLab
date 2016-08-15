@@ -25,14 +25,14 @@
 }
 
 .line .logo {
-  margin-right: 14px;
   color: #b2b2b2;
   /*top: 2px;*/
   font-size: 28px;
 }
 
-.infoLine .logo {
-  margin-top: 4px;
+.infoLine .logoBox {
+  height: 40px;
+  padding-right: 14px;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
