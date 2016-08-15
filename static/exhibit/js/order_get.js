@@ -9,6 +9,8 @@ $(document).ready(function() {
 
 var initCancelAction = function() {
   $('#cancelBtn').on('tap', function() {
+    if (!confirm('确定取消订单？'))
+      return false;
     var oid = $(this).attr('oid');
     showToast('正在取消订单中...');
     post('/order?action=refund', {'oid' : oid}, function(msg) {
