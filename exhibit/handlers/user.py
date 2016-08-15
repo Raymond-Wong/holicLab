@@ -93,6 +93,7 @@ def verify(request):
   if not request.session.has_key('verification_code'):
     return HttpResponse(Response(c=5, m="验证成功后请勿重复验证").toJson(), content_type="application/json")
   verification_code = json.loads(request.session['verification_code'])
+  print verification_code['sentTime']
   gotCode = request.POST.get('code', None)
   if gotCode is None:
     return HttpResponse(Response(c=3, m="未提供验证码").toJson(), content_type="application/json")
