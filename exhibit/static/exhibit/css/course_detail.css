@@ -32,7 +32,8 @@
 }
 
 .infoLine .logo {
-  margin-top: 4px;
+  vertical-align: middle;
+  top: 0;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
