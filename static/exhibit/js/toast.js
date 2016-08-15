@@ -8,7 +8,7 @@ var showToast = function(msg) {
 
 var hideToast = function(seconds) {
   if (seconds == undefined || seconds == null) {
-    $('.toastToast').hide();
+    $('.toastContainer').hide();
   } else {
     setTimeout(function() {
       $('.toastContainer').hide();
