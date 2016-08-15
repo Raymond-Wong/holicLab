@@ -42,6 +42,7 @@ def list(request):
   else:
     orders = user.order_set.all()
     orderType = "0"
+  orders = orders.order_by('-create_time')
   # 处理duration
   for order in orders:
     order.price = int(order.price / 10.0)
