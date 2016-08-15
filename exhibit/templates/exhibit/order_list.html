@@ -11,6 +11,10 @@
   <div class="left option{% ifequal type '2' %} active{% endifequal %}"><a href="/order?action=list&type=2">团体课预约</a></div>
   <div class="clear"></div>
 </div>
+{% if orders %}
+{% else %}
+<p class="noDataLine">暂无订单，赶紧去预定吧！</p>
+{% endif %}
 {% for order in orders %}
 <a class="line" href="/order?action=get&oid={{ order.oid }}">
   {% ifequal order.state "2" %}

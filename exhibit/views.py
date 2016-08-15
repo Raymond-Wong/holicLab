@@ -17,7 +17,7 @@ import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.o
 def testHandler(request):
   user = {}
   user['balance'] = 10
-  return render(request, 'exhibit/user_invite_record.html', {'user' : user})
+  return render(request, 'exhibit/order_list.html', {'user' : user})
 
 # 错误提示类
 def error(request):
