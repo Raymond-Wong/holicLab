@@ -32,6 +32,7 @@
 
 .infoLine .logoBox {
   height: 40px;
+  top: -2px;
   background-color: lightblue;
   padding-right: 14px;
 }
