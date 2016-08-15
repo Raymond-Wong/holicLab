@@ -8,7 +8,7 @@ $(document).ready(function() {
 });
 
 var initCancelAction = function() {
-  $('#cancelBtn').on('tap', function() {
+  $('#cancelBtn').on('click', function() {
     if (!confirm('确定取消订单？'))
       return false;
     var oid = $(this).attr('oid');
