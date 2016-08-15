@@ -1,11 +1,14 @@
-var post = function(url, data, callback) {
+var post = function(url, data, success, failed) {
   $.post(url, data, function(res) {
     if (res['code'] == '0') {
-      callback(res['msg']);
+      success(res['msg']);
     } else {
-      alert(res['msg']);
+      if (failed == undefined || failed == null) {
+        alert(res['msg']);
+      } else {
+        failed(res);
+      }
     }
-    hideToast();
   });
 }
 
