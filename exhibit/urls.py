@@ -13,5 +13,6 @@ urlpatterns = patterns('',
   url(r'^order/pay$', views.payHandler),
   url(r'^order/notify$', views.notifyHandler),
   url(r'^user$', views.userHandler),
+  url(r'^error$', views.errorHandler),
   url(r'^test$', views.testHandler),
 )

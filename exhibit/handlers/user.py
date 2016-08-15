@@ -86,7 +86,7 @@ def verify(request):
     if res['code'] != 0:
       return HttpResponse(Response(c=2, m="发送验证码失败，请检查手机号码是否正确，稍后重试").toJson(), content_type="application/json")
     # 将验证码以及生成验证码的时间存入session
-    request.session['verification_code'] = json.dumps({'code' : code, 'phone' : phone})
+    request.session['verification_code'] = json.dumps({'code' : code, 'phone' : phone, 'sentTime' : timezone.now()})
     return render(request, 'exhibit/user_verifyCode.html')
   # 如果是post请求则验证验证码是否正确
   user = User.objects.get(invite_code=request.session['user'])
@@ -97,11 +97,16 @@ def verify(request):
   if gotCode is None:
     return HttpResponse(Response(c=3, m="未提供验证码").toJson(), content_type="application/json")
   if gotCode == verification_code['code']:
-    user.phone = verification_code['phone']
-    user.bind_date = timezone.now().date()
-    user.save()
-    del request.session['phone']
-    del request.session['verification_code']
+    if (timezone.now() - verification_code['sentTime']).total_seconds() / 60 <= 10:
+      user.phone = verification_code['phone']
+      user.bind_date = timezone.now().date()
+      user.save()
+      del request.session['phone']
+      del request.session['verification_code']
+    else:
+      del request.session['phone']
+      del request.session['verification_code']
+      return HttpResponse(Response(c=6, m="验证码过期，请点击重新发送验证码按钮").toJson(), content_type="application/json")
   else:
     return HttpResponse(Response(c=4, m="验证码错误").toJson(), content_type="application/json")
   nextUrl = '/user?action=update&type=tags'

@@ -8,6 +8,7 @@ import json
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.utils import timezone
 
 from holicLab.decorator import *
 from holicLab.models import *
@@ -17,6 +18,12 @@ def testHandler(request):
   user = {}
   user['balance'] = 10
   return render(request, 'exhibit/user_invite_record.html', {'user' : user})
+
+# 错误提示类
+def error(request):
+  msg = request.GET.get('msg', '未获取错误信息')
+  time = timezone.now()
+  return render(request, 'exhibit/error.html', {'msg' : msg, 'time' : time})
 
 # 微信端入口
 @handler
