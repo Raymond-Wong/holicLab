@@ -83,7 +83,7 @@ def verify(request):
     # 随机生成一个验证码
     code = random_x_bit_code(4, [str(i) for i in xrange(0, 10)])
     res = json.loads(sendSMS(phone, code))
-    if res['code'] != 0:
+    if int(res['code']) != 1:
       return HttpResponse(Response(c=2, m="发送验证码失败，请检查手机号码是否正确，稍后重试").toJson(), content_type="application/json")
     # 将验证码以及生成验证码的时间存入session
     request.session['verification_code'] = json.dumps({'code' : code, 'phone' : phone, 'sentTime' : timezone.now()})
