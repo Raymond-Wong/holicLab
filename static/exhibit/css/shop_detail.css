@@ -33,7 +33,7 @@
 
 .infoLine .logo {
   top: 0px;
-  vertical-align: center;
+  vertical-align: bottom;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
