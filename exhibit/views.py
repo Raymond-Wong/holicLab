@@ -29,8 +29,8 @@ def loginHandler(request, view):
   return handlers.login.login(request, view)
 
 # 首页的处理类
-@wx_logined
 @handler
+@wx_logined
 def homeHandler(request):
   shops = Shop.objects.filter(state=2)[:2]
   for shop in shops:
