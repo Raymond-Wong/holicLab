@@ -6,6 +6,7 @@ sys.setdefaultencoding('utf-8')
 
 from django.http import HttpResponse, HttpResponseRedirect
 from utils import Response
+from django.shortcuts import render, redirect
 
 import exhibit.views
 from models import User
