@@ -20,8 +20,8 @@ def testHandler(request):
 # 错误提示类
 def error(request):
   msg = request.GET.get('msg', '未获取错误信息')
+  print msg
   time = timezone.now()
-  print msg, time
   return render(request, 'exhibit/error.html', {'msg' : msg, 'time' : time})
 
 # 微信端入口
