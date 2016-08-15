@@ -18,9 +18,8 @@ def testHandler(request):
   return render(request, 'exhibit/shop_detail.html')
 
 # 错误提示类
-def error(request):
+def errorHandler(request):
   msg = request.GET.get('msg', '未获取错误信息')
-  print msg
   time = timezone.now()
   return render(request, 'exhibit/error.html', {'msg' : msg, 'time' : time})
 
@@ -120,9 +119,3 @@ def payHandler(request):
 @csrf_exempt
 def notifyHandler(request):
   return handlers.notify.notify(request)
-
-def errorHandler(request):
-  errType = request.GET.get('type', None)
-  if errType == 'login':
-    return handlers.error.login(request)
-  return HttpResponse(Response(c=-8, m='操作类型错误').toJson(), content_type='application/json')
