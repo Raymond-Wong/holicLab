@@ -112,7 +112,7 @@ def sendSMS(mobile, code):
   #修改为您的apikey. apikey可在官网（https://www.dingdongcloud.com)登录后获取
   apikey = "10fc1fba327fa745c78f5904c37e8849"; 
   # 修改为您要发送的短信内容
-  content="【好叻健身试炼仓】尊敬的用户，你的验证码是：%s，请在10分钟内输入。请勿告诉其他人。" % code
+  content="【HolicLab】%s为您的验证码，请在10分钟内完成注册绑定。如非本人操作，请忽略。如有更多问题，请联系客服小助手。" % code
   """
   发送验证码
   """
