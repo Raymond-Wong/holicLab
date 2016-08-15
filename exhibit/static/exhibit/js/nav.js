@@ -5,7 +5,7 @@ $(document).ready(function() {
       window.location.href = msg;
     }, function(res) {
       hideToast();
-      alert(res[msg]);
+      alert(res['msg']);
     });
   });
 });
