@@ -155,6 +155,7 @@ var submitAction = function() {
       return false;
     }
     params['cid'] = cid;
+    topAlert('正在更新课程资料,请勿关闭页面');
     post('/admin/course?action=update', params, function(msg) {
       topAlert('设置课程信息成功');
     });

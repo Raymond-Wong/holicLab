@@ -153,6 +153,7 @@ var submitAction = function() {
       topAlert('未明确课程所属场地', 'error');
       return false;
     }
+    topAlert('正在创建课程,请勿关闭页面');
     post('/admin/course?action=add&sid=' + sid, params, function(msg) {
       topAlert('创建课程成功');
     });

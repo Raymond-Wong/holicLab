@@ -216,6 +216,7 @@ var submitAction = function() {
     // 获取商店id
     var sid = $('.shopAddWrapper').attr('sid');
     params['sid'] = sid;
+    topAlert('正在更新商店资料,请勿关闭页面');
     post('/admin/shop?action=update', params, function(msg) {
       topAlert('更新场地信息成功');
     });

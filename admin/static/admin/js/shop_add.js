@@ -155,7 +155,7 @@ var submitAction = function() {
       topAlert('所有不可预定时间段中开始时间必须小于等于结束时间', 'error');
       return false;
     }
-    console.log(params);
+    topAlert('正在创建商店,请勿关闭页面');
     post('/admin/shop?action=add', params, function(msg) {
       topAlert('创建场地成功');
     });
