@@ -103,6 +103,7 @@ def random_x_bit_code(x, code_range=CODE_RANGE):
   return ret
 
 def sendSMS(mobile, code):
+  print code
   #服务地址
   sms_host = "api.dingdongcloud.com"
   #端口号
@@ -118,11 +119,13 @@ def sendSMS(mobile, code):
   """
   params = urllib.urlencode({'apikey': apikey, 'content': content, 'mobile':mobile})
   headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
-  conn = httplib.HTTPSConnection(sms_host, port=port, timeout=30)
-  conn.request("POST", send_yzm_uri, params, headers)
-  response = conn.getresponse()
-  response_str = response.read()
-  conn.close()
+  # conn = httplib.HTTPSConnection(sms_host, port=port, timeout=30)
+  # conn.request("POST", send_yzm_uri, params, headers)
+  # response = conn.getresponse()
+  # response_str = response.read()
+  # conn.close()
+  response_str = {'code' : 1, "msg" : '成功', "result" : '201608152138021830'}
+  response_str = json.dumps(response_str)
   return response_str
 
 # def sendSMS(mobile, code):
