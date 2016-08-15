@@ -28,13 +28,11 @@
   color: #b2b2b2;
   /*top: 2px;*/
   font-size: 28px;
+  margin-right: 14px;
 }
 
-.infoLine .logoBox {
-  height: 40px;
-  top: -2px;
-  background-color: lightblue;
-  padding-right: 14px;
+.infoLine .logo {
+  margin-top: 4px;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
