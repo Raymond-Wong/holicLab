@@ -67,7 +67,6 @@ def courseHandler(request):
 @wx_logined
 def userHandler(request):
   action = request.GET.get('action', None)
-  print action
   if action == 'detail':
     return handlers.user.detail(request)
   elif action == 'update':
