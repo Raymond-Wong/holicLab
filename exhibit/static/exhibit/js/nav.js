@@ -6,7 +6,7 @@ $(document).ready(function() {
     }, function(res) {
       setTimeout(function() {
         hideToast();
-        alert('asdf' + res['msg']);
+        alert(res['msg']);
       }, 1000);
     });
   });
