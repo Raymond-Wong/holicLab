@@ -5,6 +5,7 @@ var post = function(url, data, callback) {
     } else {
       alert(res['msg']);
     }
+    hideToast();
   });
 }
 

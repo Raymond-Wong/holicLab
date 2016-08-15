@@ -4,6 +4,5 @@ $(document).ready(function() {
     post('/order?action=password', {}, function(msg) {
       window.location.href = msg;
     });
-    hideToast();
   });
 });
