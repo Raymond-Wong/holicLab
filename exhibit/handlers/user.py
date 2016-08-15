@@ -86,14 +86,13 @@ def verify(request):
     if int(res['code']) != 1:
       return HttpResponse(Response(c=2, m="发送验证码失败，请检查手机号码是否正确，稍后重试").toJson(), content_type="application/json")
     # 将验证码以及生成验证码的时间存入session
-    request.session['verification_code'] = json.dumps({'code' : code, 'phone' : phone, 'sentTime' : timezone.now()}, cls=MyJsonEncoder)
+    request.session['verification_code'] = {'code' : code, 'phone' : phone, 'sentTime' : timezone.now()}
     return render(request, 'exhibit/user_verifyCode.html')
   # 如果是post请求则验证验证码是否正确
   user = User.objects.get(invite_code=request.session['user'])
   if not request.session.has_key('verification_code'):
     return HttpResponse(Response(c=5, m="验证成功后请勿重复验证").toJson(), content_type="application/json")
-  verification_code = json.loads(request.session['verification_code'])
-  print verification_code['sentTime']
+  verification_code = request.session['verification_code']
   gotCode = request.POST.get('code', None)
   if gotCode is None:
     return HttpResponse(Response(c=3, m="未提供验证码").toJson(), content_type="application/json")
