@@ -15,7 +15,9 @@
 <body>
   {% include "exhibit/widgets/nav.html" %}
   <div class="pageWrapper">
-    {% block page %}{% endblock %}
+    {% include 'exhibit/widgets/toast.html' %}
+    {% block page %}
+    {% endblock %}
   </div>
 </body>
 <script type="text/javascript" src="/static/common/js/jquery-2.1.1.min.js"></script>
@@ -23,6 +25,7 @@
 <script type="text/javascript" src="/static/common/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/common/js/utils.js"></script>
 <script type="text/javascript" src="/static/common/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/static/exhibit/js/toast.js"></script>
 <script type="text/javascript" src="/static/exhibit/js/nav.js"></script>
 <script type="text/javascript" src="/static/exhibit/js/myLink.js"></script>
 <script type="text/javascript" src="/static/exhibit/js/init.js"></script>
