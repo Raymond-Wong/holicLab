@@ -38,9 +38,9 @@ def list(request):
   except:
     return HttpResponse(Response(c=-2, m="待查询用户不存在").toJson(), content_type="application/json")
   if orderType == "1" or orderType == "2":
-    orders = user.order_set.filter(order_type=orderType)
+    orders = user.order_set.filter(order_type=orderType).filter(state__in=["2", "4"])
   else:
-    orders = user.order_set.all()
+    orders = user.order_set.filter(state__in=["2", "4"])
     orderType = "0"
   orders = orders.order_by('-create_time')
   # 处理duration
