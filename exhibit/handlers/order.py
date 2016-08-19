@@ -139,8 +139,8 @@ def refund(request):
   params['nonce_str'] = random_x_bit_code(20)
   params['out_trade_no'] = order.oid
   params['out_refund_no'] = order.oid
-  params['total_fee'] = "1" # order.price
-  params['refund_fee'] = "1" # refund
+  params['total_fee'] = str(int(order.price) * 10)
+  params['refund_fee'] = str(int(refund) * 10)
   params['op_user_id'] = settings.WX_MCH_ID
   # 生成签名以及构造xml
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
