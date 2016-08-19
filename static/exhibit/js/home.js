@@ -1,3 +1,5 @@
 $(document).ready(function() {
-  myScroll = new IScroll('#courseWrapper', { scrollX: true, scrollY: false, mouseWheel: true, eventPassthrough: true});
+  $('.courseWrapper').each(function() {
+    new IScroll(this, { scrollX: true, scrollY: false, mouseWheel: true, eventPassthrough: true});
+  });
 })
