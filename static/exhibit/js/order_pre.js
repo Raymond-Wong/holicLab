@@ -99,7 +99,7 @@ var cancelOrder = function() {
       showToast(msg);
       hideToast(1000);
     });
-  }, 1000);
+  }, 1500);
 }
 
 var updatePriceAction = function() {
