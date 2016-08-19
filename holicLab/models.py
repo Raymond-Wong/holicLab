@@ -122,7 +122,7 @@ class Service(models.Model):
 # 订单类型枚举
 ORDER_TYPE = ((1, u'site'), (2, u'course'))
 # 订单状态枚举
-ORDER_STATE = ((1, u'to_pay'), (2, u'cancel'), (3, u'time_out'), (4, u'success'))
+ORDER_STATE = ((1, u'to_pay'), (2, u'cancel'), (3, u'closed'), (4, u'success'))
 # 订单类
 class Order(models.Model):
   oid = models.CharField(max_length=32, unique=True)

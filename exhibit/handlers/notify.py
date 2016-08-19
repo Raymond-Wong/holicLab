@@ -35,6 +35,9 @@ def notify(request):
     return RET_STR % ('SUCCESS', 'order has been processed')
   if params['return_code'] == 'SUCCESS':
     successOrder(order, params['result_code'], params['time_end'])
+  else:
+    order.state = "3"
+    order.save()
   return HttpResponse(RET_STR % ('SUCCESS', 'OK'))
 
 # 验证签名是否正确
