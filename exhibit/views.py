@@ -35,7 +35,7 @@ def homeHandler(request):
   shops = Shop.objects.filter(state=2)[:2]
   for shop in shops:
     shop.cover = json.loads(shop.cover)
-    shop.courses = shop.course_set.filter(state=2)
+    shop.courses = shop.course_set.filter(state=2).order_by('-releasedDate')
     for i, course in enumerate(shop.courses):
       shop.courses[i].cover = json.loads(course.cover)
   return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops)})

@@ -11,6 +11,7 @@ from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
+from django.utils import timezone
 
 from holicLab.utils import *
 from holicLab.models import Course, Bookable_Time, Shop
@@ -193,6 +194,7 @@ def release(request):
   except Exception, e:
     return HttpResponse(Response(c=-4, m='指定删除课程不存在').toJson(), content_type='application/json')
   course.state = 2
+  course.releaseDate = timezone.now().date()
   course.save()
   return HttpResponse(Response(m='发布成功').toJson(), content_type='application/json')
 
