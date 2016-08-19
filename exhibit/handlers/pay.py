@@ -270,7 +270,7 @@ def getPrePayId(order, request):
   params['body'] = 'HolicLab - %s预约' % ('场地' if order.order_type == 1 else '课程')
   params['out_trade_no'] = str(order.oid)
   # params['total_fee'] = str(int(order.price * 10))
-  params['total_fee'] = str(1)
+  params['total_fee'] = "7"
   params['spbill_create_ip'] = str(getUserIp(request))
   params['notify_url'] = 'http://holicLab.applinzi.com/order/notify'
   params['trade_type'] = 'JSAPI'
