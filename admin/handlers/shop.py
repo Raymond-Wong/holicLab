@@ -116,6 +116,7 @@ def update(request):
   cover = request.POST.get('cover', None)
   cover_type = request.POST.get('cover_type', None)
   notice = request.POST.get('notice', None)
+  desc = request.POST.get('description', None)
   shop = None
   # 判断数据正确性
   if sid is None:
@@ -151,6 +152,7 @@ def update(request):
   shop.cover = cover if cover is not None else shop.cover
   shop.cover_type = cover_type if cover_type is not None else shop.cover_type
   shop.notice = notice if notice is not None else shop.notice
+  shop.description = desc if desc is not None else shop.description
   shop.save()
   return HttpResponse(Response().toJson(), content_type='application/json')
 

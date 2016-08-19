@@ -80,3 +80,11 @@ var getAddressLocation = function(address, callback) {
     alert("无法在地图上找到以下位置：" + address);
   });
 }
+
+var dumpsNewline = function(text) {
+  return text.replace('\n', '<br />');
+}
+
+var loadsNewline = function(text) {
+  return text.replace('<br />', '\n');
+}

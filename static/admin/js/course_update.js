@@ -115,13 +115,13 @@ var submitAction = function() {
     if (params == false)
       return false;
     // 获取描述
-    params['description'] = $('textarea[name="description"]').val();
+    params['description'] = dumpsNewline($('textarea[name="description"]').val());
     if (params['description'].length <= 0) {
       topAlert('请填写课程介绍', 'error');
       return false;
     }
     // 获取地址
-    params['coach_description'] = $('textarea[name="coach_description"]').val();
+    params['coach_description'] = dumpsNewline($('textarea[name="coach_description"]').val());
     if (params['coach_description'].length <= 0) {
       topAlert('请填写教练简介', 'error')
       return false;
@@ -137,7 +137,7 @@ var submitAction = function() {
     // 获取课程时长
     params['duration'] = $('input[name="duration"]').val();
     // 获取注意事项
-    params['notice'] = $('textarea[name="notice"]').val();
+    params['notice'] = dumpsNewline($('textarea[name="notice"]').val());
     if (params['notice'].length <= 0) {
       topAlert('请填写注意事项', 'error');
       return false;
@@ -252,9 +252,9 @@ var initCourseUpdate = function() {
     // 初始化课程名称
     $('input[name="name"]').val(params['name']);
     // 初始化课程介绍
-    $('textarea[name="description"]').val(params['description']);
+    $('textarea[name="description"]').val(loadsNewline(params['description']));
     // 初始化教练介绍
-    $('textarea[name="coach_description"]').val(params['coach_description']);
+    $('textarea[name="coach_description"]').val(loadsNewline(params['coach_description']));
     // 初始化教练头像
     $('#coachCover').css('background-image', params['coach_cover']);
     $('#coachCover').html('<div class="deleteBtn">删除</div>');
@@ -266,7 +266,7 @@ var initCourseUpdate = function() {
     // 初始化标签
     $('input[name="tags"]').val(params['tags']);
     // 初始化注意事项
-    $('textarea[name="notice"]').val(params['notice']);
+    $('textarea[name="notice"]').val(loadsNewline(params['notice']));
     // 初始化课程时长
     $('input[name="duration"]').val(params['duration']);
     // 初始化可预约时间

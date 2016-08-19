@@ -37,7 +37,7 @@ var initShopUpdate = function() {
     // 初始化场地名称
     $('input[name="name"]').val(params['name']);
     // 初始化场地介绍
-    $('textarea[name="description"]').val(params['description']);
+    $('textarea[name="description"]').val(loadsNewline(params['description']));
     // 初始化场地地址
     $('input[name="location"]').val(params['location']);
     // 初始化联系方式
@@ -49,7 +49,7 @@ var initShopUpdate = function() {
     // 初始化容量
     $('input[name="capacity"]').val(parseInt(params['capacity']));
     // 初始化注意事项
-    $('textarea[name="notice"]').val(params['notice']);
+    $('textarea[name="notice"]').val(loadsNewline(params['notice']));
     // 初始化不可预约时间
     if (params['invalide_times'].length > 0) {
       $('.radio[name="bookType"][value="specialTime"]').trigger('click');
@@ -171,7 +171,7 @@ var submitAction = function() {
     if (params == false)
       return false;
     // 获取描述
-    params['description'] = $('textarea[name="description"]').val();
+    params['description'] = dumpsNewline($('textarea[name="description"]').val());
     if (params['description'].length <= 0) {
       topAlert('请填写场地介绍', 'error');
       return false;
@@ -202,7 +202,7 @@ var submitAction = function() {
     // 获取容量
     params['capacity'] = $('input[name="capacity"]').val();
     // 获取注意事项
-    params['notice'] = $('textarea[name="notice"]').val();
+    params['notice'] = dumpsNewline($('textarea[name="notice"]').val());
     if (params['notice'].length <= 0) {
       topAlert('请填写注意事项', 'error');
       return false;
