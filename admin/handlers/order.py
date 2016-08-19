@@ -23,12 +23,12 @@ def deleteOrders(orders):
 def list(request):
   if request.method == 'GET':
     state = request.GET.get('state', 'unfinished')
-    orders = Order.objects.all()
+    orders = Order.objects.filter(state="4")
     now = timezone.now()
     if state == 'finished':
-      orders = orders.filter(end_time__lt=now)
+      orders = orders.filter(end_time__lt=now).filter(state="4")
     elif state == 'unfinished':
-      orders = orders.filter(end_time__gte=now)
+      orders = orders.filter(end_time__gte=now).filter(state="4")
     return render(request, 'admin/order.html', {'orders' : orders, 'activePage' : 'order'})
   orders = Order.objects.all()
   # 商店
