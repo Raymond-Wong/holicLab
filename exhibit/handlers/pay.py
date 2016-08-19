@@ -204,9 +204,6 @@ def check(request):
   elif res['trade_state'] == 'SUCCESS':
     successOrder(order, res['trade_state'], res['time_end'])
     return HttpResponse(Response(m={'status' : 'SUCCESS', 'desc' : '订单处理完毕', 'url' : '/order?action=success&oid=%s' % order.oid}).toJson(), content_type="application/json")
-  else:
-    order.state = "3"
-    order.save()
   successOrder(order, res['trade_state'])
   # 如果订单状态为失败，则告知失败
   return HttpResponse(Response(m={'status' : 'FAILED', 'desc' : '请联系工作人员', 'url' : ''}).toJson(), content_type="application/json")
