@@ -89,7 +89,7 @@ class Course(models.Model):
   state = models.CharField(max_length=10, choices=SHOP_STATE, default=1)
   notice = models.TextField()
   duration = models.CharField(max_length=50, default=u'一小时')
-  releaseDate = models.DateField(null=True)
+  releasedDate = models.DateField(null=True)
   def toJSON(self):
     import json
     import utils
