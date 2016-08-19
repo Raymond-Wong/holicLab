@@ -35,7 +35,7 @@
 
 <div class="block descBlock">
   <h1>场地介绍</h1>
-  <p>{{ shop.description }}</p>
+  <p>{{ shop.description | safe }}</p>
 </div>
 <div class="line infoLine">
   <span class="left glyphicon glyphicon-time logo"></span>
@@ -65,7 +65,7 @@
 </div>
 <div class="block noticeBlock">
   <h1>注意事项</h1>
-  <p>{{ shop.notice }}</p>
+  <p>{{ shop.notice | safe }}</p>
 </div>
 <div class="block courseBlock">
   <h1>团体课</h1>
