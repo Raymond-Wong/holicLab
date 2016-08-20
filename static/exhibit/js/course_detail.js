@@ -48,6 +48,7 @@ var str2date = function(str) {
 var initTimepicker = function() {
   // 获取不可预约时间
   var bookable_times = $.parseJSON($('.shopDetailPage').attr('bookableTimes'));
+  alert(bookable_times.length)
   // 如果没有可预约时间
   if (bookable_times.length == 0) {
     var btn = $('#bookBtn');
