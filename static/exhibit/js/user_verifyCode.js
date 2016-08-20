@@ -33,6 +33,8 @@ var numberInputCallback = function(value) {
     }, function(msg) {
       showToast('验证码错误，请重新输入');
       hideToast(1000);
+      codes.removeAttr('value');
+      codes.removeClass('active');
     });
   } else {
     // 如果输入的是数字
