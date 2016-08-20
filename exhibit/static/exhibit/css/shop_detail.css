@@ -46,13 +46,14 @@
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
   width: 30px;
   height: 30px;
-  line-height: 30px;
-  border: 1px solid #f5a623;
-  border-radius: 15px;
   padding: 0;
   top: 0;
-  color: #f5a623 !important;
-  font-size: 20px;
+  display: block;
+}
+
+.line .btn img {
+  width: 100%;
+  height: auto;
 }
 
 .line .phone {
