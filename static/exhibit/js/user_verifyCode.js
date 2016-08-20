@@ -23,12 +23,16 @@ var numberInputCallback = function(value) {
     codes.each(function() {
       code += $(this).attr('value');
     });
+    showToast('核对验证码...');
     post('/user?action=verify&type=code', {'code' : code}, function(msg) {
       if (msg != null) {
         window.location.href = msg;
       } else {
         window.location.href = '/';
       }
+    }, function(msg) {
+      showToast('验证码错误，请重新输入');
+      hideToast(1000);
     });
   } else {
     // 如果输入的是数字
@@ -36,5 +40,9 @@ var numberInputCallback = function(value) {
       return false;
     }
     $(allCodes[codes.length]).addClass('active').attr('value', value);
+    // 如果当前输入的是第四个数字，则触发提交事件
+    if (codes.length + 1 >= 4) {
+      return numberInputCallback('commit');
+    }
   }
 }
