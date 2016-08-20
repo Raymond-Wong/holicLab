@@ -41,14 +41,14 @@
   <div class="coachCover thumbImg" style="background-image: {{ course.coach_cover }}"></div>
 </div>
 <div class="line infoLine">
-  <span class="left glyphicon glyphicon-time logo"></span>
+  <div class="left logo"><img src="/static/exhibit/icon/duration.svg" /></div>
   <font class="left">{{ course.duration }}</font>
-  <a class="right glyphicon glyphicon-map-marker btn location"></a>
-  <a class="right glyphicon glyphicon-earphone btn phone" href="tel:{{ course.shop.phone }}"></a>
+  <a class="right btn location"><img src="/static/exhibit/icon/circle_location.svg" /></a>
+  <a class="right btn phone" href="tel:{{ shop.phone }}"><img src="/static/exhibit/icon/circle_phone.svg" /></a>
   <div class="clear"></div>
 </div>
 <div class="line">
-  <span class="left glyphicon glyphicon-map-marker logo"></span>
+  <div class="left logo"><img src="/static/exhibit/icon/location.svg" /></div>
   <div class="left locationBox">{{ course.shop.location }}</div>
   <div class="clear"></div>
 </div>

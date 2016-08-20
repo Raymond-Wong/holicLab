@@ -25,31 +25,35 @@
 }
 
 .line .logo {
+  width: 25px;
   margin-right: 14px;
-  color: #b2b2b2;
-  /*top: 2px;*/
-  font-size: 25px;
+  position: relative;
+  top: 4px;
+}
+
+.line .logo img {
+  width: 100%;
+  height: auto;
 }
 
 .infoLine .logo {
-  margin-top: 6px;
-  font-size: 14px;
+  width: 21px;
+  margin-left: 2px;
+  margin-right: 16px;
+  top: -2px;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
   width: 40px;
   height: 40px;
-  line-height: 40px;
-  border: 1px solid #f5a623;
-  border-radius: 20px;
   padding: 0;
   top: 0;
-  color: #f5a623 !important;
-  font-size: 20px;
+  display: block;
 }
 
-.line .phone {
-  margin-right: 10px;
+.line .btn img {
+  width: 100%;
+  height: auto;
 }
 
 .descBlock, .noticeBlock {
