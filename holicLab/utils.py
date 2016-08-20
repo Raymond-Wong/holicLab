@@ -129,7 +129,7 @@ def random_x_bit_code(x, code_range=CODE_RANGE):
 def sendSMS(mobile, code):
   print code
   params = {}
-  params['code'] = 0
+  params['code'] = 1
   return json.dumps(params)
 
 def filterEmoji(desstr,restr=''):
