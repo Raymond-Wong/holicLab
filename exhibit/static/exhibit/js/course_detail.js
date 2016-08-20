@@ -53,7 +53,8 @@ var initTimepicker = function() {
   if (bookable_times.length == 0) {
     var btn = $('#bookBtn');
     btn.attr('disabled', 'true');
-    btn.css('backgroundColor', '#b6b6b6');
+    btn.css('background-color', '#b6b6b6');
+    btn.text('已结束');
     return false;
   }
   var capacity = parseInt($('.shopDetailPage').attr('capacity'));
