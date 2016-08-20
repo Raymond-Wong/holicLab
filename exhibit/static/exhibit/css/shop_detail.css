@@ -33,14 +33,15 @@
 
 .infoLine .logo {
   margin-top: 4px;
+  font-size: 32px;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
+  width: 54px;
+  height: 54px;
+  line-height: 54px;
   border: 1px solid #f5a623;
-  border-radius: 20px;
+  border-radius: 27px;
   padding: 0;
   top: 0;
   color: #f5a623 !important;
