@@ -28,11 +28,12 @@
   margin-right: 14px;
   color: #b2b2b2;
   /*top: 2px;*/
-  font-size: 28px;
+  font-size: 25px;
 }
 
 .infoLine .logo {
-  margin-top: 4px;
+  margin-top: 6px;
+  font-size: 14px;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {

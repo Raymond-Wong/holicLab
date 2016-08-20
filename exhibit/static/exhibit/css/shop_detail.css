@@ -27,13 +27,13 @@
 .line .logo {
   color: #b2b2b2;
   /*top: 2px;*/
-  font-size: 28px;
+  font-size: 25px;
   margin-right: 14px;
 }
 
 .infoLine .logo {
-  margin-top: 2px;
-  font-size: 32px;
+  margin-top: 6px;
+  font-size: 14px;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
@@ -239,7 +239,7 @@
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: rgba(245, 166, 35, 1);
+  background-color: #f5a623;
 }
 
 .video {
