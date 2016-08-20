@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 
 var loading = function() {
-  console.log('loading...');
+  alert(FINISHED_LOADING);
   try {
     // 如果存在这个变量，那么当变量为真时结束加载
     if (FINISHED_LOADING) {

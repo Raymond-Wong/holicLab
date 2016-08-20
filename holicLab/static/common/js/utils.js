@@ -47,6 +47,7 @@ function getUrlParam(name) {
 }
 
 var wxConfig = function(jsApiList) {
+  FINISHED_LOADING = false;
   var url = window.location.href.split('#')[0];
   post('/wechat/config', {'url' : url}, function(msg) {
     var signature = msg['signature'];
@@ -61,6 +62,9 @@ var wxConfig = function(jsApiList) {
       signature: signature,// 必填，签名，见附录1
       jsApiList: jsApiList // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
     });
+  });
+  wx.ready(function() {
+    FINISHED_LOADING = true;
   });
   wx.error(function(res){
     alert(res);
