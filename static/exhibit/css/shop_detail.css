@@ -227,18 +227,18 @@
 
 #indicator {
   position: relative;
-  width: 56px;
-  height: 14px;
-  margin: 7px auto;
+  width: 0px;
+  height: 10px;
+  margin: 5px auto;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUBAMAAABohZD3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUGCDYztyDUJgAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAGFBMVEUAAADNzc3Nzc3Nzc3Nzc3Nzc3Nzc3///8aWwwLAAAABnRSTlMAX5Ks3/nRD0HIAAAAAWJLR0QHFmGI6wAAAFtJREFUGFdjYGBgEHYNMWRAAJE0IHCEc5nSwEABxleD8JOgXMY0KBCA8FlgfAcIXwzGT4TwzWD8ZAjfDcZPgfDDYPxU7Hx09ejmoduH7h5096L7B8O/6OGBGl4APYg8TQ0XAScAAAAASUVORK5CYII=);
-  background-size: auto 14px;
+  background-size: auto 10px;
 }
 
 #dotty {
   position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
   background-color: #777;
 }
 

@@ -12,7 +12,7 @@ var carouselInit = function() {
   var indicator = $('#indicator');
   var slideAmount = scroller.find('.slide').length;
   scroller.css('width', slideAmount * 100 + 'vw');
-  indicator.css('width', slideAmount * 21 - 7 + 'px');
+  indicator.css('width', slideAmount * 15 - 5 + 'px');
   myScroll = new IScroll('#wrapper', {
     scrollX: true,
     scrollY: false,
