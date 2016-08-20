@@ -52,7 +52,7 @@ var initTimepicker = function() {
   if (bookable_times.length == 0) {
     var btn = $('#bookBtn');
     btn.attr('disabled', 'true');
-    btn.css('background-color', '#b6b6b6');
+    btn.addClass('disabled');
     btn.text('已结束');
     return false;
   }
