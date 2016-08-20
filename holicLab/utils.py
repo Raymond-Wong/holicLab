@@ -102,35 +102,35 @@ def random_x_bit_code(x, code_range=CODE_RANGE):
     ret += random.choice(code_range)
   return ret
 
-# def sendSMS(mobile, code):
-#   print code
-#   #服务地址
-#   sms_host = "api.dingdongcloud.com"
-#   #端口号
-#   port = 443
-#   #发送验证码
-#   send_yzm_uri = "/v1/sms/sendyzm"
-#   #修改为您的apikey. apikey可在官网（https://www.dingdongcloud.com)登录后获取
-#   apikey = "10fc1fba327fa745c78f5904c37e8849"; 
-#   # 修改为您要发送的短信内容
-#   content="【HolicLab】%s为您的验证码，请在10分钟内完成注册绑定。如非本人操作，请忽略。如有更多问题，请联系客服小助手。" % code
-#   """
-#   发送验证码
-#   """
-#   params = urllib.urlencode({'apikey': apikey, 'content': content, 'mobile':mobile})
-#   headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
-#   conn = httplib.HTTPSConnection(sms_host, port=port, timeout=30)
-#   conn.request("POST", send_yzm_uri, params, headers)
-#   response = conn.getresponse()
-#   response_str = response.read()
-#   conn.close()
-#   return response_str
-
 def sendSMS(mobile, code):
   print code
-  params = {}
-  params['code'] = 1
-  return json.dumps(params)
+  #服务地址
+  sms_host = "api.dingdongcloud.com"
+  #端口号
+  port = 443
+  #发送验证码
+  send_yzm_uri = "/v1/sms/sendyzm"
+  #修改为您的apikey. apikey可在官网（https://www.dingdongcloud.com)登录后获取
+  apikey = "10fc1fba327fa745c78f5904c37e8849"; 
+  # 修改为您要发送的短信内容
+  content="【HolicLab】%s为您的验证码，请在10分钟内完成注册绑定。如非本人操作，请忽略。如有更多问题，请联系客服小助手。" % code
+  """
+  发送验证码
+  """
+  params = urllib.urlencode({'apikey': apikey, 'content': content, 'mobile':mobile})
+  headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
+  conn = httplib.HTTPSConnection(sms_host, port=port, timeout=30)
+  conn.request("POST", send_yzm_uri, params, headers)
+  response = conn.getresponse()
+  response_str = response.read()
+  conn.close()
+  return response_str
+
+# def sendSMS(mobile, code):
+#   print code
+#   params = {}
+#   params['code'] = 1
+#   return json.dumps(params)
 
 def filterEmoji(desstr,restr=''):
   try:
