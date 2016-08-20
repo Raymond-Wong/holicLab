@@ -67,7 +67,8 @@ var wxConfig = function(jsApiList) {
     FINISHED_LOADING = true;
   });
   wx.error(function(res){
-    alert(res);
+    FINISHED_LOADING = true;
+    alert(JSON.stringify(res));
   });
 }
 
