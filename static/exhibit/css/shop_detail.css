@@ -51,6 +51,10 @@
   display: block;
 }
 
+.line .btn.phone {
+  margin-right: 0px;
+}
+
 .line .btn img {
   width: 100%;
   height: auto;
