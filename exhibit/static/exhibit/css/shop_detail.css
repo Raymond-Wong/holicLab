@@ -25,6 +25,10 @@
   margin-bottom: 0;
 }
 
+.locationLine {
+  margin-top: 0px;
+}
+
 .line .logo {
   width: 25px;
   margin-right: 14px;
