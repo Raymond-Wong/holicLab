@@ -23,7 +23,7 @@
   bottom: 0;
   right: 0;
   width: 10em;
-  height: 10em;
+  min-height: 10em;
   margin: auto;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 8px;
