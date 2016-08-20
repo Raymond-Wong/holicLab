@@ -34,7 +34,8 @@
 .infoLine .logo {
   margin-top: 8px;
   font-size: 14px;
-  margin-left: 11px;
+  margin-left: 5px;
+  margin-right: 20px;
 }
 
 .line .btn, .line .btn:active, .line .btn:visited, .line .btn:focus {
