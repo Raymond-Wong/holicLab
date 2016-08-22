@@ -13,6 +13,7 @@ var mobiAlert = function(msg, callback) {
     alertBoxContainer.hide();
     alertBoxText.text('');
     callback();
+    return false;
   });
 }
 
