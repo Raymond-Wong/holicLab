@@ -9,19 +9,22 @@ $(document).ready(function() {
 
 var initCancelAction = function() {
   $('#cancelBtn').on('click', function() {
-    if (!confirm('确定取消订单？'))
-      return false;
-    var oid = $(this).attr('oid');
-    showToast('正在取消订单中...');
-    post('/order?action=refund', {'oid' : oid}, function(msg) {
-      if (parseFloat(msg)) {
-        showToast('成功退款' + msg + '元');
-      } else {
-        showToast(msg);
+    mobiConfirm('确定取消订单？', function(res) {
+      if (!res) {
+        return false;
       }
-      setTimeout(function() {
-        window.location.href = window.location.href;
-      }, 1500);
+      var oid = $(this).attr('oid');
+      showToast('正在取消订单中...');
+      post('/order?action=refund', {'oid' : oid}, function(msg) {
+        if (parseFloat(msg)) {
+          showToast('成功退款' + msg + '元');
+        } else {
+          showToast(msg);
+        }
+        setTimeout(function() {
+          window.location.href = window.location.href;
+        }, 1500);
+      });
     });
   });
 }
@@ -59,8 +62,9 @@ var initShare = function() {
       type: 'link', // 分享类型,music、video或link，不填默认为link
       dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
       success: function () { 
-        alert('分享成功！\n当被邀请用户首次下单以后，您将获得十元抵扣券一张！');
-        window.location.href = window.location.href;
+        mobiAlert('分享成功！<br />当被邀请用户首次下单以后，您将获得十元抵扣券一张！', function() {
+          window.location.href = window.location.href;
+        });
       },
       cancel: function () { 
         // 用户取消分享后执行的回调函数

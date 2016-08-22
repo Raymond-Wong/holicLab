@@ -111,7 +111,7 @@ var initTimepicker = function() {
 
 var initLocationAction = function() {
   $('.btn.location').bind('tap', function() {
-    alert('正在初始化地图，请稍后重试');
+    mobiAlert('正在初始化地图，请稍后重试');
   });
   wxConfig(['getLocation', 'openLocation']);
   wx.ready(function() {

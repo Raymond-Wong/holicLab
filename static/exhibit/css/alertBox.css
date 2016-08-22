@@ -1,0 +1,77 @@
+.alertBoxContainer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.alertBoxWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.alertBox {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 72vw;
+  height: 84vw;
+  margin: auto;
+  background-color: white;
+  border-radius: 10px;
+  line-height: 2em;
+}
+
+.alertTextWrapper {
+  width: 100%;
+  height: 72vw;
+}
+
+.alertText {
+  width: 100%;
+  padding: 1em;
+  color: #4a4a4a;
+  font-size: 16px;
+}
+
+.alertBtnBox {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #ccc;
+  font-size: 0;
+}
+
+.alertBtn, .alertBtn:active {
+  width: 100%;
+  height: 12vw;
+  text-align: center;
+  background-color: transparent;
+  color: #fa8730;
+  outline: none;
+  font-size: 14px;
+  border: 0;
+}
+
+.confirmBtn {
+  width: 50%;
+  background-color: transparent;
+  height: 12vw;
+  text-align: center;
+  color: #fa8730;
+  outline: none;
+  font-size: 14px;
+  display: inline-block;
+  border: 0;
+}
+
+.confirmBtn:first-child {
+  border-right: 1px solid #ccc;
+}

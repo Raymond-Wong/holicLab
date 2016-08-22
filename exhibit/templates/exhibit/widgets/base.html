@@ -8,12 +8,14 @@
   <link type="text/css" rel="stylesheet" href="/static/common/css/bootstrap.min.css" />
   <!-- <link type="text/css" rel="stylesheet" href="/static/common/css/jquery.mobile-1.4.5.min.css"> -->
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/base.css">
+  <link type="text/css" rel="stylesheet" href="/static/exhibit/css/alertBox.css">
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/load.css">
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/toast.css">
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/nav.css">
   {% block style %}{% endblock %}
 </head>
 <body>
+  {% include "exhibit/widgets/alertBox.html" %}
   {% include "exhibit/widgets/load.html" %}
   {% include "exhibit/widgets/nav.html" %}
   <div class="pageWrapper">
@@ -22,18 +24,12 @@
     {% endblock %}
   </div>
 </body>
-<script language="javascript">  
-  window.alert=function(title,content)  
-  {  
-execScript('MsgBox   "'+content+'",0,"'+title+'"','VBScript');  
-  }  
-  alert("标题","内容");   
-</script>
 <script type="text/javascript" src="/static/common/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/static/common/js/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript" src="/static/common/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/static/common/js/utils.js"></script>
 <script type="text/javascript" src="/static/common/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/static/exhibit/js/alertBox.js"></script>
 <script type="text/javascript" src="/static/exhibit/js/toast.js"></script>
 <script type="text/javascript" src="/static/exhibit/js/nav.js"></script>
 <script type="text/javascript" src="/static/exhibit/js/myLink.js"></script>

@@ -68,7 +68,7 @@ var wxConfig = function(jsApiList) {
   });
   wx.error(function(res){
     FINISHED_LOADING = true;
-    alert(JSON.stringify(res));
+    mobiAlert(JSON.stringify(res));
   });
 }
 
@@ -82,7 +82,7 @@ var getAddressLocation = function(address, callback) {
   });
   //若服务请求失败，则运行以下函数
   geocoder.setError(function() {
-    alert("无法在地图上找到以下位置：" + address);
+    mobiAlert("无法在地图上找到以下位置：" + address);
   });
 }
 
