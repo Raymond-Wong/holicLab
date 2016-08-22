@@ -8,7 +8,8 @@ var mobiAlert = function(msg, callback) {
   confirmBtnBox.hide();
   alertBtnBox.show();
   alertBoxContainer.show();
-  alertBtn.on('tap', function() {
+  alertBtn.on('tap', function(evt) {
+    evt.preventDefault();
     alertBoxContainer.hide();
     alertBoxText.text('');
     callback();
