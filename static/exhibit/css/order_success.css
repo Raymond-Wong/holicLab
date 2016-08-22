@@ -53,7 +53,7 @@
   width: 40%;
   height: 2em;
   line-height: 2em;
-  color: #b2b2b2;
+  color: #f5a623;
   text-align: center;
 }
 
@@ -61,6 +61,20 @@
   text-align: left;
   padding: 1em 2em;
   color: #b2b2b2;
+}
+
+.ruleBlock .contentBox .textCenter {
+  text-align: center;
+  margin: 0;
+  color: #b2b2b2;
+}
+
+.ruleBlock .contentBox .qrcodeBox {
+  width: 15em;
+  height: 15em;
+  background-color: #b2b2b2;
+  margin: auto;
+  margin-top: 1em;
 }
 
 .inviteBtn, .inviteBtn:visited, .inviteBtn:active, .inviteBtn:focus, .inviteBtn:hover {

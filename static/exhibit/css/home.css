@@ -22,7 +22,6 @@
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-
 .shopName {
   color: white;
   font-size: 26px;
@@ -93,17 +92,17 @@
 }
 
 .courseBox:first-child {
-  margin-left: 14px;
+  /*margin-left: 14px;*/
 }
 
 .courseBox:last-child {
-  margin-right: 14px;
+  /*margin-right: 14px;*/
 }
 
 .courseBox, .courseBox:hover, .courseBox:active, .courseBox:focus, .courseBox:visited {
   display: inline-block;
   font-size: 0;
-  margin: 0 7px;
+  /*margin: 0 7px;*/
   text-decoration: none;
 }
 

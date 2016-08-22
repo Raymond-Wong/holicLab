@@ -4,7 +4,7 @@ $(document).ready(function() {
     var role = $('.radio.checked[name="role"]').attr('value');
     showToast('数据正在录入...');
     post('/user?action=update', {'gender' : gender, 'role' : role}, function(msg) {
-      showToast("前往主页中...");
+      showToast("继续去预约吧～");
       setTimeout(function() {
         window.location.href = msg;
       }, 1500);
