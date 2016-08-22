@@ -138,7 +138,7 @@
 }
 
 .courseContainer li:last-child .courseBox {
-  margin-right: 10px;
+  padding-right: 10px;
 }
 
 .courseCover {
