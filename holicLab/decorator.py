@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 
 import exhibit.views
 from models import User
+from holicLab.utils import Response
 
 def handler(view):
   def unKnownErr(request, *args, **kwargs):
@@ -19,6 +20,8 @@ def handler(view):
       info = sys.exc_info()
       print info
       info = str(info[1]).decode("unicode-escape")
+      if request.method == 'POST':
+        return HttpResponse(Response(c=-2, m='/error?msg=%s' % info).toJson(), content_type="application/json")
       return HttpResponseRedirect('/error?msg=%s' % info)
   return unKnownErr
 
@@ -34,7 +37,9 @@ def verify_required(view):
     user = User.objects.get(invite_code=request.session['user'])
     if user.phone == None or len(user.phone) == 0:
       request.session['backUrl'] = request.get_full_path()
-      return HttpResponseRedirect('/user?action=verify&type=phone')
+      if request.method == 'POST':
+        return HttpResponse(Response(c=-2, m='/user?action=verify&type=phone').toJson(), content_type="application/json")
+      return redirect('/user?action=verify&type=phone')
     return view(request, *args, **kwargs)
   return verified
 # def verify_required(view):
