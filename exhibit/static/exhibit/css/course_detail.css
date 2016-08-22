@@ -298,5 +298,6 @@
 }
 
 .price {
-  color: #dbdbdb;
+  font-size: 16px;
+  margin-left: 14px;
 }
