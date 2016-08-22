@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Holic Lab">
   <link type="text/css" rel="stylesheet" href="/static/common/css/bootstrap.min.css" />
   <!-- <link type="text/css" rel="stylesheet" href="/static/common/css/jquery.mobile-1.4.5.min.css"> -->
   <link type="text/css" rel="stylesheet" href="/static/exhibit/css/base.css">
@@ -16,6 +14,7 @@
   {% block style %}{% endblock %}
 </head>
 <body>
+  {% include "exhibit/widgets/load.html" %}
   {% include "exhibit/widgets/nav.html" %}
   <div class="pageWrapper">
     {% include 'exhibit/widgets/toast.html' %}
