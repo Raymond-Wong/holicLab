@@ -15,7 +15,10 @@ from holicLab.models import *
 import handlers.shop, handlers.course, handlers.user, handlers.login, handlers.order, handlers.pay, handlers.notify
 
 def testHandler(request):
-  return render(request, 'exhibit/order_success.html')
+  shop = {}
+  shop['location'] = 'asdfasdfasdf'
+  shop['price'] = 100
+  return render(request, 'exhibit/shop_detail.html')
 
 # 错误提示类
 def errorHandler(request):
