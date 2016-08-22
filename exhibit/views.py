@@ -33,11 +33,15 @@ def loginHandler(request, view):
 @wx_logined
 def homeHandler(request):
   shops = Shop.objects.filter(state=2)[:2]
+  now = timezone.now()
   for shop in shops:
     shop.cover = json.loads(shop.cover)
-    shop.courses = shop.course_set.filter(state=2).order_by('-releasedDate')
-    for i, course in enumerate(shop.courses):
-      shop.courses[i].cover = json.loads(course.cover)
+    shop.courses = []
+    courses = shop.course_set.filter(state=2).order_by('-releasedDate')
+    for i, course in enumerate(courses):
+      course.cover = json.loads(course.cover)
+      if course.bookable_time_set.order_by('-start_time')[0].start_time > now:
+        shop.courses.append(course)
   return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops)})
 
 # 商店的处理类
