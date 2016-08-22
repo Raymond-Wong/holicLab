@@ -40,6 +40,7 @@ def detail(request):
   for i, course in enumerate(shop.courses):
     shop.courses[i].cover = json.loads(shop.courses[i].cover)
     shop.courses[i].bookable_time = shop.courses[i].bookable_time_set.order_by('-start_time')[0]
+    course.price = course.price / 10.0
   # 根据预约情况设置不可预约时间
   shop.invalide_times = json.loads(shop.invalide_times)
   for tb in shop.time_bucket_set.filter(start_time__gt=timezone.now()).filter(occupation__gte=shop.capacity):
