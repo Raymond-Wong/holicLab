@@ -4,7 +4,7 @@ var post = function(url, data, success, failed) {
       success(res['msg']);
     } else {
       if (failed == undefined || failed == null) {
-        alert('asfd' + res['msg']);
+        alert(res['msg']);
       } else {
         failed(res);
       }
