@@ -66,14 +66,14 @@
   background-color: transparent !important;
   height: 12vw;
   text-align: center;
-  color: #fa8730;
-  outline: none;
+  color: #fa8730 !important;
+  outline: none !important;
   font-size: 14px;
   display: inline-block;
-  border: 0;
-  border-radius: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
 }
 
 .confirmBtn:first-child {
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #ccc !important;
 }
