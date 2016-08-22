@@ -22,11 +22,18 @@
   font-size: 20px;
   height: 40px;
   line-height: 40px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
+  color: #1b1b1b;
 }
 
 .locationLine {
   margin-top: 10px;
+}
+
+.priceLine {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 18px;
 }
 
 .line .logo {
@@ -45,6 +52,11 @@
   width: 21px;
   margin-left: 2px;
   margin-right: 16px;
+  top: -2px;
+}
+
+.priceLine .logo {
+  width: 21px;
   top: -2px;
 }
 
@@ -87,8 +99,9 @@
   border-radius: 50%;
 }
 
-.locationBox {
+.locationBox, .priceBox {
   width: 80%;
+  color: #717070;
 }
 
 .featureBlock {
