@@ -16,7 +16,6 @@
 
 .line {
   margin: 20px;
-  color: #717070;
 }
 
 .infoLine {
@@ -82,8 +81,9 @@
   font-size: 18px;
 }
 
-.locationBox {
+.locationBox, .priceBox {
   width: 80%;
+  color: #717070;
 }
 
 .featureBlock {
