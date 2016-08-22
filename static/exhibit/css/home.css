@@ -157,3 +157,8 @@
   margin-top: 5px;
   color: #898989;
 }
+
+.noDataHint {
+  margin: 0 14px;
+  color: #dbdbdb;
+}
