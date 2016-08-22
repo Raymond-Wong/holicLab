@@ -21,11 +21,14 @@
       <div class="courseContainer" id="courseScroller">
         <ul>
           {% for course in shop.courses %}
-          <li><a class="courseBox" href="/course?action=detail&cid={{ course.id }}">
-            <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
-            <div class="courseName">{{ course.name }}</div>
-            <div class="courseTag">{{ course.tags }}</div>
-          </a></li>
+          <li>
+            <a class="courseBox right" href="/course?action=detail&cid={{ course.id }}">
+              <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
+              <div class="courseName">{{ course.name }}</div>
+              <div class="courseTag">{{ course.tags }}</div>
+            </a>
+            <div class="clear"></div>
+          </li>
           {% endfor %}
         </ul>
       </div>
