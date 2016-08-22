@@ -6,7 +6,7 @@ var post = function(url, data, success, failed) {
       if (res['code'] == "-2")  {
         window.location.href = res['msg'];
       }
-      if (failed == undefined || failed == null) {
+      if ((failed == undefined || failed == null) && res['code'] != "-2") {
         alert(res['msg']);
       } else {
         failed(res);

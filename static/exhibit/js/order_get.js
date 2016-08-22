@@ -14,6 +14,8 @@ var initCancelAction = function() {
         return false;
       }
       var oid = $(this).attr('oid');
+      alert(oid);
+      return false;
       showToast('正在取消订单中...');
       post('/order?action=refund', {'oid' : oid}, function(msg) {
         if (parseFloat(msg)) {
