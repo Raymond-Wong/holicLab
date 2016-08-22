@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  alert('hahah');
   wxConfig(['hideMenuItems']);
   wx.ready(function() {
     var list = ['menuItem:share:timeline', 'menuItem:share:qq', 'menuItem:share:weiboApp', 'menuItem:favorite', 'menuItem:share:facebook', 'menuItem:share:QZone',
