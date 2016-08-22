@@ -6,7 +6,7 @@ $(document).ready(function() {
     }, function(res) {
       setTimeout(function() {
         hideToast();
-        alert(res['msg']);
+        alert(res);
         mobiAlert(res['msg']);
       }, 1000);
     });
