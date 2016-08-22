@@ -39,9 +39,14 @@
 </div>
 <div class="line infoLine">
   <div class="left logo"><img src="/static/exhibit/icon/duration.svg" /></div>
-  <div class="left">全日24小时<font class="shopPrice">(￥{{ shop.price }}&#47;时)</font></div>
+  <div class="left">全日24小时</div>
   <a class="right btn location"><img src="/static/exhibit/icon/circle_location.svg" /></a>
   <a class="right btn phone" href="tel:{{ shop.phone }}"><img src="/static/exhibit/icon/circle_phone.svg" /></a>
+  <div class="clear"></div>
+</div>
+<div class="line priceLine">
+  <div class="left logo"><img src="/static/exhibit/icon/price.svg" /></div>
+  <div class="left priceBox">￥{{ shop.price }}&#47;时</div>
   <div class="clear"></div>
 </div>
 <div class="line locationLine">
