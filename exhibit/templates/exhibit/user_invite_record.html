@@ -10,8 +10,10 @@
   <img src="/static/exhibit/icon/share.jpg" />
 </div>
 <div class="hide infoLine" uid="{{ user.invite_code }}" balance="{{ user.balance }}"></div>
-<h1 class="title">{{ user.balance }}个好友已被邀请参加运动，看看你的数字是多少</h1>
-{% include "exhibit/widgets/invite_record.html" %}
+<img class="logo" src="/static/exhibit/icon/user_invited_0.jpg" />
+<h1 class="title">
+  {{ user.balance }}个好友已被邀请参加运动，
+  你已获得<font class="money"></font>元抵扣券</h1>
 <div class="ruleBlock">
   <div class="titleBox">
     <div class="hr left"></div>
@@ -20,7 +22,7 @@
     <div class="clear"></div>
   </div>
   <div class="contentBox">
-    当你的朋友点开你的专属链接并成功预约后，才算邀请成功噢。新用户5折优惠。老用户的邀请优惠规则，通过你的专属链接去预约皆可获得10元的抵扣券。邀请的好友越多，获得的优惠越多。每小时每人只能使用一张，预约一小时就抵消一个优惠。目前，只开通了深圳，具体问题可咨询客服。
+    当你的朋友点开你的专属链接并成功预约后，才算邀请成功噢。新用户5折优惠(两个月)。老用户的邀请优惠规则，通过你的专属链接去预约皆可获得10元的抵扣券。邀请的好友越多，获得的优惠越多。每小时每人只能使用一张，预约一小时就抵消一个优惠。目前，只开通了深圳，具体问题可咨询客服。
   </div>
 </div>
 <div class="btn inviteBtn">邀请好友</div>

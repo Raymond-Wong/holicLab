@@ -26,32 +26,39 @@ var getMetaInfo = function() {
   line.remove();
 }
 
+// var initRecord = function() {
+//   if (balance > 0) {
+//     $('.stepLine.firstStepLine').removeClass('activeStepLine');
+//   }
+//   var stepLines = $('.stepLine');
+//   for (var i = 0; i < stepLines.length; i++) {
+//     var stepLine = $(stepLines[i]);
+//     var val = parseInt(stepLine.attr('value'));
+//     if (val < balance) {
+//       stepLine.removeClass('noUseStepLine');
+//       // 如果当前不是最后一个stepLine
+//       if (i + 1 < stepLines.length) {
+//         var nextVal = parseInt($(stepLines[i + 1]).attr('value'));
+//         if (nextVal > balance) {
+//           stepLine.addClass('activeStepLine');
+//           break;
+//         }
+//       } else {
+//         stepLine.addClass('activeStepLine');
+//       }
+//     } else if (val == balance) {
+//       stepLine.removeClass('noUseStepLine');
+//       stepLine.addClass('activeStepLine');
+//       break;
+//     }
+//   }
+// }
+
 var initRecord = function() {
-  if (balance > 0) {
-    $('.stepLine.firstStepLine').removeClass('activeStepLine');
-  }
-  var stepLines = $('.stepLine');
-  for (var i = 0; i < stepLines.length; i++) {
-    var stepLine = $(stepLines[i]);
-    var val = parseInt(stepLine.attr('value'));
-    if (val < balance) {
-      stepLine.removeClass('noUseStepLine');
-      // 如果当前不是最后一个stepLine
-      if (i + 1 < stepLines.length) {
-        var nextVal = parseInt($(stepLines[i + 1]).attr('value'));
-        if (nextVal > balance) {
-          stepLine.addClass('activeStepLine');
-          break;
-        }
-      } else {
-        stepLine.addClass('activeStepLine');
-      }
-    } else if (val == balance) {
-      stepLine.removeClass('noUseStepLine');
-      stepLine.addClass('activeStepLine');
-      break;
-    }
-  }
+  var imgPath = '/static/exhibit/icon/user_invited_' + (balance > 4 ? 4 : balance) + '.jpg';
+  var moneyBox = $('.money');
+  $('.logo').attr('src', imgPath);
+  moneyBox.text(balance * 10);
 }
 
 var initShare = function() {
