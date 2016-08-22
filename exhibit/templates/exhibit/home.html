@@ -19,6 +19,7 @@
     </div>
     <div class="courseWrapper" id="courseWrapper">
       <div class="courseContainer" id="courseScroller">
+        {% if shop.courses %}
         <ul>
           {% for course in shop.courses %}
           <li>
@@ -31,6 +32,9 @@
           </li>
           {% endfor %}
         </ul>
+        {% else %}
+        <h3>暂无可选团体课</h3>
+        {% endif %}
       </div>
     </div>
     </div>
