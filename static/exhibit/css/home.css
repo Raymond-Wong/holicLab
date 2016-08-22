@@ -91,14 +91,6 @@
   text-size-adjust: none;
 }
 
-.courseBox:first-child {
-  /*margin-left: 14px;*/
-}
-
-.courseBox:last-child {
-  /*margin-right: 14px;*/
-}
-
 .courseBox, .courseBox:hover, .courseBox:active, .courseBox:focus, .courseBox:visited {
   display: inline-block;
   font-size: 0;
@@ -134,7 +126,7 @@
 }
 
 .courseContainer li:last-child {
-  width: 136px;
+  width: 138px;
 }
 
 .courseContainer li:last-child .courseBox {
