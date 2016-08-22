@@ -48,5 +48,7 @@ def detail(request):
   for i, time in enumerate(bookable_time_records):
     times.append({'id' : time.id, 'startTime' : time.start_time, 'endTime' : time.end_time, 'occupation' : time.occupation})
   course.bookable_time = json.dumps(times, cls=MyJsonEncoder)
+  # 设置课程价格为单位元
+  course.price = course.price / 10.0
   # 返回商店详情
   return render(request, 'exhibit/course_detail.html', {'course' : course})
