@@ -34,7 +34,7 @@ def verify_required(view):
     user = User.objects.get(invite_code=request.session['user'])
     if user.phone == None or len(user.phone) == 0:
       request.session['backUrl'] = request.get_full_path()
-      return HttpResponseRedirect('/user?action=verify&type=phone')
+      return redirect('/user?action=verify&type=phone')
     return view(request, *args, **kwargs)
   return verified
 # def verify_required(view):
