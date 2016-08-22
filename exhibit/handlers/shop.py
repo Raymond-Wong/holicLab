@@ -37,10 +37,15 @@ def detail(request):
     return HttpResponse(Response(c=-3, m="待查询商店不存在").toJson(), content_type="application/json")
   shop.cover = json.loads(shop.cover)
   shop.courses = shop.course_set.filter(state=2).order_by('-releasedDate')
+  courses = []
+  now = timezone.now()
   for i, course in enumerate(shop.courses):
     shop.courses[i].cover = json.loads(shop.courses[i].cover)
     shop.courses[i].bookable_time = shop.courses[i].bookable_time_set.order_by('-start_time')[0]
-    course.price = course.price / 10.0
+    shop.courses[i].price = course.price / 10.0
+    if shop.courses[i].bookable_time.start_time > now:
+      courses.append(shop.courses[i])
+  shop.courses = courses
   # 根据预约情况设置不可预约时间
   shop.invalide_times = json.loads(shop.invalide_times)
   for tb in shop.time_bucket_set.filter(start_time__gt=timezone.now()).filter(occupation__gte=shop.capacity):
