@@ -104,6 +104,7 @@
   font-size: 0;
   /*margin: 0 7px;*/
   text-decoration: none;
+  float: right;
 }
 
 .courseBox * {
@@ -130,6 +131,14 @@
   height: 100%;
   width: 130px;
   overflow: hidden;
+}
+
+.courseContainer li:last-child {
+  width: 140px;
+}
+
+.courseContainer li:last-child .courseBox {
+  float: none;
 }
 
 .courseCover {
