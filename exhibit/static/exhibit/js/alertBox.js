@@ -1,5 +1,5 @@
 var mobiAlert = function(msg, callback) {
-  alert('msg');
+  alert(msg);
   var alertBoxContainer = $('#alertBoxContainer');
   var alertBoxText = $(alertBoxContainer.find('.alertText')[0]);
   var alertBtn = $(alertBoxContainer.find('.alertBtn')[0]);
