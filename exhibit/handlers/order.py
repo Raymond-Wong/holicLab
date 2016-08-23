@@ -212,7 +212,7 @@ def success(request):
   return render(request, 'exhibit/order_success.html', {'user' : user})
 
 def isOrderCancelable(order):
-  if order.state == "2" or order.start_time <= timezone.now():
+  if order.state == "2" or (order.start_time + timedelta(seconds=60 * 15)) <= timezone.now():
     return False
   elif not belongTo(order, User.objects.get(invite_code=request.session['user'])):
     return False
