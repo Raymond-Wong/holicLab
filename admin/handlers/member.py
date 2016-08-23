@@ -11,6 +11,7 @@ from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
+from django.utils import F
 
 from holicLab.utils import *
 from holicLab.models import User
@@ -19,6 +20,8 @@ def list(request):
   if request.method == 'GET':
     user_type = request.GET.get('state', 'old')
     members = User.objects.filter(user_type=("1" if user_type == 'new' else "2"))
+    for member in members:
+      member.occupation = F('occupation') / 10.0
     return render(request, 'admin/member.html', {'members' : members, 'activePage' : 'member'})
   # 检查数据合法性
   times_lb = request.POST.get('times_lb', 0)
