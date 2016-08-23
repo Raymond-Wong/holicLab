@@ -74,7 +74,7 @@ def get(request):
     order.price /= 10
   else:
     order.price /= 10.0
-  order.cancelable = isOrderCancelable(order, User.objects.get(invite_code=request.sesson['user']))
+  order.cancelable = isOrderCancelable(order, User.objects.get(invite_code=request.session['user']))
   return render(request, 'exhibit/order_get.html', {'order' : order})
 
 def update(request):
@@ -116,7 +116,7 @@ def refund(request):
   order = Order.objects.get(oid=request.POST.get('oid'))
   # 判断当前订单是否可退款
   # 如果不行，就返回错误
-  if not isOrderCancelable(order, User.objects.get(invite_code=request.sesson['user'])):
+  if not isOrderCancelable(order, User.objects.get(invite_code=request.session['user'])):
     return HttpResponse(Response(c=1, m='当前订单不可退款').toJson(), content_type='application/json')
   # 判断请求退款的用户和订单的用户是否是同一个用户
   # 如果不是，则返回错误
