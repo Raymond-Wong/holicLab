@@ -45,8 +45,7 @@ def list(request):
   orders = orders.order_by('-create_time')
   # 处理duration
   for order in orders:
-    # order.price = (order.price / 10) if order.price % 10 == 0 else (order.price / 10.0)
-    order.price = 200.5
+    order.price = (order.price / 10) if order.price % 10 == 0 else (order.price / 10.0)
     if order.order_type == "1":
       order.duration = order.end_time - order.start_time
       order.duration = order.duration.seconds / 60.0
