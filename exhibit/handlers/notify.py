@@ -44,5 +44,4 @@ def verifySign(params, order):
   toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
   toSignStr += ('&key=' + settings.WX_MCH_KEY)
   sign = md5(toSignStr).upper()
-  print 'givenSign=%s, sign=%s' % (givenSign, sign)
   return givenSign == sign

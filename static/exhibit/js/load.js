@@ -8,7 +8,7 @@ var loading = function() {
     if (FINISHED_LOADING) {
       finishLoading();
     } else {
-      setTimeout(loading, 1500);
+      setTimeout(loading, 800);
     }
   } catch (e) {
     // 如果不存在这个变量，则直接结束加载
