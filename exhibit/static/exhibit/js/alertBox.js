@@ -4,14 +4,14 @@ var mobiAlert = function(msg, callback) {
   var alertBtn = $(alertBoxContainer.find('.alertBtn')[0]);
   var alertBtnBox = alertBtn.parent();
   var confirmBtnBox = $(alertBoxContainer.find('.confirmBtn')).parent();
-  alertBoxText.text(msg);
+  alertBoxText.html(msg);
   confirmBtnBox.hide();
   alertBtnBox.show();
   alertBoxContainer.show();
   alertBtn.on('tap', function(evt) {
     evt.preventDefault();
     alertBoxContainer.hide();
-    alertBoxText.text('');
+    alertBoxText.html('');
     callback();
     return false;
   });
@@ -24,13 +24,13 @@ var mobiConfirm = function(msg, callback) {
   var alertBtnBox = alertBtn.parent();
   var confirmBtn = $(alertBoxContainer.find('.confirmBtn'))
   var confirmBtnBox = confirmBtn.parent();
-  alertBoxText.text(msg);
+  alertBoxText.html(msg);
   alertBtnBox.hide();
   confirmBtnBox.show();
   alertBoxContainer.show();
   confirmBtn.on('tap', function() {
     alertBoxContainer.hide();
-    alertBoxText.text('');
+    alertBoxText.html('');
     callback($(this).attr('value') == 'true' ? true : false);
   });
 }
