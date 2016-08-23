@@ -21,7 +21,7 @@ def list(request):
     user_type = request.GET.get('state', 'old')
     members = User.objects.filter(user_type=("1" if user_type == 'new' else "2"))
     for member in members:
-      member.consumption = F('consumption') / 10.0
+      member.consumption /= 10.0
     return render(request, 'admin/member.html', {'members' : members, 'activePage' : 'member'})
   # 检查数据合法性
   times_lb = request.POST.get('times_lb', 0)
