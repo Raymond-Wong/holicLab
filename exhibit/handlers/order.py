@@ -74,12 +74,7 @@ def get(request):
     order.price /= 10
   else:
     order.price /= 10.0
-  if order.state == "2" or order.start_time <= timezone.now():
-    order.cancelable = False
-  elif not belongTo(order, User.objects.get(invite_code=request.session['user'])):
-    order.cancelable = False
-  else:
-    order.cancelable = True
+  order.cancelable = isOrderCancelable(order)
   return render(request, 'exhibit/order_get.html', {'order' : order})
 
 def update(request):
@@ -119,6 +114,10 @@ def password(request):
 def refund(request):
   # 获取待取消订单
   order = Order.objects.get(oid=request.POST.get('oid'))
+  # 判断当前订单是否可退款
+  # 如果不行，就返回错误
+  if not isOrderCancelable(order):
+    return HttpResponse(Response(c=2, m='当前订单不可退款').toJson(), content_type='application/json')
   # 判断请求退款的用户和订单的用户是否是同一个用户
   # 如果不是，则返回错误
   if not belongTo(order, User.objects.get(invite_code=request.session['user'])):
@@ -211,3 +210,10 @@ def success(request):
     if u.user_type == "2":
       user.balance += 1
   return render(request, 'exhibit/order_success.html', {'user' : user})
+
+def isOrderCancelable(order):
+  if order.state == "2" or order.start_time <= timezone.now():
+    return False
+  elif not belongTo(order, User.objects.get(invite_code=request.session['user'])):
+    return False
+  return True
