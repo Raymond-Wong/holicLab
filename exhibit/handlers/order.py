@@ -164,10 +164,10 @@ def cancelSuccess(order):
   user = order.user
   # 1. 修改订单状态
   order.state = "2"
+   # 2. 更新用户的总消费金额
+  user.consumption = F('consumption') - order.price
   # 如果该用户除了当前订单没有其他订单
   if len(user.order_set.filter(state="4")) == 0:
-    # 2. 更新用户的总消费金额
-    user.consumption = F('consumption') - order.price
     # 3. 减少邀请该用户的用户的抵扣券
     inviteUser = user.invited_by
     inviteUser.balance = F('balance') - 1
@@ -197,6 +197,7 @@ def cancelSuccess(order):
     bookableTime.save()
   # 保存对象
   order.save()
+  user.save()
 
 # 判断订单order是否由用户user发起
 def belongTo(order, user):
