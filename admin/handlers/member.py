@@ -11,7 +11,7 @@ from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
-from django.utils import F
+from django.db.models import F
 
 from holicLab.utils import *
 from holicLab.models import User

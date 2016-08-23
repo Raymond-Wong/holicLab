@@ -18,7 +18,7 @@ if REMOTE:
     MYSQL_HOST_M = '127.0.0.1'
     MYSQL_HOST_S = '127.0.0.1'
     MYSQL_PORT = '3306'
-    DEBUG = True
+    DEBUG = False
 else:
     # SAE
     import sae.const
