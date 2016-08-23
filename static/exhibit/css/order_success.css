@@ -77,6 +77,11 @@
   margin-top: 1em;
 }
 
+.ruleBlock .contentBox .qrcodeBox img {
+  width: 100%;
+  height: 100%;
+}
+
 .inviteBtn, .inviteBtn:visited, .inviteBtn:active, .inviteBtn:focus, .inviteBtn:hover {
   font-size: 18px;
   background-color: #f5a623;
