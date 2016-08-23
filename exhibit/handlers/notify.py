@@ -15,6 +15,7 @@ from django.utils.encoding import smart_str
 from django.db.models import F
 
 from holicLab.utils import *
+import holicLab.settings as settings
 from holicLab.models import Order, Shop, User, Course, Bookable_Time, Time_Bucket
 from pay import getOrderPrice, successOrder
 
@@ -39,4 +40,9 @@ def notify(request):
 
 # 验证签名是否正确
 def verifySign(params, order):
-  return True
+  givenSign = params.pop('sign')
+  toSignStr = '&'.join(map(lambda x:x[0] + '=' + x[1], sorted(params.iteritems(), lambda x,y:cmp(x[0], y[0]))))
+  toSignStr += ('&key=' + settings.WX_MCH_KEY)
+  sign = md5(toSignStr).upper()
+  print 'givenSign=%s, sign=%s' % (givenSign, sign)
+  return givenSign == sign
