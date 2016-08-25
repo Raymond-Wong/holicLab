@@ -15,13 +15,7 @@ from holicLab.utils import Response
 def handler(view):
   def unKnownErr(request, *args, **kwargs):
     try:
-      ret = view(request, *args, **kwargs)
-      # 如果请求一个页面的时候发生了已知的错误，则跳转到错误页面
-      print request.method, isinstance(ret, Response), ret['code']
-      if request.method == 'GET' and isinstance(ret, Response) and ret['code'] != 0:
-        return HttpResponse(Response(c=-2, m='/error?msg=%s' % ret['msg']).toJson(), content_type="application/json")
-      # 否则没发生错误，则直接返回请求的内容
-      return ret
+      return view(request, *args, **kwargs)
     except Exception, e:
       info = sys.exc_info()
       print info
