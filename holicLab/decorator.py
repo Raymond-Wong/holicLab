@@ -15,13 +15,20 @@ from holicLab.utils import Response
 def handler(view):
   def unKnownErr(request, *args, **kwargs):
     try:
-      return view(request, *args, **kwargs)
+      ret = view(request, *args, **kwargs)
+      # 如果请求一个页面的时候发生了已知的错误，则跳转到错误页面
+      if request.method == 'GET' and isinstance(ret, Response) and ret['code'] != 0:
+        return HttpResponse(Response(c=-2, m='/error?msg=%s' % ret['msg']).toJson(), content_type="application/json")
+      # 否则没发生错误，则直接返回请求的内容
+      return ret
     except Exception, e:
       info = sys.exc_info()
       print info
       info = str(info[1]).decode("unicode-escape")
+      # 如果一个post请求发生了未知的错误，则告诉前端将页面跳转到错误页面
       if request.method == 'POST':
         return HttpResponse(Response(c=-2, m='/error?msg=%s' % info).toJson(), content_type="application/json")
+      # 如果是一个get请求发生了为知的错误，则将页面重定向到错误情面
       return HttpResponseRedirect('/error?msg=%s' % info)
   return unKnownErr
 
@@ -40,8 +47,8 @@ def verify_required(view):
         request.session['backUrl'] = request.get_full_path()
       else:
         request.session['backUrl'] = '/'
-      if request.method == 'POST':
-        return HttpResponse(Response(c=-2, m='/user?action=verify&type=phone').toJson(), content_type="application/json")
+      # if request.method == 'POST':
+      #   return HttpResponse(Response(c=-2, m='/user?action=verify&type=phone').toJson(), content_type="application/json")
       return redirect('/user?action=verify&type=phone')
     return view(request, *args, **kwargs)
   return verified

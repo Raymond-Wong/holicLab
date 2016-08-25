@@ -14,7 +14,7 @@ from django.utils import timezone
 from holicLab.utils import *
 from holicLab.models import Shop, Time_Bucket, Course, Service
 
-# 列出所有店铺
+# 列出所有课程
 def list(request):
   sid = request.GET.get('sid', None)
   shop = None
