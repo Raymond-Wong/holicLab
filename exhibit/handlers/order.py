@@ -96,7 +96,7 @@ def password(request):
     start = timezone.now()
     end = start + timedelta(minutes=60)
     # order = user.order_set.filter(start_time__lte=end).filter(start_time__gte=start).filter(end_time__gt=start)
-    order = user.order_set.filter(state='4').filter(start_time__lte=end).filter(end_time__gt=end)
+    order = user.order_set.filter(state=4).filter(start_time__lte=end).filter(end_time__gt=start)
     if len(order) == 0:
       return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前一小时内点击获取密码').toJson(), content_type="application/json")
     order = order[0]
