@@ -94,11 +94,11 @@ def password(request):
   if request.method == 'POST':
     user = User.objects.get(invite_code=request.session['user'])
     start = timezone.now()
-    end = start + timedelta(minutes=15)
+    end = start + timedelta(minutes=60)
     # order = user.order_set.filter(start_time__lte=end).filter(start_time__gte=start).filter(end_time__gt=start)
     order = user.order_set.filter(start_time__lte=end).filter(end_time__gt=end)
     if len(order) == 0:
-      return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前15分钟点击获取密码').toJson(), content_type="application/json")
+      return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前一小时内点击获取密码').toJson(), content_type="application/json")
     order = order[0]
     return HttpResponse(Response(m='/order?action=password&oid=%s' % str(order.oid)).toJson(), content_type="application/json")
   order = Order.objects.get(oid=request.GET.get('oid'))
