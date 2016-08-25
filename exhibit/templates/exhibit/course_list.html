@@ -1,0 +1,22 @@
+{% extends 'exhibit/widgets/base.html' %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/exhibit/css/course_list.css">
+{% endblock %}
+
+{% block page %}
+<ul class="courseListWrapper">
+  {% for course in courses %}
+  <li class="courseItemWrapper thumbImg" style="background-image: {{ course.cover.0 }}">
+    <a class="courseItem" href="/course?action=detail&cid={{ course.id }}">
+      <div class="textEllipsis price">￥{{ course.price }}</div>
+      <div class="textEllipsis name">{{ course.name }}</div>
+      <div class="textEllipsis time">{{ course.start_time | date:"Y-m-d H:i" }}-{{ course.end_time | date:"H:i" }}</div>
+      <div class="textEllipsis location">{{ course.shop.location }}</div>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block script %}{% endblock %}

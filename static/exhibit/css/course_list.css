@@ -1,0 +1,41 @@
+.courseListWrapper {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.courseItemWrapper {
+  width: 100vw;
+  height: 32.8vw;
+  padding-left: 6.67vw;
+  text-align: left;
+}
+
+.courseItem {
+  display: block;
+  position: relative;
+}
+
+.courseItem .name {
+  font-size: 20px;
+  padding: 1.4em 0;
+  color: white;
+}
+
+.courseItem .time, .courseItem .location {
+  width: 76vw;
+  color: #efefef;
+  font-size: 14px;
+  line-height: 1.6em;
+}
+
+.courseItem .price {
+  position: absolute;
+  width: 20vw;
+  margin: 0 2vw;
+  right: 0;
+  bottom: 0;
+  text-align: right;
+  color: white;
+  font-size: 20px;
+}

@@ -25,10 +25,18 @@ def list(request):
     shop = Shop.objects.get(id=int(sid))
   except Exception, e:
     return HttpResponse(Response(c=-3, m="待查询商店不存在").toJson(), content_type="application/json")
-  courses = shop.course_set.all()
+  allCourses = shop.course_set.filter(state=2).order_by('-releasedDate')
+  courses = []
   # 将图片列表从字符串处理成数组
-  for course in courses:
+  now = timezone.now()
+  for course in allCourses:
     course.cover = json.loads(course.cover)
+    course.price = course.price / 10 if course.price % 10 == 0 else course.price / 10.0
+    course.bookable_time = course.bookable_time_set.order_by('-start_time')
+    if len(course.bookable_time) > 0:
+      course.start_time = course.bookable_time[0].start_time
+      course.end_time = course.bookable_time[0].end_time
+      courses.append(course)
   return render(request, 'exhibit/course_list.html', {'courses' : courses})
 
 # 显示商店详情
