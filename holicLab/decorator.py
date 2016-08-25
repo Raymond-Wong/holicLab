@@ -42,8 +42,8 @@ def verify_required(view):
         request.session['backUrl'] = request.get_full_path()
       else:
         request.session['backUrl'] = '/'
-      # if request.method == 'POST':
-      #   return HttpResponse(Response(c=-2, m='/user?action=verify&type=phone').toJson(), content_type="application/json")
+        # 如果是post请求的话则要告诉前端进行跳转
+        return HttpResponse(Response(c=-2, m='/user?action=verify&type=phone').toJson(), content_type="application/json")
       return redirect('/user?action=verify&type=phone')
     return view(request, *args, **kwargs)
   return verified
