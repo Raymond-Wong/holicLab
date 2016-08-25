@@ -57,7 +57,6 @@ def shopHandler(request):
 
 # 课程的处理类
 @handler
-@wx_logined
 def courseHandler(request):
   action = request.GET.get('action')
   if action == 'list':
