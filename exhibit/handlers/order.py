@@ -126,9 +126,9 @@ def refund(request):
   now = timezone.now()
   refund = 0
   hours = int((order.start_time - now).total_seconds()) / 60 / 60
-  if order.order_type == "1" and hours < 4:
+  if order.order_type == "1" and hours > 4:
     refund = order.price
-  elif order.order_type == "2" and hours < 6:
+  elif order.order_type == "2" and hours > 6:
     refund = order.price
   # 构造请求字典
   params = {}
@@ -213,7 +213,7 @@ def success(request):
   return render(request, 'exhibit/order_success.html', {'user' : user})
 
 def isOrderCancelable(order, user):
-  if order.state == "2" or (order.start_time - timedelta(minutes=60)) < timezone.now():
+  if order.state != "4" or order.start_time <= timezone.now():
     return False
   elif not belongTo(order, user):
     return False
