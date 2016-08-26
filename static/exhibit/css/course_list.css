@@ -23,6 +23,7 @@
   display: block;
   position: relative;
   text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .courseItem .name {
