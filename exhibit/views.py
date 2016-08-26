@@ -44,6 +44,7 @@ def homeHandler(request):
       if len(course.bookable_time) > 0:
         course.bookable_time = course.bookable_time[0]
         shop.courses.append(course)
+  shops = shops[:1]
   return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops)})
 
 # 商店的处理类
