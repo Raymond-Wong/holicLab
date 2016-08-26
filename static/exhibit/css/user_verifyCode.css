@@ -57,6 +57,9 @@ a {
   width: 100%;
   margin-bottom: 9vw;
   text-align: center;
+  font-size: 16px;
+  -webkit-appearance: none;
+  border-radius: 5px;
 }
 
 .codeInput {
