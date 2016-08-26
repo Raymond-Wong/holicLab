@@ -1,5 +1,6 @@
 html * {
-  font-family: "微软雅黑", "黑体", monospace;
+  /*font-family: "微软雅黑", "黑体", monospace;*/
+  font-family: -apple-system, Helvetica Neue, Arial, Neo Heiti, sans-serif;
   color: #5b5b5b;
   text-shadow: none;
 }
