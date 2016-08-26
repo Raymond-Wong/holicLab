@@ -13,16 +13,21 @@
   padding-bottom: 2vw;
 }
 
-.shopCover {
+.shopItem:last-child {
+  padding-bottom: 0;
+}
+
+.shopCover, .shopCover:hover, .shopCover:focus, .shopCover:active, .shopCover:visited {
   width: 100vw;
   height: 78vw;
   line-height: 78vw;
   color: white;
   display: block;
-  font-size: 20px;
+  font-size: 24px;
+  text-decoration: none;
 }
 
-.allCoursesBtn {
+.allCoursesBtn, .allCoursesBtn:hover, .allCoursesBtn:focus, .allCoursesBtn:active, .allCoursesBtn:visited {
   display: block;
   position: relative;
   margin: 2vw;
@@ -33,6 +38,7 @@
   text-align: center;
   line-height: 12.7vw;
   font-size: 20px;
+  text-decoration: none;
 }
 
 .allCoursesBtn .icon {
@@ -61,7 +67,8 @@
   margin-left: 0;
 }
 
-.courseItem {
+.courseItem, .courseItem:hover, .courseItem:focus, .courseItem:active, .courseItem:visited {
+  text-decoration: none;
   width: 100%;
   display: block;
 }
@@ -75,7 +82,7 @@
   width: 100%;
   color: #262626;
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
   margin: 20px 0 5px 0;
 }
 
@@ -83,7 +90,7 @@
   width: 100%;
   color: #898989;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 20px;
 }
 
@@ -115,5 +122,5 @@
   z-index: 10;
   color: white;
   text-align: center;
-  font-size: 20px;
+  font-size: 24px;
 }
