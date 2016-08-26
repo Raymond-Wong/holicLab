@@ -19,14 +19,15 @@
   text-align: left;
 }
 
-.courseItem {
+.courseItem, .courseItem:hover, .courseItem:active, .courseItem:focus, .courseItem:visited {
   display: block;
   position: relative;
+  text-decoration: none;
 }
 
 .courseItem .name {
   font-size: 20px;
-  padding: 1.4em 0;
+  padding: 1.2em 0;
   color: white;
 }
 
