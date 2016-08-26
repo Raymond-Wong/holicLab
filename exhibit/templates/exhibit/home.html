@@ -5,55 +5,37 @@
 {% endblock %}
 
 {% block page %}
-<div class="homePageWrapper">
+<ul class="shopList">
   {% for shop in shops %}
-  <div class="shopWrapper">
-    <div class="coverWrapper vertical_outer thumbImg myLink" href="/shop?action=detail&sid={{ shop.id }}" style="background-image: {{ shop.cover.0 }}">
-      <div class="coverBox vertical_inner">
-        <h1 class="shopName">热门场地 {{ shop.name }}</h1>
-        {% ifequal forloop.counter 1 %}
-        <a class="btn btn-default showAllshopBtn" href="/shop?action=list">查看所有</a>
-        {% endifequal %}
-      </div>
-      <div class="triangle"></div>
-    </div>
-    <div class="courseWrapper" id="courseWrapper">
-      <div class="courseContainer" id="courseScroller">
-        {% if shop.courses %}
-        <ul>
-          {% for course in shop.courses %}
-          <li>
-            <a class="courseBox" href="/course?action=detail&cid={{ course.id }}">
-              <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
-              <div class="courseName">{{ course.name }}</div>
-              <div class="courseTag">{{ course.tags }}</div>
-            </a>
-            <div class="clear"></div>
-          </li>
-          {% endfor %}
-        </ul>
-        {% else %}
-        <h3 class="noDataHint">暂无可选团体课...</h3>
-        {% endif %}
-      </div>
-    </div>
-    </div>
-  </div>
+  <li class="shopItem">
+    <a class="shopCover thumbImg" href="/shop?action=detail&sid={{ shop.id }}" style="background-image: {{ shop.cover.0 }}">{{ shop.name }}</a>
+    <a class="allCoursesBtn" href="/course?action=list&sid={{ shop.id }}">
+      全部课程
+      <img class="icon" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjMwcHgiIGhlaWdodD0iMzFweCIgdmlld0JveD0iMCAwIDMwIDMxIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IHNrZXRjaHRvb2wgMzkuMSAoMzE3MjApIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPjNGN0VEREJFLTIyNUUtNDY2NS1CMTE4LTMyMUExMEE2RUM4NTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggc2tldGNodG9vbC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0idWkiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSIxLuS4u+mhtS3vvIjkv67mlLkyLjDvvIkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02ODMuMDAwMDAwLCAtNzYzLjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0iRmVhdHVyZWQtU2VjdGlvbiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEuMDAwMDAwLCAxMzAuMDAwMDAwKSIgZmlsbD0iI0ZGRkZGRiI+CiAgICAgICAgICAgICAgICA8ZyBpZD0iQm9keS1iYWNrZ3JvdW5kIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwgNTk5LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtNDEiIHg9IjE3IiB5PSIwIiB3aWR0aD0iNzIwIiBoZWlnaHQ9IjkzIj48L3JlY3Q+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPGcgaWQ9InJpZ2h0LWFycm93IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2OTAuMDAwMDAwLCA3NzAuMDAwMDAwKSIgZmlsbD0iI0Y1QTYyMyI+CiAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMS4xNzQ2MDMxNywxOC4zMDE1ODczIEMxLjA0NzYxOTA1LDE4LjQyODU3MTQgMC44ODg4ODg4ODksMTguNDkyMDYzNSAwLjcxNDI4NTcxNCwxOC40OTIwNjM1IEMwLjUzOTY4MjU0LDE4LjQ5MjA2MzUgMC4zODA5NTIzODEsMTguNDI4NTcxNCAwLjI1Mzk2ODI1NCwxOC4zMDE1ODczIEM2LjU3MzkwODA4ZS0xNCwxOC4wNDc2MTkgNi41NzM5MDgwOGUtMTQsMTcuNjM0OTIwNiAwLjI1Mzk2ODI1NCwxNy4zODA5NTI0IEw4LjM0OTIwNjM1LDkuMjg1NzE0MjkgTDAuMjUzOTY4MjU0LDEuMTkwNDc2MTkgQzYuNDYxNDk4ZS0xNCwwLjkzNjUwNzkzNyA2LjQ2MTQ5OGUtMTQsMC41MjM4MDk1MjQgMC4yNTM5NjgyNTQsMC4yNjk4NDEyNyBDMC41MDc5MzY1MDgsMC4wMTU4NzMwMTU5IDAuOTIwNjM0OTIxLDAuMDE1ODczMDE1OSAxLjE3NDYwMzE3LDAuMjY5ODQxMjcgTDkuNzMwMTU4NzMsOC44MjUzOTY4MyBDOS45ODQxMjY5OCw5LjA3OTM2NTA4IDkuOTg0MTI2OTgsOS40OTIwNjM0OSA5LjczMDE1ODczLDkuNzQ2MDMxNzUgTDEuMTc0NjAzMTcsMTguMzAxNTg3MyBMMS4xNzQ2MDMxNywxOC4zMDE1ODczIFoiIGlkPSJTaGFwZSI+PC9wYXRoPgogICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDxnIGlkPSJyaWdodC1hcnJvdyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjk3LjAwMDAwMCwgNzcwLjAwMDAwMCkiIGZpbGw9IiNGNUE2MjMiPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTEuMTc0NjAzMTcsMTguMzAxNTg3MyBDMS4wNDc2MTkwNSwxOC40Mjg1NzE0IDAuODg4ODg4ODg5LDE4LjQ5MjA2MzUgMC43MTQyODU3MTQsMTguNDkyMDYzNSBDMC41Mzk2ODI1NCwxOC40OTIwNjM1IDAuMzgwOTUyMzgxLDE4LjQyODU3MTQgMC4yNTM5NjgyNTQsMTguMzAxNTg3MyBDNi41NzM5MDgwOGUtMTQsMTguMDQ3NjE5IDYuNTczOTA4MDhlLTE0LDE3LjYzNDkyMDYgMC4yNTM5NjgyNTQsMTcuMzgwOTUyNCBMOC4zNDkyMDYzNSw5LjI4NTcxNDI5IEwwLjI1Mzk2ODI1NCwxLjE5MDQ3NjE5IEM2LjQ2MTQ5OGUtMTQsMC45MzY1MDc5MzcgNi40NjE0OThlLTE0LDAuNTIzODA5NTI0IDAuMjUzOTY4MjU0LDAuMjY5ODQxMjcgQzAuNTA3OTM2NTA4LDAuMDE1ODczMDE1OSAwLjkyMDYzNDkyMSwwLjAxNTg3MzAxNTkgMS4xNzQ2MDMxNywwLjI2OTg0MTI3IEw5LjczMDE1ODczLDguODI1Mzk2ODMgQzkuOTg0MTI2OTgsOS4wNzkzNjUwOCA5Ljk4NDEyNjk4LDkuNDkyMDYzNDkgOS43MzAxNTg3Myw5Ljc0NjAzMTc1IEwxLjE3NDYwMzE3LDE4LjMwMTU4NzMgTDEuMTc0NjAzMTcsMTguMzAxNTg3MyBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+" />
+    </a>
+    <ul class="courseList">
+      {% for course in shop.courses %}
+      <li class="courseItemWrapper left">
+        <a class="courseItem" href="/course?action=detail&cid={{ course.id }}">
+          <div class="courseCover thumbImg" style="background-image: {{ course.cover.0 }}"></div>
+          <div class="courseName textEllipsis">{{ course.name }}</div>
+          <div class="courseTags textEllipsis">{{ course.tags }}</div>
+        </a>
+      </li>
+      {% endfor %}
+      <li class="clear"></li>
+    </ul>
+  </li>
   {% endfor %}
   {% ifequal shopSize 2 %}
   {% else %}
-  <div class="shopWrapper">
-    <div class="coverWrapper vertical_outer thumbImg">
-      <div class="coverBox vertical_inner disabled">
-        <h1 class="shopName">Coming Soon</h1>
-      </div>
-    </div>
-  </div>
+  <li class="noMoreShop">
+    <div class="mask">Coming Soon</div>
+    <div class="bg thumbImg"></div>
+  </li>
   {% endifequal %}
-</div>
+</ul>
 {% endblock %}
 
 {% block script %}
-<script type="text/javascript" src="/static/plugin/iscroll/iscroll-probe.js"></script>
-<script type="text/javascript" src="/static/exhibit/js/home.js"></script>
 {% endblock %}
