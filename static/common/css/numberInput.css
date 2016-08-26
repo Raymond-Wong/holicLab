@@ -53,8 +53,8 @@ body {
 }
 
 .numberInputBtn[value="del"] .numberInputText {
-  padding: 12% 0;
-  font-size: 48px;
+  padding: 15% 0;
+  font-size: 36px;
   font-weight: 1000;
   color: #f5a623;
 }
