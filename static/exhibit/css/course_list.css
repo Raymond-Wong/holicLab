@@ -14,16 +14,18 @@
 
 .courseItemWrapper {
   width: 100vw;
-  height: 32.8vw;
-  padding-left: 6.67vw;
+  /*height: 32.8vw;*/
   text-align: left;
 }
 
 .courseItem, .courseItem:hover, .courseItem:active, .courseItem:focus, .courseItem:visited {
+  width: 100%;
   display: block;
   position: relative;
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.5);
+  padding-left: 6.67vw;
+  padding-bottom: 3vw;
 }
 
 .courseItem .name {
