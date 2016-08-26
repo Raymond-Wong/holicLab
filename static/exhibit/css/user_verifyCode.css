@@ -63,6 +63,7 @@ a {
   width: 66.67vw;
   height: 10.67vw;
   line-height: 10.67vw;
+  padding: 0;
   margin: auto;
   text-align: center;
   background-color: white;
@@ -71,4 +72,5 @@ a {
   outline: none;
   font-size: 16px;
   -webkit-appearance: none;
+  color: #5b5b5b;
 }
