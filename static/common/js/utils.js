@@ -90,9 +90,9 @@ var getAddressLocation = function(address, callback) {
 }
 
 var dumpsNewline = function(text) {
-  return text.replace('\n', '<br />');
+  return text.replace(new RegExp('\n',"gm"), '<br />');
 }
 
 var loadsNewline = function(text) {
-  return text.replace('<br />', '\n');
+  return text.replace(new RegExp('<br />',"gm"), '\n');
 }
