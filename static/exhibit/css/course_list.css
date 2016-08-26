@@ -24,8 +24,8 @@
   position: relative;
   text-decoration: none;
   background-color: rgba(0, 0, 0, 0.5);
-  padding-left: 6.67vw;
-  padding-bottom: 3vw;
+  padding-left: 6vw;
+  padding-bottom: 2vw;
 }
 
 .courseItem .name {
@@ -44,7 +44,7 @@
 .courseItem .price {
   position: absolute;
   width: 20vw;
-  margin: 3vw 2vw;
+  margin: 2vw;
   right: 0;
   bottom: 0;
   text-align: right;
