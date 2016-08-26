@@ -1,25 +1,41 @@
+body {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
 .numberInputPanel {
   width: 100%;
-  padding: 0 9.3%;
-  background-color: white;
+  padding: 0;
+  background-color: #e4e4e4;
+  position: absolute;
+  bottom: 0;
 }
 
 .numberInputRow {
   width: 100%;
-  margin-top: 5%;
-}
-
-.numberInputRow:nth-child(1) {
-  margin-top: 0;
 }
 
 .numberInputBtn {
-  width: 22.95%;
-  padding-bottom: 22.95%;
-  margin: 0 4.91%;
-  border: 1px solid #e4e4e4;
-  border-radius: 50%;
+  width: 33.3%;
+  padding-bottom: 20.65%;
   position: relative;
+}
+
+.numberInputRow {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.numberInputRow:first-child {
+  border-top: 1px solid #f2f2f2;
+}
+
+.numberInputBtn {
+  border-right: 1px solid #f2f2f2;
+}
+
+.numberInputBtn:first-child {
+  border-left: 1px solid #f2f2f2;
 }
 
 .numberInputBtn[value="del"], .numberInputBtn[value="commit"] {
@@ -35,21 +51,19 @@
   line-height: 100%;
   text-align: center;
   font-size: 26px;
-  padding: 33% 0;
-  border-radius: 50%;
+  padding: 22% 0;
   font-family: "Arial";
+  color: #232323;
 }
 
-.numberInputBtn[value="del"] .numberInputText, .numberInputBtn[value="commit"] .numberInputText {
-  font-size: 18px;
-  padding: 40% 0;
+.numberInputBtn[value="del"] .numberInputText {
+  padding: 12% 0;
+  font-size: 48px;
+  font-weight: 1000;
+  color: #f5a623;
 }
 
 .numberInputMask {
   background-color: #d0d0d0;
   opacity: 0;
-}
-
-.numberInputBtn[value="commit"] {
-  visibility: hidden;
 }

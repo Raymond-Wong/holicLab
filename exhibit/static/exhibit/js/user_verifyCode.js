@@ -4,25 +4,22 @@ $(document).ready(function() {
 
 var numberInputCallback = function(value) {
   // 获取已经输入的所有code
-  var codes = $('.codeBox.active');
-  var allCodes = $('.codeBox');
+  var codeInput = $('.codeInput')
   // 如果输入的是回退
   if (value == 'del') {
-    if (codes.length == 0)
+    var code = codeInput.val();
+    if (code.length == 0)
       return false;
-    var target = $(codes[codes.length - 1]);
-    target.removeAttr('value');
-    target.removeClass('active');
+    code = code.substring(0, code.length - 1);
+    codeInput.val(code);
   }
   // 如果输入的是确认
   else if (value == 'commit') {
-    if (codes.length != 4) {
+    var code = codeInput.val();
+    if (code.length != 4) {
+      mobiAlert('验证码长度不正确');
       return false;
     }
-    var code = '';
-    codes.each(function() {
-      code += $(this).attr('value');
-    });
     showToast('核对验证码...');
     post('/user?action=verify&type=code', {'code' : code}, function(msg) {
       if (msg != null) {
@@ -38,12 +35,13 @@ var numberInputCallback = function(value) {
     });
   } else {
     // 如果输入的是数字
-    if (codes.length == 4) {
-      return false;
-    }
-    $(allCodes[codes.length]).addClass('active').attr('value', value);
+    var code = codeInput.val();
+    // if (code.length >= 4) {
+    //   return false;
+    // }
+    codeInput.val(code + value);
     // 如果当前输入的是第四个数字，则触发提交事件
-    if (codes.length + 1 >= 4) {
+    if (code.length + 1 >= 4) {
       return numberInputCallback('commit');
     }
   }

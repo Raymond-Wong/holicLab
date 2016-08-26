@@ -7,11 +7,14 @@
 
 {% block page %}
 <h1>输入验证码</h1>
-<div class="codeWrapper">
+<!-- <div class="codeWrapper">
   <div class="codeBox"><div class="code"></div></div>
   <div class="codeBox"><div class="code"></div></div>
   <div class="codeBox"><div class="code"></div></div>
   <div class="codeBox"><div class="code"></div></div>
+</div> -->
+<div class="codeInputWrapper">
+  <input type="text" disabled placeholder="验证码有效时长为10分钟" class="codeInput" />
 </div>
 <a href="/user?action=verify&type=code">无法收到验证码，重新获取</a>
 {% include "exhibit/widgets/numberInput.html" %}
