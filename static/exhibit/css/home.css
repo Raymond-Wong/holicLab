@@ -44,7 +44,7 @@
 .allCoursesBtn .icon {
   position: absolute;
   right: 0;
-  top: 0;
+  top: 2px;
   width: 4vw;
   margin: 3.34vw;
 }
