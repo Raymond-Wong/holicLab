@@ -130,6 +130,10 @@ def refund(request):
     refund = order.price
   elif order.order_type == "2" and hours > 6:
     refund = order.price
+  # 如果可退款金额为0，则直接返回结果
+  if refund == 0:
+    cancelSuccess(order)
+    return HttpResponse(Response(m='0').toJson(), content_type="application/json")
   # 构造请求字典
   params = {}
   params['appid'] = settings.WX_APP_ID
