@@ -63,7 +63,7 @@
 }
 
 .confirmBtn {
-  width: 50%;
+  width: 50% !important;
   background-color: transparent !important;
   height: 12vw;
   text-align: center;
