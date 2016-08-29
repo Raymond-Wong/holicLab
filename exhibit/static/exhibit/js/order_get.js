@@ -16,7 +16,7 @@ var initCancelAction = function() {
       var oid = $('#cancelBtn').attr('oid');
       showToast('正在取消订单中...');
       post('/order?action=refund', {'oid' : oid}, function(msg) {
-        if (parseFloat(msg)) {
+        if (parseFloat(msg) || msg == '0' || msg == 0) {
           showToast('成功退款' + msg + '元');
         } else {
           showToast(msg);
