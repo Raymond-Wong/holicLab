@@ -81,7 +81,8 @@ def price(request):
     newOrder.start_time = bookable_time.start_time
     newOrder.end_time = bookable_time.end_time
   newOrder, tmpCoupon = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
-  return HttpResponse(Response(m=(newOrder.price / 10.0)).toJson(), content_type="application/json")
+  oriPrice = getOrderOriPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
+  return HttpResponse(Response(m=[oriPrice, newOrder.price / 10.0]).toJson(), content_type="application/json")
 
 def pre(request):
   order_type = request.GET.get('type', None)
@@ -212,6 +213,24 @@ def cancel(request):
   order = Order.objects.get(oid=request.POST.get('oid'))
   order.delete()
   return HttpResponse(Response(m='取消订单成功').toJson(), content_type="application/json")
+
+# 传入一个order对象，获取该对象的原始价格
+def getOrderOriPrice(newOrder, duration):
+  # 计算基础价格
+  price = 0
+  if int(newOrder.order_type) == 1:
+    price = newOrder.shop.price
+    price = duration / 30 * price
+  else:
+    price = newOrder.course.price
+  price = float(price)
+  for service in json.loads(newOrder.services):
+    if service == 'food':
+      price += 500
+    elif service == 'coach':
+      price += 2000
+  price = newOrder.people_amount * price
+  return price
 
 # 传入一个order对象，获取其价格
 def getOrderPrice(newOrder, duration):
