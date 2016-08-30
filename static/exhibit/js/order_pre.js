@@ -153,8 +153,8 @@ var updatePrice = function() {
     params['cid'] = targetId;
   }
   post('/order/pay?action=price', params, function(msg) {
-    alert(msg);
     var prices = $.parseJSON(msg);
+    alert(prices);
     $('.originPrice').text('￥' + prices[0]);
     $('.discountPrice').text('￥' + prices[1]);
   });
