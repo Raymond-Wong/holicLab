@@ -132,8 +132,7 @@ def refund(request):
     refund = order.price
   # 如果可退款金额为0，则直接返回结果
   if refund == 0:
-    cancelSuccess(order)
-    return HttpResponse(Response(m='0').toJson(), content_type="application/json")
+    return HttpResponse(Response(m='超出退款时效，退款失败').toJson(), content_type="application/json")
   # 构造请求字典
   params = {}
   params['appid'] = settings.WX_APP_ID

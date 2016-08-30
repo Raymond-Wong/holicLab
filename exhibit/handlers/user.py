@@ -132,7 +132,7 @@ def invite(request):
     return render(request, 'exhibit/user_invited.html', {'msg' : '只能邀请好友参与健身哦～', 'state' : False})
   # 判断用户是否已使用过邀请码
   if user.invited_by:
-    return render(request, 'exhibit/user_invited.html', {'msg' : '你已被邀请，邀请机制仅限新用户，赶快邀请好友来健身吧！', 'state' : False})
+    return render(request, 'exhibit/user_invited.html', {'msg' : '你已被邀请，赶快和好友一起来健身吧！', 'state' : True})
   # 判断邀请码是否有效
   invite_user = None
   try:

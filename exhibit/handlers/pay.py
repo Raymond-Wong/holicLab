@@ -227,7 +227,7 @@ def getOrderPrice(newOrder, duration):
     if service == 'food':
       newOrder.price += 500
     elif service == 'coach':
-      newOrder.price += 1000
+      newOrder.price += 2000
   newOrder.price = newOrder.people_amount * newOrder.price
   # 计算优惠
   # 计算当前下单时间离商店发布时间的差
