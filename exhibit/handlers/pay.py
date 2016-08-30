@@ -82,8 +82,7 @@ def price(request):
     newOrder.end_time = bookable_time.end_time
   newOrder, tmpCoupon = getOrderPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
   oriPrice = getOrderOriPrice(newOrder, (newOrder.end_time - newOrder.start_time).seconds / 60)
-  print oriPrice
-  return HttpResponse(Response(m=[oriPrice, newOrder.price / 10.0]).toJson(), content_type="application/json")
+  return HttpResponse(Response(m=[oriPrice / 10.0, newOrder.price / 10.0]).toJson(), content_type="application/json")
 
 def pre(request):
   order_type = request.GET.get('type', None)
