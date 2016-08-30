@@ -140,6 +140,9 @@ ol.block {
 }
 
 .originPrice {
-  color: red;
   text-decoration: line-through;
+}
+
+.discountPrice {
+  color: #fa8730;
 }
