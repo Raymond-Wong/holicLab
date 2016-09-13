@@ -183,3 +183,7 @@ ol.block {
 .fullWidth {
   width: 100%;
 }
+
+.serviceLine {
+  display: none;
+}
