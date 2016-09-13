@@ -146,3 +146,7 @@ ol.block {
 .discountPrice {
   color: #fa8730;
 }
+
+.serviceLine {
+  display: none;
+}
