@@ -126,6 +126,7 @@ var initLocationAction = function() {
     $('.btn.location').on('tap', function() {
       var address = $('.locationBox').text();
       var shopName = $('.locationBox').attr('shopName');
+      alert(shopName);
       getAddressLocation(address, function(result) {
         wx.openLocation({
           latitude: result.location.lat, // 纬度，浮点数，范围为90 ~ -90
