@@ -40,7 +40,7 @@
 <div class="line infoLine">
   <div class="left logo"><img src="/static/exhibit/icon/duration.svg" /></div>
   <div class="left">全日24小时</div>
-  <span class="right btn location" shopName="{{ shop.name }}"><img src="/static/exhibit/icon/circle_location.svg" /></span>
+  <span class="right btn location"><img src="/static/exhibit/icon/circle_location.svg" /></span>
   <a class="right btn phone" href="tel:{{ shop.phone }}"><img src="/static/exhibit/icon/circle_phone.svg" /></a>
   <div class="clear"></div>
 </div>
@@ -51,7 +51,7 @@
 </div>
 <div class="line locationLine">
   <div class="left logo"><img src="/static/exhibit/icon/location.svg" /></div>
-  <div class="left locationBox">{{ shop.location }}</div>
+  <div class="left locationBox" shopName="{{ shop.name }}">{{ shop.location }}</div>
   <div class="clear"></div>
 </div>
 <div class="block featureBlock">
