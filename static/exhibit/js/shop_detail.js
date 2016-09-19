@@ -110,25 +110,26 @@ var initTimepicker = function() {
 }
 
 var initLocationAction = function() {
+  alert('initLocationAction');
   $('.btn.location').bind('tap', function() {
     mobiAlert('正在初始化地图，请稍后重试');
   });
   wxConfig(['getLocation', 'openLocation']);
-  // wx.ready(function() {
-  //   $('.btn.location').unbind('tap');
-  //   $('.btn.location').on('tap', function() {
-  //     var address = $('.locationBox').text();
-  //     getAddressLocation(address, function(result) {
-  //       wx.openLocation({
-  //         latitude: result.location.lat, // 纬度，浮点数，范围为90 ~ -90
-  //         longitude: result.location.lng, // 经度，浮点数，范围为180 ~ -180。
-  //         name: '全能工作室', // 位置名
-  //         address: '深圳市宝安中心新安六路与宝源南路交界处众里创业社区首层', // 地址详情说明
-  //         scale: 15, // 地图缩放级别,整形值,范围从1~28。默认为最大
-  //         infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
-  //       });
-  //     });
-  //   })
-  // });
+  wx.ready(function() {
+    $('.btn.location').unbind('tap');
+    $('.btn.location').on('tap', function() {
+      var address = $('.locationBox').text();
+      getAddressLocation(address, function(result) {
+        wx.openLocation({
+          latitude: result.location.lat, // 纬度，浮点数，范围为90 ~ -90
+          longitude: result.location.lng, // 经度，浮点数，范围为180 ~ -180。
+          name: '全能工作室', // 位置名
+          address: '深圳市宝安中心新安六路与宝源南路交界处众里创业社区首层', // 地址详情说明
+          scale: 15, // 地图缩放级别,整形值,范围从1~28。默认为最大
+          infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+        });
+      });
+    })
+  });
 }
 
