@@ -106,7 +106,13 @@ var initTimepicker = function() {
       window.location.href = url;
     },
   }
-  alert(selection.length);
+  if (selection.length == 0) {
+    var btn = $('#bookBtn');
+    btn.attr('disabled', 'true');
+    btn.addClass('disabled');
+    btn.text('未开放预约');
+    return false;
+  }
   new MobiSelect($('#bookBtn'), arg);
 }
 
