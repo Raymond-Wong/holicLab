@@ -93,7 +93,6 @@ var initTimepicker = function() {
       selection.pop();
     }
   }
-  alert('96');
   var arg = {
     'col' : 3,
     'colWidth' : [6, 3, 3],
@@ -108,6 +107,7 @@ var initTimepicker = function() {
     },
   }
   new MobiSelect($('#bookBtn'), arg);
+  alert('110');
 }
 
 var initLocationAction = function() {
