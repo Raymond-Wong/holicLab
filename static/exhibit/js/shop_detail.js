@@ -125,11 +125,12 @@ var initLocationAction = function() {
     $('.btn.location').unbind('tap');
     $('.btn.location').on('tap', function() {
       var address = $('.locationBox').text();
+      var shopName = $('.locationBox').attr('shopName');
       getAddressLocation(address, function(result) {
         wx.openLocation({
           latitude: result.location.lat, // 纬度，浮点数，范围为90 ~ -90
           longitude: result.location.lng, // 经度，浮点数，范围为180 ~ -180。
-          name: '全能工作室', // 位置名
+          name: shopName, // 位置名
           address: address, // 地址详情说明
           scale: 15, // 地图缩放级别,整形值,范围从1~28。默认为最大
           infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
