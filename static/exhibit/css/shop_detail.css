@@ -167,12 +167,12 @@
 .bookBtn {
   position: fixed;
   bottom: 10px;
-  width: 90% !important;
+  width: 90%;
   margin: 0 5%;
-  color: white !important;
-  background-color: #f5a623 !important;
-  border: 1px solid #f5a623 !important;
-  border-radius: 21px !important;
+  color: white;
+  background-color: #f5a623;
+  border: 1px solid #f5a623;
+  border-radius: 21px;
   text-shadow: none;
   font-weight: 200;
   outline: none;
