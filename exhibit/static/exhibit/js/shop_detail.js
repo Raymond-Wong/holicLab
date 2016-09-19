@@ -106,7 +106,7 @@ var initTimepicker = function() {
       window.location.href = url;
     },
   }
-  alert('109');
+  alert(selection);
   new MobiSelect($('#bookBtn'), arg);
 }
 
