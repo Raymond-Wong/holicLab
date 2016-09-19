@@ -57,7 +57,6 @@ var initTimepicker = function() {
       invalide_times_set.push(startTime.Format('yyyy-MM-dd hh:mm'));
     }
   }
-  alert('60');
   var selection = [];
   var now = new Date();
   // 把当前时间变成最近的一个整30分钟
@@ -68,6 +67,7 @@ var initTimepicker = function() {
   } else if (now.getMinutes() > 0) {
     now.setMinutes(30);
   }
+  alert('70');
   var weeks = ['日', '一', '二', '三', '四', '五', '六'];
   var current = new Date(now);
   for (var doffset = 0; doffset < 3; doffset++) {
