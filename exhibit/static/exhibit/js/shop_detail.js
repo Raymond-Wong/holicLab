@@ -2,6 +2,7 @@ $(document).ready(function() {
   carouselInit();
   videoInit();
   initTimepicker();
+  alert('asdf');
   initLocationAction();
 });
 
@@ -110,7 +111,6 @@ var initTimepicker = function() {
 }
 
 var initLocationAction = function() {
-  alert('asdf');
   $('.btn.location').bind('tap', function() {
     mobiAlert('正在初始化地图，请稍后重试');
   });
