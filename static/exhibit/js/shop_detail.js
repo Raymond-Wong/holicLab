@@ -67,7 +67,6 @@ var initTimepicker = function() {
   } else if (now.getMinutes() > 0) {
     now.setMinutes(30);
   }
-  alert('70');
   var weeks = ['日', '一', '二', '三', '四', '五', '六'];
   var current = new Date(now);
   for (var doffset = 0; doffset < 3; doffset++) {
@@ -94,6 +93,7 @@ var initTimepicker = function() {
       selection.pop();
     }
   }
+  alert('96');
   var arg = {
     'col' : 3,
     'colWidth' : [6, 3, 3],
