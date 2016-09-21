@@ -19,13 +19,12 @@ var initCancelAction = function() {
       post('/order?action=refund', {'oid' : oid}, function(msg) {
         if (parseFloat(msg) || msg == '0' || msg == 0) {
           showToast('成功退款' + msg + '元');
+          setTimeout(function() {
+            window.location.href = window.location.href;
+          }, 1500);
         } else {
           mobiAlert(msg);
-          return false;
         }
-        setTimeout(function() {
-          window.location.href = window.location.href;
-        }, 1500);
       });
     });
   });
