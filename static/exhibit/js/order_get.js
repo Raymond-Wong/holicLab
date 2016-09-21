@@ -23,10 +23,8 @@ var initCancelAction = function() {
             window.location.href = window.location.href;
           }, 1500);
         } else {
-          mobiAlert(msg, function() {
-            alert('asfd');
-            hideToast();
-          });
+          hideToast();
+          mobiAlert(msg);
         }
       });
     });
