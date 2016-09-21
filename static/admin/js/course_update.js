@@ -279,7 +279,7 @@ var initCourseUpdate = function() {
         var endDom = $(newTimeBox.find('input.endTime')[0]);
         initStartTime(startDom, tzAware(new Date(period['start_time'])));
         initEndTime(endDom, tzAware(new Date(period['end_time'])));
-        newTimeBox.attr('tid', period['id'])
+        newTimeBox.children('.timeBox').attr('tid', period['id'])
         $('#timeContainer').append(newTimeBox);
       }
     }
