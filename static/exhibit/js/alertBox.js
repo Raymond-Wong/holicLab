@@ -34,5 +34,6 @@ var mobiConfirm = function(msg, callback) {
     alertBoxContainer.hide();
     alertBoxText.html('');
     callback($(this).attr('value') == 'true' ? true : false);
+    return false;
   });
 }
