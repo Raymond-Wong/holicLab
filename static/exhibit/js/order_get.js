@@ -24,6 +24,7 @@ var initCancelAction = function() {
           }, 1500);
         } else {
           mobiAlert(msg, function() {
+            alert('asfd');
             hideToast();
           });
         }
