@@ -9,12 +9,11 @@ $(document).ready(function() {
 
 var initCancelAction = function() {
   $('#cancelBtn').on('click', function() {
-    var outofdate = true;
+    var outofdate = false;
     var oid = $('#cancelBtn').attr('oid');
     post('/order?action=getRefundMoney', {'oid' : oid}, function(msg) {
-      alert(msg);
-      if (parseFloat(msg) || msg == '0' || msg == 0) {
-        outofdate = false;
+      if (msg == '0' || msg == 0 || !parseFloat(msg)) {
+        outofdate = true;
       }
       if (outofdate) {
         mobiAlert('超出退款失效，订单取消失败');
