@@ -11,29 +11,20 @@ var initCancelAction = function() {
   $('#cancelBtn').on('click', function() {
     var outofdate = false;
     var oid = $('#cancelBtn').attr('oid');
-    post('/order?action=getRefundMoney', {'oid' : oid}, function(msg) {
-      if (msg == '0' || msg == 0 || !parseFloat(msg)) {
-        outofdate = true;
-      }
-      if (outofdate) {
-        mobiAlert('超出退款失效，订单取消失败');
+    mobiConfirm('确定取消订单？', function(res) {
+      if (!res) {
         return false;
       }
-      mobiConfirm('确定取消订单？', function(res) {
-        if (!res) {
-          return false;
+      showToast('正在取消订单...');
+      post('/order?action=refund', {'oid' : oid}, function(msg) {
+        if (parseFloat(msg) || msg == '0' || msg == 0) {
+          showToast('成功退款' + msg + '元');
+        } else {
+          mobiAlert(msg);
         }
-        showToast('正在取消订单中...');
-        post('/order?action=refund', {'oid' : oid}, function(msg) {
-          if (parseFloat(msg) || msg == '0' || msg == 0) {
-            showToast('成功退款' + msg + '元');
-          } else {
-            showToast(msg);
-          }
-          setTimeout(function() {
-            window.location.href = window.location.href;
-          }, 1500);
-        });
+        setTimeout(function() {
+          window.location.href = window.location.href;
+        }, 1500);
       });
     });
   });
