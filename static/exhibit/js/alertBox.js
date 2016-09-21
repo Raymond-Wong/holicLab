@@ -29,7 +29,8 @@ var mobiConfirm = function(msg, callback) {
   alertBtnBox.hide();
   confirmBtnBox.show();
   alertBoxContainer.show();
-  confirmBtn.on('tap', function() {
+  confirmBtn.unbind('tap');
+  confirmBtn.bind('tap', function() {
     alertBoxContainer.hide();
     alertBoxText.html('');
     callback($(this).attr('value') == 'true' ? true : false);
