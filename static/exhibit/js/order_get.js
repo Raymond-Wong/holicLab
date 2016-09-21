@@ -9,21 +9,31 @@ $(document).ready(function() {
 
 var initCancelAction = function() {
   $('#cancelBtn').on('click', function() {
-    mobiConfirm('确定取消订单？', function(res) {
-      if (!res) {
+    var outofdate = true;
+    var oid = $('#cancelBtn').attr('oid');
+    post('/order?action=getRefundMoney', {'oid' : oid}, function(msg) {
+      if (parseFloat(msg) || msg == '0' || msg == 0) {
+        outofdate = false;
+      }
+      if (outofdate) {
+        mobiAlert('超出退款失效，订单取消失败');
         return false;
       }
-      var oid = $('#cancelBtn').attr('oid');
-      showToast('正在取消订单中...');
-      post('/order?action=refund', {'oid' : oid}, function(msg) {
-        if (parseFloat(msg) || msg == '0' || msg == 0) {
-          showToast('成功退款' + msg + '元');
-        } else {
-          showToast(msg);
+      mobiConfirm('确定取消订单？', function(res) {
+        if (!res) {
+          return false;
         }
-        setTimeout(function() {
-          window.location.href = window.location.href;
-        }, 1500);
+        showToast('正在取消订单中...');
+        post('/order?action=refund', {'oid' : oid}, function(msg) {
+          if (parseFloat(msg) || msg == '0' || msg == 0) {
+            showToast('成功退款' + msg + '元');
+          } else {
+            showToast(msg);
+          }
+          setTimeout(function() {
+            window.location.href = window.location.href;
+          }, 1500);
+        });
       });
     });
   });

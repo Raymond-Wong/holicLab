@@ -111,6 +111,27 @@ def password(request):
   qrcodeImg = 'data:image/png;base64,' + base64.b64encode(img_buffer.getvalue())
   return render(request, 'exhibit/order_password.html', {'order' : order, 'qrcode' : qrcodeImg})
 
+def getRefundMoney(request):
+  # 获取待取消订单
+  order = Order.objects.get(oid=request.POST.get('oid'))
+  # 判断当前订单是否可退款
+  # 如果不行，就返回错误
+  if not isOrderCancelable(order, User.objects.get(invite_code=request.session['user'])):
+    return HttpResponse(Response(c=1, m='当前订单不可退款').toJson(), content_type='application/json')
+  # 判断请求退款的用户和订单的用户是否是同一个用户
+  # 如果不是，则返回错误
+  # if not belongTo(order, User.objects.get(invite_code=request.session['user'])):
+    # return HttpResponse(Response(c=1, m='只有订单发起者才可取消订单').toJson(), content_type='application/json')
+  # 判断订单可取消金额
+  now = timezone.now()
+  refund = 0
+  hours = int((order.start_time - now).total_seconds()) / 60 / 60
+  if order.order_type == "1" and hours > 4:
+    refund = order.price
+  elif order.order_type == "2" and hours > 6:
+    refund = order.price
+  return HttpResponse(Response(m=refund).toJson(), content_type="application/json")
+
 def refund(request):
   # 获取待取消订单
   order = Order.objects.get(oid=request.POST.get('oid'))
@@ -132,7 +153,7 @@ def refund(request):
     refund = order.price
   # 如果可退款金额为0，则直接返回结果
   if refund == 0:
-    return HttpResponse(Response(m='超出退款时效，退款失败').toJson(), content_type="application/json")
+    return HttpResponse(Response(m='超出退款时效，订单取消失败').toJson(), content_type="application/json")
   # 构造请求字典
   params = {}
   params['appid'] = settings.WX_APP_ID
