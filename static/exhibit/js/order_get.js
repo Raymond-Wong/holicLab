@@ -21,6 +21,7 @@ var initCancelAction = function() {
           showToast('成功退款' + msg + '元');
         } else {
           mobiAlert(msg);
+          return false;
         }
         setTimeout(function() {
           window.location.href = window.location.href;
