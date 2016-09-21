@@ -24,9 +24,7 @@ var initCancelAction = function() {
           }, 1500);
         } else {
           hideToast();
-          mobiAlert(msg, function() {
-            alert('asdf');
-          });
+          mobiAlert(msg);
         }
       });
     });
