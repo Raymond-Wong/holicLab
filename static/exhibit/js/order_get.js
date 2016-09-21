@@ -12,6 +12,7 @@ var initCancelAction = function() {
     var outofdate = true;
     var oid = $('#cancelBtn').attr('oid');
     post('/order?action=getRefundMoney', {'oid' : oid}, function(msg) {
+      alert(msg);
       if (parseFloat(msg) || msg == '0' || msg == 0) {
         outofdate = false;
       }
