@@ -118,9 +118,10 @@ var initTable = function() {
     "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
     "buttons": [
       "copy",
-      "csv",
+      "excelHtml5",
       { "type": "print", "buttonText": "Print me!" }
-      ]
+    ],
+
   });
   $('.filterWrapper').append($( tableTools.fnContainer() ));
 }
