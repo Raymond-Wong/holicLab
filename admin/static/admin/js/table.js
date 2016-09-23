@@ -114,7 +114,6 @@ var initTable = function() {
     lengthChange: false,
     pageLength: 15
   });
-  TABLE.buttons().container().appendTo($('.filterWrapper', TABLE.table().container() ) );
   var tableTools = new $.fn.dataTable.TableTools( TABLE, {
     "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
     "buttons": [
