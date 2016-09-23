@@ -112,7 +112,7 @@ var initTable = function() {
   TABLE = $('#memberTable').DataTable({
     autoWidth : false,
     lengthChange: false,
-    pageLength: 15
+    pageLength: 15,
     buttons: [
         'copy', 'excel', 'pdf'
     ]
