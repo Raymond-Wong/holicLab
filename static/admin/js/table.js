@@ -113,18 +113,21 @@ var initTable = function() {
     autoWidth : false,
     lengthChange: false,
     pageLength: 15,
+    buttons: [
+        'excelHtml5'
+    ]
   });
-  var tableTools = new $.fn.dataTable.TableTools( TABLE, {
-    "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
-    "buttons": [
-      // "copy",
-      // "excelHtml5",
-      // { "type": "print", "buttonText": "Print me!" }
-      "excelHtml5"
-    ],
+  // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
+  //   "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
+  //   "buttons": [
+  //     // "copy",
+  //     // "excelHtml5",
+  //     // { "type": "print", "buttonText": "Print me!" }
+  //     "excelHtml5"
+  //   ],
 
-  });
-  $('.filterWrapper').append($( tableTools.fnContainer() ));
+  // });
+  // $('.filterWrapper').append($( tableTools.fnContainer() ));
 }
 
 var initDatetimepicker = function() {
