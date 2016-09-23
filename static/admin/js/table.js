@@ -114,7 +114,7 @@ var initTable = function() {
     lengthChange: false,
     pageLength: 15
   });
-  new $.fn.dataTable.Buttons( table, {
+  new $.fn.dataTable.Buttons( TABLE, {
     name: 'commands',
     buttons: ['copy', 'excelHtml5', 'print']
   });
