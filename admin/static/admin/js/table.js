@@ -115,11 +115,10 @@ var initTable = function() {
     pageLength: 15
   });
   new $.fn.dataTable.Buttons( TABLE, {
-    name: 'commands',
     buttons: ['copy', 'excel']
   });
   debugger;
-  TABLE.buttons(0, null).containers().appendTo('.filterWrapper');
+  TABLE.buttons().container().appendTo($('.filterWrapper', TABLE.table().container() ) );
   // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
   //   "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
   //   "buttons": [
