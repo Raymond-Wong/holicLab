@@ -113,10 +113,13 @@ var initTable = function() {
     autoWidth : false,
     lengthChange: false,
     pageLength: 15
+    buttons: [
+        'copy', 'excel', 'pdf'
+    ]
   });
-  new $.fn.dataTable.Buttons( TABLE, {
-    buttons: ['copy', 'excel']
-  });
+  // new $.fn.dataTable.Buttons( TABLE, {
+  //   buttons: ['copy', 'excel']
+  // });
   debugger;
   TABLE.buttons().container().appendTo($('.filterWrapper', TABLE.table().container() ) );
   // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
