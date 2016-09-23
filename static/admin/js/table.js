@@ -118,7 +118,7 @@ var initTable = function() {
     "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
     "buttons": [
       "copy",
-      "excelHtml5",
+      // "excelHtml5",
       { "type": "print", "buttonText": "Print me!" }
     ],
 
