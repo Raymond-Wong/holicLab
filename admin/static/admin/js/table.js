@@ -113,30 +113,17 @@ var initTable = function() {
     autoWidth : false,
     lengthChange: false,
     pageLength: 15,
-    oTableTools: { 
-      "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf", 
-      "aButtons": [ 
-       { 
-        "sExtends": "copy", 
-        "sButtonText": "复制" 
-       }, 
-       { 
-        "sExtends": "xls", 
-        "sButtonText": "导出Excel" 
-       }]
-     }
   });
-  // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
-  //   "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
-  //   "buttons": [
-  //     // "copy",
-  //     // "excelHtml5",
-  //     // { "type": "print", "buttonText": "Print me!" }
-  //     'xls'
-  //   ],
+  var tableTools = new $.fn.dataTable.TableTools( TABLE, {
+    "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
+    // "buttons": [
+    //   "copy",
+    //   "excelHtml5",
+    //   { "type": "print", "buttonText": "Print me!" }
+    // ],
 
-  // });
-  // $('.filterWrapper').append($( tableTools.fnContainer() ));
+  });
+  $('.filterWrapper').append($( tableTools.fnContainer() ));
 }
 
 var initDatetimepicker = function() {
