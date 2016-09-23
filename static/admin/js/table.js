@@ -113,11 +113,11 @@ var initTable = function() {
     // autoWidth : false,
     // lengthChange: false,
     // pageLength: 15,
-    buttons: [
-        'colvis',
-        'excel',
-        'print'
-    ]
+    // buttons: [
+    //     'colvis',
+    //     'excel',
+    //     'print'
+    // ]
   });
   // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
   //   "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
