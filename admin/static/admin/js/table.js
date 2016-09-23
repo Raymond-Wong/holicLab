@@ -110,20 +110,26 @@ var largerOrEqual = function(timeA, timeB) {
 
 var initTable = function() {
   TABLE = $('#memberTable').DataTable({
-    autoWidth : false,
-    lengthChange: false,
-    pageLength: 15,
+    // autoWidth : false,
+    // lengthChange: false,
+    // pageLength: 15,
+    dom: 'Bfrtip',
+    buttons: [
+        'colvis',
+        'excel',
+        'print'
+    ]
   });
-  var tableTools = new $.fn.dataTable.TableTools( TABLE, {
-    "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
-    // "buttons": [
-    //   "copy",
-    //   "excelHtml5",
-    //   { "type": "print", "buttonText": "Print me!" }
-    // ],
+  // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
+  //   "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
+  //   "buttons": [
+  //     "copy",
+  //     "excelHtml5",
+  //     { "type": "print", "buttonText": "Print me!" }
+  //   ],
 
-  });
-  $('.filterWrapper').append($( tableTools.fnContainer() ));
+  // });
+  // $('.filterWrapper').append($( tableTools.fnContainer() ));
 }
 
 var initDatetimepicker = function() {
