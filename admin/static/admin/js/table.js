@@ -113,7 +113,7 @@ var initTable = function() {
     // autoWidth : false,
     // lengthChange: false,
     // pageLength: 15,
-    dom: 'Bfrtip',
+    dom: '.filterWrapper',
     buttons: [
         'colvis',
         'excel',
