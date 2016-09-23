@@ -116,7 +116,7 @@ var initTable = function() {
   });
   new $.fn.dataTable.Buttons( TABLE, {
     name: 'commands',
-    buttons: ['copy', 'excelHtml5', 'print']
+    buttons: ['copy', 'excel', 'print']
   });
   debugger;
   TABLE.buttons(0, null).containers().appendTo('.filterWrapper');
