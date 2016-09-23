@@ -110,15 +110,15 @@ var largerOrEqual = function(timeA, timeB) {
 
 var initTable = function() {
   TABLE = $('#memberTable').DataTable({
-    // autoWidth : false,
-    // lengthChange: false,
-    // pageLength: 15,
-    // buttons: [
-    //     'colvis',
-    //     'excel',
-    //     'print'
-    // ]
+    autoWidth : false,
+    lengthChange: false,
+    pageLength: 15
   });
+  new $.fn.dataTable.Buttons( table, {
+    name: 'commands',
+    buttons: ['copy', 'excelHtml5', 'print']
+  });
+  TABLE.buttons(9, null).containers().appendTo('.filterWrapper');
   // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
   //   "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
   //   "buttons": [
@@ -126,7 +126,6 @@ var initTable = function() {
   //     "excelHtml5",
   //     { "type": "print", "buttonText": "Print me!" }
   //   ],
-
   // });
   // $('.filterWrapper').append($( tableTools.fnContainer() ));
 }
