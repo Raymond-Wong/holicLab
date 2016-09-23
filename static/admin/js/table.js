@@ -112,25 +112,18 @@ var initTable = function() {
   TABLE = $('#memberTable').DataTable({
     autoWidth : false,
     lengthChange: false,
-    pageLength: 15,
-    buttons: [
-        'copy', 'excel', 'pdf'
-    ]
+    pageLength: 15
   });
-  // new $.fn.dataTable.Buttons( TABLE, {
-  //   buttons: ['copy', 'excel']
-  // });
-  debugger;
   TABLE.buttons().container().appendTo($('.filterWrapper', TABLE.table().container() ) );
-  // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
-  //   "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
-  //   "buttons": [
-  //     "copy",
-  //     "excelHtml5",
-  //     { "type": "print", "buttonText": "Print me!" }
-  //   ],
-  // });
-  // $('.filterWrapper').append($( tableTools.fnContainer() ));
+  var tableTools = new $.fn.dataTable.TableTools( TABLE, {
+    "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
+    "buttons": [
+      "copy",
+      "excelHtml5",
+      { "type": "print", "buttonText": "Print me!" }
+    ],
+  });
+  $('.filterWrapper').append($( tableTools.fnContainer() ));
 }
 
 var initDatetimepicker = function() {
