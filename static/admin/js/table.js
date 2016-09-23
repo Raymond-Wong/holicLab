@@ -117,9 +117,10 @@ var initTable = function() {
   var tableTools = new $.fn.dataTable.TableTools( TABLE, {
     "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
     "buttons": [
-      "copy",
+      // "copy",
       // "excelHtml5",
-      { "type": "print", "buttonText": "Print me!" }
+      // { "type": "print", "buttonText": "Print me!" }
+      "excelHtml5"
     ],
 
   });
