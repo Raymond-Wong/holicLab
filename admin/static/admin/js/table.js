@@ -118,7 +118,8 @@ var initTable = function() {
     name: 'commands',
     buttons: ['copy', 'excelHtml5', 'print']
   });
-  TABLE.buttons(9, null).containers().appendTo('.filterWrapper');
+  debugger;
+  TABLE.buttons(0, null).containers().appendTo('.filterWrapper');
   // var tableTools = new $.fn.dataTable.TableTools( TABLE, {
   //   "sSwfPath": "/static/plugin/DataTables/tabletools/swf/copy_csv_xls_pdf.swf",
   //   "buttons": [
