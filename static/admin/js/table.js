@@ -113,7 +113,6 @@ var initTable = function() {
     // autoWidth : false,
     // lengthChange: false,
     // pageLength: 15,
-    dom: '.filterWrapper',
     buttons: [
         'colvis',
         'excel',
