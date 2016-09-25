@@ -53,8 +53,8 @@ def add(request):
     return HttpResponse(Response(c=2, m="地址长度不得超过200字").toJson(), content_type='application/json')
   # if len(phone) > 12:
   #   return HttpResponse(Response(c=3, m="电话长度不得超过12字").toJson(), content_type='application/json')
-  if len(password) != 6:
-    return HttpResponse(Response(c=4, m="场地密码长度必须为6位").toJson(), content_type='application/json')
+  if len(password) > 6:
+    return HttpResponse(Response(c=4, m="场地密码长度不得超过6位").toJson(), content_type='application/json')
   try:
     price = int(price)
     capacity = int(capacity)
@@ -117,6 +117,8 @@ def update(request):
   cover_type = request.POST.get('cover_type', None)
   notice = request.POST.get('notice', None)
   desc = request.POST.get('description', None)
+  phone = request.POST.get('phone', None)
+  password = request.POST.get('password', None)
   shop = None
   # 判断数据正确性
   if sid is None:
@@ -143,6 +145,8 @@ def update(request):
         return HttpResponse(Response(c=5, m="门店容量必须为正整数(人)").toJson(), content_type='application/json')
     except:
       return HttpResponse(Response(c=3, m="门店容量必须为数值").toJson(), content_type='application/json')
+  if password is not None and len(password) > 6:
+    return HttpResponse(Response(c=6, m="密码不得大于6位数").toJson(), content_type='application/json')
   # 更新门店信息
   shop.name = name if name is not None else shop.name
   shop.location = location if location is not None else shop.location
@@ -153,6 +157,8 @@ def update(request):
   shop.cover_type = cover_type if cover_type is not None else shop.cover_type
   shop.notice = notice if notice is not None else shop.notice
   shop.description = desc if desc is not None else shop.description
+  shop.phone = phone if phone is not None else shop.phone
+  shop.password = password if password is not None else shop.password
   shop.save()
   return HttpResponse(Response().toJson(), content_type='application/json')
 
