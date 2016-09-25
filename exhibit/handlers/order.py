@@ -90,18 +90,28 @@ def update(request):
   order.save()
   return HttpResponse(Response(m="订单状态更新成功").toJson(), content_type="application/json")
 
+def getNearestOrder(user):
+  start = timezone.now()
+  end = start + timedelta(minutes=60)
+  order = user.order_set.filter(state=4).filter(start_time__lte=end).filter(end_time__gt=start)
+  return order
+
 def password(request):
+  user = User.objects.get(invite_code=request.session['user'])
   if request.method == 'POST':
-    user = User.objects.get(invite_code=request.session['user'])
-    start = timezone.now()
-    end = start + timedelta(minutes=60)
-    # order = user.order_set.filter(start_time__lte=end).filter(start_time__gte=start).filter(end_time__gt=start)
-    order = user.order_set.filter(state=4).filter(start_time__lte=end).filter(end_time__gt=start)
+    order = getNearestOrder(user)
     if len(order) == 0:
       return HttpResponse(Response(c=1, m='获取密码失败，请在预约时间前一小时内点击获取密码').toJson(), content_type="application/json")
     order = order[0]
     return HttpResponse(Response(m='/order?action=password&oid=%s' % str(order.oid)).toJson(), content_type="application/json")
-  order = Order.objects.get(oid=request.GET.get('oid'))
+  oid = request.GET.get('oid', None)
+  if oid is None:
+    order = getNearestOrder(user)
+    if len(order) == 0:
+      return render(request, 'exhibit/order_password.html', {})
+    else:
+      return redirect('/order?action=password&oid=%s' % str(order.oid))
+  order = Order.objects.get(oid=oid)
   url = 'http://' + request.get_host() + '/order?action=get&oid=' + request.GET.get('oid')
   url = quote(url, safe='')
   url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a6f32cf9d22a289&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
