@@ -70,13 +70,13 @@ var wxConfig = function(jsApiList, retried) {
     FINISHED_LOADING = true;
   });
   wx.error(function(res){
-    FINISHED_LOADING = true;
     if (retried == undefined || retried == true || retried == null) {
-      wxConfig(jsApiList, true);
+      return wxConfig(jsApiList, true);
     } else {
       mobiAlert('请求微信接口失败,请刷新页面');
     }
     // mobiAlert(JSON.stringify(res));
+    FINISHED_LOADING = true;
   });
 }
 

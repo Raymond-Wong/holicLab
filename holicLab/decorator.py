@@ -34,31 +34,31 @@ def login_required(view):
     return redirect('/admin/login')
   return verified
 
-def verify_required(view):
-  def verified(request, *args, **kwargs):
-    user = User.objects.get(invite_code=request.session['user'])
-    if user.phone == None or len(user.phone) == 0:
-      if request.method == 'GET':
-        request.session['backUrl'] = request.get_full_path()
-      else:
-        request.session['backUrl'] = '/'
-        # 如果是post请求的话则要告诉前端进行跳转
-        return HttpResponse(Response(c=-2, m='/user?action=verify&type=phone').toJson(), content_type="application/json")
-      return redirect('/user?action=verify&type=phone')
-    return view(request, *args, **kwargs)
-  return verified
 # def verify_required(view):
 #   def verified(request, *args, **kwargs):
+#     user = User.objects.get(invite_code=request.session['user'])
+#     if user.phone == None or len(user.phone) == 0:
+#       if request.method == 'GET':
+#         request.session['backUrl'] = request.get_full_path()
+#       else:
+#         request.session['backUrl'] = '/'
+#         # 如果是post请求的话则要告诉前端进行跳转
+#         return HttpResponse(Response(c=-2, m='/user?action=verify&type=phone').toJson(), content_type="application/json")
+#       return redirect('/user?action=verify&type=phone')
 #     return view(request, *args, **kwargs)
 #   return verified
-
-def wx_logined(view):
+def verify_required(view):
   def verified(request, *args, **kwargs):
-    if request.session.has_key('user'):
-      return view(request, *args, **kwargs)
-    return exhibit.views.loginHandler(request, view, *args, **kwargs)
+    return view(request, *args, **kwargs)
   return verified
+
 # def wx_logined(view):
 #   def verified(request, *args, **kwargs):
-#     return view(request, *args, **kwargs)
+#     if request.session.has_key('user'):
+#       return view(request, *args, **kwargs)
+#     return exhibit.views.loginHandler(request, view, *args, **kwargs)
 #   return verified
+def wx_logined(view):
+  def verified(request, *args, **kwargs):
+    return view(request, *args, **kwargs)
+  return verified

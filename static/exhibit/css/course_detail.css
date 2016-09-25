@@ -314,3 +314,11 @@
   font-size: 16px;
   margin-left: 14px;
 }
+
+.selectScroller {
+  width: 100%;
+}
+
+.selectItem {
+  text-align: center;
+}
