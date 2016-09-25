@@ -16,6 +16,7 @@ from holicLab.utils import Response
 def handler(view):
   def unKnownErr(request, *args, **kwargs):
     try:
+      raise IOException
       return view(request, *args, **kwargs)
     except Exception, e:
       traceback.print_exc()
