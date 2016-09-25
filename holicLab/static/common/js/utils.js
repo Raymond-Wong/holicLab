@@ -49,7 +49,7 @@ function getUrlParam(name) {
   if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 
-var wxConfig = function(jsApiList) {
+var wxConfig = function(jsApiList, retried) {
   FINISHED_LOADING = false;
   var url = window.location.href.split('#')[0];
   post('/wechat/config', {'url' : url}, function(msg) {
@@ -71,7 +71,11 @@ var wxConfig = function(jsApiList) {
   });
   wx.error(function(res){
     FINISHED_LOADING = true;
-    mobiAlert('请求微信接口失败,请刷新页面');
+    if (retried == undefined || retried == true || retried == null) {
+      wxConfig(jsApiList, true);
+    } else {
+      mobiAlert('请求微信接口失败,请刷新页面');
+    }
     // mobiAlert(JSON.stringify(res));
   });
 }
