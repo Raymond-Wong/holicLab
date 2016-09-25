@@ -44,6 +44,7 @@ def homeHandler(request):
       if len(course.bookable_time) > 0:
         course.bookable_time = course.bookable_time[0]
         shop.courses.append(course)
+    shop.courses = sorted(shop.courses, cmp=lambda x, y:cmp(x.bookable_time.start_time, y.bookable_time.start_time))
   shops = shops[:1]
   return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops)})
 
