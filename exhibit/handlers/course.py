@@ -35,7 +35,7 @@ def list(request):
     for course in allCourses:
       course.cover = json.loads(course.cover)
       course.price = course.price / 10 if course.price % 10 == 0 else course.price / 10.0
-      course.bookable_time = course.bookable_time_set.order_by('-start_time')
+      course.bookable_time = course.bookable_time_set.order_by('start_time')
       if len(course.bookable_time) > 0:
         course.start_time = course.bookable_time[0].start_time
         course.end_time = course.bookable_time[0].end_time
