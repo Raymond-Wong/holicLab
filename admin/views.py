@@ -7,6 +7,7 @@ import json
 import csv
 import datetime
 import time
+from urllib import quote
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import render_to_response, redirect, render
@@ -137,6 +138,17 @@ def exportHandler(request):
   for tr in trs:
     writer.writerow(tr)
   return reponse
+
+@handler
+@login_required
+def urlHandler(request):
+  if request.method == 'GET':
+    return render(request, 'admin/url.html', {'activePage' : 'url'})
+  url = request.POST.get('url')
+  url = quote(url, safe='')
+  url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a6f32cf9d22a289&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+  return HttpResponse(Response(m=url).toJson(), content_type='application/json')
+
 
 # 上传图片
 @csrf_exempt

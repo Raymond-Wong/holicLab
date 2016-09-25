@@ -16,4 +16,5 @@ urlpatterns = patterns('',
   url(r'^/order$', views.orderHandler),
   url(r'^/export$', views.exportHandler),
   url(r'^/upload$', views.uploadHandler),
+  url(r'^/url$', views.urlHandler),
 )

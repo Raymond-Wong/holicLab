@@ -1,0 +1,64 @@
+{% extends "admin/widgets/base.html" %}
+
+{% block style %}
+<link type="text/css" rel="stylesheet" href="/static/admin/css/url.css">
+{% endblock %}
+
+{% block page %}
+<h3>微信公众号菜单跳转链接设置须知</h3>
+<p>由于用户进入此平台前需要做用户身份认证，故不能直接将此平台的链接设置成微信菜单跳转的链接。<br>根据微信平台的要求，需要对链接进行一定的设置，才可获取访问平台的用户身份。<br>因此当需要将此平台的某个链接作为微信菜单跳转的链接时，请将原链接输入到以下输入框中，并将平台提供的结果链接设置成微信菜单栏的跳转链接！</p>
+<div class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="inputHref" class="col-sm-2 control-label">原链接</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="inputHref" placeholder="链接请带上http://">
+    </div>
+    <div class="col-sm-2"><button class="btn btn-default submitBtn">转换</button></div>
+  </div>
+</div>
+<div class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="outputHref" class="col-sm-2 control-label">结果</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="outputHref" readonly />
+    </div>
+  </div>
+</div>
+<h4>以下列出此平台中常用的链接</h4>
+<div class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="outputHref" class="col-sm-2 control-label">主页</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" value="http://holiclab.applinzi.com" readonly />
+    </div>
+  </div>
+</div>
+<div class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="outputHref" class="col-sm-2 control-label">邀请情况</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" value="http://holiclab.applinzi.com/user?action=invite" readonly />
+    </div>
+  </div>
+</div>
+<div class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="outputHref" class="col-sm-2 control-label">个人中心</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" value="http://holiclab.applinzi.com/user?action=detail" readonly />
+    </div>
+  </div>
+</div>
+<div class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="outputHref" class="col-sm-2 control-label">预约记录</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" value="http://holiclab.applinzi.com/order?action=list&type=0" readonly />
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="/static/admin/js/url.js"></script>
+{% endblock %}

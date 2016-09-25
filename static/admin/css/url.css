@@ -1,0 +1,10 @@
+.submitBtn {
+  border-radius: 2px;
+  color: #333;
+  background-color: white;
+}
+
+.submitBtn:hover {
+  color: #333;
+  font-weight: normal;
+}
