@@ -112,7 +112,7 @@ def delete(request):
   deleteOrders(course.order_set.all())
   # 删除和该课程相关的所有时间
   for time_bucket in course.bookable_time_set.all():
-    time_buckets.delete()
+    time_bucket.delete()
   # 删除该课程
   course.delete()
   return HttpResponse(Response().toJson(), content_type='application/json')

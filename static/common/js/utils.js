@@ -71,7 +71,8 @@ var wxConfig = function(jsApiList) {
   });
   wx.error(function(res){
     FINISHED_LOADING = true;
-    mobiAlert(JSON.stringify(res));
+    mobiAlert('请求微信接口失败,请刷新页面');
+    // mobiAlert(JSON.stringify(res));
   });
 }
 
