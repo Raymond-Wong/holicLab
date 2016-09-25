@@ -40,7 +40,7 @@ def homeHandler(request):
     courses = shop.course_set.filter(state=2).order_by('-releasedDate')[:3]
     for i, course in enumerate(courses):
       course.cover = json.loads(course.cover)
-      course.bookable_time = course.bookable_time_set.filter(start_time__gt=now).order_by('-start_time')
+      course.bookable_time = course.bookable_time_set.order_by('start_time').filter(start_time__gt=now)
       if len(course.bookable_time) > 0:
         course.bookable_time = course.bookable_time[0]
         shop.courses.append(course)
