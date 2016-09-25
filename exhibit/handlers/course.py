@@ -40,6 +40,7 @@ def list(request):
         course.start_time = course.bookable_time[0].start_time
         course.end_time = course.bookable_time[0].end_time
         courses.append(course)
+    courses = sorted(courses, cmp=lambda x, y:cmp(x.start_time, y.start_time))
   return render(request, 'exhibit/course_list.html', {'courses' : courses})
 
 # 显示商店详情
