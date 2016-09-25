@@ -112,7 +112,7 @@ def password(request):
     else:
       return redirect('/order?action=password&oid=%s' % str(order.oid))
   order = Order.objects.get(oid=oid)
-  url = 'http://' + request.get_host() + '/order?action=get&oid=' + request.GET.get('oid')
+  url = 'http://' + request.get_host() + '/order?action=get&oid=' + oid
   url = quote(url, safe='')
   url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8a6f32cf9d22a289&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
   img = qrcode.make(url)
