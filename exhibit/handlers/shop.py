@@ -46,7 +46,7 @@ def detail(request):
     if len(shop.courses[i].bookable_time) > 0:
       shop.courses[i].bookable_time = shop.courses[i].bookable_time[0]
       courses.append(shop.courses[i])
-  shop.courses = courses
+  shop.courses = sorted(courses, cmp=lambda x, y:cmp(x.bookable_time.start_time, y.bookable_time.start_time))
   # 根据预约情况设置不可预约时间
   shop.invalide_times = json.loads(shop.invalide_times)
   for tb in shop.time_bucket_set.filter(start_time__gt=timezone.now()).filter(occupation__gte=shop.capacity):
