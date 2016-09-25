@@ -70,7 +70,7 @@ var wxConfig = function(jsApiList, retried) {
     FINISHED_LOADING = true;
   });
   wx.error(function(res){
-    if (retried == undefined || retried == true || retried == null) {
+    if (retried == undefined || retried == false || retried == null) {
       return wxConfig(jsApiList, true);
     } else {
       mobiAlert('请求微信接口失败,请刷新页面');
