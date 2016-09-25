@@ -3,6 +3,7 @@ import sys
 sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
+import traceback
 
 from django.http import HttpResponse, HttpResponseRedirect
 from utils import Response
@@ -17,8 +18,8 @@ def handler(view):
     try:
       return view(request, *args, **kwargs)
     except Exception, e:
+      traceback.print_exc()
       info = sys.exc_info()
-      print info
       info = str(info[1]).decode("unicode-escape")
       # 如果一个post请求发生了未知的错误，则告诉前端将页面跳转到错误页面
       if request.method == 'POST':

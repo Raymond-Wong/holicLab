@@ -42,7 +42,7 @@ def detail(request):
   for i, course in enumerate(shop.courses):
     shop.courses[i].cover = json.loads(shop.courses[i].cover)
     shop.courses[i].price = course.price / 10.0
-    shop.courses[i].bookable_time = shop.courses[i].bookable_time_set.order_by('-start_time')
+    shop.courses[i].bookable_time = shop.courses[i].bookable_time_set.order_by('start_time')
     if len(shop.courses[i].bookable_time) > 0:
       shop.courses[i].bookable_time = shop.courses[i].bookable_time[0]
       courses.append(shop.courses[i])
