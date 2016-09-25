@@ -18,13 +18,12 @@ from holicLab.utils import Response
 def handler(view):
   def unKnownErr(request, *args, **kwargs):
     try:
-      raise IOException
       return view(request, *args, **kwargs)
     except Exception, e:
       errId = '%s.%s' % (str(time.time()), str(random.randint(0, 1000)))
       print '*' * 10, 'errid:', errId, '*' * 10
       traceback.print_exc()
-      print '*' * 30
+      print '*' * 10, 'endof:', errId, '*' * 10
       info = sys.exc_info()
       info = str(info[1]).decode("unicode-escape")
       # 如果一个post请求发生了未知的错误，则告诉前端将页面跳转到错误页面
