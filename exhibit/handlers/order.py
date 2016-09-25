@@ -110,7 +110,7 @@ def password(request):
     if len(order) == 0:
       return render(request, 'exhibit/order_password.html', {})
     else:
-      return redirect('/order?action=password&oid=%s' % str(order.oid))
+      return redirect('/order?action=password&oid=%s' % str(order[0].oid))
   order = Order.objects.get(oid=oid)
   url = 'http://' + request.get_host() + '/order?action=get&oid=' + oid
   url = quote(url, safe='')
