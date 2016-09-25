@@ -37,15 +37,14 @@ def homeHandler(request):
   for shop in shops:
     shop.cover = json.loads(shop.cover)
     shop.courses = []
-    courses = shop.course_set.filter(state=2).order_by('-releasedDate')[:3]
+    courses = shop.course_set.filter(state=2).all()
     for i, course in enumerate(courses):
       course.cover = json.loads(course.cover)
       course.bookable_time = course.bookable_time_set.order_by('start_time')
       if len(course.bookable_time) > 0:
         course.bookable_time = course.bookable_time[0]
         shop.courses.append(course)
-        print course.name, course.bookable_time.start_time
-    shop.courses = sorted(shop.courses, cmp=lambda x, y:cmp(x.bookable_time.start_time, y.bookable_time.start_time))
+    shop.courses = sorted(shop.courses, cmp=lambda x, y:cmp(x.bookable_time.start_time, y.bookable_time.start_time))[:3]
   shops = shops[:1]
   return render(request, 'exhibit/home.html', {'shops' : shops, 'shopSize' : len(shops)})
 
