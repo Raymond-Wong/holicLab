@@ -4,6 +4,8 @@ sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import traceback
+import random
+import time
 
 from django.http import HttpResponse, HttpResponseRedirect
 from utils import Response
@@ -19,14 +21,17 @@ def handler(view):
       raise IOException
       return view(request, *args, **kwargs)
     except Exception, e:
+      errId = '%s.%s' % (str(time.time()), str(random.randint(0, 1000)))
+      print '*' * 10, 'errid:', errId, '*' * 10
       traceback.print_exc()
+      print '*' * 30
       info = sys.exc_info()
       info = str(info[1]).decode("unicode-escape")
       # 如果一个post请求发生了未知的错误，则告诉前端将页面跳转到错误页面
       if request.method == 'POST':
-        return HttpResponse(Response(c=-2, m='/error?msg=%s' % info).toJson(), content_type="application/json")
+        return HttpResponse(Response(c=-2, m='/error?msg=%s' % errId).toJson(), content_type="application/json")
       # 如果是一个get请求发生了为知的错误，则将页面重定向到错误情面
-      return HttpResponseRedirect('/error?msg=%s' % info)
+      return HttpResponseRedirect('/error?msg=%s' % errId)
   return unKnownErr
 
 def login_required(view):
