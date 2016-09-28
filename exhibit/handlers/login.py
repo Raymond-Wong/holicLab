@@ -4,6 +4,7 @@ sys.path.append('..')
 reload(sys)
 sys.setdefaultencoding('utf-8')
 import json
+from urllib import quote
 
 from django.http import HttpResponse, HttpRequest, HttpResponseServerError, Http404
 from django.shortcuts import redirect, render
