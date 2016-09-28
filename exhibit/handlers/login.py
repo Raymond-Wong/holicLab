@@ -31,7 +31,7 @@ def login(request, view):
   code = request.GET.get('code', None)
   if code is None and request.method == 'GET':
     print '强制刷新: %s' % request.get_full_path()
-    url = request.get_full_path()
+    url = request.get_host() + request.get_full_path()
     url = quote(url, safe='')
     url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APP_ID + '&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
     return redirect(url)
