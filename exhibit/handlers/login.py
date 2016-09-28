@@ -27,7 +27,12 @@ def login(request, view):
   if request.session.has_key('user'):
     return view(request)
   # 获取code
-  code = request.GET.get('code')
+  code = request.GET.get('code', None)
+  if code is None and request.method == 'GET':
+    url = request.get_full_path()
+    url = quote(url, safe='')
+    url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APP_ID + '&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+    return redirect(url)
   # 用code换取access token
   params = {}
   params['appid'] = APP_ID
