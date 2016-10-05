@@ -261,7 +261,6 @@ def getOrderPrice(newOrder, duration):
       # 如果用户是被邀请的，则每一小时可以减免十元
       if user.invited_by != None:
         newOrder.price, usedCoupon = getCouponPrice(newOrder.price, user.balance, duration)
-        print '264: usedCoupon=%d' % usedCoupon
   elif sinceShopRelease.days / 30.0 <= 2:
     # 如果当前订单离商店发布时间在两个月内
     if str(user.user_type) == "1" and user.invited_by != None:
@@ -326,12 +325,13 @@ def successOrder(order, status, time_end):
   # 3. 设置该用户为老用户
   user.user_type = "2"
   # 2.1 更新该用户的优惠券数量
-  priceBK = order.price
-  price, usedCoupon = getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
-  print 'usedCoupon=%d, duration=%.2f' % (usedCoupon, (order.end_time - order.start_time).seconds / 60)
-  order.price = priceBK
+  # priceBK = order.price
+  # price, usedCoupon = getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
+  # order.price = priceBK
+  tmpPrice, usedCoupon = getCouponPrice(order.price, user.balance, (order.end_time - order.start_time).seconds / 60)
   user.balance = F('balance') - usedCoupon
   user.balance = F('balance') if F('balance') >= 0 else 0
+  print 'user.balance=%d, usedCoupon=%d' % (user.balance, usedCoupon)
   # 2.2 更新用户消费总金额
   user.consumption = F('consumption') + order.price
   # 4. 修改订单涉及课程或者场地的占用人次
@@ -359,4 +359,3 @@ def successOrder(order, status, time_end):
   # 保存对象
   order.save()
   user.save()
-  print '%s\'s balance become %d' % (user.nickname, user.balance)
