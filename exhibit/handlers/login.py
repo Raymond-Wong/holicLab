@@ -90,5 +90,5 @@ def rmReArgs(request):
     key = arg.split('=')[0]
     if key not in reArgs:
       needArgs.append(arg)
-  url = 'http://' + request.get_host() + prefix + '&'.join(needArgs)
+  url = 'http://' + request.get_host() + prefix + '?' + '&'.join(needArgs)
   return url
