@@ -26,6 +26,7 @@ TOKEN = settings.WX_APP_TOKEN
 def login(request, view):
   # 如果session中已经保存了用户信息，则不用重复获取用户信息
   if request.session.has_key('user'):
+    print rmReArgs(request)
     return view(request)
   # 获取code
   code = request.GET.get('code', None)
@@ -78,3 +79,16 @@ def genInviteCodeRepeate():
   except:
     return code
   return genInviteCodeRepeate()
+
+# 移除url中多余的参数
+def rmReArgs(request):
+  reArgs = ['code']
+  prefix = reqeust.get_full_path().split('?')[:-1]
+  args = request.get_full_path().split('?')[-1].split('&')
+  needArgs = []
+  for arg in args:
+    key = arg.split('=')[0]
+    if key not in reArgs:
+      needArgs.append(arg)
+  url = 'http://' + request.get_host() + prefix + '&'.join(needArgs)
+  return url
