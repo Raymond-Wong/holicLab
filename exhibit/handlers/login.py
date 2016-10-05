@@ -83,7 +83,7 @@ def genInviteCodeRepeate():
 # 移除url中多余的参数
 def rmReArgs(request):
   reArgs = ['code']
-  prefix = reqeust.get_full_path().split('?')[:-1]
+  prefix = request.get_full_path().split('?')[:-1]
   args = request.get_full_path().split('?')[-1].split('&')
   needArgs = []
   for arg in args:
