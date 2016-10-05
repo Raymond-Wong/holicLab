@@ -261,6 +261,7 @@ def getOrderPrice(newOrder, duration):
       # 如果用户是被邀请的，则每一小时可以减免十元
       if user.invited_by != None:
         newOrder.price, usedCoupon = getCouponPrice(newOrder.price, user.balance, duration)
+        print '264: usedCoupon=%d' % usedCoupon
   elif sinceShopRelease.days / 30.0 <= 2:
     # 如果当前订单离商店发布时间在两个月内
     if str(user.user_type) == "1" and user.invited_by != None:
