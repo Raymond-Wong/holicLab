@@ -357,3 +357,4 @@ def successOrder(order, status, time_end):
   # 保存对象
   order.save()
   user.save()
+  print '%s\'s balance become %d' % (user.nickname, user.balance)
