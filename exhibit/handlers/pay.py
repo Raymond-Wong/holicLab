@@ -270,6 +270,7 @@ def getOrderPrice(newOrder, duration):
     newOrder.price, usedCoupon = getCouponPrice(newOrder.price, user.balance, duration)
   # 如果优惠后的价格小于0，则为0
   newOrder.price = 0 if newOrder.price < 0  else newOrder.price
+  print 'usedCoupon_in=%d' % usedCoupon
   return newOrder, usedCoupon
 
 def getCouponPrice(price, balance, duration):
@@ -327,7 +328,7 @@ def successOrder(order, status, time_end):
   # 2.1 更新该用户的优惠券数量
   priceBK = order.price
   tmpPrice, usedCoupon = getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
-  print 'usedCoupon=%d' % usedCoupon
+  print 'usedCoupon_out=%d' % usedCoupon
   order.price = priceBK
   tmpPrice, usedCoupon = getCouponPrice(order.price, user.balance, (order.end_time - order.start_time).seconds / 60)
   user.balance = F('balance') - usedCoupon
