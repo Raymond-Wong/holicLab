@@ -204,6 +204,7 @@ def cancelSuccess(order):
   user.consumption = F('consumption') - order.price
   tmpPrice, usedCoupon = getCouponPrice(order.price, user.balance, (order.end_time - order.start_time).seconds / 60)
   user.balance = F('balance') + usedCoupon
+  print 'usedCoupon=%d' % usedCoupon
   # 如果该用户除了当前订单没有其他订单
   if len(user.order_set.filter(state="4")) == 0 and user.invited_by:
     # 3. 减少邀请该用户的用户的抵扣券
