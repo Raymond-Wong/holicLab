@@ -329,8 +329,7 @@ def successOrder(order, status, time_end):
   # price, usedCoupon = getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
   # order.price = priceBK
   tmpPrice, usedCoupon = getCouponPrice(order.price, user.balance, (order.end_time - order.start_time).seconds / 60)
-  user.balance = user.balance - usedCoupon
-  print 'usedCoupon=%d' % usedCoupon
+  user.balance = F('balance') - usedCoupon
   # 2.2 更新用户消费总金额
   user.consumption = F('consumption') + order.price
   # 4. 修改订单涉及课程或者场地的占用人次
