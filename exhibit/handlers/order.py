@@ -205,7 +205,7 @@ def cancelSuccess(order):
     # 3. 减少邀请该用户的用户的抵扣券
     inviteUser = user.invited_by
     inviteUser.balance = F('balance') - 1
-    inviteUser.balance = F('balance') if F('balance') >= 0 else 0
+    inviteUser.balance = inviteUser.balance if inviteUser.balance >= 0 else 0
     inviteUser.save()
   # 4. 修改订单涉及课程或者场地的占用人次
   if order.order_type == "1":
