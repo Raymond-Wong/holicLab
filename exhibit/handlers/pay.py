@@ -327,7 +327,7 @@ def successOrder(order, status, time_end):
   # 2.1 更新该用户的优惠券数量
   priceBK = order.price
   price, usedCoupon = getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
-  print 'usedCoupon=%d' % usedCoupon
+  print 'usedCoupon=%d, duration=%.2f' % (usedCoupon, (order.end_time - order.start_time).seconds / 60)
   order.price = priceBK
   user.balance = F('balance') - usedCoupon
   user.balance = F('balance') if F('balance') >= 0 else 0
