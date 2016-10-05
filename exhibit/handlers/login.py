@@ -24,17 +24,17 @@ APP_SECRET = settings.WX_APP_SECRET
 TOKEN = settings.WX_APP_TOKEN
 
 def login(request, view):
-  rmReArgsUrl = rmReArgs(request)
+  # rmReArgsUrl = rmReArgs(request)
   # 如果session中已经保存了用户信息，则不用重复获取用户信息
   if request.session.has_key('user'):
-    if request.method == 'GET' and rmReArgsUrl[0]:
-      return redirect(rmReArgsUrl[1])
+    # if request.method == 'GET' and rmReArgsUrl[0]:
+    #   return redirect(rmReArgsUrl[1])
     return view(request)
   # 获取code
   code = request.GET.get('code', None)
   if code is None and request.method == 'GET':
     url = 'http://' + request.get_host() + request.get_full_path()
-    url = rmReArgsUrl[1] if rmReArgsUrl[0] else url
+    # url = rmReArgsUrl[1] if rmReArgsUrl[0] else url
     url = quote(url, safe='')
     url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + APP_ID + '&redirect_uri=' + url + '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
     return redirect(url)
