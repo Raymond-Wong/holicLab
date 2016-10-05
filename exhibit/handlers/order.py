@@ -29,6 +29,8 @@ import holicLab.settings as settings
 from holicLab.utils import *
 from holicLab.models import Order, Shop, User, Course, Bookable_Time, Time_Bucket
 
+from pay import getCouponPrice
+
 def list(request):
   invite_code = request.session['user']
   orderType = request.GET.get('type', '0')
@@ -198,8 +200,9 @@ def cancelSuccess(order):
   user = order.user
   # 1. 修改订单状态
   order.state = "2"
-   # 2. 更新用户的总消费金额
+   # 2. 更新用户的总消费金额以及优惠券数量
   user.consumption = F('consumption') - order.price
+  user.balance = F('balance') + getCouponPrice(order.price, user.balance, (order.end_time - order.start_time).seconds / 60)
   # 如果该用户除了当前订单没有其他订单
   if len(user.order_set.filter(state="4")) == 0 and user.invited_by:
     # 3. 减少邀请该用户的用户的抵扣券
