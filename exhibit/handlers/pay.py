@@ -270,6 +270,7 @@ def getOrderPrice(newOrder, duration):
     newOrder.price, usedCoupon = getCouponPrice(newOrder.price, user.balance, duration)
   # 如果优惠后的价格小于0，则为0
   newOrder.price = 0 if newOrder.price < 0  else newOrder.price
+  print usedCoupon
   return newOrder, usedCoupon
 
 def getCouponPrice(price, balance, duration):
@@ -325,9 +326,9 @@ def successOrder(order, status, time_end):
   # 3. 设置该用户为老用户
   user.user_type = "2"
   # 2.1 更新该用户的优惠券数量
-  # priceBK = order.price
-  # price, usedCoupon = getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
-  # order.price = priceBK
+  priceBK = order.price
+  getOrderPrice(order, (order.end_time - order.start_time).seconds / 60)
+  order.price = priceBK
   tmpPrice, usedCoupon = getCouponPrice(order.price, user.balance, (order.end_time - order.start_time).seconds / 60)
   user.balance = F('balance') - usedCoupon
   # 2.2 更新用户消费总金额
