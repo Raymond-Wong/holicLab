@@ -97,5 +97,4 @@ def rmReArgs(request):
     else:
       hasReFlag = True
   url = 'http://' + request.get_host() + prefix + '?' + '&'.join(needArgs)
-  print url
   return hasReFlag, url
